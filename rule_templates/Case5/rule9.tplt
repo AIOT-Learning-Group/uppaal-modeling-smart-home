@@ -1,0 +1,41 @@
+<template>
+	<name>Rule9</name>
+	<declaration>clock t;</declaration>
+	<location id="id80" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id81" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id82" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id80"/>
+	<transition>
+		<source ref="id80"/>
+		<target ref="id81"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id81"/>
+		<target ref="id82"/>
+		<label kind="guard">light[1]==0</label>
+		<label kind="assignment">rule9=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id82"/>
+		<target ref="id80"/>
+		<label kind="synchronisation">turn_on_light[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id81"/>
+		<target ref="id80"/>
+		<label kind="guard">not(light[1]==0)</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>

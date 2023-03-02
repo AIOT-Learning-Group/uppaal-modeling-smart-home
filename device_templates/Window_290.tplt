@@ -1,0 +1,26 @@
+<template>
+	<name>Window</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id290" x="0" y="25">
+		<name x="17" y="16">windowopen</name>
+	</location>
+	<location id="id291" x="0" y="119">
+		<name x="-68" y="110">windowclosed</name>
+	</location>
+	<init ref="id291"/>
+	<transition>
+		<source ref="id291"/>
+		<target ref="id290"/>
+		<label kind="synchronisation" x="-9" y="42">open_window[i]?</label>
+		<label kind="assignment" x="17" y="59">window[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id290"/>
+		<target ref="id291"/>
+		<label kind="synchronisation" x="-85" y="76">close_window[i]?</label>
+		<label kind="assignment" x="-85" y="59">window[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>

@@ -1,0 +1,53 @@
+<template>
+	<name>AirConditioner</name>
+	<parameter>int i</parameter>
+	<location id="id230" x="-17" y="25">
+		<name x="-17" y="-25">acoff</name>
+	</location>
+	<location id="id231" x="-212" y="136">
+		<name x="-221" y="144">cool</name>
+	</location>
+	<location id="id232" x="195" y="136">
+		<name x="178" y="144">heat</name>
+	</location>
+	<init ref="id230"/>
+	<transition>
+		<source ref="id230"/>
+		<target ref="id232"/>
+		<label kind="synchronisation" x="85" y="-17">turn_ac_heat[i]?</label>
+		<label kind="assignment" x="0" y="25">ac[i]=2,dtemperature=dtemperature+0.05</label>
+		<nail x="195" y="25"/>
+	</transition>
+	<transition>
+		<source ref="id232"/>
+		<target ref="id231"/>
+		<label kind="synchronisation" x="-59" y="170">turn_ac_cool[i]?</label>
+		<label kind="assignment" x="-102" y="187">ac[i]=1,dtemperature=dtemperature-0.1</label>
+		<nail x="-17" y="204"/>
+	</transition>
+	<transition>
+		<source ref="id231"/>
+		<target ref="id230"/>
+		<label kind="synchronisation" x="-187" y="8">turn_ac_off[i]?</label>
+		<label kind="assignment" x="-221" y="25">ac[i]=0,dtemperature=dtemperature+0.05</label>
+		<nail x="-212" y="25"/>
+	</transition>
+	<transition>
+		<source ref="id232"/>
+		<target ref="id230"/>
+		<label kind="synchronisation" x="42" y="68">turn_ac_off[i]?</label>
+		<label kind="assignment" x="0" y="85">ac[i]=0,dtemperature=dtemperature-0.05</label>
+	</transition>
+	<transition>
+		<source ref="id231"/>
+		<target ref="id232"/>
+		<label kind="synchronisation" x="-68" y="119">turn_ac_heat[i]?</label>
+		<label kind="assignment" x="-102" y="136">ac[i]=2,dtemperature=dtemperature+0.1</label>
+	</transition>
+	<transition>
+		<source ref="id230"/>
+		<target ref="id231"/>
+		<label kind="synchronisation" x="-170" y="68">turn_ac_cool[i]?</label>
+		<label kind="assignment" x="-212" y="85">ac[i]=1,dtemperature=dtemperature-0.05</label>
+	</transition>
+</template>

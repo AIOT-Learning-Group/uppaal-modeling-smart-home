@@ -1,0 +1,26 @@
+<template>
+	<name>Light</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id250" x="0" y="25">
+		<name x="17" y="16">lighton</name>
+	</location>
+	<location id="id251" x="0" y="119">
+		<name x="-68" y="110">lightoff</name>
+	</location>
+	<init ref="id251"/>
+	<transition>
+		<source ref="id251"/>
+		<target ref="id250"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_light[i]?</label>
+		<label kind="assignment" x="17" y="59">light[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id250"/>
+		<target ref="id251"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_light[i]?</label>
+		<label kind="assignment" x="-85" y="59">light[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>

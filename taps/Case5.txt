@@ -1,0 +1,9 @@
+IF Human.home THEN door_0.open_door
+IF door_0.closed THEN SMS.send_msg
+IF Human.home THEN ac_0.turn_ac_heat
+IF temperature>30 THEN window_0.open_window
+IF temperature>30 AND Human.home AND time>=100 AND time<=225 THEN window_0.open_window
+IF Human.doorway THEN SMS.send_msg
+IF time>=136 AND time<=140 THEN door_0.close_door
+IF light_0.on THEN light_1.turn_light_off
+IF light_1.off THEN light_0.turn_light_on

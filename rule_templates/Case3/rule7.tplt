@@ -1,0 +1,41 @@
+<template>
+	<name>Rule7</name>
+	<declaration>clock t;</declaration>
+	<location id="id60" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id61" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id62" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id60"/>
+	<transition>
+		<source ref="id60"/>
+		<target ref="id61"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id61"/>
+		<target ref="id62"/>
+		<label kind="guard">camera[0]==1</label>
+		<label kind="assignment">rule7=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id62"/>
+		<target ref="id60"/>
+		<label kind="synchronisation">open_door[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id61"/>
+		<target ref="id60"/>
+		<label kind="guard">not(camera[0]==1)</label>
+		<label kind="assignment">rule7=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>

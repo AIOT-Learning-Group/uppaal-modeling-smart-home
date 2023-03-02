@@ -1,0 +1,41 @@
+<template>
+	<name>Rule3</name>
+	<declaration>clock t;</declaration>
+	<location id="id20" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id21" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id22" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id20"/>
+	<transition>
+		<source ref="id20"/>
+		<target ref="id21"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id21"/>
+		<target ref="id22"/>
+		<label kind="guard">time&gt;=225 &amp;&amp; time&lt;=250</label>
+		<label kind="assignment">rule3=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id22"/>
+		<target ref="id20"/>
+		<label kind="synchronisation">turn_on_bulb[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id21"/>
+		<target ref="id20"/>
+		<label kind="guard">not(time&gt;=225 &amp;&amp; time&lt;=250)</label>
+		<label kind="assignment">rule3=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>

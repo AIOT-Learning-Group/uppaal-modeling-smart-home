@@ -1,0 +1,41 @@
+<template>
+	<name>Rule10</name>
+	<declaration>clock t;</declaration>
+	<location id="id90" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id91" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id92" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id90"/>
+	<transition>
+		<source ref="id90"/>
+		<target ref="id91"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id91"/>
+		<target ref="id92"/>
+		<label kind="guard">curtain[0]==0</label>
+		<label kind="assignment">rule10=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id92"/>
+		<target ref="id90"/>
+		<label kind="synchronisation">turn_on_airpurifier[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id91"/>
+		<target ref="id90"/>
+		<label kind="guard">not(curtain[0]==0)</label>
+		<label kind="assignment">rule10=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>

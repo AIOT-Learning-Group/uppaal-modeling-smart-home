@@ -1,0 +1,26 @@
+<template>
+	<name>Fan</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id210" x="0" y="25">
+		<name x="17" y="16">fanon</name>
+	</location>
+	<location id="id211" x="0" y="119">
+		<name x="-68" y="110">fanoff</name>
+	</location>
+	<init ref="id211"/>
+	<transition>
+		<source ref="id211"/>
+		<target ref="id210"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_fan[i]?</label>
+		<label kind="assignment" x="17" y="59">fan[i]=1,dtemperature=dtemperature-0.02</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id210"/>
+		<target ref="id211"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_fan[i]?</label>
+		<label kind="assignment" x="-85" y="59">fan[i]=0,dtemperature=dtemperature+0.02</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>

@@ -1,0 +1,26 @@
+<template>
+	<name>AirPurifier</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id220" x="0" y="25">
+		<name x="17" y="16">airpurifieron</name>
+	</location>
+	<location id="id221" x="0" y="119">
+		<name x="-68" y="110">airpurifieroff</name>
+	</location>
+	<init ref="id221"/>
+	<transition>
+		<source ref="id221"/>
+		<target ref="id220"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_airpurifier[i]?</label>
+		<label kind="assignment" x="17" y="59">airpurifier[i]=1,dpm_2_5=dpm_2_5-0.1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id220"/>
+		<target ref="id221"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_airpurifier[i]?</label>
+		<label kind="assignment" x="-85" y="59">airpurifier[i]=0,dpm_2_5=dpm_2_5+0.1</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
