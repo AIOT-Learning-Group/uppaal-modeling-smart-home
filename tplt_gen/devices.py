@@ -1,7 +1,7 @@
 import os
 
 
-def build_two_state_device_with_impacts(name: str = "Device", offset=200, impact_env=None, impact_rate=0):
+def build_two_state_device_with_impacts(name: str = "Device", offset=200, impact_env=None, impact_rate=0, onoff_to_openclose=False):
     positive, negative = "", ""
     if impact_env != None:
         if type(impact_env) is list:
@@ -25,7 +25,7 @@ def build_two_state_device_with_impacts(name: str = "Device", offset=200, impact
             else:
                 positive = f",{impact_env}={impact_env}-{abs_rate}"
                 negative = f",{impact_env}={impact_env}+{abs_rate}"
-    return f"""<template>
+    tplt = f"""<template>
 \t<name>{name}</name>
 \t<parameter>int i</parameter>
 \t<declaration>//controlled_device</declaration>
@@ -52,9 +52,25 @@ def build_two_state_device_with_impacts(name: str = "Device", offset=200, impact
 \t</transition>
 </template>
 """
+    global declarations
+    decl = ""
+    decl += f"int {name.lower()}[1];\n"
+    decl += f"urgent broadcast chan turn_on_{name.lower()}[1];\n"
+    decl += f"urgent broadcast chan turn_off_{name.lower()}[1];\n"
+    if onoff_to_openclose:
+        tplt = tplt.replace("turn_on_", "open_").replace("turn_off_", "close_").replace(
+            "on</name>", "open</name>").replace("off</name>", "closed</name>")
+        decl = decl.replace("turn_on_", "open_").replace("turn_off_", "close_")
+    declarations += decl
+    return tplt
 
 
 def build_device_air_conditioner(offset=300, impact_rate=0.02):
+    global declarations
+    declarations += "int airconditioner[1];\n"
+    declarations += "urgent broadcast chan turn_ac_off[1];\n"
+    declarations += "urgent broadcast chan turn_ac_cool[1];\n"
+    declarations += "urgent broadcast chan turn_ac_heat[1];\n"
     return f"""<template>
 \t<name>AirConditioner</name>
 \t<parameter>int i</parameter>
@@ -72,40 +88,40 @@ def build_device_air_conditioner(offset=300, impact_rate=0.02):
 \t\t<source ref="id{offset}"/>
 \t\t<target ref="id{offset+2}"/>
 \t\t<label kind="synchronisation" x="85" y="-17">turn_ac_heat[i]?</label>
-\t\t<label kind="assignment" x="0" y="25">ac[i]=2,dtemperature=dtemperature+{impact_rate}</label>
+\t\t<label kind="assignment" x="0" y="25">airconditioner[i]=2,dtemperature=dtemperature+{impact_rate}</label>
 \t\t<nail x="195" y="25"/>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+2}"/>
 \t\t<target ref="id{offset+1}"/>
 \t\t<label kind="synchronisation" x="-59" y="170">turn_ac_cool[i]?</label>
-\t\t<label kind="assignment" x="-102" y="187">ac[i]=1,dtemperature=dtemperature-{impact_rate*2}</label>
+\t\t<label kind="assignment" x="-102" y="187">airconditioner[i]=1,dtemperature=dtemperature-{impact_rate*2}</label>
 \t\t<nail x="-17" y="204"/>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+1}"/>
 \t\t<target ref="id{offset}"/>
 \t\t<label kind="synchronisation" x="-187" y="8">turn_ac_off[i]?</label>
-\t\t<label kind="assignment" x="-221" y="25">ac[i]=0,dtemperature=dtemperature+{impact_rate}</label>
+\t\t<label kind="assignment" x="-221" y="25">airconditioner[i]=0,dtemperature=dtemperature+{impact_rate}</label>
 \t\t<nail x="-212" y="25"/>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+2}"/>
 \t\t<target ref="id{offset}"/>
 \t\t<label kind="synchronisation" x="42" y="68">turn_ac_off[i]?</label>
-\t\t<label kind="assignment" x="0" y="85">ac[i]=0,dtemperature=dtemperature-{impact_rate}</label>
+\t\t<label kind="assignment" x="0" y="85">airconditioner[i]=0,dtemperature=dtemperature-{impact_rate}</label>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+1}"/>
 \t\t<target ref="id{offset+2}"/>
 \t\t<label kind="synchronisation" x="-68" y="119">turn_ac_heat[i]?</label>
-\t\t<label kind="assignment" x="-102" y="136">ac[i]=2,dtemperature=dtemperature+{impact_rate*2}</label>
+\t\t<label kind="assignment" x="-102" y="136">airconditioner[i]=2,dtemperature=dtemperature+{impact_rate*2}</label>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset}"/>
 \t\t<target ref="id{offset+1}"/>
 \t\t<label kind="synchronisation" x="-170" y="68">turn_ac_cool[i]?</label>
-\t\t<label kind="assignment" x="-212" y="85">ac[i]=1,dtemperature=dtemperature-{impact_rate}</label>
+\t\t<label kind="assignment" x="-212" y="85">airconditioner[i]=1,dtemperature=dtemperature-{impact_rate}</label>
 \t</transition>
 </template>"""
 
@@ -129,15 +145,14 @@ def build_sms(offset=300):
 </template>"""
 
 
-def onoff_to_openclose(input: str) -> str:
-    return input.replace("turn_on_", "open_").replace("turn_off_", "close_").replace(
-        "on</name>", "open</name>").replace("off</name>", "closed</name>")
+declarations = ""
 
 
 def build_all():
     if not os.path.exists("device_templates"):
         os.mkdir("device_templates")
-
+    global declarations
+    declarations = ""
     open("device_templates/Fan_210.tplt",
          "w").write(build_two_state_device_with_impacts("Fan", 210, "dtemperature", -0.02))
     open("device_templates/AirPurifier_220.tplt",
@@ -145,18 +160,19 @@ def build_all():
     open("device_templates/AirConditioner_230.tplt",
          "w").write(build_device_air_conditioner(230, 0.05))
     open("device_templates/Door_240.tplt",
-         "w").write(onoff_to_openclose(build_two_state_device_with_impacts("Door", 240)))
+         "w").write(build_two_state_device_with_impacts("Door", 240, onoff_to_openclose=True))
     open("device_templates/Light_250.tplt",
          "w").write(build_two_state_device_with_impacts("Light", 250))
     open("device_templates/Curtain_260.tplt",
          "w").write(build_two_state_device_with_impacts("Curtain", 260))
     open("device_templates/Camera_270.tplt",
-         "w").write(onoff_to_openclose(build_two_state_device_with_impacts("Camera", 270)))
+         "w").write(build_two_state_device_with_impacts("Camera", 270, onoff_to_openclose=True))
     open("device_templates/Humidifier_280.tplt",
          "w").write(build_two_state_device_with_impacts("Humidifier", 280, ["dhumidity", "dpm_2_5"], [+0.1, +1]))  # PM_2_5：50-250
     open("device_templates/Window_290.tplt",
-         "w").write(onoff_to_openclose(build_two_state_device_with_impacts("Window", 290)))
+         "w").write(build_two_state_device_with_impacts("Window", 290, onoff_to_openclose=True))
     open("device_templates/SMS_300.tplt", "w").write(build_sms(300))
+    open("device_templates/decl", "w").write(declarations)
 
 
 if __name__ == "__main__":
