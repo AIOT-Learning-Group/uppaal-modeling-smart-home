@@ -1,0 +1,41 @@
+<template>
+	<name>Rule5</name>
+	<declaration>clock t;</declaration>
+	<location id="id40" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id41" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id42" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id40"/>
+	<transition>
+		<source ref="id40"/>
+		<target ref="id41"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id41"/>
+		<target ref="id42"/>
+		<label kind="guard">camera[0]==1</label>
+		<label kind="assignment">rule5=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id42"/>
+		<target ref="id40"/>
+		<label kind="synchronisation">send_msg!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id41"/>
+		<target ref="id40"/>
+		<label kind="guard">camera[0]!=1</label>
+		<label kind="assignment">rule5=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>

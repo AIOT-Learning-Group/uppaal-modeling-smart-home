@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+<declaration>// Place global declarations here.
+clock time;int position=0;int rule1=0;
+int rule2=0;
+int rule3=0;
+int rule4=0;
+int rule5=0;
+int rule6=0;
+int rule7=0;
+int rule8=0;
+int fan[1];
+urgent broadcast chan turn_on_fan[1];
+urgent broadcast chan turn_off_fan[1];
+int airpurifier[1];
+urgent broadcast chan turn_on_airpurifier[1];
+urgent broadcast chan turn_off_airpurifier[1];
+int airconditioner[1];
+urgent broadcast chan turn_ac_off[1];
+urgent broadcast chan turn_ac_cool[1];
+urgent broadcast chan turn_ac_heat[1];
+int door[1];
+urgent broadcast chan open_door[1];
+urgent broadcast chan close_door[1];
+int light[1];
+urgent broadcast chan turn_on_light[1];
+urgent broadcast chan turn_off_light[1];
+int curtain[1];
+urgent broadcast chan open_curtain[1];
+urgent broadcast chan close_curtain[1];
+int camera[1];
+urgent broadcast chan turn_on_camera[1];
+urgent broadcast chan turn_off_camera[1];
+int humidifier[1];
+urgent broadcast chan turn_on_humidifier[1];
+urgent broadcast chan turn_off_humidifier[1];
+int window[1];
+urgent broadcast chan open_window[1];
+urgent broadcast chan close_window[1];
+int received_msgs=0;
+urgent broadcast chan send_msg;
+</declaration>
+<template>
+	<name>Human</name>
+	<parameter>double t0,double t1</parameter>
+	<declaration>//</declaration>
+	<location id="id100" x="150" y="100">
+		<committed/>
+	</location>
+	<location id="id101" x="300" y="100">
+		<name>out_0</name>
+		<label kind="invariant">time&lt;=t0</label>
+	</location>
+	<location id="id102" x="450" y="100">
+		<name>doorway_0</name>
+		<label kind="invariant">time&lt;=t1</label>
+	</location>
+	<location id="id103" x="600" y="100">
+		<name>home_0</name>
+	</location>
+	<init ref="id100"/>
+	<transition>
+		<source ref="id100"/>
+		<target ref="id101"/>
+		<label kind="assignment">position=0</label>
+	</transition>
+	<transition>
+		<source ref="id101"/>
+		<target ref="id102"/>
+		<label kind="guard">time&gt;=t0</label>
+		<label kind="assignment">position=1</label>
+	</transition>
+	<transition>
+		<source ref="id102"/>
+		<target ref="id103"/>
+		<label kind="guard">time&gt;=t1</label>
+		<label kind="assignment">position=2</label>
+	</transition>
+</template>
+<template>
+	<name>Camera</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id270" x="0" y="25">
+		<name x="17" y="16">cameraon</name>
+	</location>
+	<location id="id271" x="0" y="119">
+		<name x="-68" y="110">cameraoff</name>
+	</location>
+	<init ref="id271"/>
+	<transition>
+		<source ref="id271"/>
+		<target ref="id270"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_camera[i]?</label>
+		<label kind="assignment" x="17" y="59">camera[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id270"/>
+		<target ref="id271"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_camera[i]?</label>
+		<label kind="assignment" x="-85" y="59">camera[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name x="5" y="5">SMS</name>
+	<declaration>// Place local declarations here.</declaration>
+	<location id="id300" x="-170" y="-51">
+	</location>
+	<init ref="id300"/>
+	<transition>
+		<source ref="id300"/>
+		<target ref="id300"/>
+		<label kind="synchronisation" x="-110" y="-68">send_msg?</label>
+		<label kind="assignment" x="-110" y="-51">received_msgs += 1</label>
+		<nail x="-119" y="-17"/>
+		<nail x="-119" y="-76"/>
+	</transition>
+</template><template>
+	<name>Door</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id240" x="0" y="25">
+		<name x="17" y="16">dooropen</name>
+	</location>
+	<location id="id241" x="0" y="119">
+		<name x="-68" y="110">doorclosed</name>
+	</location>
+	<init ref="id241"/>
+	<transition>
+		<source ref="id241"/>
+		<target ref="id240"/>
+		<label kind="synchronisation" x="-9" y="42">open_door[i]?</label>
+		<label kind="assignment" x="17" y="59">door[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id240"/>
+		<target ref="id241"/>
+		<label kind="synchronisation" x="-85" y="76">close_door[i]?</label>
+		<label kind="assignment" x="-85" y="59">door[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Light</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id250" x="0" y="25">
+		<name x="17" y="16">lighton</name>
+	</location>
+	<location id="id251" x="0" y="119">
+		<name x="-68" y="110">lightoff</name>
+	</location>
+	<init ref="id251"/>
+	<transition>
+		<source ref="id251"/>
+		<target ref="id250"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_light[i]?</label>
+		<label kind="assignment" x="17" y="59">light[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id250"/>
+		<target ref="id251"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_light[i]?</label>
+		<label kind="assignment" x="-85" y="59">light[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Rule1</name>
+	<declaration>clock t;</declaration>
+	<location id="id0" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id1" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id2" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id0"/>
+	<transition>
+		<source ref="id0"/>
+		<target ref="id1"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id1"/>
+		<target ref="id2"/>
+		<label kind="guard">position==2</label>
+		<label kind="assignment">rule1=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id2"/>
+		<target ref="id0"/>
+		<label kind="synchronisation">open_door[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id1"/>
+		<target ref="id0"/>
+		<label kind="guard">position!=2</label>
+		<label kind="assignment">rule1=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule2</name>
+	<declaration>clock t;</declaration>
+	<location id="id10" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id11" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id12" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id10"/>
+	<transition>
+		<source ref="id10"/>
+		<target ref="id11"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id11"/>
+		<target ref="id12"/>
+		<label kind="guard">position==0</label>
+		<label kind="assignment">rule2=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id12"/>
+		<target ref="id10"/>
+		<label kind="synchronisation">close_door[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id11"/>
+		<target ref="id10"/>
+		<label kind="guard">position!=0</label>
+		<label kind="assignment">rule2=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule3</name>
+	<declaration>clock t;</declaration>
+	<location id="id20" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id21" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id22" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id20"/>
+	<transition>
+		<source ref="id20"/>
+		<target ref="id21"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id21"/>
+		<target ref="id22"/>
+		<label kind="guard">door[0]==0</label>
+		<label kind="assignment">rule3=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id22"/>
+		<target ref="id20"/>
+		<label kind="synchronisation">turn_off_light[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id21"/>
+		<target ref="id20"/>
+		<label kind="guard">door[0]!=0</label>
+		<label kind="assignment">rule3=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule4</name>
+	<declaration>clock t;</declaration>
+	<location id="id30" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id31" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id32" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id30"/>
+	<transition>
+		<source ref="id30"/>
+		<target ref="id31"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id31"/>
+		<target ref="id32"/>
+		<label kind="guard">door[0]==1</label>
+		<label kind="assignment">rule4=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id32"/>
+		<target ref="id30"/>
+		<label kind="synchronisation">turn_on_camera[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id31"/>
+		<target ref="id30"/>
+		<label kind="guard">door[0]!=1</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule5</name>
+	<declaration>clock t;</declaration>
+	<location id="id40" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id41" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id42" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id40"/>
+	<transition>
+		<source ref="id40"/>
+		<target ref="id41"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id41"/>
+		<target ref="id42"/>
+		<label kind="guard">camera[0]==1</label>
+		<label kind="assignment">rule5=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id42"/>
+		<target ref="id40"/>
+		<label kind="synchronisation">send_msg!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id41"/>
+		<target ref="id40"/>
+		<label kind="guard">camera[0]!=1</label>
+		<label kind="assignment">rule5=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule6</name>
+	<declaration>clock t;</declaration>
+	<location id="id50" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id51" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id52" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id50"/>
+	<transition>
+		<source ref="id50"/>
+		<target ref="id51"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id51"/>
+		<target ref="id52"/>
+		<label kind="guard">camera[0]==1</label>
+		<label kind="assignment">rule6=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id52"/>
+		<target ref="id50"/>
+		<label kind="synchronisation">close_door[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id51"/>
+		<target ref="id50"/>
+		<label kind="guard">camera[0]!=1</label>
+		<label kind="assignment">rule6=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule7</name>
+	<declaration>clock t;</declaration>
+	<location id="id60" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id61" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id62" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id60"/>
+	<transition>
+		<source ref="id60"/>
+		<target ref="id61"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id61"/>
+		<target ref="id62"/>
+		<label kind="guard">camera[0]==1</label>
+		<label kind="assignment">rule7=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id62"/>
+		<target ref="id60"/>
+		<label kind="synchronisation">open_door[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id61"/>
+		<target ref="id60"/>
+		<label kind="guard">camera[0]!=1</label>
+		<label kind="assignment">rule7=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule8</name>
+	<declaration>clock t;</declaration>
+	<location id="id70" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id71" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id72" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id70"/>
+	<transition>
+		<source ref="id70"/>
+		<target ref="id71"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id71"/>
+		<target ref="id72"/>
+		<label kind="guard">door[0]==1</label>
+		<label kind="assignment">rule8=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id72"/>
+		<target ref="id70"/>
+		<label kind="synchronisation">send_msg!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id71"/>
+		<target ref="id70"/>
+		<label kind="guard">door[0]!=1</label>
+		<label kind="assignment">rule8=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>
+	<system>HumanInstance=Human(100.0,200.0);
+Camera_0 = Camera(0);
+Door_0 = Door(0);
+Light_0 = Light(0);
+system HumanInstance, Camera_0, SMS, Door_0, Light_0, Rule1, Rule2, Rule3, Rule4, Rule5, Rule6, Rule7, Rule8;
+</system>
+<queries>
+	<query>
+		<formula>simulate[&lt;=300] {rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, camera[0], received_msgs, door[0], light[0], position}</formula>
+		<comment></comment>
+	</query>
+</queries>
+</nta>

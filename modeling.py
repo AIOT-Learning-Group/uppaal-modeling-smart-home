@@ -164,6 +164,29 @@ def build_RQ3_case_1():
              os.path.abspath(model_path + ".result"))
 
 
+def build_RQ3_case_3():
+    model = Simulatable()
+    model.simulation_time = 300
+    for i in range(count_tplts("rule_templates/RQ3Case3")):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case3/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Camera_270.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/SMS_300.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Door_240.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Light_250.tplt', 'r').read())
+    model.locations = ["out", "doorway", "home"]
+    model.moving_time = [100.0, 200.0]
+    model.build()
+    model_path = "models/rq3_case_3.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
 def build_RQ3_case_7():
     model = Simulatable()
     model.simulation_time = 300
@@ -187,5 +210,6 @@ def build_RQ3_case_7():
              os.path.abspath(model_path + ".result"))
 
 
+# python -m tplt_gen.rules && python -m modeling
 if __name__ == "__main__":
-    build_RQ3_case_1()
+    build_RQ3_case_3()
