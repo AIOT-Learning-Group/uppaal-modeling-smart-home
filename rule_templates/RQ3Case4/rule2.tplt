@@ -1,0 +1,41 @@
+<template>
+	<name>Rule2</name>
+	<declaration>clock t;</declaration>
+	<location id="id10" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id11" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id12" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id10"/>
+	<transition>
+		<source ref="id10"/>
+		<target ref="id11"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id11"/>
+		<target ref="id12"/>
+		<label kind="guard">position==0</label>
+		<label kind="assignment">rule2=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id12"/>
+		<target ref="id10"/>
+		<label kind="synchronisation">turn_off_light[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id11"/>
+		<target ref="id10"/>
+		<label kind="guard">position!=0</label>
+		<label kind="assignment">rule2=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>

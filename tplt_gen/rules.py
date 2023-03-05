@@ -173,7 +173,7 @@ assert to_anti_trigger("a>b&&a<=b") == "a<=b||a>b"
 
 if __name__ == "__main__":
     rule_delay = 1
-    tap_sets = ['RQ3Case1', 'RQ3Case3']
+    tap_sets = ['RQ3Case1', 'RQ3Case3', 'RQ3Case4', 'RQ3Case5']
     for tap_set in tap_sets:
         if not os.path.exists(f'rule_templates/{tap_set}'):
             os.mkdir(f'rule_templates/{tap_set}')

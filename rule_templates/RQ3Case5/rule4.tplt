@@ -1,0 +1,41 @@
+<template>
+	<name>Rule4</name>
+	<declaration>clock t;</declaration>
+	<location id="id30" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id31" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id32" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id30"/>
+	<transition>
+		<source ref="id30"/>
+		<target ref="id31"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id31"/>
+		<target ref="id32"/>
+		<label kind="guard">temperature&gt;30</label>
+		<label kind="assignment">rule4=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id32"/>
+		<target ref="id30"/>
+		<label kind="synchronisation">open_window[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+	<transition>
+		<source ref="id31"/>
+		<target ref="id30"/>
+		<label kind="guard">temperature&lt;=30</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+</template>

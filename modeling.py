@@ -187,6 +187,54 @@ def build_RQ3_case_3():
              os.path.abspath(model_path + ".result"))
 
 
+def build_RQ3_case_4():
+    model = Simulatable()
+    model.simulation_time = 300
+    model.envs_init['temperature'] = 18.0
+    model.envs_tplt.append(
+        open('env_templates/temperature.tplt', 'r').read())
+    for i in range(count_tplts("rule_templates/RQ3Case4")):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case4/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/AirConditioner_230.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Light_250.tplt', 'r').read())
+    model.locations = ["out", "doorway", "home", "out"]
+    model.moving_time = [20.0, 40.0, 200.0]
+    model.build()
+    model_path = "models/rq3_case_4.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
+def build_RQ3_case_5():
+    model = Simulatable()
+    model.simulation_time = 300
+    model.envs_init['temperature'] = 18.0
+    model.envs_tplt.append(
+        open('env_templates/temperature.tplt', 'r').read())
+    for i in range(count_tplts("rule_templates/RQ3Case5")):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case5/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/AirConditioner_230.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Door_240.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Window_290.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/SMS_300.tplt', 'r').read())
+    model.locations = ["out", "doorway", "home"]
+    model.moving_time = [5.0, 10.0]
+    model.build()
+    model_path = "models/rq3_case_5.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
 def build_RQ3_case_7():
     model = Simulatable()
     model.simulation_time = 300
@@ -212,4 +260,4 @@ def build_RQ3_case_7():
 
 # python -m tplt_gen.rules && python -m modeling
 if __name__ == "__main__":
-    build_RQ3_case_3()
+    build_RQ3_case_5()
