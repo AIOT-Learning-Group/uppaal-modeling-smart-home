@@ -44,8 +44,11 @@ def build_system(envs_tplt, devices_tplt, rule_num, moving_time):
     template += f'\t<system>HumanInstance=Human({",".join(list(map(lambda x: str(x), moving_time)))});\n'
     for device in devices_tplt:
         name = get_tlpt_name(device)
-        template += f'{name}_0 = {name}(0);\n'
-    template += f'system HumanInstance, {", ".join(list(map(lambda x: x+"_0", map(get_tlpt_name, devices_tplt))))}, {", ".join(list(map(get_tlpt_name, envs_tplt)))}, {", ".join(f"Rule{i+1}" for i in range(rule_num))};\n'
+        if name == "SMS":
+            continue
+        else:
+            template += f'{name}_0 = {name}(0);\n'
+    template += f'system HumanInstance, {", ".join(list(map(lambda x: x+"_0" if x != "SMS" else x, map(get_tlpt_name, devices_tplt))))}, {", ".join(list(map(get_tlpt_name, envs_tplt)))}, {", ".join(f"Rule{i+1}" for i in range(rule_num))};\n'.replace(", , ", ", ")
     template += f'</system>\n'
     return template
 
@@ -77,6 +80,7 @@ class Simulatable:
     def build(self):
         self.body = ""
         declarations = "clock time;int position=0;"
+
         for i in range(len(self.rules_tplt)):
             declarations += f"int rule{i+1}=0;\n"
         declarations += open("device_templates/decl", "r").read()
@@ -100,9 +104,10 @@ class Simulatable:
                                   len(self.rules_tplt), self.moving_time)
         vars = list(map(find_env_name, self.envs_tplt))
         vars += list(map(get_tlpt_name, self.rules_tplt))
-        vars += list(map(lambda x: x+"[0]",
+        vars += list(map(lambda x: x+"[0]" if x != "SMS" else "received_msgs",
                      map(get_tlpt_name, self.devices_tplt)))
         vars = list(map(lambda x: x.lower(), vars))
+        vars += ["position"]
         self.body += build_query(self.simulation_time, vars)
         self.full_body = self.header + self.body + self.footer
 
@@ -125,5 +130,62 @@ def build_RQ3_case_test():
              os.path.abspath(model_path + ".result"))
 
 
+def count_tplts(path: str) -> int:
+    count = 0
+    for sub_path in os.listdir(path):
+        if os.path.isfile(os.path.join(path, sub_path)):
+            count += 1
+    return count
+
+
+def build_RQ3_case_1():
+    model = Simulatable()
+    model.simulation_time = 300
+    model.envs_init['temperature'] = 18.0
+    model.envs_tplt.append(
+        open('env_templates/temperature.tplt', 'r').read())
+    for i in range(count_tplts("rule_templates/RQ3Case1")):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case1/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/AirConditioner_230.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Door_240.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Window_290.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/SMS_300.tplt', 'r').read())
+    model.locations = ["out", "doorway", "home"]
+    model.moving_time = [100.0, 200.0]
+    model.build()
+    model_path = "models/rq3_case_1.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
+def build_RQ3_case_7():
+    model = Simulatable()
+    model.simulation_time = 300
+    for i in range(5):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case7/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Camera_270.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/SMS_300.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Door_240.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Light_250.tplt', 'r').read())
+    model.locations = ["out", "doorway", "home"]
+    model.moving_time = [200.0, 250.0]
+    model.build()
+    model_path = "models/rq3_case_7.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
 if __name__ == "__main__":
-    build_RQ3_case_test()
+    build_RQ3_case_1()

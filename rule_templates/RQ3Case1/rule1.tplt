@@ -26,14 +26,14 @@
 	<transition>
 		<source ref="id2"/>
 		<target ref="id0"/>
-		<label kind="synchronisation">turn_on_light[0]!</label>
+		<label kind="synchronisation">open_door[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id1"/>
 		<target ref="id0"/>
-		<label kind="guard">not(position==2)</label>
+		<label kind="guard">position!=2</label>
 		<label kind="assignment">rule1=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>

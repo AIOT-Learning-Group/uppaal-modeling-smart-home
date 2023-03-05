@@ -20,20 +20,20 @@
 	<transition>
 		<source ref="id11"/>
 		<target ref="id12"/>
-		<label kind="guard">time&gt;=85.5 &amp;&amp; time&lt;91.5</label>
+		<label kind="guard">door[0]==0</label>
 		<label kind="assignment">rule2=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id12"/>
 		<target ref="id10"/>
-		<label kind="synchronisation">open_window[0]!</label>
+		<label kind="synchronisation">send_msg!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id11"/>
 		<target ref="id10"/>
-		<label kind="guard">not(time&gt;=85.5 &amp;&amp; time&lt;91.5)</label>
+		<label kind="guard">door[0]!=0</label>
 		<label kind="assignment">rule2=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>

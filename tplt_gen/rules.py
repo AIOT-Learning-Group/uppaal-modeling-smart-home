@@ -1,3 +1,4 @@
+import os
 import parse
 from tplt_gen.human import locations_ids
 
@@ -45,15 +46,27 @@ def build_rule(name, trigger, anti_trigger, action, delay, offset):
     template += f'\t\t<nail x="300" y="-50"/>\n'
     template += f'\t\t<nail x="0" y="-50"/>\n'
     template += f'\t</transition>\n'
-
-    template += f'\t<transition>\n'
-    template += f'\t\t<source ref="id{str(offset+1)}"/>\n'
-    template += f'\t\t<target ref="id{str(offset)}"/>\n'
-    template += f'\t\t<label kind="guard">{anti_trigger}</label>\n'
-    template += f'\t\t<label kind="assignment">{vname}=0,t=0</label>\n'
-    template += f'\t\t<nail x="150" y="50"/>\n'
-    template += f'\t\t<nail x="0" y="50"/>\n'
-    template += f'\t</transition>\n'
+    if "||" in anti_trigger:
+        sub_anti_triggers = anti_trigger.split("||")
+        for sat in sub_anti_triggers:
+            sat = sat.replace(" ", '')
+            template += f'\t<transition>\n'
+            template += f'\t\t<source ref="id{str(offset+1)}"/>\n'
+            template += f'\t\t<target ref="id{str(offset)}"/>\n'
+            template += f'\t\t<label kind="guard">{sat}</label>\n'
+            template += f'\t\t<label kind="assignment">{vname}=0,t=0</label>\n'
+            template += f'\t\t<nail x="150" y="50"/>\n'
+            template += f'\t\t<nail x="0" y="50"/>\n'
+            template += f'\t</transition>\n'
+    else:
+        template += f'\t<transition>\n'
+        template += f'\t\t<source ref="id{str(offset+1)}"/>\n'
+        template += f'\t\t<target ref="id{str(offset)}"/>\n'
+        template += f'\t\t<label kind="guard">{anti_trigger}</label>\n'
+        template += f'\t\t<label kind="assignment">{vname}=0,t=0</label>\n'
+        template += f'\t\t<nail x="150" y="50"/>\n'
+        template += f'\t\t<nail x="0" y="50"/>\n'
+        template += f'\t</transition>\n'
 
     template += f'</template>\n'
     return template
@@ -82,7 +95,7 @@ action_mappings = {
     'ac_{i}.turn_ac_off': 'turn_ac_off[{i}]!',
     'ac_{i}.turn_ac_cool': 'turn_ac_cool[{i}]!',
     'ac_{i}.turn_ac_heat': 'turn_ac_heat[{i}]!',
-    'SMS.send_msg': 'send_sms!'
+    'SMS.send_msg': 'send_msg!'
 }
 
 valid_device_names = [
@@ -133,12 +146,39 @@ def parse_tap_rules(text: str):
     return triggers, actions
 
 
+anti_pairs = [
+    ["==", "!="], ["<=", ">"], [">=", "<"]
+]
+
+
+def to_anti_trigger(trigger: str) -> str:
+    if "&&" in trigger:
+        sub_triggers = trigger.split("&&")
+        return "||".join(list(map(to_anti_trigger, sub_triggers)))
+    else:
+        for pair in anti_pairs:
+            f, s = pair
+            if f in trigger:
+                return trigger.replace(f, s)
+        for pair in anti_pairs:
+            s, f = pair
+            if f in trigger:
+                return trigger.replace(f, s)
+        return ""
+
+
+assert to_anti_trigger("a>b") == "a<=b"
+assert to_anti_trigger("a<=b") == "a>b"
+assert to_anti_trigger("a>b&&a<=b") == "a<=b||a>b"
+
 if __name__ == "__main__":
     rule_delay = 1
-    tap_sets = ['Case2', 'Case3', 'Case5', 'Case7']
+    tap_sets = ['RQ3Case1', 'RQ3Case7']
     for tap_set in tap_sets:
+        if not os.path.exists(f'rule_templates/{tap_set}'):
+            os.mkdir(f'rule_templates/{tap_set}')
         tap_rules = zip(
             *parse_tap_rules(open(f'taps/{tap_set}.txt', "r").read()))
         for i, (trigger, action) in enumerate(tap_rules):
             open(f"rule_templates/{tap_set}/rule{i+1}.tplt", "w").write(build_rule(
-                f"Rule{i+1}", trigger, f'not({trigger})', action, rule_delay, i * 10))
+                f"Rule{i+1}", trigger, to_anti_trigger(trigger), action, rule_delay, i * 10))

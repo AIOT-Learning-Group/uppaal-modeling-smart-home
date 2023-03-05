@@ -33,7 +33,15 @@
 	<transition>
 		<source ref="id61"/>
 		<target ref="id60"/>
-		<label kind="guard">not(time&gt;=136 &amp;&amp; time&lt;=140)</label>
+		<label kind="guard">time&lt;136</label>
+		<label kind="assignment">rule7=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id61"/>
+		<target ref="id60"/>
+		<label kind="guard">time&gt;140</label>
 		<label kind="assignment">rule7=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>

@@ -2,13 +2,12 @@
 	<name x="5" y="5">SMS</name>
 	<declaration>// Place local declarations here.</declaration>
 	<location id="id300" x="-170" y="-51">
-		<urgent/>
 	</location>
-	<init ref="id0"/>
+	<init ref="id300"/>
 	<transition>
 		<source ref="id300"/>
 		<target ref="id300"/>
-		<label kind="synchronisation" x="-110" y="-68">send_sms?</label>
+		<label kind="synchronisation" x="-110" y="-68">send_msg?</label>
 		<label kind="assignment" x="-110" y="-51">received_msgs += 1</label>
 		<nail x="-119" y="-17"/>
 		<nail x="-119" y="-76"/>

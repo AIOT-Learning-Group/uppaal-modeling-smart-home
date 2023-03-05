@@ -3,23 +3,23 @@
 	<parameter>int i</parameter>
 	<declaration>//controlled_device</declaration>
 	<location id="id270" x="0" y="25">
-		<name x="17" y="16">cameraopen</name>
+		<name x="17" y="16">cameraon</name>
 	</location>
 	<location id="id271" x="0" y="119">
-		<name x="-68" y="110">cameraclosed</name>
+		<name x="-68" y="110">cameraoff</name>
 	</location>
 	<init ref="id271"/>
 	<transition>
 		<source ref="id271"/>
 		<target ref="id270"/>
-		<label kind="synchronisation" x="-9" y="42">open_camera[i]?</label>
+		<label kind="synchronisation" x="-9" y="42">turn_on_camera[i]?</label>
 		<label kind="assignment" x="17" y="59">camera[i]=1</label>
 		<nail x="51" y="76"/>
 	</transition>
 	<transition>
 		<source ref="id270"/>
 		<target ref="id271"/>
-		<label kind="synchronisation" x="-85" y="76">close_camera[i]?</label>
+		<label kind="synchronisation" x="-85" y="76">turn_off_camera[i]?</label>
 		<label kind="assignment" x="-85" y="59">camera[i]=0</label>
 		<nail x="-51" y="68"/>
 	</transition>

@@ -127,17 +127,19 @@ def build_device_air_conditioner(offset=300, impact_rate=0.02):
 
 
 def build_sms(offset=300):
+    global declarations
+    declarations += "int received_msgs=0;\n"
+    declarations += "urgent broadcast chan send_msg;\n"
     return f"""<template>
 \t<name x="5" y="5">SMS</name>
 \t<declaration>// Place local declarations here.</declaration>
 \t<location id="id{offset}" x="-170" y="-51">
-\t\t<urgent/>
 \t</location>
-\t<init ref="id0"/>
+\t<init ref="id{offset}"/>
 \t<transition>
 \t\t<source ref="id{offset}"/>
 \t\t<target ref="id{offset}"/>
-\t\t<label kind="synchronisation" x="-110" y="-68">send_sms?</label>
+\t\t<label kind="synchronisation" x="-110" y="-68">send_msg?</label>
 \t\t<label kind="assignment" x="-110" y="-51">received_msgs += 1</label>
 \t\t<nail x="-119" y="-17"/>
 \t\t<nail x="-119" y="-76"/>
@@ -164,9 +166,9 @@ def build_all():
     open("device_templates/Light_250.tplt",
          "w").write(build_two_state_device_with_impacts("Light", 250))
     open("device_templates/Curtain_260.tplt",
-         "w").write(build_two_state_device_with_impacts("Curtain", 260))
+         "w").write(build_two_state_device_with_impacts("Curtain", 260, onoff_to_openclose=True))
     open("device_templates/Camera_270.tplt",
-         "w").write(build_two_state_device_with_impacts("Camera", 270, onoff_to_openclose=True))
+         "w").write(build_two_state_device_with_impacts("Camera", 270))
     open("device_templates/Humidifier_280.tplt",
          "w").write(build_two_state_device_with_impacts("Humidifier", 280, ["dhumidity", "dpm_2_5"], [+0.1, +1]))  # PM_2_5：50-250
     open("device_templates/Window_290.tplt",

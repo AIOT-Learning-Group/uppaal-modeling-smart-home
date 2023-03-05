@@ -3,23 +3,23 @@
 	<parameter>int i</parameter>
 	<declaration>//controlled_device</declaration>
 	<location id="id260" x="0" y="25">
-		<name x="17" y="16">curtainon</name>
+		<name x="17" y="16">curtainopen</name>
 	</location>
 	<location id="id261" x="0" y="119">
-		<name x="-68" y="110">curtainoff</name>
+		<name x="-68" y="110">curtainclosed</name>
 	</location>
 	<init ref="id261"/>
 	<transition>
 		<source ref="id261"/>
 		<target ref="id260"/>
-		<label kind="synchronisation" x="-9" y="42">turn_on_curtain[i]?</label>
+		<label kind="synchronisation" x="-9" y="42">open_curtain[i]?</label>
 		<label kind="assignment" x="17" y="59">curtain[i]=1</label>
 		<nail x="51" y="76"/>
 	</transition>
 	<transition>
 		<source ref="id260"/>
 		<target ref="id261"/>
-		<label kind="synchronisation" x="-85" y="76">turn_off_curtain[i]?</label>
+		<label kind="synchronisation" x="-85" y="76">close_curtain[i]?</label>
 		<label kind="assignment" x="-85" y="59">curtain[i]=0</label>
 		<nail x="-51" y="68"/>
 	</transition>

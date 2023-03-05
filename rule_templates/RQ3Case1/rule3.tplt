@@ -33,7 +33,7 @@
 	<transition>
 		<source ref="id21"/>
 		<target ref="id20"/>
-		<label kind="guard">not(position==2)</label>
+		<label kind="guard">position!=2</label>
 		<label kind="assignment">rule3=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
