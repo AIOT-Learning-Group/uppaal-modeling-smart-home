@@ -1,0 +1,5 @@
+IF Human.home THEN light_0.turn_light_on
+IF Human.out THEN light_0.turn_light_off
+IF time>=225 AND time<=250 THEN light_0.turn_light_on
+IF Human.home AND temperature<24 THEN ac_0.turn_ac_heat
+IF Human.home AND temperature>32 THEN ac_0.turn_ac_cool

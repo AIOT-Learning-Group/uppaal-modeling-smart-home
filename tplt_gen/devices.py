@@ -158,7 +158,7 @@ def build_all():
     open("device_templates/Fan_210.tplt",
          "w").write(build_two_state_device_with_impacts("Fan", 210, "dtemperature", -0.02))
     open("device_templates/AirPurifier_220.tplt",
-         "w").write(build_two_state_device_with_impacts("AirPurifier", 220, "dpm_2_5", -0.1))  # PM_2_5：50-250
+         "w").write(build_two_state_device_with_impacts("AirPurifier", 220, "dpm_2_5", -0.8))  # PM_2_5：50-250
     open("device_templates/AirConditioner_230.tplt",
          "w").write(build_device_air_conditioner(230, 0.05))
     open("device_templates/Door_240.tplt",
@@ -170,7 +170,7 @@ def build_all():
     open("device_templates/Camera_270.tplt",
          "w").write(build_two_state_device_with_impacts("Camera", 270))
     open("device_templates/Humidifier_280.tplt",
-         "w").write(build_two_state_device_with_impacts("Humidifier", 280, ["dhumidity", "dpm_2_5"], [+0.1, +1]))  # PM_2_5：50-250
+         "w").write(build_two_state_device_with_impacts("Humidifier", 280, ["dhumidity", "dpm_2_5"], [+0.1, +0.6]))  # PM_2_5：50-250
     open("device_templates/Window_290.tplt",
          "w").write(build_two_state_device_with_impacts("Window", 290, onoff_to_openclose=True))
     open("device_templates/SMS_300.tplt", "w").write(build_sms(300))

@@ -20,20 +20,20 @@
 	<transition>
 		<source ref="id41"/>
 		<target ref="id42"/>
-		<label kind="guard"></label>
+		<label kind="guard">door[0]==1</label>
 		<label kind="assignment">rule5=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id42"/>
 		<target ref="id40"/>
-		<label kind="synchronisation">turn_on_humidifier[0]!</label>
+		<label kind="synchronisation">send_msg!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id41"/>
 		<target ref="id40"/>
-		<label kind="guard"></label>
+		<label kind="guard">door[0]!=1</label>
 		<label kind="assignment">rule5=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>

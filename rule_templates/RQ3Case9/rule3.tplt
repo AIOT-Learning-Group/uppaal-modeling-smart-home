@@ -20,20 +20,28 @@
 	<transition>
 		<source ref="id21"/>
 		<target ref="id22"/>
-		<label kind="guard">door[0]==0</label>
+		<label kind="guard">time&gt;=225 &amp;&amp; time&lt;=250</label>
 		<label kind="assignment">rule3=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id22"/>
 		<target ref="id20"/>
-		<label kind="synchronisation">turn_ac_cool[0]!</label>
+		<label kind="synchronisation">turn_on_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id21"/>
 		<target ref="id20"/>
-		<label kind="guard">door[0]!=0</label>
+		<label kind="guard">time&lt;225</label>
+		<label kind="assignment">rule3=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id21"/>
+		<target ref="id20"/>
+		<label kind="guard">time&gt;250</label>
 		<label kind="assignment">rule3=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>

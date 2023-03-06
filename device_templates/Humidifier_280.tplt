@@ -13,14 +13,14 @@
 		<source ref="id281"/>
 		<target ref="id280"/>
 		<label kind="synchronisation" x="-9" y="42">turn_on_humidifier[i]?</label>
-		<label kind="assignment" x="17" y="59">humidifier[i]=1,dhumidity=dhumidity+0.1,dpm_2_5=dpm_2_5+1</label>
+		<label kind="assignment" x="17" y="59">humidifier[i]=1,dhumidity=dhumidity+0.1,dpm_2_5=dpm_2_5+0.6</label>
 		<nail x="51" y="76"/>
 	</transition>
 	<transition>
 		<source ref="id280"/>
 		<target ref="id281"/>
 		<label kind="synchronisation" x="-85" y="76">turn_off_humidifier[i]?</label>
-		<label kind="assignment" x="-85" y="59">humidifier[i]=0,dhumidity=dhumidity-0.1,dpm_2_5=dpm_2_5-1</label>
+		<label kind="assignment" x="-85" y="59">humidifier[i]=0,dhumidity=dhumidity-0.1,dpm_2_5=dpm_2_5-0.6</label>
 		<nail x="-51" y="68"/>
 	</transition>
 </template>

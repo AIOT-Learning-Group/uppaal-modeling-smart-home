@@ -1,40 +1,40 @@
 <template>
-	<name>Rule5</name>
+	<name>Rule6</name>
 	<declaration>clock t;</declaration>
-	<location id="id40" x="0" y="0">
+	<location id="id50" x="0" y="0">
 		<label kind="invariant">t&lt;=1</label>
 	</location>
-	<location id="id41" x="150" y="0">
+	<location id="id51" x="150" y="0">
 		<committed/>
 	</location>
-	<location id="id42" x="300" y="0">
+	<location id="id52" x="300" y="0">
 		<committed/>
 	</location>
-	<init ref="id40"/>
+	<init ref="id50"/>
 	<transition>
-		<source ref="id40"/>
-		<target ref="id41"/>
+		<source ref="id50"/>
+		<target ref="id51"/>
 		<label kind="guard">t&gt;=1</label>
 		<label kind="assignment">t=0</label>
 	</transition>
 	<transition>
-		<source ref="id41"/>
-		<target ref="id42"/>
+		<source ref="id51"/>
+		<target ref="id52"/>
 		<label kind="guard"></label>
-		<label kind="assignment">rule5=1,t=0</label>
+		<label kind="assignment">rule6=1,t=0</label>
 	</transition>
 	<transition>
-		<source ref="id42"/>
-		<target ref="id40"/>
-		<label kind="synchronisation">turn_on_humidifier[0]!</label>
+		<source ref="id52"/>
+		<target ref="id50"/>
+		<label kind="synchronisation">turn_off_humidifier[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
-		<source ref="id41"/>
-		<target ref="id40"/>
+		<source ref="id51"/>
+		<target ref="id50"/>
 		<label kind="guard"></label>
-		<label kind="assignment">rule5=0,t=0</label>
+		<label kind="assignment">rule6=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
 	</transition>

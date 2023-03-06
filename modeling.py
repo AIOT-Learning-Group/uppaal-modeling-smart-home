@@ -58,6 +58,8 @@ def find_env_name(tplt: str) -> str:
         return "temperature"
     elif "EnvironmentPM25" in tplt:
         return "pm_2_5"
+    elif "EnvironmentHumidity" in tplt:
+        return "humidity"
     else:
         return None
 
@@ -235,6 +237,44 @@ def build_RQ3_case_5():
              os.path.abspath(model_path + ".result"))
 
 
+def build_RQ3_case_6():
+    model = Simulatable()
+    model.simulation_time = 300
+    model.envs_init['temperature'] = 18.0
+    model.envs_tplt.append(
+        open('env_templates/temperature.tplt', 'r').read())
+    model.envs_init['pm_2_5'] = 30.0
+    model.envs_tplt.append(
+        open('env_templates/pm_2_5.tplt', 'r').read())
+    model.envs_init['humidity'] = 12.0
+    model.envs_tplt.append(
+        open('env_templates/humidity.tplt', 'r').read())
+    for i in range(count_tplts("rule_templates/RQ3Case6")):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case6/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/AirConditioner_230.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Door_240.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Humidifier_280.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/AirPurifier_220.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Curtain_260.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Window_290.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/SMS_300.tplt', 'r').read())
+    model.locations = ["out", "doorway", "home"]
+    model.moving_time = [100.0, 200.0]
+    model.build()
+    model_path = "models/rq3_case_6.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
 def build_RQ3_case_7():
     model = Simulatable()
     model.simulation_time = 300
@@ -258,6 +298,29 @@ def build_RQ3_case_7():
              os.path.abspath(model_path + ".result"))
 
 
+def build_RQ3_case_9():
+    model = Simulatable()
+    model.simulation_time = 300
+    model.envs_init['temperature'] = 18.0
+    model.envs_tplt.append(
+        open('env_templates/temperature.tplt', 'r').read())
+    for i in range(count_tplts("rule_templates/RQ3Case9")):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case9/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/AirConditioner_230.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Light_250.tplt', 'r').read())
+    model.locations = ["home", "doorway", "out"]
+    model.moving_time = [100.0, 200.0]
+    model.build()
+    model_path = "models/rq3_case_9.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
+# python -m tplt_gen.devices
 # python -m tplt_gen.rules && python -m modeling
 if __name__ == "__main__":
-    build_RQ3_case_5()
+    build_RQ3_case_9()

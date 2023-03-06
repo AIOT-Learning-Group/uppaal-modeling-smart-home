@@ -1,0 +1,9 @@
+IF pm_2_5>75 THEN window_0.close_window
+IF time>=85.5 AND time<91.5 THEN window_0.open_window
+IF door_0.closed THEN ac_0.turn_ac_cool
+IF ac_0.cool THEN door_0.close_door
+IF humidity<45 THEN humidifier_0.turn_humidifier_on
+IF humidity<50 THEN humidifier_0.turn_humidifier_off
+IF temperature>30 THEN ac_0.turn_ac_cool
+IF airpurifier_0.on THEN window_0.close_window
+IF window_0.closed THEN curtain_0.close_curtain

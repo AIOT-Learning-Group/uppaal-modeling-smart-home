@@ -7,11 +7,6 @@ int rule2=0;
 int rule3=0;
 int rule4=0;
 int rule5=0;
-int rule6=0;
-int rule7=0;
-int rule8=0;
-int rule9=0;
-int rule10=0;
 int fan[1];
 urgent broadcast chan turn_on_fan[1];
 urgent broadcast chan turn_off_fan[1];
@@ -51,7 +46,7 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 		<committed/>
 	</location>
 	<location id="id101" x="300" y="100">
-		<name>out_0</name>
+		<name>home_0</name>
 		<label kind="invariant">time&lt;=t0</label>
 	</location>
 	<location id="id102" x="450" y="100">
@@ -59,13 +54,13 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 		<label kind="invariant">time&lt;=t1</label>
 	</location>
 	<location id="id103" x="600" y="100">
-		<name>home_0</name>
+		<name>out_0</name>
 	</location>
 	<init ref="id100"/>
 	<transition>
 		<source ref="id100"/>
 		<target ref="id101"/>
-		<label kind="assignment">position=0</label>
+		<label kind="assignment">position=2</label>
 	</transition>
 	<transition>
 		<source ref="id101"/>
@@ -77,7 +72,7 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 		<source ref="id102"/>
 		<target ref="id103"/>
 		<label kind="guard">time&gt;=t1</label>
-		<label kind="assignment">position=2</label>
+		<label kind="assignment">position=0</label>
 	</transition>
 </template>
 <template>
@@ -180,20 +175,20 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id1"/>
 		<target ref="id2"/>
-		<label kind="guard">pm_2_5&gt;75</label>
+		<label kind="guard">position==2</label>
 		<label kind="assignment">rule1=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id2"/>
 		<target ref="id0"/>
-		<label kind="synchronisation">close_window[0]!</label>
+		<label kind="synchronisation">turn_on_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id1"/>
 		<target ref="id0"/>
-		<label kind="guard">pm_2_5&lt;=75</label>
+		<label kind="guard">position!=2</label>
 		<label kind="assignment">rule1=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -221,28 +216,20 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id11"/>
 		<target ref="id12"/>
-		<label kind="guard">time&gt;=85.5 &amp;&amp; time&lt;91.5</label>
+		<label kind="guard">position==0</label>
 		<label kind="assignment">rule2=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id12"/>
 		<target ref="id10"/>
-		<label kind="synchronisation">open_window[0]!</label>
+		<label kind="synchronisation">turn_off_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id11"/>
 		<target ref="id10"/>
-		<label kind="guard">time&lt;85.5</label>
-		<label kind="assignment">rule2=0,t=0</label>
-		<nail x="150" y="50"/>
-		<nail x="0" y="50"/>
-	</transition>
-	<transition>
-		<source ref="id11"/>
-		<target ref="id10"/>
-		<label kind="guard">time&gt;=91.5</label>
+		<label kind="guard">position!=0</label>
 		<label kind="assignment">rule2=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -270,20 +257,28 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id21"/>
 		<target ref="id22"/>
-		<label kind="guard">door[0]==0</label>
+		<label kind="guard">time&gt;=225 &amp;&amp; time&lt;=250</label>
 		<label kind="assignment">rule3=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id22"/>
 		<target ref="id20"/>
-		<label kind="synchronisation">turn_ac_cool[0]!</label>
+		<label kind="synchronisation">turn_on_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id21"/>
 		<target ref="id20"/>
-		<label kind="guard">door[0]!=0</label>
+		<label kind="guard">time&lt;225</label>
+		<label kind="assignment">rule3=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id21"/>
+		<target ref="id20"/>
+		<label kind="guard">time&gt;250</label>
 		<label kind="assignment">rule3=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -311,20 +306,28 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id31"/>
 		<target ref="id32"/>
-		<label kind="guard"></label>
+		<label kind="guard">position==2 &amp;&amp; temperature&lt;24</label>
 		<label kind="assignment">rule4=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id32"/>
 		<target ref="id30"/>
-		<label kind="synchronisation">close_door[0]!</label>
+		<label kind="synchronisation">turn_ac_heat[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id31"/>
 		<target ref="id30"/>
-		<label kind="guard"></label>
+		<label kind="guard">position!=2</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id31"/>
+		<target ref="id30"/>
+		<label kind="guard">temperature&gt;=24</label>
 		<label kind="assignment">rule4=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -352,226 +355,29 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id41"/>
 		<target ref="id42"/>
-		<label kind="guard"></label>
+		<label kind="guard">position==2 &amp;&amp; temperature&gt;32</label>
 		<label kind="assignment">rule5=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id42"/>
 		<target ref="id40"/>
-		<label kind="synchronisation">turn_on_humidifier[0]!</label>
+		<label kind="synchronisation">turn_ac_cool[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id41"/>
 		<target ref="id40"/>
-		<label kind="guard"></label>
+		<label kind="guard">position!=2</label>
 		<label kind="assignment">rule5=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
 	</transition>
-</template>
-<template>
-	<name>Rule6</name>
-	<declaration>clock t;</declaration>
-	<location id="id50" x="0" y="0">
-		<label kind="invariant">t&lt;=1</label>
-	</location>
-	<location id="id51" x="150" y="0">
-		<committed/>
-	</location>
-	<location id="id52" x="300" y="0">
-		<committed/>
-	</location>
-	<init ref="id50"/>
 	<transition>
-		<source ref="id50"/>
-		<target ref="id51"/>
-		<label kind="guard">t&gt;=1</label>
-		<label kind="assignment">t=0</label>
-	</transition>
-	<transition>
-		<source ref="id51"/>
-		<target ref="id52"/>
-		<label kind="guard"></label>
-		<label kind="assignment">rule6=1,t=0</label>
-	</transition>
-	<transition>
-		<source ref="id52"/>
-		<target ref="id50"/>
-		<label kind="synchronisation">turn_off_humidifier[0]!</label>
-		<nail x="300" y="-50"/>
-		<nail x="0" y="-50"/>
-	</transition>
-	<transition>
-		<source ref="id51"/>
-		<target ref="id50"/>
-		<label kind="guard"></label>
-		<label kind="assignment">rule6=0,t=0</label>
-		<nail x="150" y="50"/>
-		<nail x="0" y="50"/>
-	</transition>
-</template>
-<template>
-	<name>Rule7</name>
-	<declaration>clock t;</declaration>
-	<location id="id60" x="0" y="0">
-		<label kind="invariant">t&lt;=1</label>
-	</location>
-	<location id="id61" x="150" y="0">
-		<committed/>
-	</location>
-	<location id="id62" x="300" y="0">
-		<committed/>
-	</location>
-	<init ref="id60"/>
-	<transition>
-		<source ref="id60"/>
-		<target ref="id61"/>
-		<label kind="guard">t&gt;=1</label>
-		<label kind="assignment">t=0</label>
-	</transition>
-	<transition>
-		<source ref="id61"/>
-		<target ref="id62"/>
-		<label kind="guard">temperature&gt;30</label>
-		<label kind="assignment">rule7=1,t=0</label>
-	</transition>
-	<transition>
-		<source ref="id62"/>
-		<target ref="id60"/>
-		<label kind="synchronisation">turn_ac_cool[0]!</label>
-		<nail x="300" y="-50"/>
-		<nail x="0" y="-50"/>
-	</transition>
-	<transition>
-		<source ref="id61"/>
-		<target ref="id60"/>
-		<label kind="guard">temperature&lt;=30</label>
-		<label kind="assignment">rule7=0,t=0</label>
-		<nail x="150" y="50"/>
-		<nail x="0" y="50"/>
-	</transition>
-</template>
-<template>
-	<name>Rule8</name>
-	<declaration>clock t;</declaration>
-	<location id="id70" x="0" y="0">
-		<label kind="invariant">t&lt;=1</label>
-	</location>
-	<location id="id71" x="150" y="0">
-		<committed/>
-	</location>
-	<location id="id72" x="300" y="0">
-		<committed/>
-	</location>
-	<init ref="id70"/>
-	<transition>
-		<source ref="id70"/>
-		<target ref="id71"/>
-		<label kind="guard">t&gt;=1</label>
-		<label kind="assignment">t=0</label>
-	</transition>
-	<transition>
-		<source ref="id71"/>
-		<target ref="id72"/>
-		<label kind="guard">airpurifier[0]==1</label>
-		<label kind="assignment">rule8=1,t=0</label>
-	</transition>
-	<transition>
-		<source ref="id72"/>
-		<target ref="id70"/>
-		<label kind="synchronisation">close_window[0]!</label>
-		<nail x="300" y="-50"/>
-		<nail x="0" y="-50"/>
-	</transition>
-	<transition>
-		<source ref="id71"/>
-		<target ref="id70"/>
-		<label kind="guard">airpurifier[0]!=1</label>
-		<label kind="assignment">rule8=0,t=0</label>
-		<nail x="150" y="50"/>
-		<nail x="0" y="50"/>
-	</transition>
-</template>
-<template>
-	<name>Rule9</name>
-	<declaration>clock t;</declaration>
-	<location id="id80" x="0" y="0">
-		<label kind="invariant">t&lt;=1</label>
-	</location>
-	<location id="id81" x="150" y="0">
-		<committed/>
-	</location>
-	<location id="id82" x="300" y="0">
-		<committed/>
-	</location>
-	<init ref="id80"/>
-	<transition>
-		<source ref="id80"/>
-		<target ref="id81"/>
-		<label kind="guard">t&gt;=1</label>
-		<label kind="assignment">t=0</label>
-	</transition>
-	<transition>
-		<source ref="id81"/>
-		<target ref="id82"/>
-		<label kind="guard">window[0]==0</label>
-		<label kind="assignment">rule9=1,t=0</label>
-	</transition>
-	<transition>
-		<source ref="id82"/>
-		<target ref="id80"/>
-		<label kind="synchronisation">close_curtain[0]!</label>
-		<nail x="300" y="-50"/>
-		<nail x="0" y="-50"/>
-	</transition>
-	<transition>
-		<source ref="id81"/>
-		<target ref="id80"/>
-		<label kind="guard">window[0]!=0</label>
-		<label kind="assignment">rule9=0,t=0</label>
-		<nail x="150" y="50"/>
-		<nail x="0" y="50"/>
-	</transition>
-</template>
-<template>
-	<name>Rule10</name>
-	<declaration>clock t;</declaration>
-	<location id="id90" x="0" y="0">
-		<label kind="invariant">t&lt;=1</label>
-	</location>
-	<location id="id91" x="150" y="0">
-		<committed/>
-	</location>
-	<location id="id92" x="300" y="0">
-		<committed/>
-	</location>
-	<init ref="id90"/>
-	<transition>
-		<source ref="id90"/>
-		<target ref="id91"/>
-		<label kind="guard">t&gt;=1</label>
-		<label kind="assignment">t=0</label>
-	</transition>
-	<transition>
-		<source ref="id91"/>
-		<target ref="id92"/>
-		<label kind="guard">curtain[0]==0</label>
-		<label kind="assignment">rule10=1,t=0</label>
-	</transition>
-	<transition>
-		<source ref="id92"/>
-		<target ref="id90"/>
-		<label kind="synchronisation">turn_on_airpurifier[0]!</label>
-		<nail x="300" y="-50"/>
-		<nail x="0" y="-50"/>
-	</transition>
-	<transition>
-		<source ref="id91"/>
-		<target ref="id90"/>
-		<label kind="guard">curtain[0]!=0</label>
-		<label kind="assignment">rule10=0,t=0</label>
+		<source ref="id41"/>
+		<target ref="id40"/>
+		<label kind="guard">temperature&lt;=32</label>
+		<label kind="assignment">rule5=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
 	</transition>
@@ -2979,11 +2785,11 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<system>HumanInstance=Human(100.0,200.0);
 AirConditioner_0 = AirConditioner(0);
 Light_0 = Light(0);
-system HumanInstance, AirConditioner_0, Light_0, EnvironmentTemperature, Rule1, Rule2, Rule3, Rule4, Rule5, Rule6, Rule7, Rule8, Rule9, Rule10;
+system HumanInstance, AirConditioner_0, Light_0, EnvironmentTemperature, Rule1, Rule2, Rule3, Rule4, Rule5;
 </system>
 <queries>
 	<query>
-		<formula>simulate[&lt;=300] {temperature, rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, rule9, rule10, airconditioner[0], light[0], position}</formula>
+		<formula>simulate[&lt;=300] {temperature, rule1, rule2, rule3, rule4, rule5, airconditioner[0], light[0], position}</formula>
 		<comment></comment>
 	</query>
 </queries>
