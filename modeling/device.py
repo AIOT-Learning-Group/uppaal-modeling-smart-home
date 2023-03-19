@@ -1,22 +1,8 @@
-from typing import Callable, Tuple, Union, List
-
-TemplateGenerator = Callable[[int], Tuple[str, str]]
-
-
-class ComposableTemplate:
-    def __init__(self, template_generator: TemplateGenerator, used_nodes: int):
-        self.generator = template_generator
-        self.used_nodes = used_nodes
-        pass
-
-    def compose(self, starting_node_id: int, instance_number: Union[None, int] = None) -> Tuple[str, str]:
-        [tplt, decl] = self.generator(starting_node_id)
-        if "{number}" in decl and instance_number != None:
-            decl = decl.format(number=instance_number)
-        return tplt, decl
+from typing import Union, List
+from modeling.common import PartialComposition, ComposableTemplate
 
 
-def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200, impact_env: Union[None, str, List[str]] = None, impact_rate: Union[float, List[float]] = 0, onoff_to_openclose: bool = False) -> Tuple[str, str]:
+def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200, impact_env: Union[None, str, List[str]] = None, impact_rate: Union[float, List[float]] = 0, onoff_to_openclose: bool = False) -> PartialComposition:
     positive, negative = "", ""
     if impact_env != None:
         if type(impact_env) is list and type(impact_rate) is list:
@@ -75,7 +61,7 @@ def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200,
         tplt = tplt.replace("turn_on_", "open_").replace("turn_off_", "close_").replace(
             "on</name>", "open</name>").replace("off</name>", "closed</name>")
         decl = decl.replace("turn_on_", "open_").replace("turn_off_", "close_")
-    return tplt, decl
+    return name, tplt, decl
 
 
 Fan = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
@@ -96,13 +82,14 @@ Window = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
     "Window", x, onoff_to_openclose=True), 2)
 
 
-def build_device_air_conditioner(offset: int = 300, impact_rate: float = 0.02) -> Tuple[str, str]:
-    decl = "int airconditioner[{number}];\n"
+def build_device_air_conditioner(offset: int = 300, impact_rate: float = 0.02) -> PartialComposition:
+    name = "AirConditioner"
+    decl = f"int {name.lower()}[{{number}}];\n"
     decl += "urgent broadcast chan turn_ac_off[{number}];\n"
     decl += "urgent broadcast chan turn_ac_cool[{number}];\n"
     decl += "urgent broadcast chan turn_ac_heat[{number}];\n"
-    return f"""<template>
-\t<name>AirConditioner</name>
+    return name, f"""<template>
+\t<name>{name}</name>
 \t<parameter>int i</parameter>
 \t<location id="id{offset}" x="-17" y="25">
 \t\t<name x="-17" y="-25">acoff</name>
@@ -160,10 +147,11 @@ AirConditioner = ComposableTemplate(
     lambda x: build_device_air_conditioner(x, 0.05), 3)
 
 
-def build_sms(offset: int = 300) -> Tuple[str, str]:
-    decl = "int received_msgs=0;\n"
+def build_sms(offset: int = 300) -> PartialComposition:
+    name = "SMS"
+    decl = f"int {name.lower()}=0;\n"
     decl += "urgent broadcast chan send_msg;\n"
-    return f"""<template>
+    return name, f"""<template>
 \t<name x="5" y="5">SMS</name>
 \t<declaration>// Place local declarations here.</declaration>
 \t<location id="id{offset}" x="-170" y="-51">
@@ -173,7 +161,7 @@ def build_sms(offset: int = 300) -> Tuple[str, str]:
 \t\t<source ref="id{offset}"/>
 \t\t<target ref="id{offset}"/>
 \t\t<label kind="synchronisation" x="-110" y="-68">send_msg?</label>
-\t\t<label kind="assignment" x="-110" y="-51">received_msgs += 1</label>
+\t\t<label kind="assignment" x="-110" y="-51">{name.lower()} += 1</label>
 \t\t<nail x="-119" y="-17"/>
 \t\t<nail x="-119" y="-76"/>
 \t</transition>
