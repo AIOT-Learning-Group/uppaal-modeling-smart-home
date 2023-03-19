@@ -30,5 +30,6 @@ class ComposableTemplate:
                 sys += f",{name}{i}"
                 var += f",{name.lower()}[{i}]"
         else:
-            var = name.lower()
+            sys = "," + name
+            var = "," + name.lower()
         return tplt, decl, inst, sys, var
