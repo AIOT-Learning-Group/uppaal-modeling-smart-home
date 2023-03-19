@@ -1,9 +1,9 @@
 import parse  # type: ignore
-from tplt_gen.human import locations_ids
 from functools import partial
 
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from modeling.common import Composition, PartialComposition, ComposableTemplate
+from modeling.human import HumanModel, HumanModelWithThreeLocations
 
 
 def build_transition(trigger: str) -> str:
@@ -76,7 +76,6 @@ def build_rule(name: str, trigger: str, anti_trigger: str, action: str, delay: f
             tplt_t += f'\t\t<nail x="150" y="{(i+1)*50}"/>\n'
             tplt_t += f'\t\t<nail x="0" y="{(i+1)*50}"/>\n'
             tplt_t += f'\t</transition>\n'
-
     if len(event_triggers) > 0:
         # Build event trigger edges
         for i, event_trigger in enumerate(event_triggers):
@@ -109,8 +108,6 @@ def build_rule(name: str, trigger: str, anti_trigger: str, action: str, delay: f
     template += f'</template>\n'
     return name, template, f"int {name.lower()};"
 
-# channel_mappings
-
 
 trigger_mappings = {
     '{name}_{i}.on': '{name}[{i}]==1',
@@ -140,16 +137,27 @@ action_mappings = {
     'SMS.send_msg': 'send_msg!'
 }
 
-valid_device_names = [
-    'SMS', 'fan', 'airpurifier', 'door', 'light', 'curtain', 'camera', 'humidifier', 'window'
+
+on_off_devices_names = [
+    "fan", "airpurifier", "light",  "camera", "humidifier",
 ]
 
+open_close_devices_names = [
+    "door", "curtain", "window",
+]
 
-def parse_trigger(raw_trigger: str) -> str:
+special_devices_names = [
+    "ac", "SMS"
+]
+
+valid_device_names = on_off_devices_names + open_close_devices_names + special_devices_names
+
+
+def parse_trigger(location_to_idx: Dict[str, int], raw_trigger: str) -> str:
     # Case 1. starts with "Human."
     if raw_trigger.startswith("Human."):
         position_name = raw_trigger.replace("Human.", "")
-        return f'position=={locations_ids[position_name]}'
+        return f'position=={location_to_idx[position_name]}'
     else:  # Case 2. in mapping table
         for t_format, inner_format in trigger_mappings.items():
             values = parse.parse(t_format, raw_trigger)
@@ -161,13 +169,13 @@ def parse_trigger(raw_trigger: str) -> str:
     return ""
 
 
-def parse_rule(trigger: str, action: str) -> Tuple[str, str]:
+def parse_rule(location_to_idx: Dict[str, int], trigger: str, action: str) -> Tuple[str, str]:
     inner_t, inner_a = "", ""
     if " AND " in trigger:
         inner_t = " && ".join(
-            map(parse_trigger, trigger.split(" AND ")))
+            map(partial(parse_trigger, location_to_idx), trigger.split(" AND ")))
     else:
-        inner_t = parse_trigger(trigger)
+        inner_t = parse_trigger(location_to_idx, trigger)
     for a_format, inner_format in action_mappings.items():
         values = parse.parse(a_format, action)
         if values != None:
@@ -176,14 +184,14 @@ def parse_rule(trigger: str, action: str) -> Tuple[str, str]:
     return inner_t, inner_a
 
 
-def parse_tap_rules(text: str) -> Tuple[List[str], List[str]]:
+def parse_tap_rules(location_to_idx: Dict[str, int], text: str) -> Tuple[List[str], List[str]]:
     triggers, actions = [], []
     for line in text.splitlines():
         if line.startswith("#"):
             continue
         trigger = line[line.find("IF ") + len("IF "):line.find(" THEN ")]
         action = line[line.find(" THEN ") + len(" THEN "):]
-        inner_t, inner_a = parse_rule(trigger, action)
+        inner_t, inner_a = parse_rule(location_to_idx, trigger, action)
         assert inner_t != None, f"bad trigger: {trigger}, in {text}"
         assert inner_a != None, f"bad action: {action}, in {text}"
         triggers.append(inner_t)
@@ -222,10 +230,11 @@ assert to_anti_trigger("a>b&&a<=b") == "a<=b||a>b"
 class RuleSet:
     rule_node_number = 10
 
-    def __init__(self, raw_text: str, delay: float):
+    def __init__(self, human_model: HumanModel,  raw_text: str, delay: float):
+        location_to_idx = {v: i for i, v in enumerate(human_model.locations)}
         self.raw_text = raw_text
         self.rules: List[ComposableTemplate] = []
-        tap_rules = zip(*parse_tap_rules(raw_text))
+        tap_rules = zip(*parse_tap_rules(location_to_idx, raw_text))
         for i, (trigger, action) in enumerate(tap_rules):
             self.rules.append(
                 ComposableTemplate(partial(build_rule, f"Rule{i+1}", trigger, to_anti_trigger(
@@ -241,7 +250,7 @@ class RuleSet:
         return tplt, decl, inst, sys, var
 
 
-test = RuleSet("""IF Human.home THEN door_0.open_door
+test = RuleSet(HumanModelWithThreeLocations, """IF Human.home THEN door_0.open_door
 IF Human.out THEN light_0.turn_light_off
 IF door_0.open THEN camera_0.turn_camera_on
 IF camera_0.on THEN SMS.send_msg

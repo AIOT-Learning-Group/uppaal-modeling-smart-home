@@ -16,7 +16,6 @@ class ComposableTemplate:
     def __init__(self, template_generator: TemplateGenerator, used_nodes: int):
         self.generator = template_generator
         self.used_nodes = used_nodes
-        pass
 
     def compose(self, starting_node_id: int, instance_number: Union[None, int] = None) -> Composition:
         [name, tplt, decl] = self.generator(starting_node_id)
@@ -30,6 +29,6 @@ class ComposableTemplate:
                 sys += f",{name}{i}"
                 var += f",{name.lower()}[{i}]"
         else:
-            sys = "," + name
-            var = "," + name.lower()
+            sys = f",{name}"
+            var = f",{name.lower()}"
         return tplt, decl, inst, sys, var

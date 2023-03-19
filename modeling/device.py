@@ -68,16 +68,18 @@ Fan = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
     "Fan", x, "dtemperature", -0.02), 2)
 AirPurifier = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
     "AirPurifier", x, "dpm_2_5", -0.8), 2)
-Door = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Door", x, onoff_to_openclose=True), 2)
 Light = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
     "Light", x), 2)
-Curtain = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Curtain", x, onoff_to_openclose=True), 2)
 Camera = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
     "Camera", x), 2)
 Humidifier = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
     "Humidifier", x, ["dhumidity", "dpm_2_5"], [+0.1, +0.6]), 2)
+
+Door = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
+    "Door", x, onoff_to_openclose=True), 2)
+
+Curtain = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
+    "Curtain", x, onoff_to_openclose=True), 2)
 Window = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
     "Window", x, onoff_to_openclose=True), 2)
 
