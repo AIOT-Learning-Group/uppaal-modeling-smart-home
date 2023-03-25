@@ -1,0 +1,41 @@
+	<template>
+	<name x="5" y="5">EnvironmentRain</name>
+	<declaration>// Place local declarations here.
+clock t;</declaration>
+	<location id="id310" x="-200" y="-20">
+		<name>notRain</name>
+		<label kind="exponentialrate" x="-205" y="17">0.01</label>
+	</location>
+	<location id="id311" x="0" y="-20">
+		<name>Rain</name>
+		<label kind="exponentialrate" x="7" y="17">0.026</label>
+	</location>
+	<location id="id312" x="-100" y="-50">
+		<urgent/>
+	</location>
+	<location id="id313" x="-100" y="10">
+	</location>
+	<init ref="id310"/>
+	<transition>
+		<source ref="id313"/>
+		<target ref="id310"/>
+		<label kind="synchronisation">stopRain!</label>
+	</transition>
+	<transition>
+		<source ref="id312"/>
+		<target ref="id311"/>
+		<label kind="synchronisation">startRain!</label>
+	</transition>
+	<transition>
+		<source ref="id311"/>
+		<target ref="id313"/>
+		<label kind="guard">t&gt;30</label>
+		<label kind="assignment">rain=0,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id310"/>
+		<target ref="id312"/>
+		<label kind="guard">t&gt;30</label>
+		<label kind="assignment">rain=1,t=0</label>
+	</transition>
+	</template>

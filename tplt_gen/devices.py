@@ -147,6 +147,54 @@ def build_sms(offset=300):
 </template>"""
 
 
+def build_rain(offset=400):
+    global declarations
+    declarations += "int rain=0;\n"
+    declarations += "urgent broadcast chan startRain;\n"
+    declarations += "urgent broadcast chan stopRain;\n"
+    return f"""\t<template>
+\t<name x="5" y="5">EnvironmentRain</name>
+\t<declaration>// Place local declarations here.
+clock t;</declaration>
+\t<location id="id{offset}" x="-200" y="-20">
+\t\t<name>notRain</name>
+\t\t<label kind="exponentialrate" x="-205" y="17">0.01</label>
+\t</location>
+\t<location id="id{offset+1}" x="0" y="-20">
+\t\t<name>Rain</name>
+\t\t<label kind="exponentialrate" x="7" y="17">0.026</label>
+\t</location>
+\t<location id="id{offset+2}" x="-100" y="-50">
+\t\t<urgent/>
+\t</location>
+\t<location id="id{offset+3}" x="-100" y="10">
+\t</location>
+\t<init ref="id{offset}"/>
+\t<transition>
+\t\t<source ref="id{offset+3}"/>
+\t\t<target ref="id{offset}"/>
+\t\t<label kind="synchronisation">stopRain!</label>
+\t</transition>
+\t<transition>
+\t\t<source ref="id{offset+2}"/>
+\t\t<target ref="id{offset+1}"/>
+\t\t<label kind="synchronisation">startRain!</label>
+\t</transition>
+\t<transition>
+\t\t<source ref="id{offset+1}"/>
+\t\t<target ref="id{offset+3}"/>
+\t\t<label kind="guard">t&gt;30</label>
+\t\t<label kind="assignment">rain=0,t=0</label>
+\t</transition>
+\t<transition>
+\t\t<source ref="id{offset}"/>
+\t\t<target ref="id{offset+2}"/>
+\t\t<label kind="guard">t&gt;30</label>
+\t\t<label kind="assignment">rain=1,t=0</label>
+\t</transition>
+\t</template>"""
+
+
 declarations = ""
 
 
@@ -174,6 +222,7 @@ def build_all():
     open("device_templates/Window_290.tplt",
          "w").write(build_two_state_device_with_impacts("Window", 290, onoff_to_openclose=True))
     open("device_templates/SMS_300.tplt", "w").write(build_sms(300))
+    open("device_templates/Rain_310.tplt", "w").write(build_rain(310))
     open("device_templates/decl", "w").write(declarations)
 
 

@@ -60,6 +60,8 @@ def find_env_name(tplt: str) -> str:
         return "pm_2_5"
     elif "EnvironmentHumidity" in tplt:
         return "humidity"
+    elif "EnvironmentRain" in tplt:
+        return "rain"
     else:
         return None
 
@@ -88,8 +90,9 @@ class Simulatable:
         declarations += open("device_templates/decl", "r").read()
         envs = list(map(find_env_name, self.envs_tplt))
         for env in envs:
-            declarations += f"clock {env}={self.envs_init[env]};"
-            declarations += f"double d{env}=0.0;"
+            if env != "rain":
+                declarations += f"clock {env}={self.envs_init[env]};"
+                declarations += f"double d{env}=0.0;"
 
         assert len(self.locations) == len(self.moving_time) + \
             1, "bad locations or moving time"
@@ -320,7 +323,92 @@ def build_RQ3_case_9():
              os.path.abspath(model_path + ".result"))
 
 
+def build_RQ3_case_10():
+    model = Simulatable()
+    model.envs_init['temperature'] = 18.0
+    model.envs_init['rain'] = 0
+    model.simulation_time = 300
+    for i in range(count_tplts("rule_templates/RQ3Case10")):
+        model.rules_tplt.append(
+            open(f'rule_templates/RQ3Case10/rule{i+1}.tplt', 'r').read())
+    model.envs_tplt.append(
+        open('env_templates/temperature.tplt', 'r').read())
+    model.envs_tplt.append(
+        open('device_templates/Rain_310.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Window_290.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Fan_210.tplt', 'r').read())
+    model.locations = ["home", "doorway", "out"]
+    model.moving_time = [100.0, 200.0]
+    model.build()
+    model_path = "models/rq3_case_10.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
+def build_RQ3_case_test2():
+    model = Simulatable()
+    model.simulation_time = 300
+    for i in range(count_tplts("rule_templates/test_state_event")):
+        model.rules_tplt.append(
+            open(f'rule_templates/test_state_event/rule{i+1}.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Light_250.tplt', 'r').read())
+    model.locations = ["home", "doorway", "out"]
+    model.moving_time = [100.0, 200.0]
+    model.build()
+    model_path = "models/rq3_case_test2.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
+def build_case_study():
+
+    import tplt_gen.human
+    tplt_gen.human.locations_ids = {
+        "out": 0,
+        "living_room": 1,
+        "kitchen": 2,
+        "bathroom": 3,
+        "bedroom": 4,
+        "guest_room": 5,
+    }
+
+    from tplt_gen.rules import update_rules
+    update_rules("CaseStudy")
+
+    # Stage 1. 人/镜头的移动
+    # Stage 2. 环境的变化
+    # Stage 3. 设备动画
+    model = Simulatable()
+    model.simulation_time = 300
+    for i in range(count_tplts("rule_templates/CaseStudy")):
+        model.rules_tplt.append(
+            open(f'rule_templates/CaseStudy/rule{i+1}.tplt', 'r').read())
+
+    model.locations = ["out", "living_room", "kitchen",
+                       "bathroom", "guest_room", "bedroom"]
+    model.moving_time = [50.0, 100.0, 150.0, 200.0, 250.0]
+    model.devices_tplt.append(
+        open('device_templates/Door_240.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Fan_210.tplt', 'r').read())
+    model.devices_tplt.append(
+        open('device_templates/Curtain_260.tplt', 'r').read())
+    model.envs_init['temperature'] = 18.0
+    model.envs_tplt.append(
+        open('env_templates/temperature.tplt', 'r').read())
+    model.build()
+    model_path = "models/rq3_case_study.xml"
+    open(model_path, "w").write(model.full_body)
+    simulate(os.path.abspath(model_path),
+             os.path.abspath(model_path + ".result"))
+
+
 # python -m tplt_gen.devices
-# python -m tplt_gen.rules && python -m modeling
+# python -m tplt_gen.rules && python -m modeling_old
 if __name__ == "__main__":
-    build_RQ3_case_9()
+    build_RQ3_case_10()

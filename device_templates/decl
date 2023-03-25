@@ -28,3 +28,6 @@ urgent broadcast chan open_window[1];
 urgent broadcast chan close_window[1];
 int received_msgs=0;
 urgent broadcast chan send_msg;
+int rain=0;
+urgent broadcast chan startRain;
+urgent broadcast chan stopRain;

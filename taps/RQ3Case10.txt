@@ -1,0 +1,4 @@
+IF rain.start_rain THEN window_0.close_window
+IF temperature>25 THEN window_0.open_window
+IF rain.stop_rain THEN window_0.open_window
+IF temperature>30 THEN fan_0.turn_fan_on

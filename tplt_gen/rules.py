@@ -44,7 +44,7 @@ def build_rule(name, trigger, anti_trigger, action, delay, offset):
     tplt_t += f'\t\t<source ref="id{str(offset)}"/>\n'
     tplt_t += f'\t\t<target ref="id{str(offset+1)}"/>\n'
     tplt_t += f'\t\t<label kind="guard">t&gt;={delay}</label>\n'
-    tplt_t += f'\t\t<label kind="assignment">t=0</label>\n'
+    tplt_t += f'\t\t<label kind="assignment">t=0,{vname}=0</label>\n'
     tplt_t += f'\t</transition>\n'
     last_node_offset = 1
     if len(state_triggers) > 0:
@@ -118,6 +118,10 @@ trigger_mappings = {
     '{name}_{i}.turn_{name}_off': 'turn_off_{name}[{i}]?',
     '{name}_{i}.open_{name}': 'open_{name}[{i}]?',
     '{name}_{i}.close_{name}': 'close_{name}[{i}]?',
+    'rain.start_rain': 'startRain?',
+    'rain.stop_rain': 'stopRain?',
+    'rain.is_rain': 'rain==1',
+    'rain.is_not_rain': 'rain==0',
 }
 
 comparisons = ["==", "!=", "<", ">", "<=", ">="]
@@ -175,6 +179,8 @@ def parse_rule(trigger: str, action: str):
 def parse_tap_rules(text: str):
     triggers, actions = [], []
     for line in text.splitlines():
+        if line.startswith("#"):
+            continue
         trigger = line[line.find("IF ") + len("IF "):line.find(" THEN ")]
         action = line[line.find(" THEN ") + len(" THEN "):]
         inner_t, inner_a = parse_rule(trigger, action)
@@ -212,16 +218,20 @@ assert to_anti_trigger("a>b") == "a<=b"
 assert to_anti_trigger("a<=b") == "a>b"
 assert to_anti_trigger("a>b&&a<=b") == "a<=b||a>b"
 
+
+def update_rules(tap_set: str, rule_delay=1):
+    if not os.path.exists(f'rule_templates/{tap_set}'):
+        os.mkdir(f'rule_templates/{tap_set}')
+    tap_rules = zip(
+        *parse_tap_rules(open(f'taps/{tap_set}.txt', "r").read()))
+    for i, (trigger, action) in enumerate(tap_rules):
+        open(f"rule_templates/{tap_set}/rule{i+1}.tplt", "w").write(build_rule(
+            f"Rule{i+1}", trigger, to_anti_trigger(trigger), action, rule_delay, i * 10))
+
+
 if __name__ == "__main__":
-    rule_delay = 1
     # tap_sets = ['RQ3Case1', 'RQ3Case3', 'RQ3Case4',
     #             'RQ3Case5', 'RQ3Case6', 'RQ3Case7', 'RQ3Case9', 'RQ3Case10']
-    tap_sets = ["test_state_event"]
+    tap_sets = ["RQ3Case10"]
     for tap_set in tap_sets:
-        if not os.path.exists(f'rule_templates/{tap_set}'):
-            os.mkdir(f'rule_templates/{tap_set}')
-        tap_rules = zip(
-            *parse_tap_rules(open(f'taps/{tap_set}.txt', "r").read()))
-        for i, (trigger, action) in enumerate(tap_rules):
-            open(f"rule_templates/{tap_set}/rule{i+1}.tplt", "w").write(build_rule(
-                f"Rule{i+1}", trigger, to_anti_trigger(trigger), action, rule_delay, i * 10))
+        update_rules(tap_set)
