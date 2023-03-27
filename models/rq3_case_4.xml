@@ -42,10 +42,13 @@ urgent broadcast chan open_window[1];
 urgent broadcast chan close_window[1];
 int received_msgs=0;
 urgent broadcast chan send_msg;
+int rain=0;
+urgent broadcast chan startRain;
+urgent broadcast chan stopRain;
 clock temperature=18.0;double dtemperature=0.0;</declaration>
 <template>
 	<name>Human</name>
-	<parameter>double t0,double t1</parameter>
+	<parameter>double t0,double t1,double t2</parameter>
 	<declaration>//</declaration>
 	<location id="id100" x="150" y="100">
 		<committed/>
@@ -60,6 +63,10 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	</location>
 	<location id="id103" x="600" y="100">
 		<name>home_0</name>
+		<label kind="invariant">time&lt;=t2</label>
+	</location>
+	<location id="id104" x="750" y="100">
+		<name>out_1</name>
 	</location>
 	<init ref="id100"/>
 	<transition>
@@ -78,6 +85,12 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 		<target ref="id103"/>
 		<label kind="guard">time&gt;=t1</label>
 		<label kind="assignment">position=2</label>
+	</transition>
+	<transition>
+		<source ref="id103"/>
+		<target ref="id104"/>
+		<label kind="guard">time&gt;=t2</label>
+		<label kind="assignment">position=0</label>
 	</transition>
 </template>
 <template>
@@ -180,20 +193,20 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id1"/>
 		<target ref="id2"/>
-		<label kind="guard">pm_2_5&gt;75</label>
+		<label kind="guard">position==2</label>
 		<label kind="assignment">rule1=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id2"/>
 		<target ref="id0"/>
-		<label kind="synchronisation">close_window[0]!</label>
+		<label kind="synchronisation">turn_on_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id1"/>
 		<target ref="id0"/>
-		<label kind="guard">pm_2_5&lt;=75</label>
+		<label kind="guard">position!=2</label>
 		<label kind="assignment">rule1=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -221,28 +234,20 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id11"/>
 		<target ref="id12"/>
-		<label kind="guard">time&gt;=85.5 &amp;&amp; time&lt;91.5</label>
+		<label kind="guard">position==0</label>
 		<label kind="assignment">rule2=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id12"/>
 		<target ref="id10"/>
-		<label kind="synchronisation">open_window[0]!</label>
+		<label kind="synchronisation">turn_off_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id11"/>
 		<target ref="id10"/>
-		<label kind="guard">time&lt;85.5</label>
-		<label kind="assignment">rule2=0,t=0</label>
-		<nail x="150" y="50"/>
-		<nail x="0" y="50"/>
-	</transition>
-	<transition>
-		<source ref="id11"/>
-		<target ref="id10"/>
-		<label kind="guard">time&gt;=91.5</label>
+		<label kind="guard">position!=0</label>
 		<label kind="assignment">rule2=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -270,20 +275,20 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id21"/>
 		<target ref="id22"/>
-		<label kind="guard">door[0]==0</label>
+		<label kind="guard">time&gt;=225</label>
 		<label kind="assignment">rule3=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id22"/>
 		<target ref="id20"/>
-		<label kind="synchronisation">turn_ac_cool[0]!</label>
+		<label kind="synchronisation">turn_on_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id21"/>
 		<target ref="id20"/>
-		<label kind="guard">door[0]!=0</label>
+		<label kind="guard">time&lt;225</label>
 		<label kind="assignment">rule3=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -311,20 +316,28 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id31"/>
 		<target ref="id32"/>
-		<label kind="guard"></label>
+		<label kind="guard">position==2 &amp;&amp; temperature&lt;24</label>
 		<label kind="assignment">rule4=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id32"/>
 		<target ref="id30"/>
-		<label kind="synchronisation">close_door[0]!</label>
+		<label kind="synchronisation">turn_ac_heat[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id31"/>
 		<target ref="id30"/>
-		<label kind="guard"></label>
+		<label kind="guard">position!=2</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id31"/>
+		<target ref="id30"/>
+		<label kind="guard">temperature&gt;=24</label>
 		<label kind="assignment">rule4=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -352,20 +365,28 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 	<transition>
 		<source ref="id41"/>
 		<target ref="id42"/>
-		<label kind="guard"></label>
+		<label kind="guard">position==2 &amp;&amp; temperature&gt;32</label>
 		<label kind="assignment">rule5=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id42"/>
 		<target ref="id40"/>
-		<label kind="synchronisation">turn_on_humidifier[0]!</label>
+		<label kind="synchronisation">turn_ac_cool[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id41"/>
 		<target ref="id40"/>
-		<label kind="guard"></label>
+		<label kind="guard">position!=2</label>
+		<label kind="assignment">rule5=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id41"/>
+		<target ref="id40"/>
+		<label kind="guard">temperature&lt;=32</label>
 		<label kind="assignment">rule5=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
@@ -2976,7 +2997,7 @@ clock temperature=18.0;double dtemperature=0.0;</declaration>
 			<label kind="guard">time &gt;= 298.9966555183947</label>
 		</transition>
 	</template>
-	<system>HumanInstance=Human(100.0,200.0);
+	<system>HumanInstance=Human(20.0,40.0,200.0);
 AirConditioner_0 = AirConditioner(0);
 Light_0 = Light(0);
 system HumanInstance, AirConditioner_0, Light_0, EnvironmentTemperature, Rule1, Rule2, Rule3, Rule4, Rule5, Rule6, Rule7, Rule8, Rule9, Rule10;
