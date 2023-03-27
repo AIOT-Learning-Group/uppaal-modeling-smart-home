@@ -1,8 +1,7 @@
 from modeling.human import HumanModelForSmartHome
 from modeling.rule import valid_device_names, on_off_devices_names, open_close_devices_names
-from typing_extensions import TypedDict
+from typing_extensions import TypedDict, NotRequired
 from typing import Dict, List, Optional
-
 from fastapi import APIRouter
 
 router = APIRouter()
@@ -29,7 +28,7 @@ async def list_animation_asset_bases():
 
 
 Specification = TypedDict(
-    'Specification', {'subject': str, 'predicates': Optional[List[str]], "placeholder": str})
+    'Specification', {'subject': str, 'predicates': NotRequired[List[str]], "placeholder": NotRequired[str]})
 env_triggers: List[Specification] = [
     {
         "subject": "temperature",
@@ -53,7 +52,6 @@ env_triggers: List[Specification] = [
 human_trigger: Specification = {
     "subject": "HumanPosition",
     "predicates": [f".{loc}" for loc in HumanModelForSmartHome.locations]
-
 }
 
 
