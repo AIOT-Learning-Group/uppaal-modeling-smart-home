@@ -1,3 +1,4 @@
+from .device import Fan, AirPurifier, Light, Camera, Humidifier, Door, Curtain, Window, AirConditioner, SMS
 import parse  # type: ignore
 from functools import partial
 
@@ -131,9 +132,9 @@ action_mappings = {
     '{name}_{i}.turn_{name}_off': 'turn_off_{name}[{i}]!',
     '{name}_{i}.open_{name}': 'open_{name}[{i}]!',
     '{name}_{i}.close_{name}': 'close_{name}[{i}]!',
-    'ac_{i}.turn_ac_off': 'turn_ac_off[{i}]!',
-    'ac_{i}.turn_ac_cool': 'turn_ac_cool[{i}]!',
-    'ac_{i}.turn_ac_heat': 'turn_ac_heat[{i}]!',
+    'airconditioner_{i}.turn_ac_off': 'turn_ac_off[{i}]!',
+    'airconditioner_{i}.turn_ac_cool': 'turn_ac_cool[{i}]!',
+    'airconditioner_{i}.turn_ac_heat': 'turn_ac_heat[{i}]!',
     'SMS.send_msg': 'send_msg!'
 }
 
@@ -147,10 +148,23 @@ open_close_devices_names = [
 ]
 
 special_devices_names = [
-    "ac", "SMS"
+    "airconditioner", "SMS"
 ]
 
-valid_device_names = on_off_devices_names + open_close_devices_names + special_devices_names
+valid_device_names = on_off_devices_names + \
+    open_close_devices_names + special_devices_names
+
+name_to_device: Dict[str, ComposableTemplate] = {
+    "fan": Fan, "airpurifier": AirPurifier, "light": Light, "camera": Camera, "humidifier": Humidifier,
+    "door": Door, "curtain": Curtain, "window": Window, "airconditioner": AirConditioner, "SMS": SMS
+}
+
+for device_name in valid_device_names:
+    assert device_name in name_to_device.keys(
+    ), "no corresponding device:" + device_name
+
+for device_name in name_to_device.keys():
+    assert device_name in valid_device_names, "device name not valid:" + device_name
 
 
 def parse_trigger(location_to_idx: Dict[str, int], raw_trigger: str) -> str:
@@ -250,14 +264,13 @@ class RuleSet:
         return tplt, decl, inst, sys, var
 
 
-test = RuleSet(HumanModelWithThreeLocations, """IF Human.home THEN door_0.open_door
-IF Human.out THEN light_0.turn_light_off
-IF door_0.open THEN camera_0.turn_camera_on
-IF camera_0.on THEN SMS.send_msg
-IF door_0.open THEN SMS.send_msg
-""", 0.1)
-print(test.compose(100))
-
+# test = RuleSet(HumanModelWithThreeLocations, """IF Human.home THEN door_0.open_door
+# IF Human.out THEN light_0.turn_light_off
+# IF door_0.open THEN camera_0.turn_camera_on
+# IF camera_0.on THEN SMS.send_msg
+# IF door_0.open THEN SMS.send_msg
+# """, 0.1)
+# print(test.compose(100))
 # def update_rules(tap_set: str, rule_delay=1):
 #     if not os.path.exists(f'rule_templates/{tap_set}'):
 #         os.mkdir(f'rule_templates/{tap_set}')
