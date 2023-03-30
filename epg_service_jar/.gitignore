@@ -1,0 +1,15 @@
+dom4j*
+fastjson*
+jackson*
+jakarta*
+jaxen*
+jul*
+log4j*
+logback*
+lombok*
+picocli*
+slf4j*
+snakeyaml*
+spring*
+tomcat*
+xml*
