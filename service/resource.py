@@ -61,7 +61,7 @@ async def get_trigger_specs() -> List[Specification]:
 
 
 @router.get("/api/get-action-specs")
-async def get_trigger_specs() -> List[Specification]:
+async def get_action_specs() -> List[Specification]:
     return get_device_func_spec()
 
 

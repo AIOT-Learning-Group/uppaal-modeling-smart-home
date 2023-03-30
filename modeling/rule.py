@@ -159,6 +159,10 @@ name_to_device: Dict[str, ComposableTemplate] = {
     "door": Door, "curtain": Curtain, "window": Window, "airconditioner": AirConditioner, "SMS": SMS
 }
 
+device_to_name: Dict[ComposableTemplate, str] = {
+    v: k for k, v in name_to_device.items()
+}
+
 for device_name in valid_device_names:
     assert device_name in name_to_device.keys(
     ), "no corresponding device:" + device_name

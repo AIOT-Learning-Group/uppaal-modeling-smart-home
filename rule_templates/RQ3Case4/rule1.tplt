@@ -20,20 +20,20 @@
 	<transition>
 		<source ref="id1"/>
 		<target ref="id2"/>
-		<label kind="guard">pm_2_5&gt;75</label>
+		<label kind="guard">position==2</label>
 		<label kind="assignment">rule1=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id2"/>
 		<target ref="id0"/>
-		<label kind="synchronisation">close_window[0]!</label>
+		<label kind="synchronisation">turn_on_light[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id1"/>
 		<target ref="id0"/>
-		<label kind="guard">pm_2_5&lt;=75</label>
+		<label kind="guard">position!=2</label>
 		<label kind="assignment">rule1=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>

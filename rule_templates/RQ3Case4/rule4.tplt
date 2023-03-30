@@ -20,20 +20,28 @@
 	<transition>
 		<source ref="id31"/>
 		<target ref="id32"/>
-		<label kind="guard"></label>
+		<label kind="guard">position==2 &amp;&amp; temperature&lt;24</label>
 		<label kind="assignment">rule4=1,t=0</label>
 	</transition>
 	<transition>
 		<source ref="id32"/>
 		<target ref="id30"/>
-		<label kind="synchronisation">close_door[0]!</label>
+		<label kind="synchronisation">turn_ac_heat[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>
 	<transition>
 		<source ref="id31"/>
 		<target ref="id30"/>
-		<label kind="guard"></label>
+		<label kind="guard">position!=2</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id31"/>
+		<target ref="id30"/>
+		<label kind="guard">temperature&gt;=24</label>
 		<label kind="assignment">rule4=0,t=0</label>
 		<nail x="150" y="50"/>
 		<nail x="0" y="50"/>
