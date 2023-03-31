@@ -13,17 +13,17 @@ AnimationAssetBases = [
 
 
 @router.get("/api/list-system-device-model")
-async def list_system_device_model():
+async def list_system_device_model() -> Dict[str, List[str]]:
     return {"result": SystemDeviceModels}
 
 
 @router.get("/api/list-system-context-model")
-async def list_system_context_model():
+async def list_system_context_model() -> Dict[str, List[str]]:
     return {"result": SystemContextModels}
 
 
 @router.get("/api/list-animation-asset-bases")
-async def list_animation_asset_bases():
+async def list_animation_asset_bases() -> Dict[str, List[str]]:
     return {"result": AnimationAssetBases}
 
 
@@ -82,11 +82,11 @@ def get_device_func_spec(include_state: bool = False) -> List[Specification]:
     devices_numbers: Dict[str, int] = {
         "fan": 1, "airpurifier": 1, "light": 2, "camera": 1, "humidifier": 1,
         "door": 2, "curtain": 2, "window": 2,
-        "ac": 1, "SMS": 1
+        "airconditioner": 1, "SMS": 1
     }
     device_func_spec: List[Specification] = []
     for device, number in devices_numbers.items():
-        assert device in valid_device_names
+        assert device in valid_device_names, f"{device} not found in valid device names"
         if device in on_off_devices_names:
             for i in range(number):
                 device_func_spec.append(

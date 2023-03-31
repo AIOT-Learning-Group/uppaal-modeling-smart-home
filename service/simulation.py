@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse
+from typing import Dict, Tuple, Sequence, Collection, List
 
 router = APIRouter()
 
@@ -35,18 +36,18 @@ context_model = [
 
 
 @router.get("/api/fetch-context-model")
-async def fetch_context_model():
+async def fetch_context_model() -> List[Dict[str, Sequence[Collection[str]]]]:
     return context_model
 
 
 @router.post("/api/submit-simulation-params", response_class=PlainTextResponse)
-async def submit_simulation_params(request: Request):
+async def submit_simulation_params(request: Request) -> str:
     await parse_simulation_params(await request.json())
     # request.session['simulation-params'] = str(data)
     return mocking_simulation_result
 
 
-async def parse_simulation_params(raw_params):
+async def parse_simulation_params(raw_params: Tuple[str, str, str]) -> None:
     input_values, selected_models, simulation_time = raw_params
     print(simulation_time)
 

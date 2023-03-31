@@ -119,6 +119,10 @@ trigger_mappings = {
     '{name}_{i}.turn_{name}_off': 'turn_off_{name}[{i}]?',
     '{name}_{i}.open_{name}': 'open_{name}[{i}]?',
     '{name}_{i}.close_{name}': 'close_{name}[{i}]?',
+    'rain.start_rain': 'startRain?',
+    'rain.stop_rain': 'stopRain?',
+    'rain.is_rain': 'rain==1',
+    'rain.is_not_rain': 'rain==0',
 }
 
 comparisons = ["==", "!=", "<", ">", "<=", ">="]
@@ -198,7 +202,7 @@ def parse_rule(location_to_idx: Dict[str, int], trigger: str, action: str) -> Tu
         values = parse.parse(a_format, action)
         if values != None:
             inner_a = inner_format.format(**values.named)
-    assert inner_t != "" and inner_a != "", f"bad rule: {trigger}, {action}"
+    assert inner_t != "" and inner_a != "", f"bad rule: {trigger}, {action}: {inner_t}, {inner_a}"
     return inner_t, inner_a
 
 
@@ -258,6 +262,9 @@ class RuleSet:
                 ComposableTemplate(partial(build_rule, f"Rule{i+1}", trigger, to_anti_trigger(
                     trigger), action, delay), self.rule_node_number)
             )
+        self.used_nodes = 0
+        for rule in self.rules:
+            self.used_nodes += rule.used_nodes
 
     def compose(self, starting_node_id: int) -> Composition:
         result = ["", "", "", "", ""]
