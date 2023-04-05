@@ -50,7 +50,7 @@ env_triggers: List[Specification] = [
 
 
 human_trigger: Specification = {
-    "subject": "HumanPosition",
+    "subject": "Human",  # HumanPosition
     "predicates": [f".{loc}" for loc in HumanModelForSmartHome.locations]
 }
 
