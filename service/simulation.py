@@ -1,10 +1,23 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse
-from typing import Dict, Tuple, Sequence, Collection, List
+from typing import Tuple, List, Callable, Dict
+from typing_extensions import TypedDict, TypeAlias
+from service.utils import handle_assertion
 
 router = APIRouter()
 
-context_model = [
+
+class ModelInstanceSpecification(TypedDict):
+    name: str
+    parameters: List[str]
+
+
+class ContextModelSpecification(TypedDict):
+    name: str
+    models: List[ModelInstanceSpecification]
+
+
+context_model: List[ContextModelSpecification] = [
     {
         "name": "Environment Temperature",
         "models":
@@ -23,33 +36,76 @@ context_model = [
         [
             {"name": "Constant value", "parameters": ["Initial value"]}
         ]
-    },
-    {
-        "name": "Human Activities",
-        "models": [
-            {"name": "Out->L1->L2->L3", "parameters": ["t1", "t2", "t3"]},
-            {"name": "L4->L3->L2->L1->Out",
-                "parameters": ["t1", "t2", "t3", "t4"]}
-        ]
     }
 ]
 
+ParserInput = Tuple[str, Dict[str, str]]
+ParserOutput: TypeAlias = None
+
+CMSParser = Callable[[ParserInput], ParserOutput]
+CMSGenerator = Callable[..., List[ModelInstanceSpecification]]
+
+
+def get_human_model_specification() -> List[ModelInstanceSpecification]:
+    # TODO: map animation specification to patterns
+    patterns = [
+        ["out", "living_room", "kitchen", "bathroom", "bedroom", "guest_room"],
+        ["out", "living_room", "bedroom"],
+        ["out", "living_room", "bedroom", "living_room", "out"]
+    ]
+    params = [[f"t{i+1}" for i in range(len(pat) - 1)] for pat in patterns]
+    specs: List[ModelInstanceSpecification] = []
+    for i in range(len(patterns)):
+        specs.append({"name": "->".join(patterns[i]), "parameters": params[i]})
+    return specs
+
+
+def parse_human_model_specification(input: ParserInput) -> ParserOutput:
+    inst_name, params = input
+    places = inst_name.split("->")
+    assert len(places) == len(params.keys()) + \
+        1, f"bad params number: {len(params.keys())} expected"
+    # TODO: Impl parser here.
+    return
+
+
+context_models: Dict[str, Tuple[CMSGenerator, CMSParser]] = {}
+context_models["Human Activities"] = (
+    get_human_model_specification, parse_human_model_specification)
+
 
 @router.get("/api/fetch-context-model")
-async def fetch_context_model() -> List[Dict[str, Sequence[Collection[str]]]]:
-    return context_model
+async def fetch_context_model() -> List[ContextModelSpecification]:
+    return [{"name": name, "models": gen()} for name, (gen, _) in context_models.items()]
 
 
 @router.post("/api/submit-simulation-params", response_class=PlainTextResponse)
 async def submit_simulation_params(request: Request) -> str:
-    await parse_simulation_params(await request.json())
-    # request.session['simulation-params'] = str(data)
-    return mocking_simulation_result
+    try:
+        await parse_simulation_params(await request.json())
+        return mocking_simulation_result
+    except AssertionError as err:
+        return {"error": handle_assertion(err)}
 
 
-async def parse_simulation_params(raw_params: Tuple[str, str, str]) -> None:
+async def parse_simulation_params(raw_params: Tuple[List[Dict[str, str]], List[Dict[str, str]], str]) -> None:
     input_values, selected_models, simulation_time = raw_params
-    print(simulation_time)
+    for selected_model in selected_models:
+        params: Dict[str, str] = {}
+        assert len(selected_model.keys()
+                   ) == 1, f"bad data format: {selected_model}"
+        model_name, inst_name = list(selected_model.items())[0]
+        assert model_name in context_models.keys(
+        ), f"bad model name: {model_name}"
+        param_prefix = f"{model_name}/{inst_name}/"
+        for input_value in input_values:
+            full_param_name, param_var = list(input_value.items())[0]
+            if (full_param_name.startswith(param_prefix)):
+                param_name = full_param_name.replace(param_prefix, "")
+                params[param_name] = param_var
+
+        _, parser = context_models[model_name]
+        parser((inst_name, params))
 
 mocking_simulation_result = '''temperature:
 [0]: (0, 18.54) (0, 18.54) (0.77, 18.54) (0.77, 18.54) (11.44, 21.65) (11.44, 21.65) (12.63, 22) (12.63, 22) (19.74, 21.52) (19.74, 21.52) (20.93, 21.32) (20.93, 21.32) (22.11, 21.08) (22.11, 21.08) (23.30, 21.04) (23.30, 21.04) (31.60, 21.48) (31.60, 21.48) (32.79, 21.52) (32.79, 21.52) (52.94, 22) (52.94, 22) (54.13, 22.02) (54.13, 22.02) (76.66, 22.48) (76.66, 22.48) (77.85, 22.49) (77.85, 22.49) (84.96, 22.04) (84.96, 22.04) (86.15, 21.95) (86.15, 21.95) (90.89, 21.51) (90.89, 21.51) (92.07, 21.44) (92.07, 21.44) (99.19, 21.04) (99.19, 21.04) (100.37, 21.17) (100.37, 21.17) (101.56, 21.49) (101.56, 21.49) (112.23, 21.01) (112.23, 21.01) (113.42, 21.26) (113.42, 21.26) (114.60, 21.45) (114.60, 21.45) (116.98, 21.14) (116.98, 21.14) (118.16, 21.01) (118.16, 21.01) (121.72, 21.47) (121.72, 21.47) (122.90, 21.46) (122.90, 21.46) (133.58, 21.03) (133.58, 21.03) (134.76, 21.17) (134.76, 21.17) (135.95, 21.46) (135.95, 21.46) (137.13, 21.18) (137.13, 21.18) (138.32, 21.06) (138.32, 21.06) (140.69, 21.39) (140.69, 21.39) (141.88, 21.49) (141.88, 21.49) (153.73, 21.04) (153.73, 21.04) (154.92, 21.01) (154.92, 21.01) (158.48, 21.50) (158.48, 21.50) (159.66, 21.40) (159.66, 21.40) (164.41, 21) (164.41, 21) (165.59, 21.55) (165.59, 21.55) (172.71, 21.99) (172.71, 21.99) (173.89, 21.90) (173.89, 21.90) (177.45, 21.54) (177.45, 21.54) (178.64, 21.59) (178.64, 21.59) (182.19, 21.99) (182.19, 21.99) (183.38, 21.96) (183.38, 21.96) (196.42, 21.50) (196.42, 21.50) (197.61, 21.28) (197.61, 21.28) (198.79, 21.03) (198.79, 21.03) (199.98, 20.91) (199.98, 20.91) (203.54, 20.59) (203.54, 20.59) (204.72, 20.50) (204.72, 20.50) (220.14, 20.02) (220.14, 20.02) (221.32, 19.99) (221.32, 19.99) (236.74, 19.51) (236.74, 19.51) (237.92, 19.58) (237.92, 19.58) (241.48, 19.93) (241.48, 19.93) (242.67, 19.98) (242.67, 19.98) (256.90, 19.51) (256.90, 19.51) (258.08, 19.53) (258.08, 19.53) (273.50, 19.98) (273.50, 19.98) (274.68, 19.81) (274.68, 19.81) (275.87, 19.48) (275.87, 19.48) (278.24, 19.05) (278.24, 19.05) (279.43, 18.91) (279.43, 18.91) (282.98, 18.56) (282.98, 18.56) (284.17, 18.62) (284.17, 18.62) (285.36, 18.85) (285.36, 18.85) (286.54, 18.61) (286.54, 18.61) (287.73, 18.60) (287.73, 18.60) (288.91, 18.90) (288.91, 18.90) (290.10, 18.58) (290.10, 18.58) (291.28, 18.37) (291.28, 18.37) (293.66, 18.07) (293.66, 18.07) (294.84, 17.90) (294.84, 17.90) (297.21, 17.50) (297.21, 17.50) (298.40, 17.85) (298.40, 17.85) (299.58, 18.19) (299.58, 18.19) (300.01, 18.19)
