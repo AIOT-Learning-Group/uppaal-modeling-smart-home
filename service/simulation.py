@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse
-from typing import Tuple, List, Callable, Dict
+from typing import Tuple, List, Callable, Dict, Union
 from typing_extensions import TypedDict, TypeAlias
+from modeling.common import TemplateGenerator
+from modeling.composition import Simulation
+from modeling.human import HumanModelForSmartHome
 from service.utils import handle_assertion
 
 router = APIRouter()
@@ -40,7 +43,7 @@ context_model: List[ContextModelSpecification] = [
 ]
 
 ParserInput = Tuple[str, Dict[str, str]]
-ParserOutput: TypeAlias = None
+ParserOutput: TypeAlias = TemplateGenerator
 
 CMSParser = Callable[[ParserInput], ParserOutput]
 CMSGenerator = Callable[..., List[ModelInstanceSpecification]]
@@ -65,8 +68,8 @@ def parse_human_model_specification(input: ParserInput) -> ParserOutput:
     places = inst_name.split("->")
     assert len(places) == len(params.keys()) + \
         1, f"bad params number: {len(params.keys())} expected"
-    # TODO: Impl parser here.
-    return
+    params_value = [float(params[f"t{i+1}"]) for i in range(len(places) - 1)]
+    return lambda x: HumanModelForSmartHome.compose(x, places, params_value)
 
 
 context_models: Dict[str, Tuple[CMSGenerator, CMSParser]] = {}
@@ -80,7 +83,7 @@ async def fetch_context_model() -> List[ContextModelSpecification]:
 
 
 @router.post("/api/submit-simulation-params", response_class=PlainTextResponse)
-async def submit_simulation_params(request: Request) -> str:
+async def submit_simulation_params(request: Request) -> Union[str, Dict[str, str]]:
     try:
         await parse_simulation_params(await request.json())
         return mocking_simulation_result
@@ -88,8 +91,10 @@ async def submit_simulation_params(request: Request) -> str:
         return {"error": handle_assertion(err)}
 
 
-async def parse_simulation_params(raw_params: Tuple[List[Dict[str, str]], List[Dict[str, str]], str]) -> None:
-    input_values, selected_models, simulation_time = raw_params
+async def parse_simulation_params(raw_params: Tuple[List[Dict[str, str]], List[Dict[str, str]], str, str]) -> None:
+    input_values, selected_models, simulation_time, tap_rules = raw_params
+    simulation = Simulation()
+    simulation.load_tap_rules(tap_rules)
     for selected_model in selected_models:
         params: Dict[str, str] = {}
         assert len(selected_model.keys()

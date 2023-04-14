@@ -44,3 +44,7 @@ def compose_system_behavior_model(tap_rules: str) -> SystemBehaviorModel:
     model.load_tap_rules(tap_rules)
     model.compose()
     return model
+
+
+class Simulation(SystemBehaviorModel):
+    pass
