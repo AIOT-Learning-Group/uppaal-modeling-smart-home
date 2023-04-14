@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse
-from typing import Tuple, List, Callable, Dict, Union
+from typing import Tuple, List, Callable, Dict, Union, Optional
 from typing_extensions import TypedDict, TypeAlias
-from modeling.common import TemplateGenerator
+from modeling.common import DataPoints, DataPointsGenerator, TemplateGenerator
 from modeling.composition import Simulation
+from modeling.continuous import build_continuous_template, curve_normal_dist
 from modeling.human import HumanModelForSmartHome
 from service.utils import handle_assertion
 
@@ -20,30 +21,30 @@ class ContextModelSpecification(TypedDict):
     models: List[ModelInstanceSpecification]
 
 
-context_model: List[ContextModelSpecification] = [
-    {
-        "name": "Environment Temperature",
-        "models":
-        [
-            {"name": "Constant value", "parameters": ["Initial value"]},
-            {"name": "Gaussian curve", "parameters": [
-                "Initial value", "Range"]},
-            {"name": "Cosine curve", "parameters": [
-                "Initial value", "Range", "Highest", "Lowest"]},
-            {"name": "Collected data for RQ2", "parameters": ["Initial value"]}
-        ]
-    },
-    {
-        "name": "Environment Humidity",
-        "models":
-        [
-            {"name": "Constant value", "parameters": ["Initial value"]}
-        ]
-    }
-]
+# context_model: List[ContextModelSpecification] = [
+#     {
+#         "name": "Environment Temperature",
+#         "models":
+#         [
+#             {"name": "Constant value", "parameters": ["Initial value"]},
+#             {"name": "Gaussian curve", "parameters": [
+#                 "Initial value", "Range"]},
+#             {"name": "Cosine curve", "parameters": [
+#                 "Initial value", "Range", "Highest", "Lowest"]},
+#             {"name": "Collected data for RQ2", "parameters": ["Initial value"]}
+#         ]
+#     },
+#     {
+#         "name": "Environment Humidity",
+#         "models":
+#         [
+#             {"name": "Constant value", "parameters": ["Initial value"]}
+#         ]
+#     }
+# ]
 
 ParserInput = Tuple[str, Dict[str, str]]
-ParserOutput: TypeAlias = TemplateGenerator
+ParserOutput: TypeAlias = Optional[TemplateGenerator]
 
 CMSParser = Callable[[ParserInput], ParserOutput]
 CMSGenerator = Callable[..., List[ModelInstanceSpecification]]
@@ -72,9 +73,42 @@ def parse_human_model_specification(input: ParserInput) -> ParserOutput:
     return lambda x: HumanModelForSmartHome.compose(x, places, params_value)
 
 
+# [Name, Parameter Names, Generator]
+Curve = Tuple[str, List[str], DataPointsGenerator]
+
+norm_params = ["Initial Value", "Height"]
+
+
+def norm_gen(num: int, params: Dict[str, str]) -> DataPoints:
+    for param_name in norm_params:
+        assert param_name in params.keys(), "lack of param: " + param_name
+    return curve_normal_dist(num, float(params[norm_params[0]]), float(params[norm_params[1]]))
+
+
+NormalDistributionCurve: Curve = ("Gaussian Curve", norm_params, norm_gen)
+
+
+def get_temperature_model_specification() -> List[ModelInstanceSpecification]:
+    return [{"name": c[0], "parameters": c[1]} for c in [NormalDistributionCurve]]
+
+
+def parse_temperature_model_specification(input: ParserInput) -> ParserOutput:
+    print("b")
+    node_num = 500
+    inst_name, params = input
+    for name, _, generator in [NormalDistributionCurve]:
+        if inst_name == name:
+            dpoints = generator(node_num, params)
+            return lambda x: build_continuous_template(dpoints, template_name="EnvironmentTemperature", clock_name="time", var_name="temperature", offset=x)
+    return None
+
+
 context_models: Dict[str, Tuple[CMSGenerator, CMSParser]] = {}
 context_models["Human Activities"] = (
     get_human_model_specification, parse_human_model_specification)
+context_models["Environment Temperature"] = (
+    get_temperature_model_specification, parse_temperature_model_specification
+)
 
 
 @router.get("/api/fetch-context-model")

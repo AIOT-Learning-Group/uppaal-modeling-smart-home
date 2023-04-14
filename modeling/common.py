@@ -1,5 +1,9 @@
-from typing import Callable, Tuple, Union
+from typing import Callable, Tuple, Union, List, Dict
 from typing_extensions import TypeAlias
+
+DataPoint = Tuple[float, float]
+DataPoints = List[DataPoint]
+DataPointsGenerator = Callable[[int, Dict[str,str]], DataPoints]
 
 Name: TypeAlias = str
 Tplt: TypeAlias = str
@@ -11,7 +15,6 @@ PartialComposition = Tuple[Name, Tplt, Decl]
 Composition = Tuple[Tplt, Decl, Inst, Sys, Var, int]
 PartialTemplateGenerator = Callable[[int], PartialComposition]
 TemplateGenerator = Callable[[int], Composition]
-
 
 class ComposableTemplate:
     def __init__(self, template_generator: PartialTemplateGenerator, used_nodes: int):
