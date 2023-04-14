@@ -8,7 +8,7 @@ Inst: TypeAlias = str
 Sys: TypeAlias = str
 Var: TypeAlias = str
 PartialComposition = Tuple[Name, Tplt, Decl]
-Composition = Tuple[Tplt, Decl, Inst, Sys, Var]
+Composition = Tuple[Tplt, Decl, Inst, Sys, Var, int]
 PartialTemplateGenerator = Callable[[int], PartialComposition]
 TemplateGenerator = Callable[[int], Composition]
 
@@ -32,4 +32,4 @@ class ComposableTemplate:
         else:
             sys = f",{name}"
             var = f",{name.lower()}"
-        return tplt, decl, inst, sys, var
+        return tplt, decl, inst, sys, var, self.used_nodes

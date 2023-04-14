@@ -46,7 +46,6 @@ def build_human(locations: List[str], movements: List[str], offset: int = 100) -
 class HumanModel:  # locations：布局，movements: 移动
     def __init__(self, locations: List[str]):
         self.locations = locations
-        self.used_nodes = len(locations)
 
     def compose(self, starting_node_id: int, movements: List[str], raw_params: List[float]) -> Composition:
         assert len(movements) == len(raw_params) + 1
@@ -56,7 +55,8 @@ class HumanModel:  # locations：布局，movements: 移动
         inst = f"{name}Model={name}({params});"
         sys = f",{name}Model"
         var = f",{name.lower()}"
-        return tplt, decl, inst, sys, var
+        used_nodes = len(movements) + 1
+        return tplt, decl, inst, sys, var, used_nodes
 
 
 HumanModelWithFiveLocations = HumanModel(["out", "l1", "l2", "l3", "l4"])

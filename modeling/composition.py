@@ -25,10 +25,9 @@ class SystemBehaviorModel:
         self.devices_tplt = filter_interacive_devices_by_rules(tap_rules)
 
     def compose(self, starting_node_id: int = 0) -> None:
-        self.body = ""
-        self.ruleset_composition = self.ruleset.compose(starting_node_id)
-        self.body += self.ruleset_composition[0]
-        starting_node_id += self.ruleset.used_nodes
+        tplt, _, _, _, _, num_nodes = self.ruleset.compose(starting_node_id)
+        self.body = tplt
+        starting_node_id += num_nodes
         self.devices_composition: List[Composition] = []
         for device in self.devices_tplt:
             device_composition = device.compose(starting_node_id)

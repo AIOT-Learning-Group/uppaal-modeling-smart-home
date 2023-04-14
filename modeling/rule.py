@@ -262,17 +262,20 @@ class RuleSet:
                 ComposableTemplate(partial(build_rule, f"Rule{i+1}", trigger, to_anti_trigger(
                     trigger), action, delay), self.rule_node_number)
             )
-        self.used_nodes = 0
-        for rule in self.rules:
-            self.used_nodes += rule.used_nodes
 
     def compose(self, starting_node_id: int) -> Composition:
-        result = ["", "", "", "", ""]
+        t_tplt, t_decl, t_inst, t_sys, t_var = "", "", "", "", ""
+        t_used_nodes = 0
         for num, rule in enumerate(self.rules):
-            for i, v in enumerate(rule.compose(starting_node_id + num * self.rule_node_number)):
-                result[i] += v
-        tplt, decl, inst, sys, var = result
-        return tplt, decl, inst, sys, var
+            tplt, decl, inst, sys, var, used_nodes = rule.compose(
+                starting_node_id + num * self.rule_node_number)
+            t_tplt += tplt
+            t_decl += decl
+            t_inst += inst
+            t_sys += sys
+            t_var += var
+            t_used_nodes += used_nodes
+        return t_tplt, t_decl, t_inst, t_sys, t_var, t_used_nodes
 
 
 # test = RuleSet(HumanModelWithThreeLocations, """IF Human.home THEN door_0.open_door
