@@ -9,10 +9,9 @@ def build_continuous_template(points: DataPoints, k: int = 1, template_name: str
                               clock_name: str = "x", var_name: str = "y", offset: int = 1000) -> Composition:
     x: List[float] = [p[0] for p in points]
     y: List[float] = [p[1] for p in points]
-    name = var_name
-    decl = f"clock d{var_name.lower()};\n"
-    sys = template_name
-    var = f",{clock_name},{var_name.lower()}"
+    decl = f"clock {var_name.lower()}; clock d{var_name.lower()};\n"
+    sys = f",{template_name}"
+    var = f",{var_name.lower()}"
     derivative_name = "d" + var_name.lower()
     template = ""
     template += "\t<template>\n"
@@ -70,4 +69,13 @@ def curve_normal_dist(num: int, init_value: float, height: float) -> DataPoints:
     y = stats.norm.pdf(x, mu, sigma)
     xx: List[float] = list((x + 3) * 4)
     yy: List[float] = list(y / 0.4 * height + init_value)
+    return xy_to_points(xx, yy)
+
+
+def remap(points: DataPoints, new_range: int) -> DataPoints:
+    x = np.array([p[0] for p in points])
+    yy = [p[1] for p in points]
+    ori_range = np.max(x) - np.min(x)
+    x = x / ori_range * new_range
+    xx: List[float] = [i for i in x]
     return xy_to_points(xx, yy)

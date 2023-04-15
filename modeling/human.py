@@ -22,10 +22,10 @@ def build_human(locations: List[str], movements: List[str], offset: int = 100) -
     for i, movement in enumerate(movements):
         if not movement in occurrence.keys():
             occurrence[movement] = 0
-        name = movement + "_" + str(occurrence[movement])
+        loc_name = movement + "_" + str(occurrence[movement])
         occurrence[movement] += 1
         template += f'\t<location id="id{str(offset+i+1)}" x="{str(150*(i+2))}" y="100">\n'
-        template += f'\t\t<name>{name}</name>\n'
+        template += f'\t\t<name>{loc_name}</name>\n'
         if i < len(movements) - 1:
             template += f'\t\t<label kind="invariant">time&lt;=t{str(i)}</label>\n'
         template += "\t</location>\n"
@@ -37,10 +37,10 @@ def build_human(locations: List[str], movements: List[str], offset: int = 100) -
         template += f'\t\t<target ref="id{str(offset+i+1)}"/>\n'
         if i > 0:
             template += f'\t\t<label kind="guard">time&gt;=t{str(i-1)}</label>\n'
-        template += f'\t\t<label kind="assignment">position={location_id}</label>\n'
+        template += f'\t\t<label kind="assignment">{name.lower()}={location_id}</label>\n'
         template += f'\t</transition>\n'
     template += "</template>\n"
-    return "HumanPosition", template, "int humanposition;"
+    return "HumanPosition", template, f"int {name.lower()};"
 
 
 class HumanModel:  # locations：布局，movements: 移动
@@ -52,7 +52,7 @@ class HumanModel:  # locations：布局，movements: 移动
         [name, tplt, decl] = build_human(
             self.locations, movements, starting_node_id)
         params = ",".join([str(i) for i in raw_params])
-        inst = f"{name}Model={name}({params});"
+        inst = f"{name}Model={name}({params});\n"
         sys = f",{name}Model"
         var = f",{name.lower()}"
         used_nodes = len(movements) + 1
