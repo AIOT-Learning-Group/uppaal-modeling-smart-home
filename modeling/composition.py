@@ -1,6 +1,6 @@
 from modeling.human import HumanModelForSmartHome
 from modeling.rule import name_to_device, RuleSet
-from modeling.common import ComposableTemplate, Composition
+from modeling.common import ComposableTemplate, Composition, TemplateGenerator
 from typing import List, Set
 from modeling.human import HumanModelForSmartHome
 
@@ -46,4 +46,21 @@ def compose_system_behavior_model(tap_rules: str) -> SystemBehaviorModel:
 
 
 class Simulation(SystemBehaviorModel):
-    pass
+    def compose(self, starting_node_id: int = 0) -> None:
+        tplt, _, _, _, _, num_nodes = self.ruleset.compose(starting_node_id)
+        self.body = tplt
+        starting_node_id += num_nodes
+        self.devices_composition: List[Composition] = []
+        for device in self.devices_tplt:
+            device_composition = device.compose(starting_node_id)
+            self.body += device_composition[0]
+            self.devices_composition.append(device_composition)
+            starting_node_id += device.used_nodes
+        self.used_nodes = starting_node_id
+        self.full_body = self.header + self.body + self.footer
+
+    def add_tplt_gen(self, tplt_gens: TemplateGenerator) -> None:
+        pass
+
+    def run(self) -> str:
+        return "Nothing to show."
