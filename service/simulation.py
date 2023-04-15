@@ -1,4 +1,4 @@
-import os
+from loguru import logger
 import subprocess
 import tempfile
 from fastapi import APIRouter, Request
@@ -97,7 +97,7 @@ def get_temperature_model_specification() -> List[ModelInstanceSpecification]:
 
 
 def parse_temperature_model_specification(input: ParserInput) -> ParserOutput:
-    node_num = 500
+    node_num = 100
     inst_name, params = input
     for name, _, generator in [NormalDistributionCurve]:
         if inst_name == name:
@@ -139,7 +139,8 @@ def run(sim: Simulation) -> str:
     cmd = f"cmd /c verifyta -O std {model_path} > {result_path}".split(" ")
     result = subprocess.run(
         cmd, cwd=UPPAAL_PATH, stdout=subprocess.PIPE)
-    print(" ".join(cmd), f"\n{result}")
+    logger.info(f"Calling: {' '.join(cmd)}")
+    logger.info(result)
     return open(result_path, "r").read()
 
 
