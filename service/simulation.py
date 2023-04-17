@@ -1,3 +1,5 @@
+from config import POINTS_NUMBER
+from config import UPPAAL_PATH
 from loguru import logger
 import subprocess
 import tempfile
@@ -97,7 +99,7 @@ def get_temperature_model_specification() -> List[ModelInstanceSpecification]:
 
 
 def parse_temperature_model_specification(input: ParserInput) -> ParserOutput:
-    node_num = 100
+    node_num = POINTS_NUMBER
     inst_name, params = input
     for name, _, generator in [NormalDistributionCurve]:
         if inst_name == name:
@@ -128,8 +130,6 @@ async def submit_simulation_params(request: Request) -> Union[str, Dict[str, str
         return result
     except AssertionError as err:
         return {"error": handle_assertion(err)}
-
-UPPAAL_PATH = "D:\\Workspace\\TapSim\\uppaal-4.1.24\\bin-Windows"
 
 
 def run(sim: Simulation) -> str:
