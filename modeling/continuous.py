@@ -9,8 +9,7 @@ def build_continuous_template(points: DataPoints, k: int = 1, template_name: str
                               clock_name: str = "x", var_name: str = "y", offset: int = 1000) -> Composition:
     x: List[float] = [p[0] for p in points]
     y: List[float] = [p[1] for p in points]
-    # TODO: initial value ?
-    decl = f"clock {var_name.lower()}; double d{var_name.lower()}=0.0;\n"
+    decl = f"clock {var_name.lower()}={y[0]}; double d{var_name.lower()}=0.0;\n"
     sys = f",{template_name}"
     var = f",{var_name.lower()}"
     derivative_name = "d" + var_name.lower()
