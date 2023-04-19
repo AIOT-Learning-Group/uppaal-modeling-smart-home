@@ -73,6 +73,12 @@ def curve_normal_dist(num: int, init_value: float, height: float) -> DataPoints:
     return xy_to_points(xx, yy)
 
 
+def curve_constant(num: int, init_value: float) -> DataPoints:
+    xx: List[float] = list(x for x in np.linspace(0, 24, num))
+    yy: List[float] = [init_value] * len(xx)
+    return xy_to_points(xx, yy)
+
+
 def remap(points: DataPoints, new_range: int) -> DataPoints:
     x = np.array([p[0] for p in points])
     yy = [p[1] for p in points]

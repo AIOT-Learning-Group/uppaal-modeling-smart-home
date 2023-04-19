@@ -9,7 +9,7 @@ from typing import Tuple, List, Callable, Dict, Union, Optional
 from typing_extensions import TypedDict, TypeAlias
 from modeling.common import DataPoints, DataPointsGenerator, TemplateGenerator
 from modeling.composition import Simulation
-from modeling.continuous import build_continuous_template, curve_normal_dist, remap
+from modeling.continuous import build_continuous_template, curve_constant, curve_normal_dist, remap
 from modeling.human import HumanModelForSmartHome
 from service.utils import handle_assertion
 
@@ -79,29 +79,46 @@ def parse_human_model_specification(input: ParserInput) -> ParserOutput:
     return lambda x: HumanModelForSmartHome.compose(x, places, params_value)
 
 
-# [Name, Parameter Names, Generator]
-Curve = Tuple[str, List[str], DataPointsGenerator]
+initial_values: Dict[str, str] = {}
 
+
+def set_temperature_initial_value(value: str) -> None:
+    initial_values["clock temperature;"] = f"clock temperature={float(value)};"
+
+
+const_params = ["Initial Value"]
 norm_params = ["Initial Value", "Height"]
+
+
+def const_gen(num: int, params: Dict[str, str]) -> DataPoints:
+    for param_name in const_params:
+        assert param_name in params.keys(), "lack of param: " + param_name
+    set_temperature_initial_value(params[const_params[0]])
+    return curve_constant(num, float(params[const_params[0]]))
 
 
 def norm_gen(num: int, params: Dict[str, str]) -> DataPoints:
     for param_name in norm_params:
         assert param_name in params.keys(), "lack of param: " + param_name
+    set_temperature_initial_value(params[norm_params[0]])
     return curve_normal_dist(num, float(params[norm_params[0]]), float(params[norm_params[1]]))
 
 
+Curve = Tuple[str, List[str], DataPointsGenerator]
+ConstantCurve: Curve = ("Constant", const_params, const_gen)
 NormalDistributionCurve: Curve = ("Gaussian Curve", norm_params, norm_gen)
+
+temperature_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
 
 
 def get_temperature_model_specification() -> List[ModelInstanceSpecification]:
-    return [{"name": c[0], "parameters": c[1]} for c in [NormalDistributionCurve]]
+    return [{"name": c[0], "parameters": c[1]} for c in temperature_models]
 
 
 def parse_temperature_model_specification(input: ParserInput) -> ParserOutput:
     node_num = POINTS_NUMBER
     inst_name, params = input
-    for name, _, generator in [NormalDistributionCurve]:
+    for name, _, generator in temperature_models:
         if inst_name == name:
             sim_time = int(params[SIM_TIME_PARAM_NAME])
             dpoints = generator(node_num, params)
@@ -133,6 +150,9 @@ async def submit_simulation_params(request: Request) -> Union[str, Dict[str, str
 
 
 def run(sim: Simulation) -> str:
+    for initializer, initial_value in initial_values.items():
+        sim.full_body = sim.full_body.replace(initializer, initial_value)
+        logger.info("replace " + initializer + " with " + initial_value)
     model_path = tempfile.NamedTemporaryFile().name + ".xml"
     open(model_path, "w").write(sim.full_body)
     result_path = model_path + ".result"
