@@ -7,7 +7,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import PlainTextResponse
 from typing import Tuple, List, Callable, Dict, Union, Optional
 from typing_extensions import TypedDict, TypeAlias
-from modeling.common import DataPoints, DataPointsGenerator, TemplateGenerator
+from modeling.common import DataPoints, TemplateGenerator
 from modeling.composition import Simulation
 from modeling.continuous import build_continuous_template, curve_constant, curve_normal_dist, remap
 from modeling.human import HumanModelForSmartHome
@@ -31,22 +31,16 @@ class ContextModelSpecification(TypedDict):
 #         "name": "Environment Temperature",
 #         "models":
 #         [
-#             {"name": "Constant value", "parameters": ["Initial value"]},
-#             {"name": "Gaussian curve", "parameters": [
-#                 "Initial value", "Range"]},
 #             {"name": "Cosine curve", "parameters": [
 #                 "Initial value", "Range", "Highest", "Lowest"]},
 #             {"name": "Collected data for RQ2", "parameters": ["Initial value"]}
 #         ]
 #     },
-#     {
-#         "name": "Environment Humidity",
-#         "models":
-#         [
-#             {"name": "Constant value", "parameters": ["Initial value"]}
-#         ]
-#     }
 # ]
+DataPointsWithInitialValue = Tuple[DataPoints, float]
+DataPointsGenerator = Callable[[
+    int, Dict[str, str]], DataPointsWithInitialValue]
+
 
 ParserInput = Tuple[str, Dict[str, str]]
 ParserOutput: TypeAlias = Optional[TemplateGenerator]
@@ -82,26 +76,24 @@ def parse_human_model_specification(input: ParserInput) -> ParserOutput:
 initial_values: Dict[str, str] = {}
 
 
-def set_temperature_initial_value(value: str) -> None:
-    initial_values["clock temperature;"] = f"clock temperature={float(value)};"
+def set_initial_value(varname: str, value: float) -> None:
+    initial_values[f"{varname};"] = f"{varname}={value};"
 
 
 const_params = ["Initial Value"]
 norm_params = ["Initial Value", "Height"]
 
 
-def const_gen(num: int, params: Dict[str, str]) -> DataPoints:
+def const_gen(num: int, params: Dict[str, str]) -> DataPointsWithInitialValue:
     for param_name in const_params:
         assert param_name in params.keys(), "lack of param: " + param_name
-    set_temperature_initial_value(params[const_params[0]])
-    return curve_constant(num, float(params[const_params[0]]))
+    return curve_constant(num, float(params[const_params[0]])), float(params[const_params[0]])
 
 
-def norm_gen(num: int, params: Dict[str, str]) -> DataPoints:
+def norm_gen(num: int, params: Dict[str, str]) -> DataPointsWithInitialValue:
     for param_name in norm_params:
         assert param_name in params.keys(), "lack of param: " + param_name
-    set_temperature_initial_value(params[norm_params[0]])
-    return curve_normal_dist(num, float(params[norm_params[0]]), float(params[norm_params[1]]))
+    return curve_normal_dist(num, float(params[norm_params[0]]), float(params[norm_params[1]])), float(params[norm_params[0]])
 
 
 Curve = Tuple[str, List[str], DataPointsGenerator]
@@ -109,6 +101,7 @@ ConstantCurve: Curve = ("Constant", const_params, const_gen)
 NormalDistributionCurve: Curve = ("Gaussian Curve", norm_params, norm_gen)
 
 temperature_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
+humidity_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
 
 
 def get_temperature_model_specification() -> List[ModelInstanceSpecification]:
@@ -121,9 +114,27 @@ def parse_temperature_model_specification(input: ParserInput) -> ParserOutput:
     for name, _, generator in temperature_models:
         if inst_name == name:
             sim_time = int(params[SIM_TIME_PARAM_NAME])
-            dpoints = generator(node_num, params)
+            dpoints, inital_value = generator(node_num, params)
+            set_initial_value("clock temperature", inital_value)
             return lambda x: build_continuous_template(remap(dpoints, sim_time), template_name="EnvironmentTemperature",
                                                        clock_name="time", var_name="temperature", offset=x)
+    return None
+
+
+def get_humidity_model_specification() -> List[ModelInstanceSpecification]:
+    return [{"name": c[0], "parameters": c[1]} for c in humidity_models]
+
+
+def parse_humidity_model_specification(input: ParserInput) -> ParserOutput:
+    node_num = POINTS_NUMBER
+    inst_name, params = input
+    for name, _, generator in humidity_models:
+        if inst_name == name:
+            sim_time = int(params[SIM_TIME_PARAM_NAME])
+            dpoints, inital_value = generator(node_num, params)
+            set_initial_value("clock humidity", inital_value)
+            return lambda x: build_continuous_template(remap(dpoints, sim_time), template_name="EnvironmentHumidity",
+                                                       clock_name="time", var_name="humidity", offset=x)
     return None
 
 
@@ -132,6 +143,9 @@ context_models["Human Activities"] = (
     get_human_model_specification, parse_human_model_specification)
 context_models["Environment Temperature"] = (
     get_temperature_model_specification, parse_temperature_model_specification
+)
+context_models["Environment Humidity"] = (
+    get_humidity_model_specification, parse_humidity_model_specification
 )
 
 
