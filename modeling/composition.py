@@ -69,7 +69,7 @@ class Simulation:
         num_nodes = self.accumulate(tplt_gen(self.starting_node_id))
         self.starting_node_id += num_nodes
 
-    def compose(self, duration: int) -> str:
+    def compose(self, duration: int) -> None:
         num_nodes = self.accumulate(
             self.ruleset.compose(self.starting_node_id))
         self.starting_node_id += num_nodes
@@ -102,5 +102,3 @@ class Simulation:
         self.body += f'</queries>\n'
 
         self.full_body = header + self.body + footer
-        open("build_result.xml", "w").write(self.full_body)
-        return "Nothing to show."
