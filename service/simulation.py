@@ -12,7 +12,7 @@ from modeling.common import DataPoints, DataPointsGenerator, TemplateGenerator
 from modeling.composition import Simulation
 from modeling.continuous import build_continuous_template, curve_constant, curve_normal_dist, remap
 from modeling.human import HumanModelForSmartHome
-from service.utils import handle_assertion
+from service.utils import handle_assertion, save_to_archives
 
 router = APIRouter()
 
@@ -154,6 +154,9 @@ async def submit_simulation_params(request: Request) -> Union[str, Dict[str, str
 def run(sim: Simulation) -> str:
     model_path = tempfile.NamedTemporaryFile().name + ".xml"
     open(model_path, "w").write(sim.full_body)
+    save_to_archives("rules", os.path.basename(
+        model_path).replace(".xml", "_rules.txt"), sim.raw_rules)
+    save_to_archives("models", os.path.basename(model_path), sim.full_body)
     result_path = model_path + ".result"
     if os.name == 'nt':
         cmd = f"cmd /c verifyta -O std {model_path} > {result_path}".split(" ")
@@ -165,7 +168,9 @@ def run(sim: Simulation) -> str:
         open(result_path, "w").write(str(result.stdout))
     logger.info(
         f'subproc args:{" ".join(result.args)}, retcode: {str(result.returncode)}')
-    return open(result_path, "r").read()
+    result_str = open(result_path, "r").read()
+    save_to_archives("results", os.path.basename(result_path), result_str)
+    return result_str
 
 
 SIM_TIME_PARAM_NAME = "Simulation Time"

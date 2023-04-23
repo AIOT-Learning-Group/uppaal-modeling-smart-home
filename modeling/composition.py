@@ -52,6 +52,7 @@ class Simulation:
         self.starting_node_id = 0
 
     def load_tap_rules(self, tap_rules: str) -> None:
+        self.raw_rules = tap_rules
         self.ruleset = RuleSet(HumanModelForSmartHome, tap_rules, 1)
         self.devices_tplt = filter_interacive_devices_by_rules(tap_rules)
 
@@ -99,7 +100,7 @@ class Simulation:
         self.body += f'\t\t<comment></comment>\n'
         self.body += f'\t</query>\n'
         self.body += f'</queries>\n'
-        #self.full_body = self.header + self.body + self.footer
+
         self.full_body = header + self.body + footer
         open("build_result.xml", "w").write(self.full_body)
         return "Nothing to show."

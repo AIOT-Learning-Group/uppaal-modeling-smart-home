@@ -2,3 +2,4 @@ __pycache__
 .mypy_cache
 .VSCodeCounter
 config.py
+archives
