@@ -1,36 +1,44 @@
 
+from typing_extensions import TypedDict
 import json
-from anim_gen.layout import smart_home_layout
+from typing import List, Tuple
+from .layout import smart_home_layout
+from loguru import logger
+
+RawFrame = Tuple[float, float]
+KeyFrame = TypedDict(
+    'KeyFrame', {'type': int, 'name': str, "animation": str, "timestamp": float})
+AnimationSpecification = TypedDict('AnimationSpecification', {
+                                   'keyFrames': List[KeyFrame]})
 
 
-class KeyFrame:
-    def __init__(self):
-        self.type = ""
-        self.name = ""
-        self.animation = ""
-        self.timestamp = ""
+def trace_to_stamp(trace: str) -> List[Tuple[float, float]]:
+    raw_trace = trace.replace("[0]: ", "").replace(") (", "),(")
+    points: List[Tuple[float, float]] = []
+    for trace_point in raw_trace.split("),("):
+        dims = trace_point.replace("(", "").replace(")", "").split(",")
+        assert len(dims) == 2, "bad trace point: " + trace_point
+        points.append((float(dims[0]), float(dims[1])))
+    return points
 
 
-def trace_to_stamp(trace: str):
-    return eval("[" + trace.replace("[0]: ", "").replace(") (", "),(") + "]")
-
-
-def build_anim_spec(path: str):
-    keyframes = []
-    lines = open(path, "r").read().splitlines()
+def build_anim_spec(traces: str) -> AnimationSpecification:
+    keyframes: List[KeyFrame] = []
+    lines = traces.splitlines()
     for i, line in enumerate(lines):
         if line.startswith("[0]: "):
             target = lines[i-1].replace(":", "")
             if target == "position":
-                keyframes += parse_position(trace_to_stamp(line))
+                keyframes.extend(parse_position(trace_to_stamp(line)))
             elif target.startswith("rule"):
-                keyframes += parse_rule(target, trace_to_stamp(line))
+                keyframes.extend(parse_rule(target, trace_to_stamp(line)))
             elif target in attributes:
-                keyframes += parse_attribute(target, trace_to_stamp(line))
+                keyframes.extend(parse_attribute(target, trace_to_stamp(line)))
             else:
                 for device in device_prefix:
                     if target.startswith(device):
-                        keyframes += parse_device(target, trace_to_stamp(line))
+                        keyframes.extend(parse_device(
+                            target, trace_to_stamp(line)))
     return {"keyFrames": keyframes}
 
 
@@ -53,19 +61,20 @@ in_place_time = 2
 stay_time = 10
 
 
-def parse_position(raw_frames: list):
-    keyframes = []
+def parse_position(raw_frames: List[RawFrame]) -> List[KeyFrame]:
+    keyframes: List[KeyFrame] = []
     for i, (stamp, value) in enumerate(raw_frames):
         if i > 0 and value != raw_frames[i-1][1]:
             path = layout.shortest_path(
-                id_to_location[raw_frames[i-1][1]], id_to_location[value])
+                id_to_location[int(raw_frames[i-1][1])],
+                id_to_location[int(value)])
             for j in range(i - 2, -1, -1):
                 if raw_frames[j][1] != raw_frames[i-1][1]:
                     break
             total_duration = stamp - raw_frames[j][0]
             assert total_duration > (
                 in_place_time + stay_time), "unable to plan: time duration too short"
-            print(total_duration)
+            logger.info("total_duration: " + str(total_duration))
             keyframes.append(
                 {"timestamp": raw_frames[j][0] + stay_time, "name": path[0], "type": 3, "animation": ""})
 
@@ -75,7 +84,7 @@ def parse_position(raw_frames: list):
                     keyframes.append(
                         {"timestamp": raw_frames[j][0] + stay_time + duration_for_move / (len(path) - 1) * i, "name": node, "type": 3, "animation": ""})
 
-            print([(kf["timestamp"], kf["name"]) for kf in keyframes])
+            # print([(kf["timestamp"], kf["name"]) for kf in keyframes])
         else:
             pass
 
@@ -89,21 +98,20 @@ rule_text = {
 }
 
 
-def parse_rule(name: str, raw_frames: list):
-    keyframes = []
+def parse_rule(name: str, raw_frames: List[RawFrame]) -> List[KeyFrame]:
+    keyframes: List[KeyFrame] = []
     for i, (stamp, value) in enumerate(raw_frames):
         if (i > 0) and (raw_frames[i-1][1]) == 0 and (value == 1):
             keyframes.append(
                 {"timestamp": stamp, "name": rule_text[name], "type": 2, "animation": ""})
-            # print(name, "triggered on", stamp)
     return keyframes
 
 
 attributes = ["temperature"]
 
 
-def parse_attribute(name: str, raw_frames: list):
-    keyframes = []
+def parse_attribute(name: str, raw_frames: List[RawFrame]) -> List[KeyFrame]:
+    keyframes: List[KeyFrame] = []
     for stamp, value in raw_frames:
         keyframes.append(
             {"timestamp": stamp, "name": name, "type": 1, "animation": str(value)})
@@ -114,8 +122,8 @@ def parse_attribute(name: str, raw_frames: list):
 device_prefix = ["door", "fan", "curtain"]
 
 
-def parse_device(name: str, raw_frames: list):
-    keyframes = []
+def parse_device(name: str, raw_frames: List[RawFrame]) -> List[KeyFrame]:
+    keyframes: List[KeyFrame] = []
     for stamp, value in raw_frames:
         if stamp > 0:
             keyframes.append(
@@ -125,4 +133,4 @@ def parse_device(name: str, raw_frames: list):
 
 if __name__ == "__main__":
     open("specifications/case_study.json", "w").write(json.dumps(
-        build_anim_spec("models/rq3_case_study.xml.result")))
+        build_anim_spec(open("models/rq3_case_study.xml.result", "r").read())))

@@ -1,17 +1,19 @@
-import dijkstar
+import dijkstar  # type: ignore
+from typing import List
+from typing_extensions import Self
 
 
 class WaypointLayout:
-    def __init__(self):
+    def __init__(self) -> None:
         self.graph = dijkstar.Graph()
-        self.nodes = []
+        self.nodes: List[str] = []
         self.edges = 0
 
-    def add_point(self, name: str):
+    def add_point(self, name: str) -> Self:
         self.nodes.append(name)
         return self
 
-    def add_edge(self, u: str, v: str, weight=1):
+    def add_edge(self, u: str, v: str, weight: int = 1) -> Self:
         node_u = self.nodes.index(u)
         node_v = self.nodes.index(v)
         self.graph.add_edge(node_u, node_v, weight)
@@ -19,20 +21,20 @@ class WaypointLayout:
         self.edges += 1
         return self
 
-    def num_nodes(self):
+    def num_nodes(self) -> int:
         return len(self.nodes)
 
-    def num_edges(self):
+    def num_edges(self) -> int:
         return self.edges
 
-    def shortest_path(self, s: str, t: str):
+    def shortest_path(self, s: str, t: str) -> List[str]:
         node_s = self.nodes.index(s)
         node_t = self.nodes.index(t)
         nodes = dijkstar.find_path(self.graph, node_s, node_t).nodes
         return [self.nodes[i] for i in nodes]
 
 
-def smart_home_layout():
+def smart_home_layout() -> WaypointLayout:
     layout = WaypointLayout()
     layout.add_point("P1").add_point("P2").add_point(
         "P3").add_point("P4").add_point("P5").add_point("P6")
