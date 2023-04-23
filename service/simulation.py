@@ -1,3 +1,4 @@
+import os
 from config import POINTS_NUMBER
 from config import UPPAAL_PATH
 from loguru import logger
@@ -154,11 +155,16 @@ def run(sim: Simulation) -> str:
     model_path = tempfile.NamedTemporaryFile().name + ".xml"
     open(model_path, "w").write(sim.full_body)
     result_path = model_path + ".result"
-    cmd = f"cmd /c verifyta -O std {model_path} > {result_path}".split(" ")
-    result = subprocess.run(
-        cmd, cwd=UPPAAL_PATH, stdout=subprocess.PIPE)
-    logger.info(f"Calling: {' '.join(cmd)}")
-    logger.info(result)
+    if os.name == 'nt':
+        cmd = f"cmd /c verifyta -O std {model_path} > {result_path}".split(" ")
+        result = subprocess.run(
+            cmd, cwd=UPPAAL_PATH, stdout=subprocess.PIPE, text=True)
+    else:
+        result = subprocess.run(["./verifyta", "-O", "std", model_path],
+                                cwd=UPPAAL_PATH, capture_output=True, text=True)
+        open(result_path, "w").write(str(result.stdout))
+    logger.info(
+        f'subproc args:{" ".join(result.args)}, retcode: {str(result.returncode)}')
     return open(result_path, "r").read()
 
 
