@@ -28,7 +28,7 @@ def build_anim_spec(traces: str) -> AnimationSpecification:
     for i, line in enumerate(lines):
         if line.startswith("[0]: "):
             target = lines[i-1].replace(":", "")
-            if target == "position":
+            if target == "humanposition":
                 keyframes.extend(parse_position(trace_to_stamp(line)))
             elif target.startswith("rule"):
                 keyframes.extend(parse_rule(target, trace_to_stamp(line)))
