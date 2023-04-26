@@ -1,7 +1,8 @@
 import json
 import os
 import tempfile
-from typing import Iterator, List, Literal, TypedDict, Optional, Union
+from typing import List, Literal, Optional
+from typing_extensions import TypedDict
 from loguru import logger
 from fastapi import APIRouter, Request, Response
 from fastapi.responses import PlainTextResponse, FileResponse
