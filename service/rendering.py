@@ -3,8 +3,8 @@ import os
 import tempfile
 from typing import Iterator, List, Literal, TypedDict, Optional, Union
 from loguru import logger
-from fastapi import APIRouter, Request
-from fastapi.responses import PlainTextResponse, StreamingResponse
+from fastapi import APIRouter, Request, Response
+from fastapi.responses import PlainTextResponse, FileResponse
 from modeling.animation import build_anim_spec
 from service.utils import save_to_archives
 
@@ -66,17 +66,12 @@ async def cancel_rendering_task(token: str) -> None:
             task["status"] = "canceled"
 
 
-def iterfile(path: str) -> Iterator[bytes]:
-    with open(path, mode="rb") as file:
-        yield from file
-
-
 @router.get("/api/pull-rendering-result")
-def pull_rendering_result(token: str) -> Union[StreamingResponse, str]:
+def pull_rendering_result(token: str) -> Response:
     for task in task_queue:
         if task["token"] == token and task["status"] == "finished":
-            return StreamingResponse(iterfile(task["result"]), media_type="video/mp4")
-    return ""
+            return FileResponse(task["result"], media_type="video/mp4")
+    return Response(status_code=404)
 
 
 @router.get("/api/pull-rendering-task")
@@ -96,6 +91,7 @@ async def push_rendering_task(token: str, request: Request) -> None:
     for task in task_queue:
         if task["token"] == token:
             video_data = await request.body()
+            task["status"] = "finished"
             task["result"] = save_to_archives(
                 "animation", task["token"], video_data)
             logger.info(f"save {token} to {task['result']}")
