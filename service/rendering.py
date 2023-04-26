@@ -1,11 +1,12 @@
 import json
 import os
 import tempfile
-from typing import List, Literal, TypedDict
+from typing import Iterator, List, Literal, TypedDict, Optional, Union
 from loguru import logger
 from fastapi import APIRouter, Request
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import PlainTextResponse, StreamingResponse
 from modeling.animation import build_anim_spec
+from service.utils import save_to_archives
 
 router = APIRouter()
 
@@ -20,7 +21,8 @@ RenderingTask = TypedDict('RenderingTask', {
     'token': str,
     'status': Literal["pending", "processing", "finished", "failed", "canceled"],
     'input': str,
-    'result': str  # PATH TO FILE IF NOT FAILED
+    'result': str,  # PATH TO FILE IF NOT FAILED
+    'assignee': str
 })
 
 task_queue: List[RenderingTask] = []
@@ -35,17 +37,26 @@ async def add_rendering_task(request: Request) -> str:
         'token': token,
         'status': "pending",
         'input': str(await request.body(), "utf-8"),
-        'result': ""
+        'result': "",
+        'assignee': ""
     })
     return token
 
 
-@router.get("/api/query-rendering-task", response_class=PlainTextResponse)
-async def query_rendering_task(token: str) -> str:
+@router.get("/api/query-rendering-task-status", response_class=PlainTextResponse)
+async def query_rendering_task_status(token: str) -> str:
     for task in task_queue:
         if task["token"] == token:
             return task["status"]
-    return "notfound"
+    return ""
+
+
+@router.get("/api/query-rendering-task-assignee", response_class=PlainTextResponse)
+async def query_rendering_task_assignee(token: str) -> str:
+    for task in task_queue:
+        if task["token"] == token:
+            return task["assignee"]
+    return ""
 
 
 @router.get("/api/cancel-rendering-task")
@@ -55,30 +66,38 @@ async def cancel_rendering_task(token: str) -> None:
             task["status"] = "canceled"
 
 
-@router.get("/api/pull-rendering-result", response_class=PlainTextResponse)
-async def pull_rendering_result(token: str) -> str:
-    # TODO: return video data
+def iterfile(path: str) -> Iterator[bytes]:
+    with open(path, mode="rb") as file:
+        yield from file
+
+
+@router.get("/api/pull-rendering-result")
+def pull_rendering_result(token: str) -> Union[StreamingResponse, str]:
     for task in task_queue:
-        if task["token"] == token:
-            return task["result"]
+        if task["token"] == token and task["status"] == "finished":
+            return StreamingResponse(iterfile(task["result"]), media_type="video/mp4")
     return ""
 
 
-@router.post("/api/pull-rendering-task")
-async def pull_rendering_task(request: Request) -> None:
-    pass
+@router.get("/api/pull-rendering-task")
+async def pull_rendering_task(server_name: str) -> Optional[RenderingTask]:
+    for task in task_queue:
+        if task["status"] == "pending":
+            task["status"] = "processing"
+            task["assignee"] = server_name
+            logger.info(f"assign {task['token']} to {server_name}")
+            return task
+    logger.info(f"{server_name} asks for task, but nothing exists.")
+    return None
 
 
 @router.post("/api/push-rendering-result")
-async def push_rendering_task(request: Request) -> None:
-    pass
-
-
-# @router.post("/api/reg-rendering-machine")
-# async def reg_rendering_machine(request: Request) -> None:
-#     pass
-
-
-# @router.get("/api/count-rendering-machine")
-# async def count_rendering_machine(request: Request) -> None:
-#     pass
+async def push_rendering_task(token: str, request: Request) -> None:
+    for task in task_queue:
+        if task["token"] == token:
+            video_data = await request.body()
+            task["result"] = save_to_archives(
+                "animation", task["token"], video_data)
+            logger.info(f"save {token} to {task['result']}")
+            return
+    logger.warning(f"task {token} not found")
