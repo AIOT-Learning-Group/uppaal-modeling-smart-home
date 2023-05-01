@@ -1,0 +1,19 @@
+syntax = "proto3";
+import "knowledgebase/system_device_modes.proto";
+
+message DeviceInstance {
+  Device device = 1;
+  int32 number = 2;
+}
+
+message Location {
+  string name = 1;
+  repeated DeviceInstance devices = 2;
+}
+
+message Layout {
+  string name = 1;
+  repeated Location locations = 2;
+}
+
+message EnvironmentAttribute { string name = 1; }
