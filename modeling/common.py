@@ -13,17 +13,18 @@ Sys: TypeAlias = str
 Var: TypeAlias = str
 PartialComposition = Tuple[Name, Tplt, Decl]
 Composition = Tuple[Tplt, Decl, Inst, Sys, Var, int]
-PartialTemplateGenerator = Callable[[int], PartialComposition]
+PartialTemplateGenerator = Callable[[str, int], PartialComposition]
 TemplateGenerator = Callable[[int], Composition]
 
 
 class ComposableTemplate:
-    def __init__(self, template_generator: PartialTemplateGenerator, used_nodes: int):
+    def __init__(self, name: str, template_generator: PartialTemplateGenerator, used_nodes: int):
+        self.name = name
         self.generator = template_generator
         self.used_nodes = used_nodes
 
     def compose(self, starting_node_id: int, instance_number: Union[None, int] = None) -> Composition:
-        [name, tplt, decl] = self.generator(starting_node_id)
+        [name, tplt, decl] = self.generator(self.name, starting_node_id)
         inst = ""
         sys = ""
         var = ""

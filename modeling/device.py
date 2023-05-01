@@ -64,28 +64,26 @@ def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200,
     return name, tplt, decl
 
 
-Fan = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Fan", x, "dtemperature", -0.02), 2)
-AirPurifier = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "AirPurifier", x, "dpm_2_5", -0.8), 2)
-Light = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Light", x), 2)
-Camera = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Camera", x), 2)
-Humidifier = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Humidifier", x, ["dhumidity", "dpm_2_5"], [+0.1, +0.6]), 2)
+Fan = ComposableTemplate("Fan", lambda name, x: build_two_state_device_with_impacts(
+    name, x, "dtemperature", -0.02), 2)
+AirPurifier = ComposableTemplate("AirPurifier", lambda name, x: build_two_state_device_with_impacts(
+    name, x, "dpm_2_5", -0.8), 2)
+Light = ComposableTemplate("Light", lambda name, x: build_two_state_device_with_impacts(
+    name, x), 2)
+Camera = ComposableTemplate("Camera", lambda name, x: build_two_state_device_with_impacts(
+    name, x), 2)
+Humidifier = ComposableTemplate("Humidifier", lambda name, x: build_two_state_device_with_impacts(
+    name, x, ["dhumidity", "dpm_2_5"], [+0.1, +0.6]), 2)
 
-Door = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Door", x, onoff_to_openclose=True), 2)
+Door = ComposableTemplate("Door", lambda name, x: build_two_state_device_with_impacts(
+    name, x, onoff_to_openclose=True), 2)
+Curtain = ComposableTemplate("Curtain", lambda name, x: build_two_state_device_with_impacts(
+    name, x, onoff_to_openclose=True), 2)
+Window = ComposableTemplate("Window", lambda name, x: build_two_state_device_with_impacts(
+    name, x, onoff_to_openclose=True), 2)
 
-Curtain = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Curtain", x, onoff_to_openclose=True), 2)
-Window = ComposableTemplate(lambda x: build_two_state_device_with_impacts(
-    "Window", x, onoff_to_openclose=True), 2)
 
-
-def build_device_air_conditioner(offset: int = 300, impact_rate: float = 0.02) -> PartialComposition:
-    name = "AirConditioner"
+def build_device_air_conditioner(name: str, offset: int = 300, impact_rate: float = 0.02) -> PartialComposition:
     decl = f"int {name.lower()}[{{number}}];\n"
     decl += "urgent broadcast chan turn_ac_off[{number}];\n"
     decl += "urgent broadcast chan turn_ac_cool[{number}];\n"
@@ -145,12 +143,11 @@ def build_device_air_conditioner(offset: int = 300, impact_rate: float = 0.02) -
 </template>""", decl
 
 
-AirConditioner = ComposableTemplate(
-    lambda x: build_device_air_conditioner(x, 0.05), 3)
+AirConditioner = ComposableTemplate("AirConditioner",
+                                    lambda name, x: build_device_air_conditioner(name, x, 0.05), 3)
 
 
-def build_sms(offset: int = 300) -> PartialComposition:
-    name = "SMS"
+def build_sms(name: str, offset: int = 300) -> PartialComposition:
     decl = f"int {name.lower()}=0;\n"
     decl += "urgent broadcast chan send_msg;\n"
     return name, f"""<template>
@@ -170,5 +167,5 @@ def build_sms(offset: int = 300) -> PartialComposition:
 </template>""", decl
 
 
-SMS = ComposableTemplate(
-    lambda x: build_sms(x), 1)
+SMS = ComposableTemplate("SMS",
+                         lambda name, x: build_sms(name, x), 1)

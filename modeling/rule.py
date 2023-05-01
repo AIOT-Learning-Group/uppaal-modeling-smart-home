@@ -18,7 +18,7 @@ def simple_xml_escape(text: str) -> str:
     return text.replace("&&", "&amp;&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def build_rule(name: str, trigger: str, anti_trigger: str, action: str, delay: float, offset: int) -> PartialComposition:
+def build_rule(trigger: str, anti_trigger: str, action: str, delay: float, name: str, offset: int) -> PartialComposition:
     # IF "&&" in trigger:
     trigger_list = trigger.split("&&") if "&&" in trigger else [trigger]
     anti_trigger_list = anti_trigger.split(
@@ -259,7 +259,7 @@ class RuleSet:
         tap_rules = zip(*parse_tap_rules(location_to_idx, raw_text))
         for i, (trigger, action) in enumerate(tap_rules):
             self.rules.append(
-                ComposableTemplate(partial(build_rule, f"Rule{i+1}", trigger, to_anti_trigger(
+                ComposableTemplate(f"Rule{i+1}", partial(build_rule, trigger, to_anti_trigger(
                     trigger), action, delay), self.rule_node_number)
             )
 
