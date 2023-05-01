@@ -74,7 +74,7 @@ open_close_devices_names = [
 ]
 
 special_devices_names = [
-    "ac", "SMS"
+    "ac", "sms"
 ]
 
 
@@ -82,7 +82,7 @@ def get_device_func_spec(include_state: bool = False) -> List[Specification]:
     devices_numbers: Dict[str, int] = {
         "fan": 1, "airpurifier": 1, "light": 2, "camera": 1, "humidifier": 1,
         "door": 2, "curtain": 2, "window": 2,
-        "airconditioner": 1, "SMS": 1
+        "airconditioner": 1, "sms": 1
     }
     device_func_spec: List[Specification] = []
     for device, number in devices_numbers.items():
