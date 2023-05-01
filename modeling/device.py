@@ -1,5 +1,8 @@
-from typing import Union, List
+from config import KNOWLEDGEBASE_DEVICE_TABLE
+from typing import Callable, Dict, Optional, TypeVar, Union, List
+from google.protobuf import text_format
 from modeling.common import PartialComposition, ComposableTemplate
+from knowledgebase.system_device_modes_pb2 import Device as PbDevice, DeviceTable as PbDeviceTable
 
 
 def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200, impact_env: Union[None, str, List[str]] = None, impact_rate: Union[float, List[float]] = 0, onoff_to_openclose: bool = False) -> PartialComposition:
@@ -17,7 +20,6 @@ def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200,
                 else:
                     positive += f",{cur_impact_env}={cur_impact_env}-{cur_abs_rate}"
                     negative += f",{cur_impact_env}={cur_impact_env}+{cur_abs_rate}"
-            pass
         elif type(impact_rate) is float:
             abs_rate = abs(impact_rate)
             if impact_rate > 0:
@@ -62,25 +64,6 @@ def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200,
             "on</name>", "open</name>").replace("off</name>", "closed</name>")
         decl = decl.replace("turn_on_", "open_").replace("turn_off_", "close_")
     return name, tplt, decl
-
-
-Fan = ComposableTemplate("Fan", lambda name, x: build_two_state_device_with_impacts(
-    name, x, "dtemperature", -0.02), 2)
-AirPurifier = ComposableTemplate("AirPurifier", lambda name, x: build_two_state_device_with_impacts(
-    name, x, "dpm_2_5", -0.8), 2)
-Light = ComposableTemplate("Light", lambda name, x: build_two_state_device_with_impacts(
-    name, x), 2)
-Camera = ComposableTemplate("Camera", lambda name, x: build_two_state_device_with_impacts(
-    name, x), 2)
-Humidifier = ComposableTemplate("Humidifier", lambda name, x: build_two_state_device_with_impacts(
-    name, x, ["dhumidity", "dpm_2_5"], [+0.1, +0.6]), 2)
-
-Door = ComposableTemplate("Door", lambda name, x: build_two_state_device_with_impacts(
-    name, x, onoff_to_openclose=True), 2)
-Curtain = ComposableTemplate("Curtain", lambda name, x: build_two_state_device_with_impacts(
-    name, x, onoff_to_openclose=True), 2)
-Window = ComposableTemplate("Window", lambda name, x: build_two_state_device_with_impacts(
-    name, x, onoff_to_openclose=True), 2)
 
 
 def build_device_air_conditioner(name: str, offset: int = 300, impact_rate: float = 0.02) -> PartialComposition:
@@ -143,10 +126,6 @@ def build_device_air_conditioner(name: str, offset: int = 300, impact_rate: floa
 </template>""", decl
 
 
-AirConditioner = ComposableTemplate("AirConditioner",
-                                    lambda name, x: build_device_air_conditioner(name, x, 0.05), 3)
-
-
 def build_sms(name: str, offset: int = 300) -> PartialComposition:
     decl = f"int {name.lower()}=0;\n"
     decl += "urgent broadcast chan send_msg;\n"
@@ -167,5 +146,44 @@ def build_sms(name: str, offset: int = 300) -> PartialComposition:
 </template>""", decl
 
 
-SMS = ComposableTemplate("SMS",
-                         lambda name, x: build_sms(name, x), 1)
+R = TypeVar("R")
+
+
+def build_dict_from_return_type(_: Callable[..., R]) -> Dict[R, Callable[..., PartialComposition]]:
+    return {}  # This function is written to help mypy.
+
+
+def build_from_pb(pb_device: PbDevice) -> Optional[ComposableTemplate]:
+    if pb_device.WhichOneof("constructor") == "ctor_ts":
+        ctor_ts = pb_device.ctor_ts
+        if len(ctor_ts.impacts) > 0:
+            impact_envs = []
+            impact_rates = []
+            for impact in ctor_ts.impacts:
+                impact_envs.append(impact.impact_env)
+                impact_rates.append(impact.impact_rate)
+        return ComposableTemplate(pb_device.name, lambda name, x: build_two_state_device_with_impacts(
+            name, x, impact_envs, impact_rates, ctor_ts.use_open_close), 2)
+    elif pb_device.WhichOneof("constructor") == "ctor_ac":
+        ctor_ac = pb_device.ctor_ac
+        return ComposableTemplate(pb_device.name,
+                                  lambda name, x: build_device_air_conditioner(name, x, ctor_ac.impact_rate), 3)
+    elif pb_device.WhichOneof("constructor") == "ctor_sms":
+        return ComposableTemplate(pb_device.name, lambda name, x: build_sms(name, x), 1)
+    return None
+
+
+device_table: Dict[str, ComposableTemplate] = {}
+
+
+def load_device_table(pb_device_table: PbDeviceTable) -> None:
+    for pb_device in pb_device_table.devices:
+        cp_tplt = build_from_pb(pb_device)
+        if cp_tplt is not None:
+            device_table[cp_tplt.name.lower()] = cp_tplt
+
+
+pb_device_table = PbDeviceTable()
+text_format.Parse(open(KNOWLEDGEBASE_DEVICE_TABLE,
+                  'r').read(), pb_device_table)
+load_device_table(pb_device_table)

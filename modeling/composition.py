@@ -1,5 +1,6 @@
 from modeling.human import HumanModelForSmartHome
-from modeling.rule import name_to_device, RuleSet
+from modeling.rule import RuleSet
+from modeling.device import device_table
 from modeling.common import ComposableTemplate, Composition, TemplateGenerator
 from typing import List, Set
 from modeling.human import HumanModelForSmartHome
@@ -7,7 +8,7 @@ from modeling.human import HumanModelForSmartHome
 
 def filter_interacive_devices_by_rules(tap_rules: str) -> Set[ComposableTemplate]:
     device_set: Set[ComposableTemplate] = set([])
-    for name, device in name_to_device.items():
+    for name, device in device_table.items():
         if name in tap_rules:
             device_set.add(device)
     return device_set

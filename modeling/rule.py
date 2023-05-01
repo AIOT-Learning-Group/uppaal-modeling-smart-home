@@ -1,10 +1,10 @@
-from .device import Fan, AirPurifier, Light, Camera, Humidifier, Door, Curtain, Window, AirConditioner, SMS
 import parse  # type: ignore
 from functools import partial
 
 from typing import Dict, List, Tuple
 from modeling.common import Composition, PartialComposition, ComposableTemplate
-from modeling.human import HumanModel, HumanModelWithThreeLocations
+from modeling.human import HumanModel
+from modeling.device import device_table
 
 
 def build_transition(trigger: str) -> str:
@@ -139,7 +139,7 @@ action_mappings = {
     'airconditioner_{i}.turn_ac_off': 'turn_ac_off[{i}]!',
     'airconditioner_{i}.turn_ac_cool': 'turn_ac_cool[{i}]!',
     'airconditioner_{i}.turn_ac_heat': 'turn_ac_heat[{i}]!',
-    'SMS.send_msg': 'send_msg!'
+    'sms.send_msg': 'send_msg!'
 }
 
 
@@ -152,26 +152,21 @@ open_close_devices_names = [
 ]
 
 special_devices_names = [
-    "airconditioner", "SMS"
+    "airconditioner", "sms"
 ]
 
 valid_device_names = on_off_devices_names + \
     open_close_devices_names + special_devices_names
 
-name_to_device: Dict[str, ComposableTemplate] = {
-    "fan": Fan, "airpurifier": AirPurifier, "light": Light, "camera": Camera, "humidifier": Humidifier,
-    "door": Door, "curtain": Curtain, "window": Window, "airconditioner": AirConditioner, "SMS": SMS
-}
 
 device_to_name: Dict[ComposableTemplate, str] = {
-    v: k for k, v in name_to_device.items()
+    v: k for k, v in device_table.items()
 }
 
 for device_name in valid_device_names:
-    assert device_name in name_to_device.keys(
-    ), "no corresponding device:" + device_name
+    assert device_name in device_table.keys(), "no corresponding device:" + device_name
 
-for device_name in name_to_device.keys():
+for device_name in device_table.keys():
     assert device_name in valid_device_names, "device name not valid:" + device_name
 
 

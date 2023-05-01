@@ -4,21 +4,23 @@ message TemplateGenerator { string name = 1; }
 
 message TwoStateWithEnvImpactsConstructor {
   message EnvImpact {
-    string var_name = 1;
+    string impact_env = 1;
     float impact_rate = 2;
   }
-  optional EnvImpact impacts = 3;
+  repeated EnvImpact impacts = 3;
   bool use_open_close = 4;
 }
 
-message AirConditionerConstructor {}
+message AirConditionerConstructor { float impact_rate = 1; }
 message SMSConstructor {}
 
 message Device {
   string name = 1;
+  int32 used_nodes = 2;
   oneof constructor {
-    TwoStateWithEnvImpactsConstructor ctor_ts = 2;
-    AirConditionerConstructor ctor_ac = 3;
+    TwoStateWithEnvImpactsConstructor ctor_ts = 3;
+    AirConditionerConstructor ctor_ac = 4;
+    SMSConstructor ctor_sms = 5;
   }
 }
 
