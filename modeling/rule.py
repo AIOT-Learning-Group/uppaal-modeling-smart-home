@@ -179,7 +179,7 @@ def parse_trigger(location_to_idx: Dict[str, int], raw_trigger: str) -> str:
     # Case 1. starts with "Human."
     if raw_trigger.startswith("Human."):
         position_name = raw_trigger.replace("Human.", "")
-        return f'position=={location_to_idx[position_name]}'
+        return f'humanposition=={location_to_idx[position_name]}'
     else:  # Case 2. in mapping table
         for t_format, inner_format in trigger_mappings.items():
             values = parse.parse(t_format, raw_trigger)
