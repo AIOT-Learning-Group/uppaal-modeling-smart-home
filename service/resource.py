@@ -7,7 +7,7 @@ from fastapi import APIRouter
 router = APIRouter()
 
 SystemDeviceModels = ["Common Smart Home Devices"]
-SystemContextModels = ["Air Environment"]
+ServiceContextModels = ["Air Environment"]
 AnimationAssetBases = [
     "Smart Home(3 Locations Layout)", "Smart Home(6 Locations Layout)"]
 
@@ -17,9 +17,9 @@ async def list_system_device_model() -> Dict[str, List[str]]:
     return {"result": SystemDeviceModels}
 
 
-@router.get("/api/list-system-context-model")
-async def list_system_context_model() -> Dict[str, List[str]]:
-    return {"result": SystemContextModels}
+@router.get("/api/list-service-context-model")
+async def list_service_context_model() -> Dict[str, List[str]]:
+    return {"result": ServiceContextModels}
 
 
 @router.get("/api/list-animation-asset-bases")
