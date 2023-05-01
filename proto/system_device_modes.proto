@@ -5,7 +5,7 @@ message TemplateGenerator { string name = 1; }
 message TwoStateWithEnvImpactsConstructor {
   message EnvImpact {
     string var_name = 1;
-    float inpact_rate = 2;
+    float impact_rate = 2;
   }
   optional EnvImpact impacts = 3;
   bool use_open_close = 4;
