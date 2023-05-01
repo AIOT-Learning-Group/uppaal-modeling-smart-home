@@ -1,0 +1,1 @@
+protoc -I=proto --python_out=knowledgebase --mypy_out=knowledgebase proto/*.proto

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+message Prefab { string name = 1; }
+
+message AppearanceState {
+  string name = 1;
+  string prefab_name = 2;
+}
+
+message AppearanceTransition {
+  string trigger_name = 1;
+  string prev_state_name = 2;
+  string next_state_name = 3;
+  string prefab_name = 4;
+}
+
+message AppearanceStateMachine {
+  string name = 1;
+  repeated Prefab prefabs = 2;
+  repeated AppearanceState states = 3;
+  string initial_state_name = 4;
+  repeated AppearanceTransition transitions = 5;
+}
