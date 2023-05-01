@@ -1,1 +1,1 @@
-protoc -I=. --python_out=knowledgebase --mypy_out=knowledgebase knowledgebase/*.proto
+protoc -I=. --python_out=. --mypy_out=. knowledgebase/*.proto
