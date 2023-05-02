@@ -10,5 +10,7 @@ message EnvAttribute { string name = 1; }
 message ServiceContext {
   string name = 1;
   repeated string locations = 2;
-  repeated EnvAttribute env_attributes = 4;
+  repeated EnvAttribute env_attributes = 3;
 }
+
+message ServiceContextModels { repeated ServiceContext context = 1; }

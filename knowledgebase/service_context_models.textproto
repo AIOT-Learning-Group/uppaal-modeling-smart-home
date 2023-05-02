@@ -1,0 +1,11 @@
+context {
+  name : "Smart Home(6 Locations Layout)"
+  locations : "out"
+  locations : "living_room"
+  locations : "kitchen"
+  locations : "bathroom"
+  locations : "bedroom"
+  locations : "guest_room"
+  env_attributes {name : "Environment Temperature"}
+  env_attributes {name : "Environment Humidity"}
+}
