@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-message Prefab { string name = 1; }
-
 message AppearanceState {
   string name = 1;
   string prefab_name = 2;
@@ -16,8 +14,11 @@ message AppearanceTransition {
 
 message AppearanceStateMachine {
   string name = 1;
-  repeated Prefab prefabs = 2;
-  repeated AppearanceState states = 3;
-  string initial_state_name = 4;
-  repeated AppearanceTransition transitions = 5;
+  repeated AppearanceState states = 2;
+  string initial_state_name = 3;
+  repeated AppearanceTransition transitions = 4;
+}
+
+message AnimationAssetBase {
+  repeated AppearanceStateMachine appearance_state_machine = 1;
 }

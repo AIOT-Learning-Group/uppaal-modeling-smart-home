@@ -1,0 +1,24 @@
+appearance_state_machine {
+  name: "Humidifier"
+  states {
+    name: "hon"
+    prefab_name: "onPic"
+  }
+  states {
+    name: "hoff"
+    prefab_name: "offPic"
+  }
+  initial_state_name: "hoff"
+  transitions {
+    trigger_name: "turn_hum_on"
+    prev_state_name: "hoff"
+    next_state_name: "hon"
+    prefab_name: "off2onPre"
+  }
+  transitions {
+    trigger_name: "turn_hum_off"
+    prev_state_name: "hon"
+    next_state_name: "hoff"
+    prefab_name: "off2onPre"
+  }
+}
