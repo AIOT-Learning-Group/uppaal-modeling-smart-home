@@ -1,8 +1,8 @@
-from config import KNOWLEDGEBASE_DEVICE_TABLE
+from config import KNOWLEDGEBASE_SYSTEM_DEVICE_MODELS
 from typing import Callable, Dict, Optional, TypeVar, Union, List
 from google.protobuf import text_format
 from modeling.common import PartialComposition, ComposableTemplate
-from knowledgebase.system_device_modes_pb2 import Device as PbDevice, DeviceTable as PbDeviceTable
+from knowledgebase.system_device_models_pb2 import Device as PbDevice, SystemDeviceModels as PbSystemDeviceModels
 
 
 def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200, impact_env: Union[None, str, List[str]] = None, impact_rate: Union[float, List[float]] = 0, onoff_to_openclose: bool = False) -> PartialComposition:
@@ -173,17 +173,20 @@ def build_from_pb(pb_device: PbDevice) -> Optional[ComposableTemplate]:
     return None
 
 
-device_table: Dict[str, ComposableTemplate] = {}
+device_tables: Dict[str, Dict[str, ComposableTemplate]] = {}
 
 
-def load_device_table(pb_device_table: PbDeviceTable) -> None:
-    for pb_device in pb_device_table.devices:
-        cp_tplt = build_from_pb(pb_device)
-        if cp_tplt is not None:
-            device_table[cp_tplt.name.lower()] = cp_tplt
+def load_device_table(pb_system_device_models: PbSystemDeviceModels) -> None:
+    for pb_device_table in pb_system_device_models.device_table:
+        device_tables[pb_device_table.name] = {}
+        for pb_device in pb_device_table.devices:
+            cp_tplt = build_from_pb(pb_device)
+            if cp_tplt is not None:
+                device_tables[pb_device_table.name][cp_tplt.name.lower()
+                                                    ] = cp_tplt
 
 
-pb_device_table = PbDeviceTable()
-text_format.Parse(open(KNOWLEDGEBASE_DEVICE_TABLE,
-                  'r').read(), pb_device_table)
-load_device_table(pb_device_table)
+pb_system_device_models = PbSystemDeviceModels()
+text_format.Parse(open(KNOWLEDGEBASE_SYSTEM_DEVICE_MODELS,
+                  'r').read(), pb_system_device_models)
+load_device_table(pb_system_device_models)

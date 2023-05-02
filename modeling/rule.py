@@ -4,7 +4,7 @@ from functools import partial
 from typing import Dict, List, Tuple
 from modeling.common import Composition, PartialComposition, ComposableTemplate
 from modeling.human import HumanModel
-from modeling.device import device_table
+from modeling.device import device_tables
 
 
 def build_transition(trigger: str) -> str:
@@ -160,13 +160,17 @@ valid_device_names = on_off_devices_names + \
 
 
 device_to_name: Dict[ComposableTemplate, str] = {
-    v: k for k, v in device_table.items()
+    # TODO: use selected device table
+    v: k for k, v in device_tables[list(device_tables.keys())[0]].items()
 }
 
 for device_name in valid_device_names:
-    assert device_name in device_table.keys(), "no corresponding device:" + device_name
+    # TODO: use selected device table
+    assert device_name in device_tables[list(device_tables.keys())[0]].keys(
+    ), "no corresponding device:" + device_name
 
-for device_name in device_table.keys():
+# TODO: use selected device table
+for device_name in device_tables[list(device_tables.keys())[0]].keys():
     assert device_name in valid_device_names, "device name not valid:" + device_name
 
 

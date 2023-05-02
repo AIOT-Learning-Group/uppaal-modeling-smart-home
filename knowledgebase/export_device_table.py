@@ -1,5 +1,5 @@
 from google.protobuf import text_format
-from knowledgebase.system_device_modes_pb2 import Device, DeviceTable, TwoStateWithEnvImpactsConstructor
+from knowledgebase.system_device_models_pb2 import Device, DeviceTable, TwoStateWithEnvImpactsConstructor
 
 # This is an example to export something build in your code.
 if __name__ == "__main__":
