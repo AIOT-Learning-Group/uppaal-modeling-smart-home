@@ -5,9 +5,9 @@ from typing import List, Literal, Optional
 from typing_extensions import TypedDict
 from loguru import logger
 from fastapi import APIRouter, Request, Response
-from fastapi.responses import PlainTextResponse, FileResponse
+from fastapi.responses import PlainTextResponse
 from modeling.animation import build_anim_spec
-from service.utils import save_to_archives
+from service.utils import range_requests_response, save_to_archives
 
 router = APIRouter()
 
@@ -68,10 +68,12 @@ async def cancel_rendering_task(token: str) -> None:
 
 
 @router.get("/api/pull-rendering-result")
-def pull_rendering_result(token: str) -> Response:
+def pull_rendering_result(token: str, request: Request) -> Response:
     for task in task_queue:
         if task["token"] == token and task["status"] == "finished":
-            return FileResponse(task["result"], media_type="video/mp4")
+            return range_requests_response(
+                request, file_path=task["result"], content_type="video/mp4"
+            )
     return Response(status_code=404)
 
 
