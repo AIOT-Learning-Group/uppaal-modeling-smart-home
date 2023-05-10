@@ -1,3 +1,4 @@
+from loguru import logger
 from config import KNOWLEDGEBASE_SYSTEM_DEVICE_MODELS
 from typing import Callable, Dict, Optional, TypeVar, Union, List
 from google.protobuf import text_format
@@ -156,9 +157,9 @@ def build_dict_from_return_type(_: Callable[..., R]) -> Dict[R, Callable[..., Pa
 def build_from_pb(pb_device: PbDevice) -> Optional[ComposableTemplate]:
     if pb_device.WhichOneof("constructor") == "ctor_ts":
         ctor_ts = pb_device.ctor_ts
+        impact_envs = []
+        impact_rates = []
         if len(ctor_ts.impacts) > 0:
-            impact_envs = []
-            impact_rates = []
             for impact in ctor_ts.impacts:
                 impact_envs.append(impact.impact_env)
                 impact_rates.append(impact.impact_rate)
@@ -179,11 +180,15 @@ device_tables: Dict[str, Dict[str, ComposableTemplate]] = {}
 def load_device_table(pb_system_device_models: PbSystemDeviceModels) -> None:
     for pb_device_table in pb_system_device_models.device_table:
         device_tables[pb_device_table.name] = {}
+        logger.info("register device table: " + pb_device_table.name)
         for pb_device in pb_device_table.devices:
             cp_tplt = build_from_pb(pb_device)
+            logger.info("add device " + pb_device.name)
             if cp_tplt is not None:
                 device_tables[pb_device_table.name][cp_tplt.name.lower()
                                                     ] = cp_tplt
+            else:
+                logger.info("failed to add device " + pb_device.name)
 
 
 pb_system_device_models = PbSystemDeviceModels()
