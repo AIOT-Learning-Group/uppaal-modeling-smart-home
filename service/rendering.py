@@ -11,12 +11,22 @@ from service.utils import range_requests_response, save_to_archives
 
 router = APIRouter()
 
+GenerationRequest = TypedDict(
+    'GenerationRequest', {"tap_rules": str, "senario_traces": str, })
+
 
 @router.post("/api/generate-animation-specification", response_class=PlainTextResponse)
 async def generate_animation_specification(request: Request) -> str:
-    traces = str(await request.body(), 'utf-8')
-    logger.info(f"trace length: len({traces})")
-    return json.dumps(build_anim_spec(traces))
+    gen_request: GenerationRequest = await request.json()
+    tap_rules = gen_request["tap_rules"]
+    senario_traces = gen_request["senario_traces"]
+    logger.info(f"input trace length: {len(senario_traces)}")
+    specification = json.dumps(build_anim_spec(
+        senario_traces, tap_rules), indent=2)
+    save_to_archives("specifications", os.path.basename(
+        tempfile.NamedTemporaryFile().name), specification)
+    logger.info(f"output specification length: {len(specification)}")
+    return specification
 
 RenderingTask = TypedDict('RenderingTask', {
     'token': str,
