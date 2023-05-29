@@ -48,3 +48,29 @@ def smart_home_layout() -> WaypointLayout:
         "P5", "P6").add_edge("P6", "bedroom")
     assert layout.num_nodes() == 12 and layout.num_edges() == 11
     return layout
+
+
+def smart_home_layout_simplified() -> WaypointLayout:
+    layout = WaypointLayout()
+    layout.add_point("out").add_point(
+        "doorway").add_point("P1").add_point("home")
+    layout.add_edge("out", "doorway").add_edge(
+        "doorway", "P1").add_edge("P1", "home")
+    assert layout.num_nodes() == 4 and layout.num_edges() == 3
+    return layout
+
+
+def smart_home_layout_for_demo() -> WaypointLayout:
+    layout = WaypointLayout()
+    layout.add_point("P1").add_point("doorway").add_point(
+        "P3").add_point("P4").add_point("P5").add_point("P6")
+    layout.add_point("living_room").add_point("kitchen").add_point(
+        "bathroom").add_point("bedroom").add_point("guest_room").add_point("out")
+    layout.add_edge("out", "P1").add_edge("P1", "doorway").add_edge(
+        "doorway", "kitchen").add_edge("doorway", "living_room")
+    layout.add_edge("doorway", "P3").add_edge("P3", "P4").add_edge(
+        "P4", "bathroom").add_edge("P4", "P5")
+    layout.add_edge("P5", "guest_room").add_edge(
+        "P5", "P6").add_edge("P6", "bedroom")
+    assert layout.num_nodes() == 12 and layout.num_edges() == 11
+    return layout

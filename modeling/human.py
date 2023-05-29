@@ -61,6 +61,7 @@ class HumanModel:  # locations：布局，movements: 移动
 
 HumanModelWithFiveLocations = HumanModel(["out", "l1", "l2", "l3", "l4"])
 HumanModelWithThreeLocations = HumanModel(["out", "doorway", "home"])
-# HumanModelForSmartHome = HumanModel(
-#     ["out", "living_room", "kitchen", "bathroom", "bedroom", "guest_room"])
-HumanModelForSmartHome = HumanModel(["out", "doorway", "home"])
+HumanModelForSmartHome = HumanModel(
+    ["out", "living_room", "kitchen", "bathroom", "bedroom", "guest_room"])
+HumanModelForSmartHomeDemo = HumanModel(
+    ["out", "living_room", "kitchen", "bedroom"])
