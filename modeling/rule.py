@@ -1,3 +1,4 @@
+from loguru import logger
 import parse  # type: ignore
 from functools import partial
 
@@ -139,12 +140,14 @@ action_mappings = {
     'airconditioner_{i}.turn_ac_off': 'turn_ac_off[{i}]!',
     'airconditioner_{i}.turn_ac_cool': 'turn_ac_cool[{i}]!',
     'airconditioner_{i}.turn_ac_heat': 'turn_ac_heat[{i}]!',
+    'robotvacuum_{i}.turn_rv_on': 'turn_on_robotvacuum[{i}]!',
+    'robotvacuum_{i}.turn_rv_off': 'turn_off_robotvacuum[{i}]!',
     'sms.send_msg': 'send_msg!'
 }
 
 
 on_off_devices_names = [
-    "fan", "airpurifier", "light",  "camera", "humidifier",
+    "fan", "airpurifier", "light",  "camera", "humidifier", "robotvacuum"
 ]
 
 open_close_devices_names = [
@@ -167,7 +170,8 @@ device_to_name: Dict[ComposableTemplate, str] = {
 for device_name in valid_device_names:
     # TODO: use selected device table
     assert device_name in device_tables[list(device_tables.keys())[0]].keys(
-    ), "no corresponding device:" + device_name
+    ), "no corresponding device:" + device_name + " in " + str(list(device_tables[list(device_tables.keys())[0]].keys(
+    )))
 
 # TODO: use selected device table
 for device_name in device_tables[list(device_tables.keys())[0]].keys():
@@ -212,6 +216,7 @@ def parse_tap_rules(location_to_idx: Dict[str, int], text: str) -> Tuple[List[st
             continue
         trigger = line[line.find("IF ") + len("IF "):line.find(" THEN ")]
         action = line[line.find(" THEN ") + len(" THEN "):]
+        logger.info(location_to_idx)
         inner_t, inner_a = parse_rule(location_to_idx, trigger, action)
         assert inner_t != None, f"bad trigger: {trigger}, in {text}"
         assert inner_a != None, f"bad action: {action}, in {text}"
