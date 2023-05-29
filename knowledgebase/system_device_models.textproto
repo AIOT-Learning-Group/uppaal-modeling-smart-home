@@ -13,12 +13,17 @@ device_table : {
   devices {
     name : "Light"
     used_nodes : 2
-    ctor_ts {impacts {}}
+    ctor_ts {}
+  }
+  devices {
+    name : "RobotVacuum"
+    used_nodes : 2
+    ctor_ts {}
   }
   devices {
     name : "Camera"
     used_nodes : 2
-    ctor_ts {impacts {}}
+    ctor_ts {}
   }
   devices {
     name : "Humidifier"
