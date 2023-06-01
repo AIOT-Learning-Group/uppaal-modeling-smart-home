@@ -6,9 +6,66 @@ from modeling.common import PartialComposition, ComposableTemplate
 from knowledgebase.system_device_models_pb2 import Device as PbDevice, SystemDeviceModels as PbSystemDeviceModels
 
 
+from owlready2 import get_ontology, ThingClass, Thing  # type: ignore
+
+
+def build_from_owl_individual():
+    onto = get_ontology(
+        "file://C:/Users/Kale1d0/Desktop/Ontology/SystemDeviceModel_with_example.owl")
+    onto.load()
+
+    device: ThingClass = onto["Device"]
+    automaton: Thing = None
+    for i in onto.individuals():
+        t: Thing = i
+        if t in device.instances():
+            logger.info("found device:" + t.name)
+            logger.info(t.get_properties())
+            automaton = t.has_timed_automaton_template
+            break
+
+    def build(offset: int):
+        name = automaton.get_name().lower()
+        param = automaton.has_template_parameter[0]
+        decl = automaton.has_template_declaration[0] if len(
+            automaton.has_template_declaration) > 0 else ""
+
+        tplt = f"""<template>
+    \t<name>{name}</name>
+    \t<parameter>{param}</parameter>
+    \t<declaration>{decl}</declaration>"""
+        name_to_node_idx: Dict[str, int] = {}
+        for loc in automaton.has_location:
+            name_to_node_idx[loc.get_name()] = offset
+            offset += 1
+        for node_name, nid in name_to_node_idx.items():
+            tplt += f"""
+    \t<location id="id{str(nid)}" x="0" y="25">
+    \t\t<name x="17" y="16">{node_name.lower()}on</name>
+    \t</location>"""
+        tplt += f'<init ref="id{str(name_to_node_idx[automaton.has_location[0].get_name()])}"/>'
+        for edge in automaton.has_edge:
+            prev = edge.has_prev_location.get_name()
+            next = edge.has_next_location.get_name()
+            sync = edge.has_sync[0] if len(edge.has_sync) > 0 else ""
+            update = edge.has_update[0] if len(edge.has_update) > 0 else ""
+            tplt += f"""\t<transition>
+    \t\t<source ref="id{str(name_to_node_idx[prev])}"/>
+    \t\t<target ref="id{str(name_to_node_idx[next])}"/>
+    \t\t<label kind="synchronisation">{sync}</label>
+    \t\t<label kind="assignment">{update}</label>
+    \t</transition>"""
+        tplt += "</template>"
+        global_decl = automaton.has_global_declaration[0]
+        return name, tplt, global_decl
+
+    return build(0)
+
+
 def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200, impact_env: Union[None, str, List[str]] = None, impact_rate: Union[float, List[float]] = 0, onoff_to_openclose: bool = False) -> PartialComposition:
     positive, negative = "", ""
-    if impact_env != None:
+    if impact_env != None and len(impact_env) > 0:
+        logger.info(name + str(impact_env) + str(len(impact_env)))
         if type(impact_env) is list and type(impact_rate) is list:
             assert len(impact_env) == len(impact_rate)
             for i in range(len(impact_env)):
@@ -195,3 +252,6 @@ pb_system_device_models = PbSystemDeviceModels()
 text_format.Parse(open(KNOWLEDGEBASE_SYSTEM_DEVICE_MODELS,
                   'r').read(), pb_system_device_models)
 load_device_table(pb_system_device_models)
+
+if __name__ == "__main__":
+    print(build_from_owl_individual())
