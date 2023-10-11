@@ -2,7 +2,7 @@
 import json
 from typing import Dict, List, Tuple
 from .common import AnimationSpecification, KeyFrame, RawTraceFrame
-from .layout import smart_home_layout
+from .layout import smart_home_layout_for_demo
 from loguru import logger
 
 
@@ -48,7 +48,7 @@ def build_anim_spec(traces: str, raw_rules: str) -> AnimationSpecification:
 
 
 global last_pos
-layout = smart_home_layout()
+layout = smart_home_layout_for_demo()
 
 # location_to_id = {
 #     "out": 0,
