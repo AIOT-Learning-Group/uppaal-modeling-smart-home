@@ -1,0 +1,51 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+
+message DeviceInfo {
+    int32 id = 1;
+    string name = 2;
+    string type = 3;
+    optional string isPortable = 4;
+    optional string isProgrammable = 5;
+}
+
+message EnergyCostInfo {
+    string model = 1;
+    string cost = 2;
+    optional bool isEdit = 3;
+    optional string oldModel = 4;
+    optional string oldCost = 5;
+}
+
+message CustomPropertyInfo {
+    string name = 1;
+    string value = 2;
+    optional bool isEdit = 3; 
+    optional string oldName = 4;
+    optional string oldValue = 5;
+}
+
+message CapabilityInfo {
+    string capability = 1;
+    optional bool isEdit = 2;
+    optional string oldCapability = 3;
+}
+
+message TimedAutomata {
+    string name = 1;
+    string rawData = 2;
+    // optional google.protobuf.Any graphData = 3; // 需要拆解
+}
+
+message DeviceEntry {
+    DeviceInfo deviceInfo = 1;
+    repeated EnergyCostInfo energyCost = 2;
+    repeated CustomPropertyInfo customProperty = 3;
+    repeated CapabilityInfo capability = 4;
+    optional TimedAutomata TAInfo = 5; 
+}
+
+message DomainEntry {
+    string name = 1;
+    repeated DeviceEntry devices = 2;
+}

@@ -10,7 +10,8 @@ def filter_interacive_devices_by_rules(tap_rules: str) -> Set[ComposableTemplate
     device_set: Set[ComposableTemplate] = set([])
     # TODO: use selected device table
     for name, device in device_tables[list(device_tables.keys())[0]].items():
-        if name in tap_rules:
+        print(name)
+        if f" {name}_" in tap_rules:
             device_set.add(device)
     return device_set
 
@@ -32,11 +33,15 @@ class SystemBehaviorModel:
         self.body = tplt
         starting_node_id += num_nodes
         self.devices_composition: List[Composition] = []
+        print("devices:", len(self.devices_tplt))
         for device in self.devices_tplt:
             device_composition = device.compose(starting_node_id)
+            
             self.body += device_composition[0]
+            print("dcp:", device_composition[1])
             self.devices_composition.append(device_composition)
             starting_node_id += device.used_nodes
+        
         self.used_nodes = starting_node_id
         self.full_body = header + self.body + footer
 

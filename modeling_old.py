@@ -32,7 +32,7 @@ def simulate(model_path, result_path):
 
 
 def get_tlpt_name(tlpt: str) -> str:
-    result = re.findall('<name( x="[\d]+" y="[\d]+")?>(\w+)<\/name>', tlpt)
+    result = re.findall('<name( x="[\\d]+" y="[\\d]+")?>(\\w+)<\\/name>', tlpt)
     if len(result[0]) == 2:
         return result[0][1]
     else:
@@ -109,7 +109,7 @@ class Simulatable:
                                   len(self.rules_tplt), self.moving_time)
         vars = list(map(find_env_name, self.envs_tplt))
         vars += list(map(get_tlpt_name, self.rules_tplt))
-        vars += list(map(lambda x: x+"[0]" if x != "SMS" else "received_msgs",
+        vars += list(map(lambda x: x + "[0]" if x != "SMS" else "received_msgs",
                      map(get_tlpt_name, self.devices_tplt)))
         vars = list(map(lambda x: x.lower(), vars))
         vars += ["position"]
@@ -380,9 +380,9 @@ def build_case_study():
     from tplt_gen.rules import update_rules
     update_rules("CaseStudy")
 
-    # Stage 1. 人/镜头的移动
-    # Stage 2. 环境的变化
-    # Stage 3. 设备动画
+    # Stage 1. Human/Camera Move
+    # Stage 2. Environment change
+    # Stage 3. Device animation
     model = Simulatable()
     model.simulation_time = 300
     for i in range(count_tplts("rule_templates/CaseStudy")):
@@ -411,4 +411,4 @@ def build_case_study():
 # python -m tplt_gen.devices
 # python -m tplt_gen.rules && python -m modeling_old
 if __name__ == "__main__":
-    build_RQ3_case_10()
+    build_RQ3_case_4()

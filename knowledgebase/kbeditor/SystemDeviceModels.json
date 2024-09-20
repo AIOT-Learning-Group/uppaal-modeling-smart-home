@@ -1,0 +1,2939 @@
+{
+    "name": "Smart Home",
+    "devices": [
+        {
+            "deviceInfo": {
+                "id": "0",
+                "name": "Kohler Bathtub",
+                "type": "bathtub",
+                "isPortable": "No",
+                "isProgrammable": "No"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Running Mode",
+                    "cost": "0.6",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Full Mode",
+                    "cost": "0.4",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Capacity",
+                    "value": "230L",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Maintains Water Temperature",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Adds Water Automatically",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "07Bathtub.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>clock time;\nint rule0;\n\nint bathtub[1];\nint bathtub_full[1];\nurgent broadcast chan turn_on_bathtub[1];\nurgent broadcast chan turn_off_bathtub[1];\n\nurgent broadcast chan send_msg;\nint received_msgs=0;\n</declaration>\r\n\t<template>\r\n\t\t<name x=\"5\" y=\"5\">Bathtub</name>\r\n\t\t<parameter>int i,int fullTime</parameter>\r\n\t\t<declaration>clock t;</declaration>\r\n\t\t<location id=\"id0\" x=\"279\" y=\"-118\">\r\n\t\t\t<name x=\"269\" y=\"-152\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"279\" y=\"-17\">\r\n\t\t\t<name x=\"269\" y=\"-51\">run</name>\r\n\t\t\t<label kind=\"invariant\" x=\"305\" y=\"-25\">t&lt;=fullTime</label>\r\n\t\t</location>\r\n\t\t<location id=\"id2\" x=\"297\" y=\"136\">\r\n\t\t\t<name x=\"314\" y=\"153\">full</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id2\"/>\r\n\t\t\t<label kind=\"guard\" x=\"119\" y=\"25\">t&gt;=fullTime</label>\r\n\t\t\t<label kind=\"assignment\" x=\"76\" y=\"51\">bathtub_full[i]=1</label>\r\n\t\t\t<nail x=\"195\" y=\"59\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id2\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"238\" y=\"25\">turn_on_bathtub[i]?</label>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id2\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"390\" y=\"34\">turn_off_bathtub[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"398\" y=\"51\">bathtub[i]=0</label>\r\n\t\t\t<nail x=\"425\" y=\"0\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"322\" y=\"-110\">turn_off_bathtub[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"356\" y=\"-93\">bathtub[i]=0</label>\r\n\t\t\t<nail x=\"339\" y=\"-68\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"101\" y=\"-110\">turn_on_bathtub[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"109\" y=\"-85\">bathtub[i]=1</label>\r\n\t\t\t<nail x=\"211\" y=\"-68\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nbathtub_0 = Bathtub(0,14);\noperateBathtub=OperateBathtub(0,25);\n\n// List one or more processes to be composed into a system.\nsystem bathtub_0,operateBathtub,SMS,Rule0;</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=35] {bathtub_full[0],received_msgs}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=35] {bathtub[0],rule0}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Bathtub",
+                    "declaration": "clock t;",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 679,
+                            "y": 82,
+                            "text": {
+                                "x": 669,
+                                "y": 48,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 679,
+                            "y": 183,
+                            "text": {
+                                "x": 669,
+                                "y": 149,
+                                "value": "run\ninvariant:t<=fullTime\n"
+                            }
+                        },
+                        {
+                            "id": "id2",
+                            "type": "bpmn:customState1",
+                            "x": 697,
+                            "y": 336,
+                            "text": {
+                                "x": 714,
+                                "y": 353,
+                                "value": "full\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id2",
+                            "text": {
+                                "x": 476,
+                                "y": 251,
+                                "value": "guard:t>=fullTime\nassignment:bathtub_full[i]=1\n"
+                            },
+                            "startPoint": {
+                                "x": 679,
+                                "y": 203
+                            },
+                            "endPoint": {
+                                "x": 697,
+                                "y": 316
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 679,
+                                    "y": 203
+                                },
+                                {
+                                    "x": 595,
+                                    "y": 259
+                                },
+                                {
+                                    "x": 697,
+                                    "y": 316
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "t>=fullTime",
+                                "synchronisation": "",
+                                "assignment": "bathtub_full[i]=1",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id2",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 638,
+                                "y": 225,
+                                "value": "synchronisation:turn_on_bathtub[i]?\n"
+                            },
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_bathtub[i]?",
+                                "assignment": "",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id2",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 798,
+                                "y": 251,
+                                "value": "synchronisation:turn_off_bathtub[i]?\nassignment:bathtub[i]=0\n"
+                            },
+                            "endPoint": {
+                                "x": 679,
+                                "y": 102
+                            },
+                            "startPoint": {
+                                "x": 697,
+                                "y": 316
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 697,
+                                    "y": 316
+                                },
+                                {
+                                    "x": 825,
+                                    "y": 200
+                                },
+                                {
+                                    "x": 679,
+                                    "y": 102
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_bathtub[i]?",
+                                "assignment": "bathtub[i]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 756,
+                                "y": 107,
+                                "value": "synchronisation:turn_off_bathtub[i]?\nassignment:bathtub[i]=0\n"
+                            },
+                            "endPoint": {
+                                "x": 679,
+                                "y": 102
+                            },
+                            "startPoint": {
+                                "x": 679,
+                                "y": 163
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 679,
+                                    "y": 163
+                                },
+                                {
+                                    "x": 739,
+                                    "y": 132
+                                },
+                                {
+                                    "x": 679,
+                                    "y": 102
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_bathtub[i]?",
+                                "assignment": "bathtub[i]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 509,
+                                "y": 115,
+                                "value": "synchronisation:turn_on_bathtub[i]?\nassignment:bathtub[i]=1\n"
+                            },
+                            "startPoint": {
+                                "x": 679,
+                                "y": 102
+                            },
+                            "endPoint": {
+                                "x": 679,
+                                "y": 163
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 679,
+                                    "y": 102
+                                },
+                                {
+                                    "x": 611,
+                                    "y": 132
+                                },
+                                {
+                                    "x": 679,
+                                    "y": 163
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_bathtub[i]?",
+                                "assignment": "bathtub[i]=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 1,
+                "name": "Smart Home Curtain",
+                "type": "curtain",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Opening Mode",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "Beige",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Material",
+                    "value": "Polyester",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Remote Control for Opening and Closing",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Programmable Opening and Closing Schedule",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Voice-Activated Operation",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Smartphone App Integration",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "08curtain.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>clock time;\nint rule0=0;\nint rule1=0;\nint rule2=0;\nclock brightness=1500.0886369682387; double dbrightness=0.0;\nint openTime=10;\nint closeTime=50;\nurgent broadcast chan brightness_high[1];\nurgent broadcast chan brightness_low[1];\n\nint curtain[1];\nurgent broadcast chan open_curtain[1];\nurgent broadcast chan close_curtain[1];</declaration>\r\n\t<template>\r\n\t\t<name>Curtain</name>\r\n\t\t<location id=\"id0\" x=\"-136\" y=\"-110\">\r\n\t\t\t<name x=\"-144\" y=\"-161\">close</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-136\" y=\"25\">\r\n\t\t\t<name x=\"-144\" y=\"51\">open</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id1\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-102\" y=\"-59\">close_curtain[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-93\" y=\"-34\">curtain[0]=0,\ndbrightness=-0.05</label>\r\n\t\t\t<nail x=\"-102\" y=\"-42\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-331\" y=\"-68\">open_curtain[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-297\" y=\"-51\">curtain[0]=1,\ndbrightness=0</label>\r\n\t\t\t<nail x=\"-170\" y=\"-42\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\ncurtain_0=Curtain();\n// List one or more processes to be composed into a system.\nsystem Brightness,BrightnessCensor,Rule0,Rule1,Rule2,curtain_0;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {brightness}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {rule1}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Curtain",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState1",
+                            "x": 264,
+                            "y": 90,
+                            "text": {
+                                "x": 256,
+                                "y": 39,
+                                "value": "close\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState2",
+                            "x": 264,
+                            "y": 225,
+                            "text": {
+                                "x": 256,
+                                "y": 251,
+                                "value": "open\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 307,
+                                "y": 166,
+                                "value": "synchronisation:close_curtain[0]?\nassignment:curtain[0]=0,\ndbrightness=-0.05\n"
+                            },
+                            "endPoint": {
+                                "x": 264,
+                                "y": 110
+                            },
+                            "startPoint": {
+                                "x": 264,
+                                "y": 205
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 264,
+                                    "y": 205
+                                },
+                                {
+                                    "x": 298,
+                                    "y": 158
+                                },
+                                {
+                                    "x": 264,
+                                    "y": 110
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "close_curtain[0]?",
+                                "assignment": "curtain[0]=0,\ndbrightness=-0.05",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 103,
+                                "y": 149,
+                                "value": "synchronisation:open_curtain[0]?\nassignment:curtain[0]=1,\ndbrightness=0\n"
+                            },
+                            "startPoint": {
+                                "x": 264,
+                                "y": 110
+                            },
+                            "endPoint": {
+                                "x": 264,
+                                "y": 205
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 264,
+                                    "y": 110
+                                },
+                                {
+                                    "x": 230,
+                                    "y": 158
+                                },
+                                {
+                                    "x": 264,
+                                    "y": 205
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "open_curtain[0]?",
+                                "assignment": "curtain[0]=1,\ndbrightness=0",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": "2",
+                "name": "RoboClean Pro",
+                "type": "robot vacuum",
+                "isPortable": "Yes",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Opening Mode",
+                    "cost": "0.6",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "Silver",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Battery Life",
+                    "value": "3hours",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Automated Cleaning of Floors and Carpets",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Scheduled Cleaning",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Obstacle Detection and Avoidance",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "09CleaningRobot_3.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nint rule0=0;\nint rule1=0;\n\n\nint openTime=3;\nint offTime=9;\nurgent broadcast chan turn_on_cleaningRobot[1];\nurgent broadcast chan turn_off_cleaningRobot[1];\nint cleaningRobot[1];\nclock position;\n</declaration>\r\n\t<template>\r\n\t\t<name x=\"5\" y=\"5\">CleaningRobot</name>\r\n\t\t<declaration>// Place local declarations here.</declaration>\r\n\t\t<location id=\"id0\" x=\"178\" y=\"-8\">\r\n\t\t\t<name x=\"168\" y=\"-42\">off</name>\r\n\t\t\t<label kind=\"invariant\" x=\"195\" y=\"-25\">position'==0</label>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"161\" y=\"212\">\r\n\t\t\t<name x=\"170\" y=\"229\">on</name>\r\n\t\t\t<label kind=\"invariant\" x=\"144\" y=\"263\">position'==1</label>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"204\" y=\"102\">turn_off_cleaningRobot[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"195\" y=\"136\">cleaningRobot[0]:=0</label>\r\n\t\t\t<nail x=\"221\" y=\"93\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-51\" y=\"59\">turn_on_cleaningRobot[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-17\" y=\"85\">cleaningRobot[0]:=1</label>\r\n\t\t\t<nail x=\"119\" y=\"85\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\ncleaningRobot_0 = CleaningRobot();\n// List one or more processes to be composed into a system.\nsystem cleaningRobot_0,Rule0,Rule1;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {dposition}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {rule0,time,openTime}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {cleaningRobot[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=9] {rule1}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=5] {rule0}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {position,cleaningRobot[0],rule0}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "CleaningRobot",
+                    "declaration": "// Place local declarations here.",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 578,
+                            "y": 192,
+                            "text": {
+                                "x": 568,
+                                "y": 158,
+                                "value": "off\ninvariant:position'==0\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 561,
+                            "y": 412,
+                            "text": {
+                                "x": 570,
+                                "y": 429,
+                                "value": "on\ninvariant:position'==1\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 595,
+                                "y": 336,
+                                "value": "synchronisation:turn_off_cleaningRobot[0]?\nassignment:cleaningRobot[0]:=0\n"
+                            },
+                            "endPoint": {
+                                "x": 578,
+                                "y": 212
+                            },
+                            "startPoint": {
+                                "x": 561,
+                                "y": 392
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 561,
+                                    "y": 392
+                                },
+                                {
+                                    "x": 621,
+                                    "y": 293
+                                },
+                                {
+                                    "x": 578,
+                                    "y": 212
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_cleaningRobot[0]?",
+                                "assignment": "cleaningRobot[0]:=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 383,
+                                "y": 285,
+                                "value": "synchronisation:turn_on_cleaningRobot[0]?\nassignment:cleaningRobot[0]:=1\n"
+                            },
+                            "startPoint": {
+                                "x": 578,
+                                "y": 212
+                            },
+                            "endPoint": {
+                                "x": 561,
+                                "y": 392
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 578,
+                                    "y": 212
+                                },
+                                {
+                                    "x": 519,
+                                    "y": 285
+                                },
+                                {
+                                    "x": 561,
+                                    "y": 392
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_cleaningRobot[0]?",
+                                "assignment": "cleaningRobot[0]:=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 3,
+                "name": "CleanAir Max Pro",
+                "type": "air purifier",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.04",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Opening Mode",
+                    "cost": "0.06",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Coverage Area",
+                    "value": "400 square feet",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Purifies and Cleans Indoor Air",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "10air.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nclock pm2_5=30.0;\ndouble dpm2_5=0.0;\nurgent broadcast chan pm_high[1];\nurgent broadcast chan pm_low[1];\nurgent broadcast chan turn_on_purifier[1];\nurgent broadcast chan turn_off_purifier[1];\nint purifier[1];\nint rule0;\nint rule1;</declaration>\r\n\t<template>\r\n\t\t<name>AirPurifier</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-136\" y=\"-110\">\r\n\t\t\t<name x=\"-146\" y=\"-144\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-144\" y=\"178\">\r\n\t\t\t<name x=\"-154\" y=\"144\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-126\" y=\"84\">turn_off_purifier[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-126\" y=\"101\">purifier[0]=0,\ndpm2_5=dpm2_5+0.1</label>\r\n\t\t\t<nail x=\"-51\" y=\"25\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-203\" y=\"-63\">turn_on_purifier[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-203\" y=\"-46\">purifier[0]=1,\ndpm2_5=dpm2_5-0.1</label>\r\n\t\t\t<nail x=\"-221\" y=\"17\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nair_purifier_0=AirPurifier(0);\n// List one or more processes to be composed into a system.\nsystem PM2_5,PM_Censor,air_purifier_0,Rule0,Rule1;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {rule0,rule1, purifier[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {high}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {pm2_5}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "AirPurifier",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 264,
+                            "y": 90,
+                            "text": {
+                                "x": 254,
+                                "y": 56,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 256,
+                            "y": 378,
+                            "text": {
+                                "x": 246,
+                                "y": 344,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 274,
+                                "y": 301,
+                                "value": "synchronisation:turn_off_purifier[i]?\nassignment:purifier[0]=0,\ndpm2_5=dpm2_5+0.1\n"
+                            },
+                            "endPoint": {
+                                "x": 264,
+                                "y": 110
+                            },
+                            "startPoint": {
+                                "x": 256,
+                                "y": 358
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 256,
+                                    "y": 358
+                                },
+                                {
+                                    "x": 349,
+                                    "y": 225
+                                },
+                                {
+                                    "x": 264,
+                                    "y": 110
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_purifier[i]?",
+                                "assignment": "purifier[0]=0,\ndpm2_5=dpm2_5+0.1",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 197,
+                                "y": 154,
+                                "value": "synchronisation:turn_on_purifier[i]?\nassignment:purifier[0]=1,\ndpm2_5=dpm2_5-0.1\n"
+                            },
+                            "startPoint": {
+                                "x": 264,
+                                "y": 110
+                            },
+                            "endPoint": {
+                                "x": 256,
+                                "y": 358
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 264,
+                                    "y": 110
+                                },
+                                {
+                                    "x": 179,
+                                    "y": 217
+                                },
+                                {
+                                    "x": 256,
+                                    "y": 358
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_purifier[i]?",
+                                "assignment": "purifier[0]=1,\ndpm2_5=dpm2_5-0.1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 4,
+                "name": "SmartFlush Toilet",
+                "type": "toilet",
+                "isPortable": "No",
+                "isProgrammable": "No"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.1",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Opening Mode",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "White",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Flush Mechanism",
+                    "value": "Dual-flush",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Efficient Water Usage",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Dual-Flush System (for liquid and solid waste)",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Automatic Flushing",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "11toilet.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nint position;\nint rule0=0;\nint rule1=0;\n\nint toilet[1];\nurgent broadcast chan open_toilet[1];\nurgent broadcast chan close_toilet[1];</declaration>\r\n\t<template>\r\n\t\t<name>Toilet</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-68\" y=\"-178\">\r\n\t\t\t<name x=\"-78\" y=\"-212\">close</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-59\" y=\"8\">\r\n\t\t\t<name x=\"-69\" y=\"-26\">open</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-25\" y=\"-153\">close_toilet[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-50\" y=\"-135\">toilet[0]=0</label>\r\n\t\t\t<nail x=\"0\" y=\"-93\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-204\" y=\"-153\">open_toilet[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-187\" y=\"-110\">toilet[0]=1</label>\r\n\t\t\t<nail x=\"-119\" y=\"-93\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\ntoilet_0=Toilet(0);\n// List one or more processes to be composed into a system.\nsystem Human,toilet_0,Rule0,Rule1;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,toilet[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,toilet[0],rule0,rule1}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Toilet",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 332,
+                            "y": 22,
+                            "text": {
+                                "x": 322,
+                                "y": -12,
+                                "value": "close\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 341,
+                            "y": 208,
+                            "text": {
+                                "x": 331,
+                                "y": 174,
+                                "value": "open\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 350,
+                                "y": 65,
+                                "value": "synchronisation:close_toilet[i]?\nassignment:toilet[0]=0\n"
+                            },
+                            "endPoint": {
+                                "x": 332,
+                                "y": 42
+                            },
+                            "startPoint": {
+                                "x": 341,
+                                "y": 188
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 341,
+                                    "y": 188
+                                },
+                                {
+                                    "x": 400,
+                                    "y": 107
+                                },
+                                {
+                                    "x": 332,
+                                    "y": 42
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "close_toilet[i]?",
+                                "assignment": "toilet[0]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 213,
+                                "y": 90,
+                                "value": "synchronisation:open_toilet[i]?\nassignment:toilet[0]=1\n"
+                            },
+                            "startPoint": {
+                                "x": 332,
+                                "y": 42
+                            },
+                            "endPoint": {
+                                "x": 341,
+                                "y": 188
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 332,
+                                    "y": 42
+                                },
+                                {
+                                    "x": 281,
+                                    "y": 107
+                                },
+                                {
+                                    "x": 341,
+                                    "y": 188
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "open_toilet[i]?",
+                                "assignment": "toilet[0]=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 5,
+                "name": "SmartFlow Tap",
+                "type": "tap",
+                "isPortable": "No",
+                "isProgrammable": "No"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.001",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Opening Mode",
+                    "cost": "0.005",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Material",
+                    "value": "Stainless Steel",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Finish",
+                    "value": "Chrome",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Automatic Water Flow Control",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Temperature Adjustment",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "LED Indicator for Water Temperature",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Leak Detection and Prevention",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "12sink_3.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nint position;\nint rule0=0;\nint rule1=0;\nurgent broadcast chan turn_on_tap[1];\nurgent broadcast chan turn_off_tap[1];\nint tap[1];</declaration>\r\n\t<template>\r\n\t\t<name>Tap</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-59\" y=\"-144\">\r\n\t\t\t<name x=\"-69\" y=\"-178\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-51\" y=\"51\">\r\n\t\t\t<name x=\"-61\" y=\"17\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-33\" y=\"-17\">turn_off_tap[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-33\" y=\"0\">tap[i]=0</label>\r\n\t\t\t<nail x=\"17\" y=\"-51\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-118\" y=\"-114\">turn_on_tap[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-118\" y=\"-97\">tap[i]=1</label>\r\n\t\t\t<nail x=\"-136\" y=\"-51\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\ntap_0=Tap(0);\nHuman_0=Human(3,7,12);\n// List one or more processes to be composed into a system.\nsystem Rule0,Rule1,tap_0,Human_0;</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {tap[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {rule1}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {rule0}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Tap",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 341,
+                            "y": 56,
+                            "text": {
+                                "x": 331,
+                                "y": 22,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 349,
+                            "y": 251,
+                            "text": {
+                                "x": 339,
+                                "y": 217,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 367,
+                                "y": 200,
+                                "value": "synchronisation:turn_off_tap[i]?\nassignment:tap[i]=0\n"
+                            },
+                            "endPoint": {
+                                "x": 341,
+                                "y": 76
+                            },
+                            "startPoint": {
+                                "x": 349,
+                                "y": 231
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 349,
+                                    "y": 231
+                                },
+                                {
+                                    "x": 417,
+                                    "y": 149
+                                },
+                                {
+                                    "x": 341,
+                                    "y": 76
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_tap[i]?",
+                                "assignment": "tap[i]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 282,
+                                "y": 103,
+                                "value": "synchronisation:turn_on_tap[i]?\nassignment:tap[i]=1\n"
+                            },
+                            "startPoint": {
+                                "x": 341,
+                                "y": 76
+                            },
+                            "endPoint": {
+                                "x": 349,
+                                "y": 231
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 341,
+                                    "y": 76
+                                },
+                                {
+                                    "x": 264,
+                                    "y": 149
+                                },
+                                {
+                                    "x": 349,
+                                    "y": 231
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_tap[i]?",
+                                "assignment": "tap[i]=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 6,
+                "name": "CoolTech Smart Refrigerator",
+                "type": "refrigerator",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Opening Mode",
+                    "cost": "2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.8",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Capacity",
+                    "value": "500 Liters",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Color",
+                    "value": "Stainless Steel",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Temperature Control for Refrigerator and Freezer",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Automatic Ice Maker and Dispenser",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Adjustable Shelves and Storage Bins",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "13refrigerator_2.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nint rule0=0;\nint rule1=0;\nint position;\nint refrigerator[1];\nurgent broadcast chan close_refrigerator[1];\nurgent broadcast chan open_refrigerator[1];\n</declaration>\r\n\t<template>\r\n\t\t<name x=\"5\" y=\"5\">Refrigerator</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<declaration>// Place local declarations here.</declaration>\r\n\t\t<location id=\"id0\" x=\"170\" y=\"-255\">\r\n\t\t\t<name x=\"160\" y=\"-289\">close</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"161\" y=\"0\">\r\n\t\t\t<name x=\"110\" y=\"-8\">open</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-34\" y=\"-195\">close_refrigerator[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-17\" y=\"-136\">refrigerator[0]:=0</label>\r\n\t\t\t<nail x=\"68\" y=\"-144\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"187\" y=\"-204\">open_refrigerator[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"255\" y=\"-187\">refrigerator[0]:=1</label>\r\n\t\t\t<nail x=\"246\" y=\"-136\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nRefrigerator_0=Refrigerator(0);\nHuman_0=Human(3,7,12);\n// List one or more processes to be composed into a system.\nsystem Refrigerator_0,Human_0,Rule0,Rule1;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {refrigerator[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Refrigerator",
+                    "declaration": "// Place local declarations here.",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 570,
+                            "y": -55,
+                            "text": {
+                                "x": 560,
+                                "y": -89,
+                                "value": "close\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 561,
+                            "y": 200,
+                            "text": {
+                                "x": 510,
+                                "y": 192,
+                                "value": "open\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 383,
+                                "y": 64,
+                                "value": "synchronisation:close_refrigerator[i]?\nassignment:refrigerator[0]:=0\n"
+                            },
+                            "endPoint": {
+                                "x": 570,
+                                "y": -35
+                            },
+                            "startPoint": {
+                                "x": 561,
+                                "y": 180
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 561,
+                                    "y": 180
+                                },
+                                {
+                                    "x": 468,
+                                    "y": 56
+                                },
+                                {
+                                    "x": 570,
+                                    "y": -35
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "close_refrigerator[i]?",
+                                "assignment": "refrigerator[0]:=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 655,
+                                "y": 13,
+                                "value": "synchronisation:open_refrigerator[i]?\nassignment:refrigerator[0]:=1\n"
+                            },
+                            "startPoint": {
+                                "x": 570,
+                                "y": -35
+                            },
+                            "endPoint": {
+                                "x": 561,
+                                "y": 180
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 570,
+                                    "y": -35
+                                },
+                                {
+                                    "x": 646,
+                                    "y": 64
+                                },
+                                {
+                                    "x": 561,
+                                    "y": 180
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "open_refrigerator[i]?",
+                                "assignment": "refrigerator[0]:=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 7,
+                "name": "JavaMaster Pro Coffee Machine",
+                "type": "coffee machine",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Opening Mode",
+                    "cost": "0.8",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "Black",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Capacity",
+                    "value": "1.5 liters",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Brews Regular Coffee and Espresso",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Programmable Brewing Strength and Size",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Built-in Grinder for Fresh Coffee Beans",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Milk Frother for Lattes and Cappuccinos",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "14CoffeeMachine.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nint rule0;\nint rule1;\nint coffee_machine[1];\nint onTime=10;\nint offTime=13;\nurgent broadcast chan turn_on_coffeeMachine[1];\nurgent broadcast chan turn_off_coffeeMachine[1];</declaration>\r\n\t<template>\r\n\t\t<name x=\"5\" y=\"5\">CoffeeMachine</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<declaration>// Place local declarations here.</declaration>\r\n\t\t<location id=\"id0\" x=\"425\" y=\"9\">\r\n\t\t\t<name x=\"415\" y=\"-25\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"425\" y=\"263\">\r\n\t\t\t<name x=\"416\" y=\"280\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"443\" y=\"182\">turn_off_coffeeMachine[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"443\" y=\"199\">coffee_machine[i]=0</label>\r\n\t\t\t<nail x=\"527\" y=\"136\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"229\" y=\"76\">turn_on_coffeeMachine[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"246\" y=\"119\">coffee_machine[i]=1</label>\r\n\t\t\t<nail x=\"323\" y=\"127\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nCoffeeMachine_0 = CoffeeMachine(0);\n// List one or more processes to be composed into a system.\nsystem CoffeeMachine_0,Rule0,Rule1;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=20] {coffee_machine[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "CoffeeMachine",
+                    "declaration": "// Place local declarations here.",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 825,
+                            "y": 209,
+                            "text": {
+                                "x": 815,
+                                "y": 175,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 825,
+                            "y": 463,
+                            "text": {
+                                "x": 816,
+                                "y": 480,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 843,
+                                "y": 399,
+                                "value": "synchronisation:turn_off_coffeeMachine[i]?\nassignment:coffee_machine[i]=0\n"
+                            },
+                            "endPoint": {
+                                "x": 825,
+                                "y": 229
+                            },
+                            "startPoint": {
+                                "x": 825,
+                                "y": 443
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 825,
+                                    "y": 443
+                                },
+                                {
+                                    "x": 927,
+                                    "y": 336
+                                },
+                                {
+                                    "x": 825,
+                                    "y": 229
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_coffeeMachine[i]?",
+                                "assignment": "coffee_machine[i]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 646,
+                                "y": 319,
+                                "value": "synchronisation:turn_on_coffeeMachine[i]?\nassignment:coffee_machine[i]=1\n"
+                            },
+                            "startPoint": {
+                                "x": 825,
+                                "y": 229
+                            },
+                            "endPoint": {
+                                "x": 825,
+                                "y": 443
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 825,
+                                    "y": 229
+                                },
+                                {
+                                    "x": 723,
+                                    "y": 327
+                                },
+                                {
+                                    "x": 825,
+                                    "y": 443
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_coffeeMachine[i]?",
+                                "assignment": "coffee_machine[i]=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 8,
+                "name": "BreezyCool Desk Fan",
+                "type": "fan",
+                "isPortable": "Yes",
+                "isProgrammable": "No"
+            },
+            "energyCost": [
+                {
+                    "model": "Opening Mode",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Closing Mode",
+                    "cost": "0.05",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "White",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Fan Blade Material",
+                    "value": "Plastic",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Oscillation for Wider Air Circulation",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Adjustable Tilt Angle",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Quiet Operation",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "15fan.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nclock temperature=28.0;\ndouble dtemperature=0.0;\nint rule0;\nint rule1;\nurgent broadcast chan temperature_high[1];\nurgent broadcast chan temperature_low[1];\nurgent broadcast chan turn_on_fan[1];\nurgent broadcast chan turn_off_fan[1];\nint fan[1];\n</declaration>\r\n\t<template>\r\n\t\t<name x=\"5\" y=\"5\">Fan</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<declaration>// Place local declarations here.</declaration>\r\n\t\t<location id=\"id0\" x=\"297\" y=\"-42\">\r\n\t\t\t<name x=\"287\" y=\"-76\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"306\" y=\"153\">\r\n\t\t\t<name x=\"296\" y=\"119\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"324\" y=\"85\">turn_off_fan[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"324\" y=\"102\">fan[0]=0,dtemperature=dtemperature+0.05</label>\r\n\t\t\t<nail x=\"382\" y=\"51\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"239\" y=\"-13\">turn_on_fan[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"239\" y=\"4\">fan[0]=1,dtemperature=dtemperature-0.05</label>\r\n\t\t\t<nail x=\"221\" y=\"51\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nFan_0 = Fan(0);\n// List one or more processes to be composed into a system.\nsystem Fan_0,EnvironmentTemperature,TemperatureCensor,Rule0,Rule1;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {rule1}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {temperature}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Fan",
+                    "declaration": "// Place local declarations here.",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 697,
+                            "y": 158,
+                            "text": {
+                                "x": 687,
+                                "y": 124,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 706,
+                            "y": 353,
+                            "text": {
+                                "x": 696,
+                                "y": 319,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 724,
+                                "y": 302,
+                                "value": "synchronisation:turn_off_fan[i]?\nassignment:fan[0]=0,dtemperature=dtemperature+0.05\n"
+                            },
+                            "endPoint": {
+                                "x": 697,
+                                "y": 178
+                            },
+                            "startPoint": {
+                                "x": 706,
+                                "y": 333
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 706,
+                                    "y": 333
+                                },
+                                {
+                                    "x": 782,
+                                    "y": 251
+                                },
+                                {
+                                    "x": 697,
+                                    "y": 178
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_fan[i]?",
+                                "assignment": "fan[0]=0,dtemperature=dtemperature+0.05",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": null,
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 639,
+                                "y": 204,
+                                "value": "synchronisation:turn_on_fan[i]?\nassignment:fan[0]=1,dtemperature=dtemperature-0.05\n"
+                            },
+                            "startPoint": {
+                                "x": 697,
+                                "y": 178
+                            },
+                            "endPoint": {
+                                "x": 706,
+                                "y": 333
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 697,
+                                    "y": 178
+                                },
+                                {
+                                    "x": 621,
+                                    "y": 251
+                                },
+                                {
+                                    "x": 706,
+                                    "y": 333
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_fan[i]?",
+                                "assignment": "fan[0]=1,dtemperature=dtemperature-0.05",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": "9",
+                "name": "HydraMist Ultrasonic Humidifier",
+                "type": "humidifier",
+                "isPortable": "Yes",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Opening",
+                    "cost": "0.04",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Closing",
+                    "cost": "0.02",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "Blue",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Water Tank Capacity",
+                    "value": "3liters",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Ultrasonic Technology for Quiet Operation",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Automatic Shut-Off When Water Runs Out",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Timer for Programmable Operation",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "05humidifier.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nint rule0=0;\nint rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\n\nurgent broadcast chan humidity_low[1];\nurgent broadcast chan humidity_low_enough[1];\nurgent broadcast chan humidity_high[1];\nurgent broadcast chan humidity_high_enough[1];\n\nint humidifier[1];\nurgent broadcast chan turn_on_humidifier[1];\nurgent broadcast chan turn_off_humidifier[1];\n\nint dehumidifier[1];\nurgent broadcast chan turn_on_dehumidifier[1];\nurgent broadcast chan turn_off_dehumidifier[1];\n\nint window[1];\nurgent broadcast chan close_window[1];\nurgent broadcast chan open_window[1];\n\nclock humidity=15.0;double dhumidity=0.0;</declaration>\r\n\t<template>\r\n\t\t<name>Humidifier</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-195\" y=\"25\">\r\n\t\t\t<name x=\"-204\" y=\"-17\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-195\" y=\"-153\">\r\n\t\t\t<name x=\"-205\" y=\"-187\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-391\" y=\"-102\">turn_on_humidifier[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-408\" y=\"-68\">humidifier[0]:=1,\ndhumidity=dhumidity+0.5</label>\r\n\t\t\t<nail x=\"-246\" y=\"-68\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-169\" y=\"-127\">turn_off_humidifier[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-127\" y=\"-85\">humidifier[0]:=0,\ndhumidity=dhumidity-0.5</label>\r\n\t\t\t<nail x=\"-153\" y=\"-68\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\n// EnvironmentTemperature,\n// List one or more processes to be composed into a system.\nHumidifier_0=Humidifier(0);\nDehumidifier_0=Dehumidifier(0);\nWindow_0=Window(0);\nsystem Humidity,Humid_censor,Humidifier_0,Dehumidifier_0,Window_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=10] {window[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=10] {humidifier[0],window[0],rule4}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {humidity,rule0,rule1,rule2,rule3,humidifier[0],dehumidifier[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Humidifier",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 205,
+                            "y": 225,
+                            "text": {
+                                "x": 196,
+                                "y": 183,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 205,
+                            "y": 47,
+                            "text": {
+                                "x": 195,
+                                "y": 13,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": -8,
+                                "y": 132,
+                                "value": "synchronisation:turn_on_humidifier[0]?\nassignment:humidifier[0]:=1,\ndhumidity=dhumidity+0.5\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 193.80119673666843,
+                                    "y": 207.46375182657363
+                                },
+                                {
+                                    "x": 154,
+                                    "y": 132
+                                },
+                                {
+                                    "x": 192.98305763996498,
+                                    "y": 64.14985851425088
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_humidifier[0]?",
+                                "assignment": "humidifier[0]:=1,\ndhumidity=dhumidity+0.5",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 273,
+                                "y": 115,
+                                "value": "synchronisation:turn_off_humidifier[0]?\nassignment:humidifier[0]:=0,\ndhumidity=dhumidity-0.5\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 215.6148018846752,
+                                    "y": 64.93053430655125
+                                },
+                                {
+                                    "x": 247,
+                                    "y": 132
+                                },
+                                {
+                                    "x": 214.79466803763736,
+                                    "y": 206.7725880068265
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_humidifier[0]?",
+                                "assignment": "humidifier[0]:=0,\ndhumidity=dhumidity-0.5",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 10,
+                "name": "DryZone Pro Dehumidifier",
+                "type": "dehumidifier",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Opening",
+                    "cost": "0.04",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Closing",
+                    "cost": "0.02",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "Gray",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Dehumidification Capacity ",
+                    "value": "50liters per day",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Efficiently Removes Excess Moisture from the Air",
+                    "isEdit": true,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Large Water Tank Capacity with Auto Shut-Off",
+                    "isEdit": true,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Continuous Drainage Option",
+                    "isEdit": true,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Built-in Air Filter for Improved Air Quality",
+                    "isEdit": true,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "21dehumidifier.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nint rule0=0;\nint rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\n\nurgent broadcast chan humidity_low[1];\nurgent broadcast chan humidity_low_enough[1];\nurgent broadcast chan humidity_high[1];\nurgent broadcast chan humidity_high_enough[1];\n\nint humidifier[1];\nurgent broadcast chan turn_on_humidifier[1];\nurgent broadcast chan turn_off_humidifier[1];\n\nint dehumidifier[1];\nurgent broadcast chan turn_on_dehumidifier[1];\nurgent broadcast chan turn_off_dehumidifier[1];\n\nint window[1];\nurgent broadcast chan close_window[1];\nurgent broadcast chan open_window[1];\n\nclock humidity=15.0;double dhumidity=0.0;</declaration>\r\n\t<template>\r\n\t\t<name>Dehumidifier</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-34\" y=\"76\">\r\n\t\t\t<name x=\"-43\" y=\"34\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-34\" y=\"-102\">\r\n\t\t\t<name x=\"-44\" y=\"-136\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-230\" y=\"-51\">turn_on_dehumidifier[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-247\" y=\"-17\">dehumidifier[0]:=1,\ndhumidity=dhumidity-0.5</label>\r\n\t\t\t<nail x=\"-85\" y=\"-17\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-8\" y=\"-76\">turn_off_dehumidifier[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"34\" y=\"-34\">dehumidifier[0]:=0,\ndhumidity=dhumidity+0.5</label>\r\n\t\t\t<nail x=\"8\" y=\"-17\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\n// EnvironmentTemperature,\n// List one or more processes to be composed into a system.\nHumidifier_0=Humidifier(0);\nDehumidifier_0=Dehumidifier(0);\nWindow_0=Window(0);\nsystem Humidity2,Humid_sensor,Window_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5;\n    </system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=10] {window[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=10] {humidifier[0],window[0],rule4}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {humidity,rule0,rule1,rule2,rule3,humidifier[0],dehumidifier[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Dehumidifier",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 366,
+                            "y": 276,
+                            "text": {
+                                "x": 357,
+                                "y": 234,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 366,
+                            "y": 98,
+                            "text": {
+                                "x": 356,
+                                "y": 64,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 153,
+                                "y": 183,
+                                "value": "synchronisation:turn_on_dehumidifier[0]?\nassignment:dehumidifier[0]:=1,\ndhumidity=dhumidity-0.5\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 354.80119673666843,
+                                    "y": 258.4637518265736
+                                },
+                                {
+                                    "x": 315,
+                                    "y": 183
+                                },
+                                {
+                                    "x": 353.983057639965,
+                                    "y": 115.14985851425088
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_dehumidifier[0]?",
+                                "assignment": "dehumidifier[0]:=1,\ndhumidity=dhumidity-0.5",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 434,
+                                "y": 166,
+                                "value": "synchronisation:turn_off_dehumidifier[0]?\nassignment:dehumidifier[0]:=0,\ndhumidity=dhumidity+0.5\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 376.6148018846752,
+                                    "y": 115.93053430655125
+                                },
+                                {
+                                    "x": 408,
+                                    "y": 183
+                                },
+                                {
+                                    "x": 375.7946680376374,
+                                    "y": 257.7725880068265
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_dehumidifier[0]?",
+                                "assignment": "dehumidifier[0]:=0,\ndhumidity=dhumidity+0.5",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 11,
+                "name": "AcoustiWave Pro Soundbox",
+                "type": "sound box",
+                "isPortable": "Yes",
+                "isProgrammable": "No"
+            },
+            "energyCost": [
+                {
+                    "model": "Opening",
+                    "cost": "0.008",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Closing",
+                    "cost": "0.001",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Color",
+                    "value": "Black",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Speaker Configuration",
+                    "value": "2.1 channel",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "High-Quality Sound Output",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Bluetooth Connectivity for Wireless Audio Streaming",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Auxiliary Input for Wired Connections",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Volume and Equalizer Controls",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "18SoundBox.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nclock co;\ndouble dco=0.0;\nint position=0;\nint soundBox[1];\nint light[1];\nint gas[1];\nint window[1];\nint alert[1];\nint rule0=0;\nint rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\nint rule6=0;\nurgent broadcast chan turn_off_soundBox[1];\nurgent broadcast chan turn_on_soundBox[1];\nurgent broadcast chan turn_off_light[1];\nurgent broadcast chan turn_on_light[1];\nurgent broadcast chan turn_off_gas[1];\nurgent broadcast chan turn_on_gas[1];\nurgent broadcast chan turn_off_alert[1];\nurgent broadcast chan turn_on_alert[1];\nurgent broadcast chan open_window[1];\nurgent broadcast chan close_window[1];\nurgent broadcast chan CO_low[1];\nurgent broadcast chan CO_high[1];</declaration>\r\n\t<template>\r\n\t\t<name>SoundBox</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-42\" y=\"-161\">\r\n\t\t\t<name x=\"-52\" y=\"-195\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-42\" y=\"-17\">\r\n\t\t\t<name x=\"-51\" y=\"0\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"25\" y=\"-119\">turn_off_soundBox[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"25\" y=\"-102\">soundBox[i]=0</label>\r\n\t\t\t<nail x=\"17\" y=\"-93\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-255\" y=\"-110\">turn_on_soundBox[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-204\" y=\"-93\">soundBox[i]=1</label>\r\n\t\t\t<nail x=\"-102\" y=\"-93\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nhuman_0 = Human(3,8,15,24);\nwindow_0=Window(0);\nsound_box_0=SoundBox(0);\nlight_0=Light(0);\ngas_0=Gas(0);\nalert_0=Alert(0);\n\n// List one or more processes to be composed into a system.\nsystem CO,COCensor,human_0,window_0,alert_0,sound_box_0,light_0,gas_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6;</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,light[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,gas[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {COConcentration}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {rule5,window[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {alert[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {co,rule5}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,soundBox[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "SoundBox",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 358,
+                            "y": 39,
+                            "text": {
+                                "x": 348,
+                                "y": 5,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 358,
+                            "y": 183,
+                            "text": {
+                                "x": 349,
+                                "y": 200,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 425,
+                                "y": 98,
+                                "value": "synchronisation:turn_off_soundBox[0]?\nassignment:soundBox[i]=0\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 371.99884593035824,
+                                    "y": 167.20176913322132
+                                },
+                                {
+                                    "x": 417,
+                                    "y": 107
+                                },
+                                {
+                                    "x": 372.89176529929966,
+                                    "y": 54.106449346042254
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_soundBox[0]?",
+                                "assignment": "soundBox[i]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 196,
+                                "y": 107,
+                                "value": "synchronisation:turn_on_soundBox[0]?\nassignment:soundBox[i]=1\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 343.01093774034285,
+                                    "y": 53.996757107301846
+                                },
+                                {
+                                    "x": 298,
+                                    "y": 107
+                                },
+                                {
+                                    "x": 343.8934510397587,
+                                    "y": 167.30234468933148
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_soundBox[0]?",
+                                "assignment": "soundBox[i]=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 12,
+                "name": "Alert",
+                "type": "alarm",
+                "isPortable": "No",
+                "isProgrammable": "No"
+            },
+            "energyCost": [],
+            "customProperty": [],
+            "capability": [],
+            "TAInfo": {
+                "name": "17Alert.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nclock co;\ndouble dco=0.0;\nint position=0;\nint soundBox[1];\nint light[1];\nint gas[1];\nint window[1];\nint alert[1];\nint rule0=0;\nint rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\nint rule6=0;\nurgent broadcast chan turn_off_soundBox[1];\nurgent broadcast chan turn_on_soundBox[1];\nurgent broadcast chan turn_off_light[1];\nurgent broadcast chan turn_on_light[1];\nurgent broadcast chan turn_off_gas[1];\nurgent broadcast chan turn_on_gas[1];\nurgent broadcast chan turn_off_alert[1];\nurgent broadcast chan turn_on_alert[1];\nurgent broadcast chan open_window[1];\nurgent broadcast chan close_window[1];\nurgent broadcast chan CO_low[1];\nurgent broadcast chan CO_high[1];</declaration>\r\n\t<template>\r\n\t\t<name>Alert</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-102\" y=\"-144\">\r\n\t\t\t<name x=\"-112\" y=\"-178\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-102\" y=\"17\">\r\n\t\t\t<name x=\"-112\" y=\"-17\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-84\" y=\"-38\">turn_off_alert[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-84\" y=\"-21\">alert[i]=0</label>\r\n\t\t\t<nail x=\"-25\" y=\"-59\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-160\" y=\"-123\">turn_on_alert[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-160\" y=\"-106\">alert[i]=1</label>\r\n\t\t\t<nail x=\"-178\" y=\"-68\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nhuman_0 = Human(3,8,15,24);\nwindow_0=Window(0);\nsound_box_0=SoundBox(0);\nlight_0=Light(0);\ngas_0=Gas(0);\nalert_0=Alert(0);\n\n// List one or more processes to be composed into a system.\nsystem CO,COCensor,human_0,window_0,alert_0,sound_box_0,light_0,gas_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6;</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,light[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,gas[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {COConcentration}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {rule5,window[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {alert[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {co,rule5}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,soundBox[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Alert",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 298,
+                            "y": 56,
+                            "text": {
+                                "x": 288,
+                                "y": 22,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 298,
+                            "y": 217,
+                            "text": {
+                                "x": 288,
+                                "y": 183,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 316,
+                                "y": 179,
+                                "value": "synchronisation:turn_off_alert[i]?\nassignment:alert[i]=0\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 313.5827059042926,
+                                    "y": 202.95059671755027
+                                },
+                                {
+                                    "x": 375,
+                                    "y": 141
+                                },
+                                {
+                                    "x": 312.78182455206326,
+                                    "y": 70.82245029304116
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_alert[i]?",
+                                "assignment": "alert[i]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 240,
+                                "y": 94,
+                                "value": "synchronisation:turn_on_alert[i]?\nassignment:alert[i]=1\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 282.4885000509045,
+                                    "y": 70.14213562373095
+                                },
+                                {
+                                    "x": 222,
+                                    "y": 132
+                                },
+                                {
+                                    "x": 283.29783342333855,
+                                    "y": 202.09058709971094
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_alert[i]?",
+                                "assignment": "alert[i]=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 13,
+                "name": "LuminaSmart LED Light Bulb",
+                "type": "light",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Model",
+                    "cost": "0.002",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Opening Model",
+                    "cost": "0.02",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Bulb Type",
+                    "value": "A19",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Smartphone App Control for On/Off and Dimming",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Voice Control (compatible with virtual assistants)",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "20Light.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nclock co;\ndouble dco=0.0;\nint position=0;\nint soundBox[1];\nint light[1];\nint gas[1];\nint window[1];\nint alert[1];\nint rule0=0;\nint rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\nint rule6=0;\nurgent broadcast chan turn_off_soundBox[1];\nurgent broadcast chan turn_on_soundBox[1];\nurgent broadcast chan turn_off_light[1];\nurgent broadcast chan turn_on_light[1];\nurgent broadcast chan turn_off_gas[1];\nurgent broadcast chan turn_on_gas[1];\nurgent broadcast chan turn_off_alert[1];\nurgent broadcast chan turn_on_alert[1];\nurgent broadcast chan open_window[1];\nurgent broadcast chan close_window[1];\nurgent broadcast chan CO_low[1];\nurgent broadcast chan CO_high[1];</declaration>\r\n\t<template>\r\n\t\t<name>Light</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-59\" y=\"-67\">\r\n\t\t\t<name x=\"-69\" y=\"-101\">off</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-59\" y=\"77\">\r\n\t\t\t<name x=\"-68\" y=\"94\">on</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"8\" y=\"-25\">turn_off_light[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"8\" y=\"-8\">light[i]=0</label>\r\n\t\t\t<nail x=\"0\" y=\"1\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-272\" y=\"-16\">turn_on_light[0]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-221\" y=\"1\">light[i]=1</label>\r\n\t\t\t<nail x=\"-119\" y=\"1\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nhuman_0 = Human(3,8,15,24);\nwindow_0=Window(0);\nsound_box_0=SoundBox(0);\nlight_0=Light(0);\ngas_0=Gas(0);\nalert_0=Alert(0);\n\n// List one or more processes to be composed into a system.\nsystem CO,COCensor,human_0,window_0,alert_0,sound_box_0,light_0,gas_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6;</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,light[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,gas[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {COConcentration}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {rule5,window[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {alert[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {co,rule5}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,soundBox[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Light",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 341,
+                            "y": 133,
+                            "text": {
+                                "x": 331,
+                                "y": 99,
+                                "value": "off\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 341,
+                            "y": 277,
+                            "text": {
+                                "x": 332,
+                                "y": 294,
+                                "value": "on\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 408,
+                                "y": 192,
+                                "value": "synchronisation:turn_off_light[0]?\nassignment:light[i]=0\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 354.99884593035824,
+                                    "y": 261.2017691332213
+                                },
+                                {
+                                    "x": 400,
+                                    "y": 201
+                                },
+                                {
+                                    "x": 355.89176529929966,
+                                    "y": 148.10644934604224
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_off_light[0]?",
+                                "assignment": "light[i]=0",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 179,
+                                "y": 201,
+                                "value": "synchronisation:turn_on_light[0]?\nassignment:light[i]=1\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 326.01093774034285,
+                                    "y": 147.99675710730185
+                                },
+                                {
+                                    "x": 281,
+                                    "y": 201
+                                },
+                                {
+                                    "x": 326.8934510397587,
+                                    "y": 261.30234468933145
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_on_light[0]?",
+                                "assignment": "light[i]=1",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 14,
+                "name": "SmartView Electric Window",
+                "type": "window",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Model",
+                    "cost": "0.005",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Opening Model",
+                    "cost": "0.01",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Window Type",
+                    "value": "Double-hung",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Frame Material",
+                    "value": "Aluminum",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Motorized Opening and Closing",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Remote Control via Smartphone App",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "16Window.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;\nclock co;\ndouble dco=0.0;\nint position=0;\nint soundBox[1];\nint light[1];\nint gas[1];\nint window[1];\nint alert[1];\nint rule0=0;\nint rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\nint rule6=0;\nurgent broadcast chan turn_off_soundBox[1];\nurgent broadcast chan turn_on_soundBox[1];\nurgent broadcast chan turn_off_light[1];\nurgent broadcast chan turn_on_light[1];\nurgent broadcast chan turn_off_gas[1];\nurgent broadcast chan turn_on_gas[1];\nurgent broadcast chan turn_off_alert[1];\nurgent broadcast chan turn_on_alert[1];\nurgent broadcast chan open_window[1];\nurgent broadcast chan close_window[1];\nurgent broadcast chan CO_low[1];\nurgent broadcast chan CO_high[1];</declaration>\r\n\t<template>\r\n\t\t<name>Window</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-25\" y=\"34\">\r\n\t\t\t<name x=\"-35\" y=\"0\">windowclosed</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-25\" y=\"-153\">\r\n\t\t\t<name x=\"-35\" y=\"-187\">windowopen</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"51\" y=\"-76\">open_window[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"51\" y=\"-59\">window[i]=1,\ndco=dco-0.5</label>\r\n\t\t\t<nail x=\"59\" y=\"-68\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-204\" y=\"-119\">close_window[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-195\" y=\"-102\">window[i]=0,\ndco=dco+0.5</label>\r\n\t\t\t<nail x=\"-127\" y=\"-76\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>// Place template instantiations here.\nhuman_0 = Human(3,8,15,24);\nwindow_0=Window(0);\nsound_box_0=SoundBox(0);\nlight_0=Light(0);\ngas_0=Gas(0);\nalert_0=Alert(0);\n\n// List one or more processes to be composed into a system.\nsystem CO,COCensor,human_0,window_0,alert_0,sound_box_0,light_0,gas_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6;</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,light[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,gas[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {COConcentration}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {rule5,window[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {alert[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {co,rule5}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=30] {position,soundBox[0]}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Window",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 375,
+                            "y": 234,
+                            "text": {
+                                "x": 365,
+                                "y": 200,
+                                "value": "windowclosed\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 375,
+                            "y": 47,
+                            "text": {
+                                "x": 365,
+                                "y": 13,
+                                "value": "windowopen\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 451,
+                                "y": 141,
+                                "value": "synchronisation:open_window[i]?\nassignment:window[i]=1,\ndco=dco-0.5\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 388.92818649191116,
+                                    "y": 218.561395287659
+                                },
+                                {
+                                    "x": 459,
+                                    "y": 132
+                                },
+                                {
+                                    "x": 390.2948511314234,
+                                    "y": 61.22556786345426
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "open_window[i]?",
+                                "assignment": "window[i]=1,\ndco=dco-0.5",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 205,
+                                "y": 98,
+                                "value": "synchronisation:close_window[i]?\nassignment:window[i]=0,\ndco=dco+0.5\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 358.1298341412578,
+                                    "y": 59.05001922512085
+                                },
+                                {
+                                    "x": 273,
+                                    "y": 124
+                                },
+                                {
+                                    "x": 360.38851871563975,
+                                    "y": 219.33463686323563
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "close_window[i]?",
+                                "assignment": "window[i]=0,\ndco=dco+0.5",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 15,
+                "name": "SecureGuard Smart Door",
+                "type": "door",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Model",
+                    "cost": "0.001",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Opening Model",
+                    "cost": "0.001",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Material ",
+                    "value": "Steel",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Color",
+                    "value": "Dark Brown",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Keyless Entry with Electronic Lock",
+                    "isEdit": true,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "23Door.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;int position=0;int rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\nint rule6=0;\nint rule7=0;\nint fan[1];\nurgent broadcast chan turn_on_fan[1];\nurgent broadcast chan turn_off_fan[1];\nint airpurifier[1];\nurgent broadcast chan turn_on_airpurifier[1];\nurgent broadcast chan turn_off_airpurifier[1];\nint airconditioner[1];\nurgent broadcast chan turn_ac_off[1];\nurgent broadcast chan turn_ac_cool[1];\nurgent broadcast chan turn_ac_heat[1];\nint door[1];\nurgent broadcast chan open_door[1];\nurgent broadcast chan close_door[1];\nint light[1];\nurgent broadcast chan turn_on_light[1];\nurgent broadcast chan turn_off_light[1];\nint curtain[1];\nurgent broadcast chan open_curtain[1];\nurgent broadcast chan close_curtain[1];\nint camera[1];\nurgent broadcast chan turn_on_camera[1];\nurgent broadcast chan turn_off_camera[1];\nint humidifier[1];\nurgent broadcast chan turn_on_humidifier[1];\nurgent broadcast chan turn_off_humidifier[1];\nint window[1];\nurgent broadcast chan open_window[1];\nurgent broadcast chan close_window[1];\nint received_msgs=0;\nurgent broadcast chan send_msg;\nclock temperature=18.0;double dtemperature=0.0;</declaration>\r\n\t<template>\r\n\t\t<name>Door</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<declaration>//controlled_device</declaration>\r\n\t\t<location id=\"id0\" x=\"0\" y=\"25\">\r\n\t\t\t<name x=\"17\" y=\"16\">dooropen</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"0\" y=\"119\">\r\n\t\t\t<name x=\"-68\" y=\"110\">doorclosed</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id1\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-9\" y=\"42\">open_door[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"17\" y=\"59\">door[i]=1</label>\r\n\t\t\t<nail x=\"51\" y=\"76\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-85\" y=\"76\">close_door[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-85\" y=\"59\">door[i]=0</label>\r\n\t\t\t<nail x=\"-51\" y=\"68\"/>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>HumanInstance=Human(100.0,200.0);\nAirConditioner_0 = AirConditioner(0);\nDoor_0 = Door(0);\nWindow_0 = Window(0);\nsystem HumanInstance, AirConditioner_0, Door_0, Window_0, SMS, EnvironmentTemperature, Rule1, Rule2, Rule3, Rule4, Rule5, Rule6, Rule7;\n</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {temperature, rule1, rule2, rule3, rule4, rule5, rule6, rule7, airconditioner[0], door[0], window[0], received_msgs, position}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "Door",
+                    "declaration": "//controlled_device",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState1",
+                            "x": 400,
+                            "y": 225,
+                            "text": {
+                                "x": 417,
+                                "y": 216,
+                                "value": "dooropen\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState2",
+                            "x": 400,
+                            "y": 319,
+                            "text": {
+                                "x": 332,
+                                "y": 310,
+                                "value": "doorclosed\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 417,
+                                "y": 259,
+                                "value": "synchronisation:open_door[i]?\nassignment:door[i]=1\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 417.22271611681305,
+                                    "y": 306.1080549492712
+                                },
+                                {
+                                    "x": 451,
+                                    "y": 276
+                                },
+                                {
+                                    "x": 416.2098829664639,
+                                    "y": 239.14213562373095
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "open_door[i]?",
+                                "assignment": "door[i]=1",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 315,
+                                "y": 259,
+                                "value": "synchronisation:close_door[i]?\nassignment:door[i]=0\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 382.77728388318695,
+                                    "y": 237.89194505072882
+                                },
+                                {
+                                    "x": 349,
+                                    "y": 268
+                                },
+                                {
+                                    "x": 383.7901170335361,
+                                    "y": 304.85786437626905
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "close_door[i]?",
+                                "assignment": "door[i]=0",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "deviceInfo": {
+                "id": 16,
+                "name": "CoolBreeze Pro Smart Air Conditioner",
+                "type": "air conditioner",
+                "isPortable": "No",
+                "isProgrammable": "Yes"
+            },
+            "energyCost": [
+                {
+                    "model": "Closing Model",
+                    "cost": "0.002",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Cooling Model",
+                    "cost": "0.1",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                },
+                {
+                    "model": "Heating Model",
+                    "cost": "0.2",
+                    "isEdit": false,
+                    "oldModel": "",
+                    "oldCost": ""
+                }
+            ],
+            "customProperty": [
+                {
+                    "name": "Cooling Capacity",
+                    "value": "12000 BTU",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                },
+                {
+                    "name": "Color",
+                    "value": "White",
+                    "isEdit": false,
+                    "oldName": "",
+                    "oldValue": ""
+                }
+            ],
+            "capability": [
+                {
+                    "capability": "Adjustable Cooling Modes: Cool, Fan, and Dehumidify",
+                    "isEdit": false,
+                    "oldCapability": ""
+                },
+                {
+                    "capability": "Smartphone App Control for Temperature and Fan Speed",
+                    "isEdit": false,
+                    "oldCapability": ""
+                }
+            ],
+            "TAInfo": {
+                "name": "22AirConditioner.xml",
+                "rawData": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\r\n<nta>\r\n\t<declaration>// Place global declarations here.\nclock time;int position=0;int rule1=0;\nint rule2=0;\nint rule3=0;\nint rule4=0;\nint rule5=0;\nint rule6=0;\nint rule7=0;\nint fan[1];\nurgent broadcast chan turn_on_fan[1];\nurgent broadcast chan turn_off_fan[1];\nint airpurifier[1];\nurgent broadcast chan turn_on_airpurifier[1];\nurgent broadcast chan turn_off_airpurifier[1];\nint airconditioner[1];\nurgent broadcast chan turn_ac_off[1];\nurgent broadcast chan turn_ac_cool[1];\nurgent broadcast chan turn_ac_heat[1];\nint door[1];\nurgent broadcast chan open_door[1];\nurgent broadcast chan close_door[1];\nint light[1];\nurgent broadcast chan turn_on_light[1];\nurgent broadcast chan turn_off_light[1];\nint curtain[1];\nurgent broadcast chan open_curtain[1];\nurgent broadcast chan close_curtain[1];\nint camera[1];\nurgent broadcast chan turn_on_camera[1];\nurgent broadcast chan turn_off_camera[1];\nint humidifier[1];\nurgent broadcast chan turn_on_humidifier[1];\nurgent broadcast chan turn_off_humidifier[1];\nint window[1];\nurgent broadcast chan open_window[1];\nurgent broadcast chan close_window[1];\nint received_msgs=0;\nurgent broadcast chan send_msg;\nclock temperature=18.0;double dtemperature=0.0;</declaration>\r\n\t<template>\r\n\t\t<name>AirConditioner</name>\r\n\t\t<parameter>int i</parameter>\r\n\t\t<location id=\"id0\" x=\"-17\" y=\"25\">\r\n\t\t\t<name x=\"-17\" y=\"-25\">acoff</name>\r\n\t\t</location>\r\n\t\t<location id=\"id1\" x=\"-212\" y=\"136\">\r\n\t\t\t<name x=\"-221\" y=\"144\">cool</name>\r\n\t\t</location>\r\n\t\t<location id=\"id2\" x=\"195\" y=\"136\">\r\n\t\t\t<name x=\"178\" y=\"144\">heat</name>\r\n\t\t</location>\r\n\t\t<init ref=\"id0\"/>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id2\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"85\" y=\"-17\">turn_ac_heat[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"0\" y=\"25\">airconditioner[i]=2,dtemperature=dtemperature+0.05</label>\r\n\t\t\t<nail x=\"195\" y=\"25\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id2\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-59\" y=\"170\">turn_ac_cool[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-102\" y=\"187\">airconditioner[i]=1,dtemperature=dtemperature-0.1</label>\r\n\t\t\t<nail x=\"-17\" y=\"204\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-187\" y=\"8\">turn_ac_off[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-221\" y=\"25\">airconditioner[i]=0,dtemperature=dtemperature+0.05</label>\r\n\t\t\t<nail x=\"-212\" y=\"25\"/>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id2\"/>\r\n\t\t\t<target ref=\"id0\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"42\" y=\"68\">turn_ac_off[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"0\" y=\"85\">airconditioner[i]=0,dtemperature=dtemperature-0.05</label>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id1\"/>\r\n\t\t\t<target ref=\"id2\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-68\" y=\"119\">turn_ac_heat[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-102\" y=\"136\">airconditioner[i]=2,dtemperature=dtemperature+0.1</label>\r\n\t\t</transition>\r\n\t\t<transition>\r\n\t\t\t<source ref=\"id0\"/>\r\n\t\t\t<target ref=\"id1\"/>\r\n\t\t\t<label kind=\"synchronisation\" x=\"-170\" y=\"68\">turn_ac_cool[i]?</label>\r\n\t\t\t<label kind=\"assignment\" x=\"-212\" y=\"85\">airconditioner[i]=1,dtemperature=dtemperature-0.05</label>\r\n\t\t</transition>\r\n\t</template>\r\n\t<system>HumanInstance=Human(100.0,200.0);\nAirConditioner_0 = AirConditioner(0);\nDoor_0 = Door(0);\nWindow_0 = Window(0);\nsystem HumanInstance, AirConditioner_0, Door_0, Window_0, SMS, EnvironmentTemperature, Rule1, Rule2, Rule3, Rule4, Rule5, Rule6, Rule7;\n</system>\r\n\t<queries>\r\n\t\t<query>\r\n\t\t\t<formula>simulate[&lt;=300] {temperature, rule1, rule2, rule3, rule4, rule5, rule6, rule7, airconditioner[0], door[0], window[0], received_msgs, position}</formula>\r\n\t\t\t<comment></comment>\r\n\t\t</query>\r\n\t</queries>\r\n</nta>\r\n",
+                "graphData": {
+                    "name": "AirConditioner",
+                    "declaration": "",
+                    "nodes": [
+                        {
+                            "id": "id0",
+                            "type": "bpmn:customState2",
+                            "x": 383,
+                            "y": 225,
+                            "text": {
+                                "x": 383,
+                                "y": 175,
+                                "value": "acoff\n"
+                            }
+                        },
+                        {
+                            "id": "id1",
+                            "type": "bpmn:customState1",
+                            "x": 188,
+                            "y": 336,
+                            "text": {
+                                "x": 179,
+                                "y": 344,
+                                "value": "cool\n"
+                            }
+                        },
+                        {
+                            "id": "id2",
+                            "type": "bpmn:customState1",
+                            "x": 595,
+                            "y": 336,
+                            "text": {
+                                "x": 578,
+                                "y": 344,
+                                "value": "heat\n"
+                            }
+                        }
+                    ],
+                    "edges": [
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id2",
+                            "text": {
+                                "x": 400,
+                                "y": 225,
+                                "value": "synchronisation:turn_ac_heat[i]?\nassignment:airconditioner[i]=2,dtemperature=dtemperature+0.05\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 403,
+                                    "y": 225
+                                },
+                                {
+                                    "x": 595,
+                                    "y": 225
+                                },
+                                {
+                                    "x": 595,
+                                    "y": 316
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_ac_heat[i]?",
+                                "assignment": "airconditioner[i]=2,dtemperature=dtemperature+0.05",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id2",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 298,
+                                "y": 387,
+                                "value": "synchronisation:turn_ac_cool[i]?\nassignment:airconditioner[i]=1,dtemperature=dtemperature-0.1\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 575.8014152827926,
+                                    "y": 342.10855108718624
+                                },
+                                {
+                                    "x": 383,
+                                    "y": 404
+                                },
+                                {
+                                    "x": 207.07626543073295,
+                                    "y": 342.5854352205996
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_ac_cool[i]?",
+                                "assignment": "airconditioner[i]=1,dtemperature=dtemperature-0.1",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 179,
+                                "y": 225,
+                                "value": "synchronisation:turn_ac_off[i]?\nassignment:airconditioner[i]=0,dtemperature=dtemperature+0.05\n"
+                            },
+                            "pointsList": [
+                                {
+                                    "x": 188,
+                                    "y": 316
+                                },
+                                {
+                                    "x": 188,
+                                    "y": 225
+                                },
+                                {
+                                    "x": 363,
+                                    "y": 225
+                                }
+                            ],
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_ac_off[i]?",
+                                "assignment": "airconditioner[i]=0,dtemperature=dtemperature+0.05",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id2",
+                            "targetNodeId": "id0",
+                            "text": {
+                                "x": 400,
+                                "y": 285,
+                                "value": "synchronisation:turn_ac_off[i]?\nassignment:airconditioner[i]=0,dtemperature=dtemperature-0.05\n"
+                            },
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_ac_off[i]?",
+                                "assignment": "airconditioner[i]=0,dtemperature=dtemperature-0.05",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id1",
+                            "targetNodeId": "id2",
+                            "text": {
+                                "x": 298,
+                                "y": 336,
+                                "value": "synchronisation:turn_ac_heat[i]?\nassignment:airconditioner[i]=2,dtemperature=dtemperature+0.1\n"
+                            },
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_ac_heat[i]?",
+                                "assignment": "airconditioner[i]=2,dtemperature=dtemperature+0.1",
+                                "isActived": false
+                            }
+                        },
+                        {
+                            "id": "",
+                            "type": "bpmn:sequenceFlow",
+                            "sourceNodeId": "id0",
+                            "targetNodeId": "id1",
+                            "text": {
+                                "x": 188,
+                                "y": 285,
+                                "value": "synchronisation:turn_ac_cool[i]?\nassignment:airconditioner[i]=1,dtemperature=dtemperature-0.05\n"
+                            },
+                            "properties": {
+                                "select": "",
+                                "guard": "",
+                                "synchronisation": "turn_ac_cool[i]?",
+                                "assignment": "airconditioner[i]=1,dtemperature=dtemperature-0.05",
+                                "isActived": false
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

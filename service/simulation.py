@@ -49,9 +49,12 @@ CMSGenerator = Callable[..., List[ModelInstanceSpecification]]
 def get_human_model_specification() -> List[ModelInstanceSpecification]:
     # TODO: map animation specification to patterns
     patterns = [
-        ["out", "living_room", "kitchen", "bathroom", "bedroom", "guest_room"],
-        ["out", "living_room", "bedroom"],
-        ["out", "living_room", "bedroom", "living_room", "out"]
+        # ["out", "living_room", "kitchen", "bathroom", "bedroom", "guest_room"],
+        # ["out", "living_room", "bathroom", "bedroom"],
+        # ["out", "living_room", "bedroom", "living_room", "out"]
+        ["out", "doorway", "home"],
+        ["out", "living_room", "kitchen", "bedroom"],
+        ["out", "living_room", "kitchen", "bathroom", "guest_room", "bedroom"],
     ]
     params = [[f"t{i+1}" for i in range(len(pat) - 1)] for pat in patterns]
     specs: List[ModelInstanceSpecification] = []
@@ -72,6 +75,7 @@ def parse_human_model_specification(input: ParserInput) -> ParserOutput:
 
 const_params = ["Initial Value"]
 norm_params = ["Initial Value", "Height"]
+# cos_params = ["A", "B", "C", "D"]
 
 
 def const_gen(num: int, params: Dict[str, str]) -> DataPoints:
@@ -88,11 +92,15 @@ def norm_gen(num: int, params: Dict[str, str]) -> DataPoints:
 
 Curve = Tuple[str, List[str], DataPointsGenerator]
 ConstantCurve: Curve = ("Constant", const_params, const_gen)
-NormalDistributionCurve: Curve = ("Gaussian Curve", norm_params, norm_gen)
+NormalDistributionCurve: Curve = ("Gaussian Curve", norm_params, norm_gen) # TODO: Revert
 
 temperature_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
 humidity_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
-
+pm25_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
+# temperature_models: List[Curve] = [("Constant Temperature", const_params, const_gen), ("Cosine Temperature", cos_params, norm_gen)] # todo: FIX
+# humidity_models: List[Curve] = [("Constant Humidity", const_params, const_gen), ("Gaussian Humidity", norm_params, norm_gen)]
+# carbonmonoxide_models: List[Curve] = [("Indoor Carbon Monoxide In Shanghai", const_params, const_gen)]
+# brightness_models: List[Curve] = [("Indoor Brightness In Shanghai", const_params, const_gen)]
 
 def get_temperature_model_specification() -> List[ModelInstanceSpecification]:
     return [{"name": c[0], "parameters": c[1]} for c in temperature_models]
@@ -126,15 +134,46 @@ def parse_humidity_model_specification(input: ParserInput) -> ParserOutput:
     return None
 
 
+
+def get_pm25_model_specification() -> List[ModelInstanceSpecification]:
+    return [{"name": c[0], "parameters": c[1]} for c in pm25_models]
+
+
+def parse_pm25_model_specification(input: ParserInput) -> ParserOutput:
+    node_num = POINTS_NUMBER
+    inst_name, params = input
+    for name, _, generator in humidity_models:
+        if inst_name == name:
+            sim_time = int(params[SIM_TIME_PARAM_NAME])
+            dpoints = generator(node_num, params)
+            return lambda x: build_continuous_template(remap(dpoints, sim_time), template_name="EnvironmentPM25",
+                                                       clock_name="time", var_name="pm25", offset=x)
+    return None
+
+# def get_brightness_model_specification() -> List[ModelInstanceSpecification]:
+#     return [{"name": c[0], "parameters": c[1]} for c in brightness_models]
+
+# def parse_brightness_model_specification(input: ParserInput) -> ParserOutput:
+#     return None
+
 context_models: Dict[str, Tuple[CMSGenerator, CMSParser]] = {}
 context_models["Human Activities"] = (
     get_human_model_specification, parse_human_model_specification)
-context_models["Environment Temperature"] = (
+context_models["Temperature"] = (
     get_temperature_model_specification, parse_temperature_model_specification
 )
-context_models["Environment Humidity"] = (
+context_models["Humidity"] = (
     get_humidity_model_specification, parse_humidity_model_specification
 )
+context_models["PM25"] = (
+    get_pm25_model_specification, parse_pm25_model_specification
+)
+# context_models["CarbonMonoxide"] = (
+#     get_carbonmonoxide_model_specification, parse_carbonmonoxide_model_specification
+# )
+# context_models["Brightness"] = (
+#     get_brightness_model_specification, parse_brightness_model_specification
+# )
 
 
 @router.get("/api/fetch-context-model")
@@ -200,3 +239,16 @@ async def parse_simulation_params(raw_params: Tuple[List[Dict[str, str]], List[D
             simulation.add_tplt_gen(tplt_gen)
     simulation.compose(int(simulation_time))
     return run(simulation)
+
+
+if __name__ == "__main__":
+    simulation = Simulation()
+    simulation.load_tap_rules("")
+    sim_time = 300
+    points_number = 5
+    dpoints = curve_normal_dist(points_number, 24.0, 8.0)
+    simulation.add_tplt_gen(lambda x: build_continuous_template(
+        remap(dpoints, sim_time), template_name="EnvironmentTemperature",
+        clock_name="time", var_name="temperature", offset=x))
+    simulation.compose(int(sim_time))
+    open("test_model.xml", "w").write(simulation.full_body)

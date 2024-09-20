@@ -87,6 +87,13 @@ def pull_rendering_result(token: str, request: Request) -> Response:
     return Response(status_code=404)
 
 
+@router.get("/api/fake-rendering-result")
+def fake_rendering_result(token: str, request: Request) -> Response:
+    return range_requests_response(
+        request, file_path="demo2.mp4", content_type="video/mp4"
+    )
+
+
 @router.get("/api/pull-rendering-task")
 async def pull_rendering_task(server_name: str) -> Optional[RenderingTask]:
     for task in task_queue:

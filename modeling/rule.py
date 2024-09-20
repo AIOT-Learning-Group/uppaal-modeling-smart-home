@@ -173,9 +173,9 @@ for device_name in valid_device_names:
     ), "no corresponding device:" + device_name + " in " + str(list(device_tables[list(device_tables.keys())[0]].keys(
     )))
 
-# TODO: use selected device table
-for device_name in device_tables[list(device_tables.keys())[0]].keys():
-    assert device_name in valid_device_names, "device name not valid:" + device_name
+# # TODO: use selected device table
+# for device_name in device_tables[list(device_tables.keys())[0]].keys():
+#     assert device_name in valid_device_names, "device name not valid:" + device_name
 
 
 def parse_trigger(location_to_idx: Dict[str, int], raw_trigger: str) -> str:
@@ -187,9 +187,9 @@ def parse_trigger(location_to_idx: Dict[str, int], raw_trigger: str) -> str:
         for t_format, inner_format in trigger_mappings.items():
             values = parse.parse(t_format, raw_trigger)
             if values != None:
-                if 'name' in values.named.keys():
-                    # Sanity check
-                    assert values.named['name'] in valid_device_names
+                # if 'name' in values.named.keys():
+                #     # Sanity check
+                #     assert values.named['name'] in valid_device_names
                 return inner_format.format(**values.named)
     return ""
 
@@ -216,7 +216,6 @@ def parse_tap_rules(location_to_idx: Dict[str, int], text: str) -> Tuple[List[st
             continue
         trigger = line[line.find("IF ") + len("IF "):line.find(" THEN ")]
         action = line[line.find(" THEN ") + len(" THEN "):]
-        logger.info(location_to_idx)
         inner_t, inner_a = parse_rule(location_to_idx, trigger, action)
         assert inner_t != None, f"bad trigger: {trigger}, in {text}"
         assert inner_a != None, f"bad action: {action}, in {text}"

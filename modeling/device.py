@@ -233,6 +233,7 @@ def build_from_pb(pb_device: PbDevice) -> Optional[ComposableTemplate]:
 
 device_tables: Dict[str, Dict[str, ComposableTemplate]] = {}
 
+from knowledgebase.loader import load_into_device_table
 
 def load_device_table(pb_system_device_models: PbSystemDeviceModels) -> None:
     for pb_device_table in pb_system_device_models.device_table:
@@ -246,7 +247,8 @@ def load_device_table(pb_system_device_models: PbSystemDeviceModels) -> None:
                                                     ] = cp_tplt
             else:
                 logger.info("failed to add device " + pb_device.name)
-
+    # READ FROM PROTO
+    load_into_device_table(device_tables)
 
 pb_system_device_models = PbSystemDeviceModels()
 text_format.Parse(open(KNOWLEDGEBASE_SYSTEM_DEVICE_MODELS,
