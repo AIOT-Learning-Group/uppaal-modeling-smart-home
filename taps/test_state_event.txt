@@ -1,0 +1,2 @@
+IF time>100 AND time<=101 THEN light_0.turn_light_on
+IF time<250 AND light_0.turn_light_on AND light_0.turn_light_off AND time>50 THEN light_0.turn_light_off

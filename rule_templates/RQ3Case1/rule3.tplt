@@ -26,7 +26,7 @@
 	<transition>
 		<source ref="id22"/>
 		<target ref="id20"/>
-		<label kind="synchronisation">turn_ac_heat[0]!</label>
+		<label kind="synchronisation">turn_airconditioner_heat[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>

@@ -1,0 +1,14 @@
+a. IF Human.living_room AND temperature < 25 THEN heater_0.turn_heater_on
+b. IF airconditioner_0.cool AND Human.living_room THEN light_1.turn_light_off
+c. IF window_0.close THEN light_0.turn_light_off
+d. IF curtain_1.close AND Human.bedroom THEN airpurifier_0.turn_airpurifier_off
+e. IF fan_0.on AND time < 576 THEN window_0.open_window
+f. IF humidifier_0.on THEN airconditioner_0.turn_airconditioner_on
+g. IF temperature > 30 AND Human.living_room THEN airconditioner_0.turn_airconditioner_cool
+h. IF brightness < 320 THEN robotvacuum_0.turn_rv_off AND curtain_1.open_curtain
+i. IF light_1.on THEN door_1.close_door
+j. IF Human.out THEN curtain_0.open_curtain
+
+
+
+答案：a 和 g 满足 Environment Mutual Conflict

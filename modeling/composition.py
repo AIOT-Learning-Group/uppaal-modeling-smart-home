@@ -1,4 +1,5 @@
-from modeling.human import HumanModelForSmartHome
+from loguru import logger
+from modeling.human import HumanModel, HumanModelForSmartHome
 from modeling.rule import RuleSet
 from modeling.device import device_tables
 from modeling.common import ComposableTemplate, Composition, TemplateGenerator
@@ -9,10 +10,11 @@ from modeling.human import HumanModelForSmartHome
 def filter_interacive_devices_by_rules(tap_rules: str) -> Set[ComposableTemplate]:
     device_set: Set[ComposableTemplate] = set([])
     # TODO: use selected device table
+    logger.info(f"device list: {[name for name, _ in device_tables[list(device_tables.keys())[0]].items()]}")
     for name, device in device_tables[list(device_tables.keys())[0]].items():
-        print(name)
         if f" {name}_" in tap_rules:
             device_set.add(device)
+            logger.info(f"filter device: {name}")
     return device_set
 
 
@@ -54,13 +56,14 @@ def compose_system_behavior_model(tap_rules: str) -> SystemBehaviorModel:
 
 
 class Simulation:
-    def __init__(self) -> None:
+    def __init__(self, human_model: HumanModel = HumanModelForSmartHome) -> None:
         self.tplt, self.decl, self.inst, self.sys, self.var = "", "", "", "", ""
+        self.human_model = human_model
         self.starting_node_id = 0
 
     def load_tap_rules(self, tap_rules: str) -> None:
         self.raw_rules = tap_rules
-        self.ruleset = RuleSet(HumanModelForSmartHome, tap_rules, 1)
+        self.ruleset = RuleSet(self.human_model, tap_rules, 1)
         self.devices_tplt = filter_interacive_devices_by_rules(tap_rules)
 
     def accumulate(self, composition: Composition) -> int:
@@ -76,14 +79,18 @@ class Simulation:
         num_nodes = self.accumulate(tplt_gen(self.starting_node_id))
         self.starting_node_id += num_nodes
 
-    def compose(self, duration: int) -> None:
+    def compose(self, duration: int, device_numbers: dict[str, int] | None = None) -> None:
         num_nodes = self.accumulate(
             self.ruleset.compose(self.starting_node_id))
         self.starting_node_id += num_nodes
         self.devices_composition: List[Composition] = []
         for device in self.devices_tplt:
+            device_number = 1
+            if device_numbers != None and device.name in device_numbers.keys():
+                device_number = device_numbers[device.name]
             num_nodes = self.accumulate(device.compose(
-                self.starting_node_id, 1))  # TODO: use device numbers
+                self.starting_node_id, device_number))
+            logger.info(f"device instance: {device.name} -> {device_number}")
             self.starting_node_id += num_nodes
 
         self.body = ""

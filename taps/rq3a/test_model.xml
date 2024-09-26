@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+<declaration>// Place global declarations here.
+clock time=0.0;clock temperature=24.08863696823876; double dtemperature=0.0;
+clock humidity=24.08863696823876; double dhumidity=0.0;
+clock brightness=24.08863696823876; double dbrightness=0.0;
+clock pm25=24.08863696823876; double dpm25=0.0;
+clock co=24.08863696823876; double dco=0.0;
+int rule1;int rule2;int rule3;int rule4;int rule5;int rule6;int rule7;int rule8;int rule9;int rule10;int rule11;int fan[1];
+urgent broadcast chan turn_on_fan[1];
+urgent broadcast chan turn_off_fan[1];
+int curtain[2];
+urgent broadcast chan open_curtain[2];
+urgent broadcast chan close_curtain[2];
+int robotvacuum[1];
+urgent broadcast chan turn_on_robotvacuum[1];
+urgent broadcast chan turn_off_robotvacuum[1];
+int window[1];
+urgent broadcast chan open_window[1];
+urgent broadcast chan close_window[1];
+int humidifier[1];
+urgent broadcast chan turn_on_humidifier[1];
+urgent broadcast chan turn_off_humidifier[1];
+int airconditioner[1];
+urgent broadcast chan turn_airconditioner_off[1];
+urgent broadcast chan turn_airconditioner_cool[1];
+urgent broadcast chan turn_airconditioner_heat[1];
+int light[2];
+urgent broadcast chan turn_on_light[2];
+urgent broadcast chan turn_off_light[2];
+int airpurifier[1];
+urgent broadcast chan turn_on_airpurifier[1];
+urgent broadcast chan turn_off_airpurifier[1];
+int door[2];
+urgent broadcast chan open_door[2];
+urgent broadcast chan close_door[2];
+</declaration>
+	<template>
+		<name x="5" y="5">EnvironmentTemperature</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; temperature'==0</label>
+		</location>
+		<location id="id1" x="50" y="0">
+			<label kind="invariant">time &lt;= 75.0 &amp;&amp; temperature'==0.033356199267720994+dtemperature</label>
+		</location>
+		<location id="id2" x="100" y="0">
+			<label kind="invariant">time &lt;= 150.0 &amp;&amp; temperature'==0.07184658259614436+dtemperature</label>
+		</location>
+		<location id="id3" x="150" y="0">
+			<label kind="invariant">time &lt;= 225.0 &amp;&amp; temperature'==-0.07184658259614432+dtemperature</label>
+		</location>
+		<location id="id4" x="200" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; temperature'==-0.033356199267721015+dtemperature</label>
+		</location>
+		<location id="id5" x="250" y="0">
+			<label kind="invariant">temperature'==dtemperature</label>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard">time &gt;= 75.0</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard">time &gt;= 150.0</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard">time &gt;= 225.0</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentHumidity</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id15" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; humidity'==0</label>
+		</location>
+		<location id="id16" x="50" y="0">
+			<label kind="invariant">time &lt;= 75.0 &amp;&amp; humidity'==0.033356199267720994+dhumidity</label>
+		</location>
+		<location id="id17" x="100" y="0">
+			<label kind="invariant">time &lt;= 150.0 &amp;&amp; humidity'==0.07184658259614436+dhumidity</label>
+		</location>
+		<location id="id18" x="150" y="0">
+			<label kind="invariant">time &lt;= 225.0 &amp;&amp; humidity'==-0.07184658259614432+dhumidity</label>
+		</location>
+		<location id="id19" x="200" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; humidity'==-0.033356199267721015+dhumidity</label>
+		</location>
+		<location id="id20" x="250" y="0">
+			<label kind="invariant">humidity'==dhumidity</label>
+		</location>
+		<init ref="id15"/>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id16"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id17"/>
+			<label kind="guard">time &gt;= 75.0</label>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id18"/>
+			<label kind="guard">time &gt;= 150.0</label>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="guard">time &gt;= 225.0</label>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id20"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentBrightness</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id30" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; brightness'==0</label>
+		</location>
+		<location id="id31" x="50" y="0">
+			<label kind="invariant">time &lt;= 75.0 &amp;&amp; brightness'==0.033356199267720994+dbrightness</label>
+		</location>
+		<location id="id32" x="100" y="0">
+			<label kind="invariant">time &lt;= 150.0 &amp;&amp; brightness'==0.07184658259614436+dbrightness</label>
+		</location>
+		<location id="id33" x="150" y="0">
+			<label kind="invariant">time &lt;= 225.0 &amp;&amp; brightness'==-0.07184658259614432+dbrightness</label>
+		</location>
+		<location id="id34" x="200" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; brightness'==-0.033356199267721015+dbrightness</label>
+		</location>
+		<location id="id35" x="250" y="0">
+			<label kind="invariant">brightness'==dbrightness</label>
+		</location>
+		<init ref="id30"/>
+		<transition>
+			<source ref="id30"/>
+			<target ref="id31"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id31"/>
+			<target ref="id32"/>
+			<label kind="guard">time &gt;= 75.0</label>
+		</transition>
+		<transition>
+			<source ref="id32"/>
+			<target ref="id33"/>
+			<label kind="guard">time &gt;= 150.0</label>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="guard">time &gt;= 225.0</label>
+		</transition>
+		<transition>
+			<source ref="id34"/>
+			<target ref="id35"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentPM25</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id45" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; pm25'==0</label>
+		</location>
+		<location id="id46" x="50" y="0">
+			<label kind="invariant">time &lt;= 75.0 &amp;&amp; pm25'==0.033356199267720994+dpm25</label>
+		</location>
+		<location id="id47" x="100" y="0">
+			<label kind="invariant">time &lt;= 150.0 &amp;&amp; pm25'==0.07184658259614436+dpm25</label>
+		</location>
+		<location id="id48" x="150" y="0">
+			<label kind="invariant">time &lt;= 225.0 &amp;&amp; pm25'==-0.07184658259614432+dpm25</label>
+		</location>
+		<location id="id49" x="200" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; pm25'==-0.033356199267721015+dpm25</label>
+		</location>
+		<location id="id50" x="250" y="0">
+			<label kind="invariant">pm25'==dpm25</label>
+		</location>
+		<init ref="id45"/>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id46"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id47"/>
+			<label kind="guard">time &gt;= 75.0</label>
+		</transition>
+		<transition>
+			<source ref="id47"/>
+			<target ref="id48"/>
+			<label kind="guard">time &gt;= 150.0</label>
+		</transition>
+		<transition>
+			<source ref="id48"/>
+			<target ref="id49"/>
+			<label kind="guard">time &gt;= 225.0</label>
+		</transition>
+		<transition>
+			<source ref="id49"/>
+			<target ref="id50"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentCO</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id60" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; co'==0</label>
+		</location>
+		<location id="id61" x="50" y="0">
+			<label kind="invariant">time &lt;= 75.0 &amp;&amp; co'==0.033356199267720994+dco</label>
+		</location>
+		<location id="id62" x="100" y="0">
+			<label kind="invariant">time &lt;= 150.0 &amp;&amp; co'==0.07184658259614436+dco</label>
+		</location>
+		<location id="id63" x="150" y="0">
+			<label kind="invariant">time &lt;= 225.0 &amp;&amp; co'==-0.07184658259614432+dco</label>
+		</location>
+		<location id="id64" x="200" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; co'==-0.033356199267721015+dco</label>
+		</location>
+		<location id="id65" x="250" y="0">
+			<label kind="invariant">co'==dco</label>
+		</location>
+		<init ref="id60"/>
+		<transition>
+			<source ref="id60"/>
+			<target ref="id61"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id61"/>
+			<target ref="id62"/>
+			<label kind="guard">time &gt;= 75.0</label>
+		</transition>
+		<transition>
+			<source ref="id62"/>
+			<target ref="id63"/>
+			<label kind="guard">time &gt;= 150.0</label>
+		</transition>
+		<transition>
+			<source ref="id63"/>
+			<target ref="id64"/>
+			<label kind="guard">time &gt;= 225.0</label>
+		</transition>
+		<transition>
+			<source ref="id64"/>
+			<target ref="id65"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+<template>
+	<name>Rule1</name>
+	<declaration>clock t;</declaration>
+	<location id="id75" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id76" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id77" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id75"/>
+	<transition>
+		<source ref="id75"/>
+		<target ref="id76"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id76"/>
+		<target ref="id77"/>
+		<label kind="guard">curtain[1]==0</label>
+		<label kind="assignment">rule1=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id76"/>
+		<target ref="id75"/>
+		<label kind="guard">curtain[1]!=0</label>
+		<label kind="assignment">rule1=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id77"/>
+		<target ref="id75"/>
+		<label kind="synchronisation">open_curtain[1]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule2</name>
+	<declaration>clock t;</declaration>
+	<location id="id85" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id86" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id87" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id85"/>
+	<transition>
+		<source ref="id85"/>
+		<target ref="id86"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id86"/>
+		<target ref="id87"/>
+		<label kind="guard">temperature &lt; 28</label>
+		<label kind="assignment">rule2=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id86"/>
+		<target ref="id85"/>
+		<label kind="guard">temperature&gt;=28</label>
+		<label kind="assignment">rule2=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id87"/>
+		<target ref="id85"/>
+		<label kind="synchronisation">turn_on_fan[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule3</name>
+	<declaration>clock t;</declaration>
+	<location id="id95" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id96" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id97" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id95"/>
+	<transition>
+		<source ref="id95"/>
+		<target ref="id96"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id96"/>
+		<target ref="id97"/>
+		<label kind="guard">humanposition==1</label>
+		<label kind="assignment">rule3=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id96"/>
+		<target ref="id95"/>
+		<label kind="guard">humanposition!=1</label>
+		<label kind="assignment">rule3=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id97"/>
+		<target ref="id95"/>
+		<label kind="synchronisation">turn_on_light[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule4</name>
+	<declaration>clock t;</declaration>
+	<location id="id105" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id106" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id107" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id105"/>
+	<transition>
+		<source ref="id105"/>
+		<target ref="id106"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id106"/>
+		<target ref="id107"/>
+		<label kind="guard">brightness &lt; 400 &amp;&amp; humanposition==1</label>
+		<label kind="assignment">rule4=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id106"/>
+		<target ref="id105"/>
+		<label kind="guard">brightness&gt;=400</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id106"/>
+		<target ref="id105"/>
+		<label kind="guard">humanposition!=1</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id107"/>
+		<target ref="id105"/>
+		<label kind="synchronisation">open_curtain[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule5</name>
+	<declaration>clock t;</declaration>
+	<location id="id115" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id116" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id117" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id115"/>
+	<transition>
+		<source ref="id115"/>
+		<target ref="id116"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id116"/>
+		<target ref="id117"/>
+		<label kind="guard">airconditioner[0]==0 &amp;&amp; temperature &lt; 30</label>
+		<label kind="assignment">rule5=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id116"/>
+		<target ref="id115"/>
+		<label kind="guard">airconditioner[0]!=0</label>
+		<label kind="assignment">rule5=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id116"/>
+		<target ref="id115"/>
+		<label kind="guard">temperature&gt;=30</label>
+		<label kind="assignment">rule5=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id117"/>
+		<target ref="id115"/>
+		<label kind="synchronisation">turn_off_humidifier[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule6</name>
+	<declaration>clock t;</declaration>
+	<location id="id125" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id126" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id127" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id125"/>
+	<transition>
+		<source ref="id125"/>
+		<target ref="id126"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id126"/>
+		<target ref="id127"/>
+		<label kind="guard">pm25 &gt; 10</label>
+		<label kind="assignment">rule6=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id126"/>
+		<target ref="id125"/>
+		<label kind="guard">pm25&lt;=10</label>
+		<label kind="assignment">rule6=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id127"/>
+		<target ref="id125"/>
+		<label kind="synchronisation">turn_on_airpurifier[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule7</name>
+	<declaration>clock t;</declaration>
+	<location id="id135" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id136" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id137" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id135"/>
+	<transition>
+		<source ref="id135"/>
+		<target ref="id136"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id136"/>
+		<target ref="id137"/>
+		<label kind="guard">pm25 &gt; 10</label>
+		<label kind="assignment">rule7=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id136"/>
+		<target ref="id135"/>
+		<label kind="guard">pm25&lt;=10</label>
+		<label kind="assignment">rule7=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id137"/>
+		<target ref="id135"/>
+		<label kind="synchronisation">turn_airconditioner_cool[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule8</name>
+	<declaration>clock t;</declaration>
+	<location id="id145" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id146" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id147" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id145"/>
+	<transition>
+		<source ref="id145"/>
+		<target ref="id146"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id146"/>
+		<target ref="id147"/>
+		<label kind="guard">humanposition==2 &amp;&amp; humidity &lt; 46</label>
+		<label kind="assignment">rule8=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id146"/>
+		<target ref="id145"/>
+		<label kind="guard">humanposition!=2</label>
+		<label kind="assignment">rule8=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id146"/>
+		<target ref="id145"/>
+		<label kind="guard">humidity&gt;=46</label>
+		<label kind="assignment">rule8=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id147"/>
+		<target ref="id145"/>
+		<label kind="synchronisation">open_door[1]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule9</name>
+	<declaration>clock t;</declaration>
+	<location id="id155" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id156" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id157" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id155"/>
+	<transition>
+		<source ref="id155"/>
+		<target ref="id156"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id156"/>
+		<target ref="id157"/>
+		<label kind="guard">time &gt; 1440</label>
+		<label kind="assignment">rule9=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id156"/>
+		<target ref="id155"/>
+		<label kind="guard">time&lt;=1440</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id157"/>
+		<target ref="id155"/>
+		<label kind="synchronisation">turn_on_robotvacuum[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule10</name>
+	<declaration>clock t;</declaration>
+	<location id="id165" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id166" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id167" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id165"/>
+	<transition>
+		<source ref="id165"/>
+		<target ref="id166"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id166"/>
+		<target ref="id167"/>
+		<label kind="guard">humanposition==1 &amp;&amp; brightness &lt; 500</label>
+		<label kind="assignment">rule10=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id166"/>
+		<target ref="id165"/>
+		<label kind="guard">humanposition!=1</label>
+		<label kind="assignment">rule10=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id166"/>
+		<target ref="id165"/>
+		<label kind="guard">brightness&gt;=500</label>
+		<label kind="assignment">rule10=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id167"/>
+		<target ref="id165"/>
+		<label kind="synchronisation">open_curtain[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule11</name>
+	<declaration>clock t;</declaration>
+	<location id="id175" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id176" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id177" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id175"/>
+	<transition>
+		<source ref="id175"/>
+		<target ref="id176"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id176"/>
+		<target ref="id177"/>
+		<label kind="guard">time &lt; 1152</label>
+		<label kind="assignment">rule11=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id176"/>
+		<target ref="id175"/>
+		<label kind="guard">time&gt;=1152</label>
+		<label kind="assignment">rule11=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id177"/>
+		<target ref="id175"/>
+		<label kind="synchronisation">close_window[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Fan</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id185" x="0" y="25">
+		<name x="17" y="16">fanon</name>
+	</location>
+	<location id="id186" x="0" y="119">
+		<name x="-68" y="110">fanoff</name>
+	</location>
+	<init ref="id186"/>
+	<transition>
+		<source ref="id186"/>
+		<target ref="id185"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_fan[i]?</label>
+		<label kind="assignment" x="17" y="59">fan[i]=1,dtemperature=dtemperature-0.019999999552965164</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id185"/>
+		<target ref="id186"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_fan[i]?</label>
+		<label kind="assignment" x="-85" y="59">fan[i]=0,dtemperature=dtemperature+0.019999999552965164</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Curtain</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id187" x="0" y="25">
+		<name x="17" y="16">curtainopen</name>
+	</location>
+	<location id="id188" x="0" y="119">
+		<name x="-68" y="110">curtainclosed</name>
+	</location>
+	<init ref="id188"/>
+	<transition>
+		<source ref="id188"/>
+		<target ref="id187"/>
+		<label kind="synchronisation" x="-9" y="42">open_curtain[i]?</label>
+		<label kind="assignment" x="17" y="59">curtain[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id187"/>
+		<target ref="id188"/>
+		<label kind="synchronisation" x="-85" y="76">close_curtain[i]?</label>
+		<label kind="assignment" x="-85" y="59">curtain[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>RobotVacuum</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id189" x="0" y="25">
+		<name x="17" y="16">robotvacuumon</name>
+	</location>
+	<location id="id190" x="0" y="119">
+		<name x="-68" y="110">robotvacuumoff</name>
+	</location>
+	<init ref="id190"/>
+	<transition>
+		<source ref="id190"/>
+		<target ref="id189"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_robotvacuum[i]?</label>
+		<label kind="assignment" x="17" y="59">robotvacuum[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id189"/>
+		<target ref="id190"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_robotvacuum[i]?</label>
+		<label kind="assignment" x="-85" y="59">robotvacuum[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Window</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id191" x="0" y="25">
+		<name x="17" y="16">windowopen</name>
+	</location>
+	<location id="id192" x="0" y="119">
+		<name x="-68" y="110">windowclosed</name>
+	</location>
+	<init ref="id192"/>
+	<transition>
+		<source ref="id192"/>
+		<target ref="id191"/>
+		<label kind="synchronisation" x="-9" y="42">open_window[i]?</label>
+		<label kind="assignment" x="17" y="59">window[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id191"/>
+		<target ref="id192"/>
+		<label kind="synchronisation" x="-85" y="76">close_window[i]?</label>
+		<label kind="assignment" x="-85" y="59">window[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Humidifier</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id193" x="0" y="25">
+		<name x="17" y="16">humidifieron</name>
+	</location>
+	<location id="id194" x="0" y="119">
+		<name x="-68" y="110">humidifieroff</name>
+	</location>
+	<init ref="id194"/>
+	<transition>
+		<source ref="id194"/>
+		<target ref="id193"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_humidifier[i]?</label>
+		<label kind="assignment" x="17" y="59">humidifier[i]=1,dhumidity=dhumidity+0.10000000149011612,dpm25=dpm25+0.6000000238418579</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id193"/>
+		<target ref="id194"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_humidifier[i]?</label>
+		<label kind="assignment" x="-85" y="59">humidifier[i]=0,dhumidity=dhumidity-0.10000000149011612,dpm25=dpm25-0.6000000238418579</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>AirConditioner</name>
+	<parameter>int i</parameter>
+	<location id="id195" x="-17" y="25">
+		<name x="-17" y="-25">acoff</name>
+	</location>
+	<location id="id196" x="-212" y="136">
+		<name x="-221" y="144">cool</name>
+	</location>
+	<location id="id197" x="195" y="136">
+		<name x="178" y="144">heat</name>
+	</location>
+	<init ref="id195"/>
+	<transition>
+		<source ref="id195"/>
+		<target ref="id197"/>
+		<label kind="synchronisation" x="85" y="-17">turn_airconditioner_heat[i]?</label>
+		<label kind="assignment" x="0" y="25">airconditioner[i]=2,dtemperature=dtemperature+0.05000000074505806</label>
+		<nail x="195" y="25"/>
+	</transition>
+	<transition>
+		<source ref="id197"/>
+		<target ref="id196"/>
+		<label kind="synchronisation" x="-59" y="170">turn_airconditioner_cool[i]?</label>
+		<label kind="assignment" x="-102" y="187">airconditioner[i]=1,dtemperature=dtemperature-0.10000000149011612</label>
+		<nail x="-17" y="204"/>
+	</transition>
+	<transition>
+		<source ref="id196"/>
+		<target ref="id195"/>
+		<label kind="synchronisation" x="-187" y="8">turn_airconditioner_off[i]?</label>
+		<label kind="assignment" x="-221" y="25">airconditioner[i]=0,dtemperature=dtemperature+0.05000000074505806</label>
+		<nail x="-212" y="25"/>
+	</transition>
+	<transition>
+		<source ref="id197"/>
+		<target ref="id195"/>
+		<label kind="synchronisation" x="42" y="68">turn_airconditioner_off[i]?</label>
+		<label kind="assignment" x="0" y="85">airconditioner[i]=0,dtemperature=dtemperature-0.05000000074505806</label>
+	</transition>
+	<transition>
+		<source ref="id196"/>
+		<target ref="id197"/>
+		<label kind="synchronisation" x="-68" y="119">turn_airconditioner_heat[i]?</label>
+		<label kind="assignment" x="-102" y="136">airconditioner[i]=2,dtemperature=dtemperature+0.10000000149011612</label>
+	</transition>
+	<transition>
+		<source ref="id195"/>
+		<target ref="id196"/>
+		<label kind="synchronisation" x="-170" y="68">turn_airconditioner_cool[i]?</label>
+		<label kind="assignment" x="-212" y="85">airconditioner[i]=1,dtemperature=dtemperature-0.05000000074505806</label>
+	</transition>
+</template><template>
+	<name>Light</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id198" x="0" y="25">
+		<name x="17" y="16">lighton</name>
+	</location>
+	<location id="id199" x="0" y="119">
+		<name x="-68" y="110">lightoff</name>
+	</location>
+	<init ref="id199"/>
+	<transition>
+		<source ref="id199"/>
+		<target ref="id198"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_light[i]?</label>
+		<label kind="assignment" x="17" y="59">light[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id198"/>
+		<target ref="id199"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_light[i]?</label>
+		<label kind="assignment" x="-85" y="59">light[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>AirPurifier</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id200" x="0" y="25">
+		<name x="17" y="16">airpurifieron</name>
+	</location>
+	<location id="id201" x="0" y="119">
+		<name x="-68" y="110">airpurifieroff</name>
+	</location>
+	<init ref="id201"/>
+	<transition>
+		<source ref="id201"/>
+		<target ref="id200"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_airpurifier[i]?</label>
+		<label kind="assignment" x="17" y="59">airpurifier[i]=1,dpm25=dpm25-0.800000011920929</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id200"/>
+		<target ref="id201"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_airpurifier[i]?</label>
+		<label kind="assignment" x="-85" y="59">airpurifier[i]=0,dpm25=dpm25+0.800000011920929</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Door</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id202" x="0" y="25">
+		<name x="17" y="16">dooropen</name>
+	</location>
+	<location id="id203" x="0" y="119">
+		<name x="-68" y="110">doorclosed</name>
+	</location>
+	<init ref="id203"/>
+	<transition>
+		<source ref="id203"/>
+		<target ref="id202"/>
+		<label kind="synchronisation" x="-9" y="42">open_door[i]?</label>
+		<label kind="assignment" x="17" y="59">door[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id202"/>
+		<target ref="id203"/>
+		<label kind="synchronisation" x="-85" y="76">close_door[i]?</label>
+		<label kind="assignment" x="-85" y="59">door[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+	<system>
+Fan0=Fan(0);Curtain0=Curtain(0);Curtain1=Curtain(1);RobotVacuum0=RobotVacuum(0);Window0=Window(0);Humidifier0=Humidifier(0);AirConditioner0=AirConditioner(0);Light0=Light(0);Light1=Light(1);AirPurifier0=AirPurifier(0);Door0=Door(0);Door1=Door(1);system EnvironmentTemperature,EnvironmentHumidity,EnvironmentBrightness,EnvironmentPM25,EnvironmentCO,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6,Rule7,Rule8,Rule9,Rule10,Rule11,Fan0,Curtain0,Curtain1,RobotVacuum0,Window0,Humidifier0,AirConditioner0,Light0,Light1,AirPurifier0,Door0,Door1;
+</system>
+<queries>
+	<query>
+		<formula>simulate[&lt;=300] {temperature,humidity,brightness,pm25,co,rule1,rule2,rule3,rule4,rule5,rule6,rule7,rule8,rule9,rule10,rule11,fan[0],curtain[0],curtain[1],robotvacuum[0],window[0],humidifier[0],airconditioner[0],light[0],light[1],airpurifier[0],door[0],door[1]}</formula>
+		<comment></comment>
+	</query>
+</queries>
+</nta>

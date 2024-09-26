@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+
+<nta>
+
+	<declaration>// Place global declarations here.
+clock time;const int N = 1;
+int position;
+int rule0=0;
+int rule1=0;
+urgent broadcast chan turn_on_tap[N];
+urgent broadcast chan turn_off_tap[N];
+int tap[N];</declaration>
+
+	<template>
+
+		<name>Tap</name>
+
+		<parameter>int i</parameter>
+
+		<location id="id0" x="-59" y="-144">
+
+			<name x="-69" y="-178">off</name>
+
+		</location>
+
+		<location id="id1" x="-51" y="51">
+
+			<name x="-61" y="17">on</name>
+
+		</location>
+
+		<init ref="id0"/>
+
+		<transition>
+
+			<source ref="id1"/>
+
+			<target ref="id0"/>
+
+			<label kind="synchronisation" x="-33" y="-17">turn_off_tap[i]?</label>
+
+			<label kind="assignment" x="-33" y="0">tap[i]=0</label>
+
+			<nail x="17" y="-51"/>
+
+		</transition>
+
+		<transition>
+
+			<source ref="id0"/>
+
+			<target ref="id1"/>
+
+			<label kind="synchronisation" x="-118" y="-114">turn_on_tap[i]?</label>
+
+			<label kind="assignment" x="-118" y="-97">tap[i]=1</label>
+
+			<nail x="-136" y="-51"/>
+
+		</transition>
+
+	</template>
+
+	<system>// Place template instantiations here.
+tap_0=Tap(0);
+Human_0=Human(3,7,12);
+// List one or more processes to be composed into a system.
+system Rule0,Rule1,tap_0,Human_0;</system>
+
+	<queries>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {tap[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {rule1}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {rule0}</formula>
+
+			<comment></comment>
+
+		</query>
+
+	</queries>
+
+</nta>
+

@@ -1,24 +1,18 @@
 appearance_state_machine {
-  name: "Humidifier"
-  states {
-    name: "hon"
-    prefab_name: "onPic"
-  }
-  states {
-    name: "hoff"
-    prefab_name: "offPic"
-  }
-  initial_state_name: "hoff"
+  name : "window[0]"
+  states {name : "won" prefab_name : "onPic"}
+  states {name : "woff" prefab_name : "offPic"}
+  initial_state_name : "woff"
   transitions {
-    trigger_name: "turn_hum_on"
-    prev_state_name: "hoff"
-    next_state_name: "hon"
-    prefab_name: "off2onPre"
+    trigger_name : "turn_win_on"
+    prev_state_name : "woff"
+    next_state_name : "won"
+    prefab_name : "off2onPre"
   }
   transitions {
-    trigger_name: "turn_hum_off"
-    prev_state_name: "hon"
-    next_state_name: "hoff"
-    prefab_name: "off2onPre"
+    trigger_name : "turn_win_off"
+    prev_state_name : "won"
+    next_state_name : "woff"
+    prefab_name : "on2offPre"
   }
 }

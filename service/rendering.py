@@ -39,7 +39,6 @@ RenderingTask = TypedDict('RenderingTask', {
 task_queue: List[RenderingTask] = []
 machines = 0
 
-
 @router.post("/api/add-rendering-task", response_class=PlainTextResponse)
 async def add_rendering_task(request: Request) -> str:
     # TODO: add layout info from input

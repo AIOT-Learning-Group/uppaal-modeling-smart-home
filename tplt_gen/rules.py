@@ -135,9 +135,9 @@ action_mappings = {
     '{name}_{i}.turn_{name}_off': 'turn_off_{name}[{i}]!',
     '{name}_{i}.open_{name}': 'open_{name}[{i}]!',
     '{name}_{i}.close_{name}': 'close_{name}[{i}]!',
-    'ac_{i}.turn_ac_off': 'turn_ac_off[{i}]!',
-    'ac_{i}.turn_ac_cool': 'turn_ac_cool[{i}]!',
-    'ac_{i}.turn_ac_heat': 'turn_ac_heat[{i}]!',
+    'ac_{i}.turn_airconditioner_off': 'turn_airconditioner_off[{i}]!',
+    'ac_{i}.turn_airconditioner_cool': 'turn_airconditioner_cool[{i}]!',
+    'ac_{i}.turn_airconditioner_heat': 'turn_airconditioner_heat[{i}]!',
     'SMS.send_msg': 'send_msg!'
 }
 

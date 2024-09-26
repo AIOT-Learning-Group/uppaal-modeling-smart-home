@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock time;
+int rule0=0;
+int rule1=0;
+int position;
+const int N = 1;
+int refrigerator[N];
+urgent broadcast chan close_refrigerator[N];
+urgent broadcast chan open_refrigerator[N];
+</declaration>
+	<template>
+		<name x="5" y="5">Refrigerator</name>
+		<parameter>int i</parameter>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="170" y="-255">
+			<name x="160" y="-289">close</name>
+		</location>
+		<location id="id1" x="161" y="0">
+			<name x="110" y="-8">open</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-34" y="-195">close_refrigerator[i]?</label>
+			<label kind="assignment" x="-17" y="-136">refrigerator[0]:=0</label>
+			<nail x="68" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="187" y="-204">open_refrigerator[i]?</label>
+			<label kind="assignment" x="255" y="-187">refrigerator[0]:=1</label>
+			<nail x="246" y="-136"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Refrigerator_0=Refrigerator(0);
+Human_0=Human(3,7,12);
+// List one or more processes to be composed into a system.
+system Refrigerator_0,Human_0,Rule0,Rule1;
+    </system>
+	<queries>
+		<query>
+			<formula>simulate[&lt;=30] {refrigerator[0]}</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

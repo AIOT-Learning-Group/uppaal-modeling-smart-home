@@ -4,7 +4,7 @@ from functools import partial
 
 from typing import Dict, List, Tuple
 from modeling.common import Composition, PartialComposition, ComposableTemplate
-from modeling.human import HumanModel
+from modeling.human import HumanModel, HumanModelWithThreeLocationsRQ3A
 from modeling.device import device_tables
 
 
@@ -115,6 +115,7 @@ trigger_mappings = {
     '{name}_{i}.on': '{name}[{i}]==1',
     '{name}_{i}.off': '{name}[{i}]==0',
     '{name}_{i}.open': '{name}[{i}]==1',
+    '{name}_{i}.close': '{name}[{i}]==0',
     '{name}_{i}.closed': '{name}[{i}]==0',
     '{name}_{i}.turn_{name}_on': 'turn_on_{name}[{i}]?',
     '{name}_{i}.turn_{name}_off': 'turn_off_{name}[{i}]?',
@@ -127,55 +128,66 @@ trigger_mappings = {
 }
 
 comparisons = ["==", "!=", "<", ">", "<=", ">="]
-variables = ["time", "temperature", "pm_2_5"]
+variables = ["time", "temperature", "pm25", "co", "humidity", "brightness"]
 for var in variables:
     for cmp in comparisons:
-        trigger_mappings[f"{var}{cmp}"+"{val}"] = f"{var}{cmp}"+"{val}"
+        trigger_mappings[f"{var} {cmp} "+"{val}"] = f"{var} {cmp} "+"{val}"
 
 action_mappings = {
+    'airconditioner_{i}.turn_airconditioner_on': 'turn_airconditioner_auto[{i}]!',
+    'airconditioner_{i}.turn_airconditioner_off': 'turn_airconditioner_off[{i}]!',
+    'airconditioner_{i}.turn_airconditioner_cool': 'turn_airconditioner_cool[{i}]!',
+    'airconditioner_{i}.turn_airconditioner_heat': 'turn_airconditioner_heat[{i}]!',
     '{name}_{i}.turn_{name}_on': 'turn_on_{name}[{i}]!',
     '{name}_{i}.turn_{name}_off': 'turn_off_{name}[{i}]!',
     '{name}_{i}.open_{name}': 'open_{name}[{i}]!',
     '{name}_{i}.close_{name}': 'close_{name}[{i}]!',
-    'airconditioner_{i}.turn_ac_off': 'turn_ac_off[{i}]!',
-    'airconditioner_{i}.turn_ac_cool': 'turn_ac_cool[{i}]!',
-    'airconditioner_{i}.turn_ac_heat': 'turn_ac_heat[{i}]!',
     'robotvacuum_{i}.turn_rv_on': 'turn_on_robotvacuum[{i}]!',
     'robotvacuum_{i}.turn_rv_off': 'turn_off_robotvacuum[{i}]!',
     'sms.send_msg': 'send_msg!'
 }
 
-
-on_off_devices_names = [
-    "fan", "airpurifier", "light",  "camera", "humidifier", "robotvacuum"
-]
-
-open_close_devices_names = [
-    "door", "curtain", "window",
-]
-
-special_devices_names = [
-    "airconditioner", "sms"
-]
-
-valid_device_names = on_off_devices_names + \
-    open_close_devices_names + special_devices_names
+class RuleContext:
+    on_off_devices_names: list[str] = []
+    open_close_devices_names: list[str] = []
+    special_devices_names: list[str] = []
+    valid_device_names: list[str] = []
+    device_to_name: dict[ComposableTemplate, str] = {}
 
 
-device_to_name: Dict[ComposableTemplate, str] = {
-    # TODO: use selected device table
-    v: k for k, v in device_tables[list(device_tables.keys())[0]].items()
-}
+global_rule_context = RuleContext()
 
-for device_name in valid_device_names:
-    # TODO: use selected device table
-    assert device_name in device_tables[list(device_tables.keys())[0]].keys(
-    ), "no corresponding device:" + device_name + " in " + str(list(device_tables[list(device_tables.keys())[0]].keys(
-    )))
+def init_global_rule_context():
+    global_rule_context.on_off_devices_names = [
+        "fan", "airpurifier", "light",  "humidifier", "robotvacuum"
+    ]
 
-# # TODO: use selected device table
-# for device_name in device_tables[list(device_tables.keys())[0]].keys():
-#     assert device_name in valid_device_names, "device name not valid:" + device_name
+    global_rule_context.open_close_devices_names = [
+        "door", "curtain", "window",
+    ]
+
+    global_rule_context.special_devices_names = [
+        "airconditioner"
+    ]
+
+    global_rule_context.valid_device_names = global_rule_context.on_off_devices_names + \
+        global_rule_context.open_close_devices_names + global_rule_context.special_devices_names
+
+
+    global_rule_context.device_to_name = {
+        # TODO: use selected device table
+        v: k for k, v in device_tables[list(device_tables.keys())[0]].items()
+    }
+
+    # for device_name in global_rule_context.valid_device_names:
+    #     # TODO: use selected device table
+    #     assert device_name in device_tables[list(device_tables.keys())[0]].keys(
+    #     ), "no corresponding device:" + device_name + " in " + str(list(device_tables[list(device_tables.keys())[0]].keys(
+    #     )))
+
+    # # TODO: use selected device table
+    # for device_name in device_tables[list(device_tables.keys())[0]].keys():
+    #     assert device_name in valid_device_names, "device name not valid:" + device_name
 
 
 def parse_trigger(location_to_idx: Dict[str, int], raw_trigger: str) -> str:
@@ -212,6 +224,7 @@ def parse_rule(location_to_idx: Dict[str, int], trigger: str, action: str) -> Tu
 def parse_tap_rules(location_to_idx: Dict[str, int], text: str) -> Tuple[List[str], List[str]]:
     triggers, actions = [], []
     for line in text.splitlines():
+        print(line)
         if line.startswith("#"):
             continue
         trigger = line[line.find("IF ") + len("IF "):line.find(" THEN ")]
@@ -281,12 +294,6 @@ class RuleSet:
         return t_tplt, t_decl, t_inst, t_sys, t_var, t_used_nodes
 
 
-# test = RuleSet(HumanModelWithThreeLocations, """IF Human.home THEN door_0.open_door
-# IF Human.out THEN light_0.turn_light_off
-# IF door_0.open THEN camera_0.turn_camera_on
-# IF camera_0.on THEN SMS.send_msg
-# IF door_0.open THEN SMS.send_msg
-# """, 0.1)
 # print(test.compose(100))
 # def update_rules(tap_set: str, rule_delay=1):
 #     if not os.path.exists(f'rule_templates/{tap_set}'):
@@ -296,8 +303,6 @@ class RuleSet:
 #     for i, (trigger, action) in enumerate(tap_rules):
 #         open(f"rule_templates/{tap_set}/rule{i+1}.tplt", "w").write(build_rule(
 #             f"Rule{i+1}", trigger, to_anti_trigger(trigger), action, rule_delay, i * 10))
-
-
 # if __name__ == "__main__":
 #     # tap_sets = ['RQ3Case1', 'RQ3Case3', 'RQ3Case4',
 #     #             'RQ3Case5', 'RQ3Case6', 'RQ3Case7', 'RQ3Case9', 'RQ3Case10']

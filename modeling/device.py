@@ -65,7 +65,7 @@ def build_from_owl_individual():
 def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200, impact_env: Union[None, str, List[str]] = None, impact_rate: Union[float, List[float]] = 0, onoff_to_openclose: bool = False) -> PartialComposition:
     positive, negative = "", ""
     if impact_env != None and len(impact_env) > 0:
-        logger.info(name + str(impact_env) + str(len(impact_env)))
+        logger.info(name + str(impact_env) + " " +  str(len(impact_env)))
         if type(impact_env) is list and type(impact_rate) is list:
             assert len(impact_env) == len(impact_rate)
             for i in range(len(impact_env)):
@@ -124,11 +124,11 @@ def build_two_state_device_with_impacts(name: str = "Device", offset: int = 200,
     return name, tplt, decl
 
 
-def build_device_air_conditioner(name: str, offset: int = 300, impact_rate: float = 0.02) -> PartialComposition:
+def build_device_airconditioner(name: str, offset: int = 300, impact_rate: float = 0.02) -> PartialComposition:
     decl = f"int {name.lower()}[{{number}}];\n"
-    decl += "urgent broadcast chan turn_ac_off[{number}];\n"
-    decl += "urgent broadcast chan turn_ac_cool[{number}];\n"
-    decl += "urgent broadcast chan turn_ac_heat[{number}];\n"
+    decl += "urgent broadcast chan turn_airconditioner_off[{number}];\n"
+    decl += "urgent broadcast chan turn_airconditioner_cool[{number}];\n"
+    decl += "urgent broadcast chan turn_airconditioner_heat[{number}];\n"
     return name, f"""<template>
 \t<name>{name}</name>
 \t<parameter>int i</parameter>
@@ -145,40 +145,40 @@ def build_device_air_conditioner(name: str, offset: int = 300, impact_rate: floa
 \t<transition>
 \t\t<source ref="id{offset}"/>
 \t\t<target ref="id{offset+2}"/>
-\t\t<label kind="synchronisation" x="85" y="-17">turn_ac_heat[i]?</label>
+\t\t<label kind="synchronisation" x="85" y="-17">turn_airconditioner_heat[i]?</label>
 \t\t<label kind="assignment" x="0" y="25">airconditioner[i]=2,dtemperature=dtemperature+{impact_rate}</label>
 \t\t<nail x="195" y="25"/>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+2}"/>
 \t\t<target ref="id{offset+1}"/>
-\t\t<label kind="synchronisation" x="-59" y="170">turn_ac_cool[i]?</label>
+\t\t<label kind="synchronisation" x="-59" y="170">turn_airconditioner_cool[i]?</label>
 \t\t<label kind="assignment" x="-102" y="187">airconditioner[i]=1,dtemperature=dtemperature-{impact_rate*2}</label>
 \t\t<nail x="-17" y="204"/>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+1}"/>
 \t\t<target ref="id{offset}"/>
-\t\t<label kind="synchronisation" x="-187" y="8">turn_ac_off[i]?</label>
+\t\t<label kind="synchronisation" x="-187" y="8">turn_airconditioner_off[i]?</label>
 \t\t<label kind="assignment" x="-221" y="25">airconditioner[i]=0,dtemperature=dtemperature+{impact_rate}</label>
 \t\t<nail x="-212" y="25"/>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+2}"/>
 \t\t<target ref="id{offset}"/>
-\t\t<label kind="synchronisation" x="42" y="68">turn_ac_off[i]?</label>
+\t\t<label kind="synchronisation" x="42" y="68">turn_airconditioner_off[i]?</label>
 \t\t<label kind="assignment" x="0" y="85">airconditioner[i]=0,dtemperature=dtemperature-{impact_rate}</label>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset+1}"/>
 \t\t<target ref="id{offset+2}"/>
-\t\t<label kind="synchronisation" x="-68" y="119">turn_ac_heat[i]?</label>
+\t\t<label kind="synchronisation" x="-68" y="119">turn_airconditioner_heat[i]?</label>
 \t\t<label kind="assignment" x="-102" y="136">airconditioner[i]=2,dtemperature=dtemperature+{impact_rate*2}</label>
 \t</transition>
 \t<transition>
 \t\t<source ref="id{offset}"/>
 \t\t<target ref="id{offset+1}"/>
-\t\t<label kind="synchronisation" x="-170" y="68">turn_ac_cool[i]?</label>
+\t\t<label kind="synchronisation" x="-170" y="68">turn_airconditioner_cool[i]?</label>
 \t\t<label kind="assignment" x="-212" y="85">airconditioner[i]=1,dtemperature=dtemperature-{impact_rate}</label>
 \t</transition>
 </template>""", decl
@@ -225,7 +225,7 @@ def build_from_pb(pb_device: PbDevice) -> Optional[ComposableTemplate]:
     elif pb_device.WhichOneof("constructor") == "ctor_ac":
         ctor_ac = pb_device.ctor_ac
         return ComposableTemplate(pb_device.name,
-                                  lambda name, x: build_device_air_conditioner(name, x, ctor_ac.impact_rate), 3)
+                                  lambda name, x: build_device_airconditioner(name, x, ctor_ac.impact_rate), 3)
     elif pb_device.WhichOneof("constructor") == "ctor_sms":
         return ComposableTemplate(pb_device.name, lambda name, x: build_sms(name, x), 1)
     return None
@@ -248,12 +248,12 @@ def load_device_table(pb_system_device_models: PbSystemDeviceModels) -> None:
             else:
                 logger.info("failed to add device " + pb_device.name)
     # READ FROM PROTO
-    load_into_device_table(device_tables)
+    # load_into_device_table(device_tables) # 暂时注释掉
 
-pb_system_device_models = PbSystemDeviceModels()
-text_format.Parse(open(KNOWLEDGEBASE_SYSTEM_DEVICE_MODELS,
-                  'r').read(), pb_system_device_models)
-load_device_table(pb_system_device_models)
+# pb_system_device_models = PbSystemDeviceModels()
+# text_format.Parse(open(KNOWLEDGEBASE_SYSTEM_DEVICE_MODELS,
+#                   'r').read(), pb_system_device_models)
+# load_device_table(pb_system_device_models)
 
 if __name__ == "__main__":
     print(build_from_owl_individual())

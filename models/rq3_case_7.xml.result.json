@@ -1,0 +1,1276 @@
+{
+  "keyFrames": [
+    {
+      "timestamp": 50.21399999998332,
+      "name": "IF Human.home THEN door_0.open_door",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 0.21400000000000002,
+      "name": "IF Human.out THEN light_0.turn_light_off",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 50.41399999998314,
+      "name": "IF door_0.open THEN camera_0.turn_camera_on",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 50.41399999998314,
+      "name": "IF camera_0.on THEN SMS.send_msg",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 50.41399999998314,
+      "name": "IF door_0.open THEN SMS.send_msg",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 0.0,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "0.0"
+    },
+    {
+      "timestamp": 0.0,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "0.0"
+    },
+    {
+      "timestamp": 50.39999999998314,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "0.0"
+    },
+    {
+      "timestamp": 50.39999999998314,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "0.0"
+    },
+    {
+      "timestamp": 50.41399999998314,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "2.0"
+    },
+    {
+      "timestamp": 50.41399999998314,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "2.0"
+    },
+    {
+      "timestamp": 50.599999999982956,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "2.0"
+    },
+    {
+      "timestamp": 50.599999999982956,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "2.0"
+    },
+    {
+      "timestamp": 50.613999999982966,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "4.0"
+    },
+    {
+      "timestamp": 50.613999999982966,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "4.0"
+    },
+    {
+      "timestamp": 50.79999999998278,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "4.0"
+    },
+    {
+      "timestamp": 50.79999999998278,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "4.0"
+    },
+    {
+      "timestamp": 50.813999999982755,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "6.0"
+    },
+    {
+      "timestamp": 50.813999999982755,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "6.0"
+    },
+    {
+      "timestamp": 50.9999999999826,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "6.0"
+    },
+    {
+      "timestamp": 50.9999999999826,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "6.0"
+    },
+    {
+      "timestamp": 51.01399999998258,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "8.0"
+    },
+    {
+      "timestamp": 51.01399999998258,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "8.0"
+    },
+    {
+      "timestamp": 51.19999999998242,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "8.0"
+    },
+    {
+      "timestamp": 51.19999999998242,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "8.0"
+    },
+    {
+      "timestamp": 51.21399999998242,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "10.0"
+    },
+    {
+      "timestamp": 51.21399999998242,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "10.0"
+    },
+    {
+      "timestamp": 51.39999999998224,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "10.0"
+    },
+    {
+      "timestamp": 51.39999999998224,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "10.0"
+    },
+    {
+      "timestamp": 51.41399999998222,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "12.0"
+    },
+    {
+      "timestamp": 51.41399999998222,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "12.0"
+    },
+    {
+      "timestamp": 51.59999999998206,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "12.0"
+    },
+    {
+      "timestamp": 51.59999999998206,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "12.0"
+    },
+    {
+      "timestamp": 51.613999999982035,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "14.0"
+    },
+    {
+      "timestamp": 51.613999999982035,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "14.0"
+    },
+    {
+      "timestamp": 51.79999999998188,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "14.0"
+    },
+    {
+      "timestamp": 51.79999999998188,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "14.0"
+    },
+    {
+      "timestamp": 51.81399999998187,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "16.0"
+    },
+    {
+      "timestamp": 51.81399999998187,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "16.0"
+    },
+    {
+      "timestamp": 51.999999999981696,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "16.0"
+    },
+    {
+      "timestamp": 51.999999999981696,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "16.0"
+    },
+    {
+      "timestamp": 52.013999999981685,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 52.013999999981685,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 52.199999999981515,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 52.199999999981515,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 52.2139999999815,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "20.0"
+    },
+    {
+      "timestamp": 52.2139999999815,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "20.0"
+    },
+    {
+      "timestamp": 52.39999999998135,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "20.0"
+    },
+    {
+      "timestamp": 52.39999999998135,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "20.0"
+    },
+    {
+      "timestamp": 52.41399999998132,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "22.0"
+    },
+    {
+      "timestamp": 52.41399999998132,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "22.0"
+    },
+    {
+      "timestamp": 52.599999999981165,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "22.0"
+    },
+    {
+      "timestamp": 52.599999999981165,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "22.0"
+    },
+    {
+      "timestamp": 52.61399999998114,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "24.0"
+    },
+    {
+      "timestamp": 52.61399999998114,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "24.0"
+    },
+    {
+      "timestamp": 52.799999999980955,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "24.0"
+    },
+    {
+      "timestamp": 52.799999999980955,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "24.0"
+    },
+    {
+      "timestamp": 52.81399999998096,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "26.0"
+    },
+    {
+      "timestamp": 52.81399999998096,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "26.0"
+    },
+    {
+      "timestamp": 52.99999999998077,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "26.0"
+    },
+    {
+      "timestamp": 52.99999999998077,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "26.0"
+    },
+    {
+      "timestamp": 53.01399999998078,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "28.0"
+    },
+    {
+      "timestamp": 53.01399999998078,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "28.0"
+    },
+    {
+      "timestamp": 53.199999999980605,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "28.0"
+    },
+    {
+      "timestamp": 53.199999999980605,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "28.0"
+    },
+    {
+      "timestamp": 53.2139999999806,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "30.0"
+    },
+    {
+      "timestamp": 53.2139999999806,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "30.0"
+    },
+    {
+      "timestamp": 53.39999999998042,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "30.0"
+    },
+    {
+      "timestamp": 53.39999999998042,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "30.0"
+    },
+    {
+      "timestamp": 53.41399999998042,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "32.0"
+    },
+    {
+      "timestamp": 53.41399999998042,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "32.0"
+    },
+    {
+      "timestamp": 53.59999999998024,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "32.0"
+    },
+    {
+      "timestamp": 53.59999999998024,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "32.0"
+    },
+    {
+      "timestamp": 53.613999999980216,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "34.0"
+    },
+    {
+      "timestamp": 53.613999999980216,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "34.0"
+    },
+    {
+      "timestamp": 53.79999999998006,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "34.0"
+    },
+    {
+      "timestamp": 53.79999999998006,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "34.0"
+    },
+    {
+      "timestamp": 53.813999999980034,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "36.0"
+    },
+    {
+      "timestamp": 53.813999999980034,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "36.0"
+    },
+    {
+      "timestamp": 53.99999999997988,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "36.0"
+    },
+    {
+      "timestamp": 53.99999999997988,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "36.0"
+    },
+    {
+      "timestamp": 54.013999999979866,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "38.0"
+    },
+    {
+      "timestamp": 54.013999999979866,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "38.0"
+    },
+    {
+      "timestamp": 54.199999999979696,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "38.0"
+    },
+    {
+      "timestamp": 54.199999999979696,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "38.0"
+    },
+    {
+      "timestamp": 54.213999999979684,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "40.0"
+    },
+    {
+      "timestamp": 54.213999999979684,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "40.0"
+    },
+    {
+      "timestamp": 54.39999999997953,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "40.0"
+    },
+    {
+      "timestamp": 54.39999999997953,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "40.0"
+    },
+    {
+      "timestamp": 54.4139999999795,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "42.0"
+    },
+    {
+      "timestamp": 54.4139999999795,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "42.0"
+    },
+    {
+      "timestamp": 54.599999999979346,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "42.0"
+    },
+    {
+      "timestamp": 54.599999999979346,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "42.0"
+    },
+    {
+      "timestamp": 54.61399999997932,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "44.0"
+    },
+    {
+      "timestamp": 54.61399999997932,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "44.0"
+    },
+    {
+      "timestamp": 54.799999999979136,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "44.0"
+    },
+    {
+      "timestamp": 54.799999999979136,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "44.0"
+    },
+    {
+      "timestamp": 54.81399999997914,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "46.0"
+    },
+    {
+      "timestamp": 54.81399999997914,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "46.0"
+    },
+    {
+      "timestamp": 54.999999999978954,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "46.0"
+    },
+    {
+      "timestamp": 54.999999999978954,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "46.0"
+    },
+    {
+      "timestamp": 55.01399999997896,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "48.0"
+    },
+    {
+      "timestamp": 55.01399999997896,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "48.0"
+    },
+    {
+      "timestamp": 55.19999999997877,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "48.0"
+    },
+    {
+      "timestamp": 55.19999999997877,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "48.0"
+    },
+    {
+      "timestamp": 55.21399999997878,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "50.0"
+    },
+    {
+      "timestamp": 55.21399999997878,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "50.0"
+    },
+    {
+      "timestamp": 55.399999999978604,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "50.0"
+    },
+    {
+      "timestamp": 55.399999999978604,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "50.0"
+    },
+    {
+      "timestamp": 55.4139999999786,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "52.0"
+    },
+    {
+      "timestamp": 55.4139999999786,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "52.0"
+    },
+    {
+      "timestamp": 55.59999999997842,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "52.0"
+    },
+    {
+      "timestamp": 55.59999999997842,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "52.0"
+    },
+    {
+      "timestamp": 55.6139999999784,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "54.0"
+    },
+    {
+      "timestamp": 55.6139999999784,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "54.0"
+    },
+    {
+      "timestamp": 55.79999999997824,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "54.0"
+    },
+    {
+      "timestamp": 55.79999999997824,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "54.0"
+    },
+    {
+      "timestamp": 55.813999999978215,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "56.0"
+    },
+    {
+      "timestamp": 55.813999999978215,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "56.0"
+    },
+    {
+      "timestamp": 55.99999999997806,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "56.0"
+    },
+    {
+      "timestamp": 55.99999999997806,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "56.0"
+    },
+    {
+      "timestamp": 56.01399999997803,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "58.0"
+    },
+    {
+      "timestamp": 56.01399999997803,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "58.0"
+    },
+    {
+      "timestamp": 56.19999999997788,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "58.0"
+    },
+    {
+      "timestamp": 56.19999999997788,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "58.0"
+    },
+    {
+      "timestamp": 56.213999999977865,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "60.0"
+    },
+    {
+      "timestamp": 56.213999999977865,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "60.0"
+    },
+    {
+      "timestamp": 56.399999999977695,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "60.0"
+    },
+    {
+      "timestamp": 56.399999999977695,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "60.0"
+    },
+    {
+      "timestamp": 56.41399999997768,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "62.0"
+    },
+    {
+      "timestamp": 56.41399999997768,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "62.0"
+    },
+    {
+      "timestamp": 56.59999999997753,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "62.0"
+    },
+    {
+      "timestamp": 56.59999999997753,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "62.0"
+    },
+    {
+      "timestamp": 56.6139999999775,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "64.0"
+    },
+    {
+      "timestamp": 56.6139999999775,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "64.0"
+    },
+    {
+      "timestamp": 56.799999999977345,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "64.0"
+    },
+    {
+      "timestamp": 56.799999999977345,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "64.0"
+    },
+    {
+      "timestamp": 56.81399999997732,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "66.0"
+    },
+    {
+      "timestamp": 56.81399999997732,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "66.0"
+    },
+    {
+      "timestamp": 56.999999999977135,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "66.0"
+    },
+    {
+      "timestamp": 56.999999999977135,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "66.0"
+    },
+    {
+      "timestamp": 57.01399999997714,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "68.0"
+    },
+    {
+      "timestamp": 57.01399999997714,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "68.0"
+    },
+    {
+      "timestamp": 57.19999999997695,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "68.0"
+    },
+    {
+      "timestamp": 57.19999999997695,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "68.0"
+    },
+    {
+      "timestamp": 57.21399999997696,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "70.0"
+    },
+    {
+      "timestamp": 57.21399999997696,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "70.0"
+    },
+    {
+      "timestamp": 57.399999999976785,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "70.0"
+    },
+    {
+      "timestamp": 57.399999999976785,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "70.0"
+    },
+    {
+      "timestamp": 57.41399999997678,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "72.0"
+    },
+    {
+      "timestamp": 57.41399999997678,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "72.0"
+    },
+    {
+      "timestamp": 57.5999999999766,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "72.0"
+    },
+    {
+      "timestamp": 57.5999999999766,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "72.0"
+    },
+    {
+      "timestamp": 57.6139999999766,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "74.0"
+    },
+    {
+      "timestamp": 57.6139999999766,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "74.0"
+    },
+    {
+      "timestamp": 57.79999999997642,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "74.0"
+    },
+    {
+      "timestamp": 57.79999999997642,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "74.0"
+    },
+    {
+      "timestamp": 57.813999999976396,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "76.0"
+    },
+    {
+      "timestamp": 57.813999999976396,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "76.0"
+    },
+    {
+      "timestamp": 57.99999999997624,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "76.0"
+    },
+    {
+      "timestamp": 57.99999999997624,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "76.0"
+    },
+    {
+      "timestamp": 58.013999999976214,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "78.0"
+    },
+    {
+      "timestamp": 58.013999999976214,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "78.0"
+    },
+    {
+      "timestamp": 58.19999999997606,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "78.0"
+    },
+    {
+      "timestamp": 58.19999999997606,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "78.0"
+    },
+    {
+      "timestamp": 58.213999999976046,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "80.0"
+    },
+    {
+      "timestamp": 58.213999999976046,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "80.0"
+    },
+    {
+      "timestamp": 58.399999999975876,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "80.0"
+    },
+    {
+      "timestamp": 58.399999999975876,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "80.0"
+    },
+    {
+      "timestamp": 58.413999999975864,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "82.0"
+    },
+    {
+      "timestamp": 58.413999999975864,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "82.0"
+    },
+    {
+      "timestamp": 58.59999999997571,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "82.0"
+    },
+    {
+      "timestamp": 58.59999999997571,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "82.0"
+    },
+    {
+      "timestamp": 58.61399999997568,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "84.0"
+    },
+    {
+      "timestamp": 58.61399999997568,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "84.0"
+    },
+    {
+      "timestamp": 58.799999999975526,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "84.0"
+    },
+    {
+      "timestamp": 58.799999999975526,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "84.0"
+    },
+    {
+      "timestamp": 58.8139999999755,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "86.0"
+    },
+    {
+      "timestamp": 58.8139999999755,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "86.0"
+    },
+    {
+      "timestamp": 58.999999999975316,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "86.0"
+    },
+    {
+      "timestamp": 58.999999999975316,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "86.0"
+    },
+    {
+      "timestamp": 59.01399999997532,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "88.0"
+    },
+    {
+      "timestamp": 59.01399999997532,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "88.0"
+    },
+    {
+      "timestamp": 59.199999999975134,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "88.0"
+    },
+    {
+      "timestamp": 59.199999999975134,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "88.0"
+    },
+    {
+      "timestamp": 59.21399999997514,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "90.0"
+    },
+    {
+      "timestamp": 59.21399999997514,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "90.0"
+    },
+    {
+      "timestamp": 59.39999999997495,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "90.0"
+    },
+    {
+      "timestamp": 59.39999999997495,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "90.0"
+    },
+    {
+      "timestamp": 59.41399999997496,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "92.0"
+    },
+    {
+      "timestamp": 59.41399999997496,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "92.0"
+    },
+    {
+      "timestamp": 59.599999999974784,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "92.0"
+    },
+    {
+      "timestamp": 59.599999999974784,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "92.0"
+    },
+    {
+      "timestamp": 59.61399999997478,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "94.0"
+    },
+    {
+      "timestamp": 59.61399999997478,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "94.0"
+    },
+    {
+      "timestamp": 59.7999999999746,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "94.0"
+    },
+    {
+      "timestamp": 59.7999999999746,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "94.0"
+    },
+    {
+      "timestamp": 59.81399999997458,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "96.0"
+    },
+    {
+      "timestamp": 59.81399999997458,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "96.0"
+    },
+    {
+      "timestamp": 59.99999999997442,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "96.0"
+    },
+    {
+      "timestamp": 59.99999999997442,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "96.0"
+    },
+    {
+      "timestamp": 60.001999999974416,
+      "name": "received_msgs",
+      "type": 1,
+      "animation": "98.0"
+    },
+    {
+      "timestamp": 50.19999999998332,
+      "name": "door[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.19999999998332,
+      "name": "door[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.21399999998332,
+      "name": "door[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.21399999998332,
+      "name": "door[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 60.001999999974416,
+      "name": "door[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 2.0,
+      "name": "out",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 39.61399999999998,
+      "name": "doorway",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 42.0,
+      "name": "doorway",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 45.806999999999995,
+      "name": "P1",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 49.61399999999998,
+      "name": "home",
+      "type": 3,
+      "animation": ""
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+
+<nta>
+
+	<declaration>// Place global declarations here.
+const int N = 1;
+clock time;
+int rule0=0;
+int rule1=0;
+int rule2=0;
+int rule3=0;
+int rule4=0;
+int rule5=0;
+
+urgent broadcast chan humidity_low[1];
+urgent broadcast chan humidity_low_enough[1];
+urgent broadcast chan humidity_high[1];
+urgent broadcast chan humidity_high_enough[1];
+
+int humidifier[1];
+urgent broadcast chan turn_on_humidifier[1];
+urgent broadcast chan turn_off_humidifier[1];
+
+int dehumidifier[N];
+urgent broadcast chan turn_on_dehumidifier[N];
+urgent broadcast chan turn_off_dehumidifier[N];
+
+int window[1];
+urgent broadcast chan close_window[1];
+urgent broadcast chan open_window[1];
+
+clock humidity=15.0;double dhumidity=0.0;</declaration>
+
+	<template>
+
+		<name>Humidifier</name>
+
+		<parameter>int i</parameter>
+
+		<location id="id0" x="-195" y="25">
+
+			<name x="-204" y="-17">off</name>
+
+		</location>
+
+		<location id="id1" x="-195" y="-153">
+
+			<name x="-205" y="-187">on</name>
+
+		</location>
+
+		<init ref="id0"/>
+
+		<transition>
+
+			<source ref="id0"/>
+
+			<target ref="id1"/>
+
+			<label kind="synchronisation" x="-391" y="-102">turn_on_humidifier[0]?</label>
+
+			<label kind="assignment" x="-408" y="-68">humidifier[0]:=1,
+dhumidity=dhumidity+0.5</label>
+
+			<nail x="-246" y="-68"/>
+
+		</transition>
+
+		<transition>
+
+			<source ref="id1"/>
+
+			<target ref="id0"/>
+
+			<label kind="synchronisation" x="-169" y="-127">turn_off_humidifier[0]?</label>
+
+			<label kind="assignment" x="-127" y="-85">humidifier[0]:=0,
+dhumidity=dhumidity-0.5</label>
+
+			<nail x="-153" y="-68"/>
+
+		</transition>
+
+	</template>
+
+	<system>// Place template instantiations here.
+// EnvironmentTemperature,
+// List one or more processes to be composed into a system.
+Humidifier_0=Humidifier(0);
+Dehumidifier_0=Dehumidifier(0);
+Window_0=Window(0);
+system Humidity,Humid_censor,Humidifier_0,Dehumidifier_0,Window_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5;
+    </system>
+
+	<queries>
+
+		<query>
+
+			<formula>simulate[&lt;=10] {window[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=10] {humidifier[0],window[0],rule4}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=300] {humidity,rule0,rule1,rule2,rule3,humidifier[0],dehumidifier[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+	</queries>
+
+</nta>
+

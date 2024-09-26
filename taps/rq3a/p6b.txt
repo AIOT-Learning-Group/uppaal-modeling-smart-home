@@ -1,0 +1,14 @@
+a. IF Human.out AND humidity < 46 THEN door_1.open_door
+b. IF window_0.close THEN fan_0.turn_fan_off
+c. IF Human.out THEN robotvacuum_0.turn_rv_off
+d. IF curtain_0.close_curtain THEN light_1.turn_light_on
+e. IF co > 50 THEN window_0.close_window
+f. IF brightness < 200 THEN humidifier_0.turn_humidifier_on
+g. IF Human.out THEN light_1.turn_light_off
+h. IF humidity > 62 THEN door_0.open_door
+i. IF Human.bedroom AND humidity > 70 THEN light_0.turn_light_on
+j. IF temperature > 24 THEN airpurifier_0.turn_airpurifier_on
+
+
+
+答案：e 满足 Unsafety

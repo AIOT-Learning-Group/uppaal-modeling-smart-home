@@ -4046,43 +4046,55 @@
     },
     {
       "timestamp": 1.2046666666666668,
-      "name": "doorway",
+      "name": "P1",
       "type": 3,
       "animation": ""
     },
     {
       "timestamp": 0.4093333333333334,
-      "name": "P1",
+      "name": "doorway",
       "type": 3,
       "animation": ""
     },
     {
       "timestamp": -1.9299999999999997,
-      "name": "home",
+      "name": "kitchen",
       "type": 3,
       "animation": ""
     },
     {
       "timestamp": 2.0,
-      "name": "home",
+      "name": "kitchen",
       "type": 3,
       "animation": ""
     },
     {
       "timestamp": 10.80700000000142,
-      "name": "P1",
+      "name": "doorway",
       "type": 3,
       "animation": ""
     },
     {
       "timestamp": 19.61400000000284,
-      "name": "doorway",
+      "name": "living_room",
       "type": 3,
       "animation": ""
     },
     {
       "timestamp": 22.0,
+      "name": "living_room",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 27.871333333333325,
       "name": "doorway",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 33.74266666666666,
+      "name": "P1",
       "type": 3,
       "animation": ""
     },

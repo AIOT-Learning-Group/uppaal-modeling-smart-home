@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+const int N = 1;
+clock time;int position=0;int rule1=0;
+int rule2=0;
+int rule3=0;
+int rule4=0;
+int rule5=0;
+int rule6=0;
+int rule7=0;
+int fan[1];
+urgent broadcast chan turn_on_fan[1];
+urgent broadcast chan turn_off_fan[1];
+int airpurifier[1];
+urgent broadcast chan turn_on_airpurifier[1];
+urgent broadcast chan turn_off_airpurifier[1];
+int airconditioner[N];
+urgent broadcast chan turn_airconditioner_off[N];
+urgent broadcast chan turn_airconditioner_cool[N];
+urgent broadcast chan turn_airconditioner_heat[N];
+int door[1];
+urgent broadcast chan open_door[1];
+urgent broadcast chan close_door[1];
+int light[1];
+urgent broadcast chan turn_on_light[1];
+urgent broadcast chan turn_off_light[1];
+int curtain[1];
+urgent broadcast chan open_curtain[1];
+urgent broadcast chan close_curtain[1];
+int camera[1];
+urgent broadcast chan turn_on_camera[1];
+urgent broadcast chan turn_off_camera[1];
+int humidifier[1];
+urgent broadcast chan turn_on_humidifier[1];
+urgent broadcast chan turn_off_humidifier[1];
+int window[1];
+urgent broadcast chan open_window[1];
+urgent broadcast chan close_window[1];
+int received_msgs=0;
+urgent broadcast chan send_msg;
+clock temperature=18.0;double dtemperature=0.0;</declaration>
+	<template>
+		<name>AirConditioner</name>
+		<parameter>int i</parameter>
+		<location id="id0" x="-17" y="25">
+			<name x="-17" y="-25">acoff</name>
+		</location>
+		<location id="id1" x="-212" y="136">
+			<name x="-221" y="144">cool</name>
+		</location>
+		<location id="id2" x="195" y="136">
+			<name x="178" y="144">heat</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="85" y="-17">turn_airconditioner_heat[i]?</label>
+			<label kind="assignment" x="0" y="25">airconditioner[i]=2,dtemperature=dtemperature+0.05</label>
+			<nail x="195" y="25"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-59" y="170">turn_airconditioner_cool[i]?</label>
+			<label kind="assignment" x="-102" y="187">airconditioner[i]=1,dtemperature=dtemperature-0.1</label>
+			<nail x="-17" y="204"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-187" y="8">turn_airconditioner_off[i]?</label>
+			<label kind="assignment" x="-221" y="25">airconditioner[i]=0,dtemperature=dtemperature+0.05</label>
+			<nail x="-212" y="25"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="42" y="68">turn_airconditioner_off[i]?</label>
+			<label kind="assignment" x="0" y="85">airconditioner[i]=0,dtemperature=dtemperature-0.05</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-68" y="119">turn_airconditioner_heat[i]?</label>
+			<label kind="assignment" x="-102" y="136">airconditioner[i]=2,dtemperature=dtemperature+0.1</label>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-170" y="68">turn_airconditioner_cool[i]?</label>
+			<label kind="assignment" x="-212" y="85">airconditioner[i]=1,dtemperature=dtemperature-0.05</label>
+		</transition>
+	</template>
+	<system>HumanInstance=Human(100.0,200.0);
+AirConditioner_0 = AirConditioner(0);
+Door_0 = Door(0);
+Window_0 = Window(0);
+system HumanInstance, AirConditioner_0, Door_0, Window_0, SMS, EnvironmentTemperature, Rule1, Rule2, Rule3, Rule4, Rule5, Rule6, Rule7;
+</system>
+	<queries>
+		<query>
+			<formula>simulate[&lt;=300] {temperature, rule1, rule2, rule3, rule4, rule5, rule6, rule7, airconditioner[0], door[0], window[0], received_msgs, position}</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

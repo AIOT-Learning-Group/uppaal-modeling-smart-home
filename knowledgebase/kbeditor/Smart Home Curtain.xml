@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+
+<nta>
+
+	<declaration>clock time;const int N = 1;
+int rule0=0;
+int rule1=0;
+int rule2=0;
+clock brightness=1500.0886369682387; double dbrightness=0.0;
+int openTime=10;
+int closeTime=50;
+urgent broadcast chan brightness_high[1];
+urgent broadcast chan brightness_low[1];
+
+int curtain[N];
+urgent broadcast chan open_curtain[N];
+urgent broadcast chan close_curtain[N];</declaration>
+
+	<template>
+
+		<name>Curtain</name>
+
+		<location id="id0" x="-136" y="-110">
+
+			<name x="-144" y="-161">close</name>
+
+		</location>
+
+		<location id="id1" x="-136" y="25">
+
+			<name x="-144" y="51">open</name>
+
+		</location>
+
+		<init ref="id1"/>
+
+		<transition>
+
+			<source ref="id1"/>
+
+			<target ref="id0"/>
+
+			<label kind="synchronisation" x="-102" y="-59">close_curtain[0]?</label>
+
+			<label kind="assignment" x="-93" y="-34">curtain[0]=0,
+dbrightness=-0.05</label>
+
+			<nail x="-102" y="-42"/>
+
+		</transition>
+
+		<transition>
+
+			<source ref="id0"/>
+
+			<target ref="id1"/>
+
+			<label kind="synchronisation" x="-331" y="-68">open_curtain[0]?</label>
+
+			<label kind="assignment" x="-297" y="-51">curtain[0]=1,
+dbrightness=0</label>
+
+			<nail x="-170" y="-42"/>
+
+		</transition>
+
+	</template>
+
+	<system>// Place template instantiations here.
+curtain_0=Curtain();
+// List one or more processes to be composed into a system.
+system Brightness,BrightnessCensor,Rule0,Rule1,Rule2,curtain_0;
+    </system>
+
+	<queries>
+
+		<query>
+
+			<formula>simulate[&lt;=300] {brightness}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=300] {rule1}</formula>
+
+			<comment></comment>
+
+		</query>
+
+	</queries>
+
+</nta>
+

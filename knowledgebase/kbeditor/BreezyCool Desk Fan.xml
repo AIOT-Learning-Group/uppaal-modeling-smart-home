@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+const int N = 1;
+urgent broadcast chan temperature_high[1];
+urgent broadcast chan temperature_low[1];
+urgent broadcast chan turn_on_fan[N];
+urgent broadcast chan turn_off_fan[N];
+int fan[N];
+</declaration>
+	<template>
+		<name x="5" y="5">Fan</name>
+		<parameter>int i</parameter>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="297" y="-42">
+			<name x="287" y="-76">off</name>
+		</location>
+		<location id="id1" x="306" y="153">
+			<name x="296" y="119">on</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="324" y="85">turn_off_fan[i]?</label>
+			<label kind="assignment" x="324" y="102">fan[0]=0,dtemperature=dtemperature+0.05</label>
+			<nail x="382" y="51"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="239" y="-13">turn_on_fan[i]?</label>
+			<label kind="assignment" x="239" y="4">fan[0]=1,dtemperature=dtemperature-0.05</label>
+			<nail x="221" y="51"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Fan_0 = Fan(0);
+// List one or more processes to be composed into a system.
+system Fan_0,EnvironmentTemperature,TemperatureCensor,Rule0,Rule1;
+    </system>
+	<queries>
+		<query>
+			<formula>simulate[&lt;=300] {rule1}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=300] {temperature}</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

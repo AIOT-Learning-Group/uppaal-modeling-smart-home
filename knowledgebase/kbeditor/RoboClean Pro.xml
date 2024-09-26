@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+
+<nta>
+
+	<declaration>// Place global declarations here.
+	const int N = 1;
+clock time;
+int rule0=0;
+int rule1=0;
+
+
+int openTime=3;
+int offTime=9;
+urgent broadcast chan turn_on_cleaningrobot[N];
+urgent broadcast chan turn_off_cleaningrobot[N];
+int cleaningrobot[N];
+clock position;
+</declaration>
+
+	<template>
+
+		<name x="5" y="5">CleaningRobot</name>
+
+		<declaration>// Place local declarations here.</declaration>
+
+		<location id="id0" x="178" y="-8">
+
+			<name x="168" y="-42">off</name>
+
+			<label kind="invariant" x="195" y="-25">position'==0</label>
+
+		</location>
+
+		<location id="id1" x="161" y="212">
+
+			<name x="170" y="229">on</name>
+
+			<label kind="invariant" x="144" y="263">position'==1</label>
+
+		</location>
+
+		<init ref="id0"/>
+
+		<transition>
+
+			<source ref="id1"/>
+
+			<target ref="id0"/>
+
+			<label kind="synchronisation" x="204" y="102">turn_off_cleaningrobot[0]?</label>
+
+			<label kind="assignment" x="195" y="136">cleaningrobot[0]:=0</label>
+
+			<nail x="221" y="93"/>
+
+		</transition>
+
+		<transition>
+
+			<source ref="id0"/>
+
+			<target ref="id1"/>
+
+			<label kind="synchronisation" x="-51" y="59">turn_on_cleaningrobot[0]?</label>
+
+			<label kind="assignment" x="-17" y="85">cleaningrobot[0]:=1</label>
+
+			<nail x="119" y="85"/>
+
+		</transition>
+
+	</template>
+
+	<system>// Place template instantiations here.
+cleaningRobot_0 = CleaningRobot();
+// List one or more processes to be composed into a system.
+system cleaningRobot_0,Rule0,Rule1;
+    </system>
+
+	<queries>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {dposition}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {rule0,time,openTime}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {cleaningRobot[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=9] {rule1}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=5] {rule0}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {position,cleaningRobot[0],rule0}</formula>
+
+			<comment></comment>
+
+		</query>
+
+	</queries>
+
+</nta>
+

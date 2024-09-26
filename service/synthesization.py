@@ -22,7 +22,10 @@ def submit_tap_rules(tap_rules: str = Body(...)) -> Dict[str, str]:
 async def filter_interactive_system(model: str = Body(...)) -> str:
     params = ["--operation=filter-interactive-system"]
     params.append("--data=" + model)
-    return invoke_external_java_service(params)
+    result = invoke_external_java_service(params)
+    print(model)
+    print(result)
+    return result
 
 
 @router.post("/api/filter-controller-models")

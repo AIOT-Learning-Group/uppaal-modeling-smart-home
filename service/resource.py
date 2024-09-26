@@ -124,13 +124,13 @@ def get_device_func_spec(include_state: bool = False) -> List[Specification]:
                         "subject": f"ac_{i}",
                         "predicates": [
                             ".off", ".cool", ".heat",
-                            ".turn_ac_off",
-                            ".turn_ac_cool",
-                            ".turn_ac_heat"
+                            ".turn_airconditioner_off",
+                            ".turn_airconditioner_cool",
+                            ".turn_airconditioner_heat"
                         ] if include_state else [
-                            ".turn_ac_off",
-                            ".turn_ac_cool",
-                            ".turn_ac_heat"
+                            ".turn_airconditioner_off",
+                            ".turn_airconditioner_cool",
+                            ".turn_airconditioner_heat"
                         ]
                     }
                 )

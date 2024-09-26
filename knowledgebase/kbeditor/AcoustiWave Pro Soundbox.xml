@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+const int N = 1;
+int soundbox[N];
+urgent broadcast chan turn_off_soundbox[N];
+urgent broadcast chan turn_on_soundbox[N];
+</declaration>
+	<template>
+		<name>SoundBox</name>
+		<parameter>int i</parameter>
+		<location id="id0" x="-42" y="-161">
+			<name x="-52" y="-195">off</name>
+		</location>
+		<location id="id1" x="-42" y="-17">
+			<name x="-51" y="0">on</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="25" y="-119">turn_off_soundbox[0]?</label>
+			<label kind="assignment" x="25" y="-102">soundbox[i]=0</label>
+			<nail x="17" y="-93"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-255" y="-110">turn_on_soundbox[0]?</label>
+			<label kind="assignment" x="-204" y="-93">soundbox[i]=1</label>
+			<nail x="-102" y="-93"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+human_0 = Human(3,8,15,24);
+window_0=Window(0);
+sound_box_0=SoundBox(0);
+light_0=Light(0);
+gas_0=Gas(0);
+alert_0=Alert(0);
+
+// List one or more processes to be composed into a system.
+system CO,COCensor,human_0,window_0,alert_0,sound_box_0,light_0,gas_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6;</system>
+	<queries>
+		<query>
+			<formula>simulate[&lt;=30] {position,light[0]}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=30] {position,gas[0]}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=30] {COConcentration}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=300] {rule5,window[0]}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=300] {alert[0]}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=300] {co,rule5}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=30] {position,soundbox[0]}</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

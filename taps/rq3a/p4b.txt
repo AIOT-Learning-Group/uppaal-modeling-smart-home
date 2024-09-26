@@ -1,0 +1,14 @@
+a. IF brightness < 500 THEN door_1.open_door AND door_0.close_door
+b. IF humidity > 54 THEN curtain_0.open_curtain
+c. IF Human.bedroom AND window_0.close THEN airconditioner_0.turn_airconditioner_cool
+d. IF light_1.on THEN humidifier_0.turn_humidifier_off
+e. IF light_0.off THEN robotvacuum_0.turn_rv_on
+f. IF door_0.close THEN curtain_1.open_curtain
+g. IF light_0.on AND brightness > 260 THEN light_0.turn_light_off
+h. IF pm25 > 250 AND temperature < 28 THEN fan_0.turn_fan_on
+i. IF Human.living_room AND time < 288 THEN light_1.turn_light_on
+j. IF airconditioner_0.cool AND Human.bedroom THEN window_0.close_window
+
+
+
+答案：c 和 j 满足Direct Dependence Conflict

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock time;
+clock pm2_5=30.0;
+double dpm2_5=0.0;
+const int N = 1;
+urgent broadcast chan pm_high[1];
+urgent broadcast chan pm_low[1];
+urgent broadcast chan turn_on_purifier[N];
+urgent broadcast chan turn_off_purifier[N];
+int purifier[N];
+int rule0;
+int rule1;</declaration>
+	<template>
+		<name>AirPurifier</name>
+		<parameter>int i</parameter>
+		<location id="id0" x="-136" y="-110">
+			<name x="-146" y="-144">off</name>
+		</location>
+		<location id="id1" x="-144" y="178">
+			<name x="-154" y="144">on</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-126" y="84">turn_off_purifier[i]?</label>
+			<label kind="assignment" x="-126" y="101">purifier[0]=0,
+dpm2_5=dpm2_5+0.1</label>
+			<nail x="-51" y="25"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-203" y="-63">turn_on_purifier[i]?</label>
+			<label kind="assignment" x="-203" y="-46">purifier[0]=1,
+dpm2_5=dpm2_5-0.1</label>
+			<nail x="-221" y="17"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+airpurifier_0=AirPurifier(0);
+// List one or more processes to be composed into a system.
+system PM2_5,PM_Censor,airpurifier_0,Rule0,Rule1;
+    </system>
+	<queries>
+		<query>
+			<formula>simulate[&lt;=300] {rule0,rule1, purifier[0]}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=300] {high}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=300] {pm2_5}</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

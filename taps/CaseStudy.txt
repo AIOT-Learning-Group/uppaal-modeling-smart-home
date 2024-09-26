@@ -1,0 +1,12 @@
+# living_room: Fan_0, Light_0, airconditioner_0, TV_0
+# kitchen: Light_1, Window_0, Curtain_0
+# bathroom: Light_2
+# bedroom: TV_1, Light_3
+# guest_room: airpurifier_0
+# out: Door_0
+IF Human.out THEN door_0.open_door
+IF Human.living_room THEN curtain_0.open_curtain
+IF temperature>19.6 THEN fan_0.turn_fan_on
+# IF Human.bathroom THEN light_0.turn_light_on
+# IF Human.guest_room THEN airpurifier_0.turn_airpurifier_on
+# IF Human.bedroom THEN tv_0.turn_tv_on

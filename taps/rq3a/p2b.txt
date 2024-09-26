@@ -1,0 +1,14 @@
+a. IF robotvacuum_0.off AND brightness > 200 THEN door_1.close_door
+b. IF humidity < 45 THEN humidifier_0.turn_humidifier_on
+c. IF light_1.off AND Human.bedroom THEN robotvacuum_0.turn_rv_on
+d. IF brightness > 440 THEN fan_0.turn_fan_on AND light_1.turn_light_on
+e. IF temperature < 26 THEN door_0.close_door AND light_0.turn_light_off
+f. IF fan_0.off AND humidity < 65 THEN humidifier_0.turn_humidifier_off
+g. IF airconditioner_0.cool AND door_1.close THEN window_0.open_window
+h. IF brightness < 260 THEN curtain_1.open_curtain
+i. IF time < 1152 THEN curtain_0.close_curtain
+j. IF Human.out THEN airpurifier_0.turn_airpurifier_off
+
+
+
+答案：b 和 f 满足 Execution Conflict

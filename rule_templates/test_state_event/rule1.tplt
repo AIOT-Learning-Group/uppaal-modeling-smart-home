@@ -1,0 +1,49 @@
+<template>
+	<name>Rule1</name>
+	<declaration>clock t;</declaration>
+	<location id="id0" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id1" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id2" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id0"/>
+	<transition>
+		<source ref="id0"/>
+		<target ref="id1"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id1"/>
+		<target ref="id2"/>
+		<label kind="guard">time&gt;100 &amp;&amp; time&lt;=101</label>
+		<label kind="assignment">rule1=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id1"/>
+		<target ref="id0"/>
+		<label kind="guard">time&lt;=100</label>
+		<label kind="assignment">rule1=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id1"/>
+		<target ref="id0"/>
+		<label kind="guard">time&gt;101</label>
+		<label kind="assignment">rule1=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id2"/>
+		<target ref="id0"/>
+		<label kind="synchronisation">turn_on_light[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+
+<nta>
+
+	<declaration>// Place global declarations here.
+clock time;const int N = 1;
+clock co;
+double dco=0.0;
+int position=0;
+int soundBox[1];
+int light[1];
+int gas[1];
+int window[N];
+int alert[1];
+int rule0=0;
+int rule1=0;
+int rule2=0;
+int rule3=0;
+int rule4=0;
+int rule5=0;
+int rule6=0;
+urgent broadcast chan turn_off_soundBox[1];
+urgent broadcast chan turn_on_soundBox[1];
+urgent broadcast chan turn_off_light[1];
+urgent broadcast chan turn_on_light[1];
+urgent broadcast chan turn_off_gas[1];
+urgent broadcast chan turn_on_gas[1];
+urgent broadcast chan turn_off_alert[1];
+urgent broadcast chan turn_on_alert[1];
+urgent broadcast chan open_window[N];
+urgent broadcast chan close_window[N];
+urgent broadcast chan CO_low[1];
+urgent broadcast chan CO_high[1];</declaration>
+
+	<template>
+
+		<name>Window</name>
+
+		<parameter>int i</parameter>
+
+		<location id="id0" x="-25" y="34">
+
+			<name x="-35" y="0">windowclosed</name>
+
+		</location>
+
+		<location id="id1" x="-25" y="-153">
+
+			<name x="-35" y="-187">windowopen</name>
+
+		</location>
+
+		<init ref="id0"/>
+
+		<transition>
+
+			<source ref="id0"/>
+
+			<target ref="id1"/>
+
+			<label kind="synchronisation" x="51" y="-76">open_window[i]?</label>
+
+			<label kind="assignment" x="51" y="-59">window[i]=1,
+dco=dco-0.5</label>
+
+			<nail x="59" y="-68"/>
+
+		</transition>
+
+		<transition>
+
+			<source ref="id1"/>
+
+			<target ref="id0"/>
+
+			<label kind="synchronisation" x="-204" y="-119">close_window[i]?</label>
+
+			<label kind="assignment" x="-195" y="-102">window[i]=0,
+dco=dco+0.5</label>
+
+			<nail x="-127" y="-76"/>
+
+		</transition>
+
+	</template>
+
+	<system>// Place template instantiations here.
+human_0 = Human(3,8,15,24);
+window_0=Window(0);
+sound_box_0=SoundBox(0);
+light_0=Light(0);
+gas_0=Gas(0);
+alert_0=Alert(0);
+
+// List one or more processes to be composed into a system.
+system CO,COCensor,human_0,window_0,alert_0,sound_box_0,light_0,gas_0,Rule0,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6;</system>
+
+	<queries>
+
+		<query>
+
+			<formula>simulate[&lt;=30] {position,light[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=30] {position,gas[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=30] {COConcentration}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=300] {rule5,window[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=300] {alert[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=300] {co,rule5}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=30] {position,soundBox[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+	</queries>
+
+</nta>
+

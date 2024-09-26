@@ -26,7 +26,7 @@
 	<transition>
 		<source ref="id42"/>
 		<target ref="id40"/>
-		<label kind="synchronisation">turn_ac_cool[0]!</label>
+		<label kind="synchronisation">turn_airconditioner_cool[0]!</label>
 		<nail x="300" y="-50"/>
 		<nail x="0" y="-50"/>
 	</transition>

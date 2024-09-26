@@ -1,0 +1,14 @@
+a. IF airpurifier.on THEN window_0.close_window
+b. IF Human.out AND humidity < 54 THEN humidifier_0.turn_humidifier_on
+c. IF time < 1152 THEN airpurifier_0.turn_airpurifier_off
+d. IF curtain_0.close_curtain AND time > 0 THEN airpurifier_0.turn_airpurifier_on
+e. IF temperature < 22 THEN light_1.turn_light_on
+f. IF Human.bedroom AND brightness < 380 THEN curtain_1.open_curtain
+g. IF pm25 > 202 THEN robotvacuum_0.turn_rv_off
+h. IF window_0.close THEN curtain_0.close_curtain AND airconditioner_0.turn_airconditioner_off
+i. IF Human.bedroom AND time > 0 THEN door_1.open_door
+j. IF humidity < 62 AND Human.bedroom THEN door_0.close_door
+
+
+
+答案：a d h 满足 Indirect Dependence Conflict

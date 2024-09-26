@@ -1,0 +1,5608 @@
+{
+  "keyFrames": [
+    {
+      "timestamp": 0.0,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 0.0,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 0.20066889632107018,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 0.20066889632107018,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.0"
+    },
+    {
+      "timestamp": 0.4013377926421402,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.00577962454921"
+    },
+    {
+      "timestamp": 0.4013377926421402,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.00577962454921"
+    },
+    {
+      "timestamp": 0.6020066889632104,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.01187147784009"
+    },
+    {
+      "timestamp": 0.6020066889632104,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.01187147784009"
+    },
+    {
+      "timestamp": 0.8026755852842804,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.01828954519053"
+    },
+    {
+      "timestamp": 0.8026755852842804,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.01828954519053"
+    },
+    {
+      "timestamp": 1.0033444816053507,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.02504825584353"
+    },
+    {
+      "timestamp": 1.0033444816053507,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.02504825584353"
+    },
+    {
+      "timestamp": 1.2040133779264206,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.03216248591261"
+    },
+    {
+      "timestamp": 1.2040133779264206,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.03216248591261"
+    },
+    {
+      "timestamp": 1.404682274247491,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.03964756058159"
+    },
+    {
+      "timestamp": 1.404682274247491,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.03964756058159"
+    },
+    {
+      "timestamp": 1.6053511705685608,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.04751925550218"
+    },
+    {
+      "timestamp": 1.6053511705685608,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.04751925550218"
+    },
+    {
+      "timestamp": 1.8060200668896307,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.0557937973448"
+    },
+    {
+      "timestamp": 1.8060200668896307,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.0557937973448"
+    },
+    {
+      "timestamp": 2.006688963210702,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.06448786344453"
+    },
+    {
+      "timestamp": 2.006688963210702,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.06448786344453"
+    },
+    {
+      "timestamp": 2.207357859531772,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.07361858049476"
+    },
+    {
+      "timestamp": 2.207357859531772,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.07361858049476"
+    },
+    {
+      "timestamp": 2.408026755852842,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.08320352223477"
+    },
+    {
+      "timestamp": 2.408026755852842,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.08320352223477"
+    },
+    {
+      "timestamp": 2.6086956521739117,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.09326070607555"
+    },
+    {
+      "timestamp": 2.6086956521739117,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.09326070607555"
+    },
+    {
+      "timestamp": 2.8093645484949823,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.10380858861727"
+    },
+    {
+      "timestamp": 2.8093645484949823,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.10380858861727"
+    },
+    {
+      "timestamp": 3.010033444816056,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.11486606000012"
+    },
+    {
+      "timestamp": 3.010033444816056,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.11486606000012"
+    },
+    {
+      "timestamp": 3.2107023411371225,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.12645243704034"
+    },
+    {
+      "timestamp": 3.2107023411371225,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.12645243704034"
+    },
+    {
+      "timestamp": 3.4113712374581957,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.13858745509831"
+    },
+    {
+      "timestamp": 3.4113712374581957,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.13858745509831"
+    },
+    {
+      "timestamp": 3.6120401337792623,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.15129125862843"
+    },
+    {
+      "timestamp": 3.6120401337792623,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.15129125862843"
+    },
+    {
+      "timestamp": 3.8127090301003363,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.16458439036163"
+    },
+    {
+      "timestamp": 3.8127090301003363,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.16458439036163"
+    },
+    {
+      "timestamp": 4.0133779264214064,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.17848777907139"
+    },
+    {
+      "timestamp": 4.0133779264214064,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.17848777907139"
+    },
+    {
+      "timestamp": 4.2140468227424766,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.19302272587775"
+    },
+    {
+      "timestamp": 4.2140468227424766,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.19302272587775"
+    },
+    {
+      "timestamp": 4.414715719063546,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.20821088904119"
+    },
+    {
+      "timestamp": 4.414715719063546,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.20821088904119"
+    },
+    {
+      "timestamp": 4.615384615384616,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.22407426720614"
+    },
+    {
+      "timestamp": 4.615384615384616,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.22407426720614"
+    },
+    {
+      "timestamp": 4.816053511705686,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.24063518105114"
+    },
+    {
+      "timestamp": 4.816053511705686,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.24063518105114"
+    },
+    {
+      "timestamp": 5.016722408026756,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.2579162533086"
+    },
+    {
+      "timestamp": 5.016722408026756,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.2579162533086"
+    },
+    {
+      "timestamp": 5.217391304347826,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.27594038711414"
+    },
+    {
+      "timestamp": 5.217391304347826,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.27594038711414"
+    },
+    {
+      "timestamp": 5.418060200668898,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.29473074265812"
+    },
+    {
+      "timestamp": 5.418060200668898,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.29473074265812"
+    },
+    {
+      "timestamp": 5.618729096989968,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.31431071210449"
+    },
+    {
+      "timestamp": 5.618729096989968,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.31431071210449"
+    },
+    {
+      "timestamp": 5.8193979933110365,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.33470389275287"
+    },
+    {
+      "timestamp": 5.8193979933110365,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.33470389275287"
+    },
+    {
+      "timestamp": 6.020066889632107,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.35593405842096"
+    },
+    {
+      "timestamp": 6.020066889632107,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.35593405842096"
+    },
+    {
+      "timestamp": 6.220735785953178,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.37802512902747"
+    },
+    {
+      "timestamp": 6.220735785953178,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.37802512902747"
+    },
+    {
+      "timestamp": 6.421404682274248,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.40100113836212"
+    },
+    {
+      "timestamp": 6.421404682274248,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.40100113836212"
+    },
+    {
+      "timestamp": 6.622073578595318,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.42488620003234"
+    },
+    {
+      "timestamp": 6.622073578595318,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.42488620003234"
+    },
+    {
+      "timestamp": 6.822742474916387,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.44970447158063"
+    },
+    {
+      "timestamp": 6.822742474916387,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.44970447158063"
+    },
+    {
+      "timestamp": 7.023411371237458,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.47548011677435"
+    },
+    {
+      "timestamp": 7.023411371237458,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.47548011677435"
+    },
+    {
+      "timestamp": 7.224080267558529,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.50223726607112"
+    },
+    {
+      "timestamp": 7.224080267558529,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.50223726607112"
+    },
+    {
+      "timestamp": 7.424749163879598,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.52999997527026"
+    },
+    {
+      "timestamp": 7.424749163879598,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.52999997527026"
+    },
+    {
+      "timestamp": 7.625418060200668,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.55879218236869"
+    },
+    {
+      "timestamp": 7.625418060200668,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.55879218236869"
+    },
+    {
+      "timestamp": 7.82608695652174,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.58863766264129"
+    },
+    {
+      "timestamp": 7.82608695652174,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.58863766264129"
+    },
+    {
+      "timestamp": 8.0,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.61543700606329"
+    },
+    {
+      "timestamp": 8.00000000000011,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.61543700606331"
+    },
+    {
+      "timestamp": 8.02675585284281,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.62624894518507"
+    },
+    {
+      "timestamp": 8.02675585284281,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.62624894518507"
+    },
+    {
+      "timestamp": 8.227424749163877,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.70843863578022"
+    },
+    {
+      "timestamp": 8.227424749163877,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.70843863578022"
+    },
+    {
+      "timestamp": 8.42809364548495,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.7917514738652"
+    },
+    {
+      "timestamp": 8.42809364548495,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.7917514738652"
+    },
+    {
+      "timestamp": 8.628762541806017,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.8762101002649"
+    },
+    {
+      "timestamp": 8.628762541806017,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.8762101002649"
+    },
+    {
+      "timestamp": 8.829431438127092,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.96183674308245"
+    },
+    {
+      "timestamp": 8.829431438127092,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.96183674308245"
+    },
+    {
+      "timestamp": 9.03010033444816,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.04865316295707"
+    },
+    {
+      "timestamp": 9.03010033444816,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.04865316295707"
+    },
+    {
+      "timestamp": 9.230769230769234,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.13668059688177"
+    },
+    {
+      "timestamp": 9.230769230769234,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.13668059688177"
+    },
+    {
+      "timestamp": 9.4314381270903,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.22593970066322"
+    },
+    {
+      "timestamp": 9.4314381270903,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.22593970066322"
+    },
+    {
+      "timestamp": 9.632107023411374,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.31645049010067"
+    },
+    {
+      "timestamp": 9.632107023411374,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.31645049010067"
+    },
+    {
+      "timestamp": 9.83277591973244,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.40823228097947"
+    },
+    {
+      "timestamp": 9.83277591973244,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.40823228097947"
+    },
+    {
+      "timestamp": 10.033444816053512,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.50130362797429"
+    },
+    {
+      "timestamp": 10.033444816053512,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.50130362797429"
+    },
+    {
+      "timestamp": 10.234113712374583,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.59568226256671"
+    },
+    {
+      "timestamp": 10.234113712374583,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.59568226256671"
+    },
+    {
+      "timestamp": 10.434782608695652,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.69138503009086"
+    },
+    {
+      "timestamp": 10.434782608695652,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.69138503009086"
+    },
+    {
+      "timestamp": 10.635451505016722,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.78842782602592"
+    },
+    {
+      "timestamp": 10.635451505016722,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.78842782602592"
+    },
+    {
+      "timestamp": 10.83612040133779,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.88682553165979"
+    },
+    {
+      "timestamp": 10.83612040133779,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.88682553165979"
+    },
+    {
+      "timestamp": 11.036789297658862,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.9865919492616"
+    },
+    {
+      "timestamp": 11.036789297658862,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.9865919492616"
+    },
+    {
+      "timestamp": 11.237458193979935,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.08773973689734"
+    },
+    {
+      "timestamp": 11.237458193979935,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.08773973689734"
+    },
+    {
+      "timestamp": 11.438127090301004,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.19028034304127"
+    },
+    {
+      "timestamp": 11.438127090301004,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.19028034304127"
+    },
+    {
+      "timestamp": 11.638795986622075,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.29422394112999"
+    },
+    {
+      "timestamp": 11.638795986622075,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.29422394112999"
+    },
+    {
+      "timestamp": 11.839464882943144,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.39957936422335"
+    },
+    {
+      "timestamp": 11.839464882943144,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.39957936422335"
+    },
+    {
+      "timestamp": 12.040133779264213,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.50635403993278"
+    },
+    {
+      "timestamp": 12.040133779264213,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.50635403993278"
+    },
+    {
+      "timestamp": 12.240802675585284,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.61455392579056"
+    },
+    {
+      "timestamp": 12.240802675585284,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.61455392579056"
+    },
+    {
+      "timestamp": 12.441471571906357,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.72418344523425"
+    },
+    {
+      "timestamp": 12.441471571906357,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.72418344523425"
+    },
+    {
+      "timestamp": 12.642140468227424,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.83524542438509"
+    },
+    {
+      "timestamp": 12.642140468227424,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.83524542438509"
+    },
+    {
+      "timestamp": 12.842809364548495,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.94774102980618"
+    },
+    {
+      "timestamp": 12.842809364548495,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.94774102980618"
+    },
+    {
+      "timestamp": 13.043478260869566,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.06166970742922"
+    },
+    {
+      "timestamp": 13.043478260869566,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.06166970742922"
+    },
+    {
+      "timestamp": 13.244147157190636,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.17702912284119"
+    },
+    {
+      "timestamp": 13.244147157190636,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.17702912284119"
+    },
+    {
+      "timestamp": 13.444816053511705,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.29381510312322"
+    },
+    {
+      "timestamp": 13.444816053511705,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.29381510312322"
+    },
+    {
+      "timestamp": 13.645484949832774,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.41202158044342"
+    },
+    {
+      "timestamp": 13.645484949832774,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.41202158044342"
+    },
+    {
+      "timestamp": 13.846153846153845,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.53164053759767"
+    },
+    {
+      "timestamp": 13.846153846153845,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.53164053759767"
+    },
+    {
+      "timestamp": 14.046822742474916,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.65266195570171"
+    },
+    {
+      "timestamp": 14.046822742474916,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.65266195570171"
+    },
+    {
+      "timestamp": 14.247491638795987,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.77507376423328"
+    },
+    {
+      "timestamp": 14.247491638795987,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.77507376423328"
+    },
+    {
+      "timestamp": 14.448160535117054,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.89886179362627"
+    },
+    {
+      "timestamp": 14.448160535117054,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.89886179362627"
+    },
+    {
+      "timestamp": 14.648829431438127,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.02400973061414"
+    },
+    {
+      "timestamp": 14.648829431438127,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.02400973061414"
+    },
+    {
+      "timestamp": 14.849498327759198,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.15049907652521"
+    },
+    {
+      "timestamp": 14.849498327759198,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.15049907652521"
+    },
+    {
+      "timestamp": 15.050167224080266,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.27830910872231"
+    },
+    {
+      "timestamp": 15.050167224080266,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.27830910872231"
+    },
+    {
+      "timestamp": 15.250836120401337,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.40741684538282"
+    },
+    {
+      "timestamp": 15.250836120401337,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.40741684538282"
+    },
+    {
+      "timestamp": 15.451505016722408,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.53779701380826"
+    },
+    {
+      "timestamp": 15.451505016722408,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.53779701380826"
+    },
+    {
+      "timestamp": 15.652173913043478,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.66942202244875"
+    },
+    {
+      "timestamp": 15.652173913043478,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.66942202244875"
+    },
+    {
+      "timestamp": 15.85284280936455,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.80226193682582"
+    },
+    {
+      "timestamp": 15.85284280936455,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.80226193682582"
+    },
+    {
+      "timestamp": 16.05351170568562,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.93628445952515"
+    },
+    {
+      "timestamp": 16.05351170568562,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.93628445952515"
+    },
+    {
+      "timestamp": 16.254180602006688,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.07145491443104"
+    },
+    {
+      "timestamp": 16.254180602006688,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.07145491443104"
+    },
+    {
+      "timestamp": 16.454849498327757,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.20773623536316"
+    },
+    {
+      "timestamp": 16.454849498327757,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.20773623536316"
+    },
+    {
+      "timestamp": 16.65551839464883,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.34508895926857"
+    },
+    {
+      "timestamp": 16.65551839464883,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.34508895926857"
+    },
+    {
+      "timestamp": 16.8561872909699,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.48347122411398"
+    },
+    {
+      "timestamp": 16.8561872909699,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.48347122411398"
+    },
+    {
+      "timestamp": 17.05685618729097,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.6228387716169"
+    },
+    {
+      "timestamp": 17.05685618729097,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.6228387716169"
+    },
+    {
+      "timestamp": 17.257525083612038,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.76314495493594"
+    },
+    {
+      "timestamp": 17.257525083612038,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.76314495493594"
+    },
+    {
+      "timestamp": 17.458193979933107,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.90434075143987"
+    },
+    {
+      "timestamp": 17.458193979933107,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.90434075143987"
+    },
+    {
+      "timestamp": 17.658862876254183,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.04637478065613"
+    },
+    {
+      "timestamp": 17.658862876254183,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.04637478065613"
+    },
+    {
+      "timestamp": 17.859531772575252,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.18919332749123"
+    },
+    {
+      "timestamp": 17.859531772575252,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.18919332749123"
+    },
+    {
+      "timestamp": 18.06020066889632,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.33274037080036"
+    },
+    {
+      "timestamp": 18.06020066889632,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.33274037080036"
+    },
+    {
+      "timestamp": 18.260869565217394,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.4769576173736"
+    },
+    {
+      "timestamp": 18.260869565217394,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.4769576173736"
+    },
+    {
+      "timestamp": 18.46153846153846,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.62178454138859"
+    },
+    {
+      "timestamp": 18.46153846153846,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.62178454138859"
+    },
+    {
+      "timestamp": 18.662207357859533,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.76715842936817"
+    },
+    {
+      "timestamp": 18.662207357859533,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.76715842936817"
+    },
+    {
+      "timestamp": 18.862876254180602,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.91301443066299"
+    },
+    {
+      "timestamp": 18.862876254180602,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.91301443066299"
+    },
+    {
+      "timestamp": 19.063545150501675,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.05928561346983"
+    },
+    {
+      "timestamp": 19.063545150501675,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.05928561346983"
+    },
+    {
+      "timestamp": 19.264214046822744,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.20590302637498"
+    },
+    {
+      "timestamp": 19.264214046822744,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.20590302637498"
+    },
+    {
+      "timestamp": 19.464882943143813,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.35279576539762"
+    },
+    {
+      "timestamp": 19.464882943143813,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.35279576539762"
+    },
+    {
+      "timestamp": 19.665551839464882,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.49989104649613"
+    },
+    {
+      "timestamp": 19.665551839464882,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.49989104649613"
+    },
+    {
+      "timestamp": 19.86622073578595,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.64711428347554"
+    },
+    {
+      "timestamp": 19.86622073578595,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.64711428347554"
+    },
+    {
+      "timestamp": 20.06688963210702,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.79438917122725"
+    },
+    {
+      "timestamp": 20.06688963210702,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.79438917122725"
+    },
+    {
+      "timestamp": 20.2675585284281,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.94163777420662"
+    },
+    {
+      "timestamp": 20.2675585284281,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.94163777420662"
+    },
+    {
+      "timestamp": 20.46822742474916,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.0887806200438"
+    },
+    {
+      "timestamp": 20.46822742474916,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.0887806200438"
+    },
+    {
+      "timestamp": 20.668896321070243,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.23573679816337"
+    },
+    {
+      "timestamp": 20.668896321070243,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.23573679816337"
+    },
+    {
+      "timestamp": 20.8695652173913,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.38242406327085"
+    },
+    {
+      "timestamp": 20.8695652173913,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.38242406327085"
+    },
+    {
+      "timestamp": 21.07023411371238,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.52875894355003"
+    },
+    {
+      "timestamp": 21.07023411371238,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.52875894355003"
+    },
+    {
+      "timestamp": 21.27090301003344,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.6746568533965"
+    },
+    {
+      "timestamp": 21.27090301003344,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.6746568533965"
+    },
+    {
+      "timestamp": 21.47157190635452,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.82003221049816"
+    },
+    {
+      "timestamp": 21.47157190635452,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.82003221049816"
+    },
+    {
+      "timestamp": 21.67224080267558,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.96479855705651"
+    },
+    {
+      "timestamp": 21.67224080267558,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.96479855705651"
+    },
+    {
+      "timestamp": 21.872909698996658,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.1088686849253"
+    },
+    {
+      "timestamp": 21.872909698996658,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.1088686849253"
+    },
+    {
+      "timestamp": 22.07357859531772,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.25215476443572"
+    },
+    {
+      "timestamp": 22.07357859531772,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.25215476443572"
+    },
+    {
+      "timestamp": 22.2742474916388,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.3945684766497"
+    },
+    {
+      "timestamp": 22.2742474916388,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.3945684766497"
+    },
+    {
+      "timestamp": 22.47491638795986,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.53602114878282"
+    },
+    {
+      "timestamp": 22.47491638795986,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.53602114878282"
+    },
+    {
+      "timestamp": 22.67558528428094,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.67642389251485"
+    },
+    {
+      "timestamp": 22.67558528428094,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.67642389251485"
+    },
+    {
+      "timestamp": 22.876254180602,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.8156877448983"
+    },
+    {
+      "timestamp": 22.876254180602,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.8156877448983"
+    },
+    {
+      "timestamp": 23.07692307692308,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.95372381156134"
+    },
+    {
+      "timestamp": 23.07692307692308,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.95372381156134"
+    },
+    {
+      "timestamp": 23.27759197324414,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.09044341189312"
+    },
+    {
+      "timestamp": 23.27759197324414,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.09044341189312"
+    },
+    {
+      "timestamp": 23.47826086956522,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.22575822588405"
+    },
+    {
+      "timestamp": 23.47826086956522,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.22575822588405"
+    },
+    {
+      "timestamp": 23.67892976588628,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.35958044229001"
+    },
+    {
+      "timestamp": 23.67892976588628,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.35958044229001"
+    },
+    {
+      "timestamp": 23.87959866220736,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.49182290777788"
+    },
+    {
+      "timestamp": 23.87959866220736,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.49182290777788"
+    },
+    {
+      "timestamp": 24.08026755852842,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.62239927670132"
+    },
+    {
+      "timestamp": 24.08026755852842,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.62239927670132"
+    },
+    {
+      "timestamp": 24.280936454849503,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.75122416115345"
+    },
+    {
+      "timestamp": 24.280936454849503,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.75122416115345"
+    },
+    {
+      "timestamp": 24.48160535117056,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.87821328093372"
+    },
+    {
+      "timestamp": 24.48160535117056,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.87821328093372"
+    },
+    {
+      "timestamp": 24.68227424749164,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.00328361306339"
+    },
+    {
+      "timestamp": 24.68227424749164,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.00328361306339"
+    },
+    {
+      "timestamp": 24.882943143812717,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.12635354048233"
+    },
+    {
+      "timestamp": 24.882943143812717,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.12635354048233"
+    },
+    {
+      "timestamp": 25.08361204013378,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.24734299955447"
+    },
+    {
+      "timestamp": 25.08361204013378,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.24734299955447"
+    },
+    {
+      "timestamp": 25.28428093645484,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.36617362601445"
+    },
+    {
+      "timestamp": 25.28428093645484,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.36617362601445"
+    },
+    {
+      "timestamp": 25.484949832775918,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.48276889898086"
+    },
+    {
+      "timestamp": 25.484949832775918,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.48276889898086"
+    },
+    {
+      "timestamp": 25.68561872909698,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.59705428266789"
+    },
+    {
+      "timestamp": 25.68561872909698,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.59705428266789"
+    },
+    {
+      "timestamp": 25.88628762541806,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.70895736543295"
+    },
+    {
+      "timestamp": 25.88628762541806,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.70895736543295"
+    },
+    {
+      "timestamp": 26.086956521739143,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.81840799579159"
+    },
+    {
+      "timestamp": 26.086956521739143,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.81840799579159"
+    },
+    {
+      "timestamp": 26.287625418060202,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.92533841504777"
+    },
+    {
+      "timestamp": 26.287625418060202,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.92533841504777"
+    },
+    {
+      "timestamp": 26.488294314381278,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.02968338618846"
+    },
+    {
+      "timestamp": 26.488294314381278,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.02968338618846"
+    },
+    {
+      "timestamp": 26.600000000004798,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08629467862058"
+    },
+    {
+      "timestamp": 26.600000000004798,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08629467862058"
+    },
+    {
+      "timestamp": 26.688963210702337,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08689871334802"
+    },
+    {
+      "timestamp": 26.688963210702337,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08689871334802"
+    },
+    {
+      "timestamp": 26.889632107023402,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08555333544396"
+    },
+    {
+      "timestamp": 26.889632107023402,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08555333544396"
+    },
+    {
+      "timestamp": 27.09030100334448,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08144315423061"
+    },
+    {
+      "timestamp": 27.09030100334448,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.08144315423061"
+    },
+    {
+      "timestamp": 27.290969899665537,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.07451422182573"
+    },
+    {
+      "timestamp": 27.290969899665537,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.07451422182573"
+    },
+    {
+      "timestamp": 27.49163879598662,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.06471568878489"
+    },
+    {
+      "timestamp": 27.49163879598662,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.06471568878489"
+    },
+    {
+      "timestamp": 27.6923076923077,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.05199990372765"
+    },
+    {
+      "timestamp": 27.6923076923077,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.05199990372765"
+    },
+    {
+      "timestamp": 27.892976588628763,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.03632250705144"
+    },
+    {
+      "timestamp": 27.892976588628763,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.03632250705144"
+    },
+    {
+      "timestamp": 28.09364548494984,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.01764251847633"
+    },
+    {
+      "timestamp": 28.09364548494984,
+      "name": "temperature",
+      "type": 1,
+      "animation": "30.01764251847633"
+    },
+    {
+      "timestamp": 28.2943143812709,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.99592241817836"
+    },
+    {
+      "timestamp": 28.2943143812709,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.99592241817836"
+    },
+    {
+      "timestamp": 28.494983277591977,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.97112822128928"
+    },
+    {
+      "timestamp": 28.494983277591977,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.97112822128928"
+    },
+    {
+      "timestamp": 28.69565217391304,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.94322954555043"
+    },
+    {
+      "timestamp": 28.69565217391304,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.94322954555043"
+    },
+    {
+      "timestamp": 28.896321070234098,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.91219967193792"
+    },
+    {
+      "timestamp": 28.896321070234098,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.91219967193792"
+    },
+    {
+      "timestamp": 29.096989966555203,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.87801559808599"
+    },
+    {
+      "timestamp": 29.096989966555203,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.87801559808599"
+    },
+    {
+      "timestamp": 29.29765886287626,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.8406580843601"
+    },
+    {
+      "timestamp": 29.29765886287626,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.8406580843601"
+    },
+    {
+      "timestamp": 29.49832775919732,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.8001116924508"
+    },
+    {
+      "timestamp": 29.49832775919732,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.8001116924508"
+    },
+    {
+      "timestamp": 29.698996655518403,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.75636481638108"
+    },
+    {
+      "timestamp": 29.698996655518403,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.75636481638108"
+    },
+    {
+      "timestamp": 29.899665551839462,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.70940970583631"
+    },
+    {
+      "timestamp": 29.899665551839462,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.70940970583631"
+    },
+    {
+      "timestamp": 30.100334448160538,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.65924248175611"
+    },
+    {
+      "timestamp": 30.100334448160538,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.65924248175611"
+    },
+    {
+      "timestamp": 30.301003344481597,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.60586314414049"
+    },
+    {
+      "timestamp": 30.301003344481597,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.60586314414049"
+    },
+    {
+      "timestamp": 30.50167224080268,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.54927557204981"
+    },
+    {
+      "timestamp": 30.50167224080268,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.54927557204981"
+    },
+    {
+      "timestamp": 30.70234113712374,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.48948751579837"
+    },
+    {
+      "timestamp": 30.70234113712374,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.48948751579837"
+    },
+    {
+      "timestamp": 30.903010033444822,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.42651058136386"
+    },
+    {
+      "timestamp": 30.903010033444822,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.42651058136386"
+    },
+    {
+      "timestamp": 31.10367892976588,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.3603602070554"
+    },
+    {
+      "timestamp": 31.10367892976588,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.3603602070554"
+    },
+    {
+      "timestamp": 31.30434782608696,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.29105563250716"
+    },
+    {
+      "timestamp": 31.30434782608696,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.29105563250716"
+    },
+    {
+      "timestamp": 31.505016722408023,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.21861986008527"
+    },
+    {
+      "timestamp": 31.505016722408023,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.21861986008527"
+    },
+    {
+      "timestamp": 31.7056856187291,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.14307960881395"
+    },
+    {
+      "timestamp": 31.7056856187291,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.14307960881395"
+    },
+    {
+      "timestamp": 31.90635451505016,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.06446526095117"
+    },
+    {
+      "timestamp": 31.90635451505016,
+      "name": "temperature",
+      "type": 1,
+      "animation": "29.06446526095117"
+    },
+    {
+      "timestamp": 32.10702341137124,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.98281080136554"
+    },
+    {
+      "timestamp": 32.10702341137124,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.98281080136554"
+    },
+    {
+      "timestamp": 32.3076923076923,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.898153749881"
+    },
+    {
+      "timestamp": 32.3076923076923,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.898153749881"
+    },
+    {
+      "timestamp": 32.50836120401338,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.81053508677749"
+    },
+    {
+      "timestamp": 32.50836120401338,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.81053508677749"
+    },
+    {
+      "timestamp": 32.70903010033444,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.71999917165793"
+    },
+    {
+      "timestamp": 32.70903010033444,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.71999917165793"
+    },
+    {
+      "timestamp": 32.90969899665552,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.62659365590241"
+    },
+    {
+      "timestamp": 32.90969899665552,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.62659365590241"
+    },
+    {
+      "timestamp": 33.11036789297658,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.53036938895502"
+    },
+    {
+      "timestamp": 33.11036789297658,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.53036938895502"
+    },
+    {
+      "timestamp": 33.31103678929766,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.43138031869834"
+    },
+    {
+      "timestamp": 33.31103678929766,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.43138031869834"
+    },
+    {
+      "timestamp": 33.51170568561872,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.3296833861899"
+    },
+    {
+      "timestamp": 33.51170568561872,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.3296833861899"
+    },
+    {
+      "timestamp": 33.7123745819398,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.22533841504921"
+    },
+    {
+      "timestamp": 33.7123745819398,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.22533841504921"
+    },
+    {
+      "timestamp": 33.91304347826086,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.11840799579303"
+    },
+    {
+      "timestamp": 33.91304347826086,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.11840799579303"
+    },
+    {
+      "timestamp": 34.11371237458194,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.00895736543439"
+    },
+    {
+      "timestamp": 34.11371237458194,
+      "name": "temperature",
+      "type": 1,
+      "animation": "28.00895736543439"
+    },
+    {
+      "timestamp": 34.314381270903,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.89705428266933"
+    },
+    {
+      "timestamp": 34.314381270903,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.89705428266933"
+    },
+    {
+      "timestamp": 34.51505016722408,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.78276889898221"
+    },
+    {
+      "timestamp": 34.51505016722408,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.78276889898221"
+    },
+    {
+      "timestamp": 34.71571906354514,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.66617362601599"
+    },
+    {
+      "timestamp": 34.71571906354514,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.66617362601599"
+    },
+    {
+      "timestamp": 34.91638795986622,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.54734299955584"
+    },
+    {
+      "timestamp": 34.91638795986622,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.54734299955584"
+    },
+    {
+      "timestamp": 35.11705685618728,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.42635354048354"
+    },
+    {
+      "timestamp": 35.11705685618728,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.42635354048354"
+    },
+    {
+      "timestamp": 35.31772575250836,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.30328361306442"
+    },
+    {
+      "timestamp": 35.31772575250836,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.30328361306442"
+    },
+    {
+      "timestamp": 35.51839464882944,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.17821328093457"
+    },
+    {
+      "timestamp": 35.51839464882944,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.17821328093457"
+    },
+    {
+      "timestamp": 35.7190635451505,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.05122416115412"
+    },
+    {
+      "timestamp": 35.7190635451505,
+      "name": "temperature",
+      "type": 1,
+      "animation": "27.05122416115412"
+    },
+    {
+      "timestamp": 35.91973244147158,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.9223992767018"
+    },
+    {
+      "timestamp": 35.91973244147158,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.9223992767018"
+    },
+    {
+      "timestamp": 36.12040133779264,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.79182290777818"
+    },
+    {
+      "timestamp": 36.12040133779264,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.79182290777818"
+    },
+    {
+      "timestamp": 36.32107023411372,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.65958044229012"
+    },
+    {
+      "timestamp": 36.32107023411372,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.65958044229012"
+    },
+    {
+      "timestamp": 36.52173913043478,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.52575822588397"
+    },
+    {
+      "timestamp": 36.52173913043478,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.52575822588397"
+    },
+    {
+      "timestamp": 36.72240802675586,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.39044341189285"
+    },
+    {
+      "timestamp": 36.72240802675586,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.39044341189285"
+    },
+    {
+      "timestamp": 36.92307692307692,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.25372381156088"
+    },
+    {
+      "timestamp": 36.92307692307692,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.25372381156088"
+    },
+    {
+      "timestamp": 37.123745819397996,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.11568774489764"
+    },
+    {
+      "timestamp": 37.123745819397996,
+      "name": "temperature",
+      "type": 1,
+      "animation": "26.11568774489764"
+    },
+    {
+      "timestamp": 37.32441471571906,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.97642389251399"
+    },
+    {
+      "timestamp": 37.32441471571906,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.97642389251399"
+    },
+    {
+      "timestamp": 37.52508361204014,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.83602114878175"
+    },
+    {
+      "timestamp": 37.52508361204014,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.83602114878175"
+    },
+    {
+      "timestamp": 37.7257525083612,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.69456847664844"
+    },
+    {
+      "timestamp": 37.7257525083612,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.69456847664844"
+    },
+    {
+      "timestamp": 37.92642140468228,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.55215476443425"
+    },
+    {
+      "timestamp": 37.92642140468228,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.55215476443425"
+    },
+    {
+      "timestamp": 38.12709030100334,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.40886868492363"
+    },
+    {
+      "timestamp": 38.12709030100334,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.40886868492363"
+    },
+    {
+      "timestamp": 38.327759197324426,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.26479855705464"
+    },
+    {
+      "timestamp": 38.327759197324426,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.26479855705464"
+    },
+    {
+      "timestamp": 38.52842809364548,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.12003221049608"
+    },
+    {
+      "timestamp": 38.52842809364548,
+      "name": "temperature",
+      "type": 1,
+      "animation": "25.12003221049608"
+    },
+    {
+      "timestamp": 38.72909698996656,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.9746568533942"
+    },
+    {
+      "timestamp": 38.72909698996656,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.9746568533942"
+    },
+    {
+      "timestamp": 38.92976588628762,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.82875894354754"
+    },
+    {
+      "timestamp": 38.92976588628762,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.82875894354754"
+    },
+    {
+      "timestamp": 39.1304347826087,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.68242406326814"
+    },
+    {
+      "timestamp": 39.1304347826087,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.68242406326814"
+    },
+    {
+      "timestamp": 39.33110367892976,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.53573679816045"
+    },
+    {
+      "timestamp": 39.33110367892976,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.53573679816045"
+    },
+    {
+      "timestamp": 39.53177257525084,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.38878062004068"
+    },
+    {
+      "timestamp": 39.53177257525084,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.38878062004068"
+    },
+    {
+      "timestamp": 39.7324414715719,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.24163777420328"
+    },
+    {
+      "timestamp": 39.7324414715719,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.24163777420328"
+    },
+    {
+      "timestamp": 39.93311036789298,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.09438917122371"
+    },
+    {
+      "timestamp": 39.93311036789298,
+      "name": "temperature",
+      "type": 1,
+      "animation": "24.09438917122371"
+    },
+    {
+      "timestamp": 40.13377926421404,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.94711428347178"
+    },
+    {
+      "timestamp": 40.13377926421404,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.94711428347178"
+    },
+    {
+      "timestamp": 40.33444816053512,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.79989104649216"
+    },
+    {
+      "timestamp": 40.33444816053512,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.79989104649216"
+    },
+    {
+      "timestamp": 40.53511705685618,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.65279576539345"
+    },
+    {
+      "timestamp": 40.53511705685618,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.65279576539345"
+    },
+    {
+      "timestamp": 40.735785953177256,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.50590302637059"
+    },
+    {
+      "timestamp": 40.735785953177256,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.50590302637059"
+    },
+    {
+      "timestamp": 40.93645484949832,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.35928561346523"
+    },
+    {
+      "timestamp": 40.93645484949832,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.35928561346523"
+    },
+    {
+      "timestamp": 41.1371237458194,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.21301443065818"
+    },
+    {
+      "timestamp": 41.1371237458194,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.21301443065818"
+    },
+    {
+      "timestamp": 41.33779264214046,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.06715842936316"
+    },
+    {
+      "timestamp": 41.33779264214046,
+      "name": "temperature",
+      "type": 1,
+      "animation": "23.06715842936316"
+    },
+    {
+      "timestamp": 41.53846153846154,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.92178454138337"
+    },
+    {
+      "timestamp": 41.53846153846154,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.92178454138337"
+    },
+    {
+      "timestamp": 41.7391304347826,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.77695761736818"
+    },
+    {
+      "timestamp": 41.7391304347826,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.77695761736818"
+    },
+    {
+      "timestamp": 41.939799331103686,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.63274037079472"
+    },
+    {
+      "timestamp": 41.939799331103686,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.63274037079472"
+    },
+    {
+      "timestamp": 42.14046822742474,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.48919332748575"
+    },
+    {
+      "timestamp": 42.14046822742474,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.48919332748575"
+    },
+    {
+      "timestamp": 42.34113712374582,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.34637478065044"
+    },
+    {
+      "timestamp": 42.34113712374582,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.34637478065044"
+    },
+    {
+      "timestamp": 42.54180602006688,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.20434075143399"
+    },
+    {
+      "timestamp": 42.54180602006688,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.20434075143399"
+    },
+    {
+      "timestamp": 42.74247491638796,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.06314495492984"
+    },
+    {
+      "timestamp": 42.74247491638796,
+      "name": "temperature",
+      "type": 1,
+      "animation": "22.06314495492984"
+    },
+    {
+      "timestamp": 42.94314381270904,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.92283877161061"
+    },
+    {
+      "timestamp": 42.94314381270904,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.92283877161061"
+    },
+    {
+      "timestamp": 43.1438127090301,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.78347122410749"
+    },
+    {
+      "timestamp": 43.1438127090301,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.78347122410749"
+    },
+    {
+      "timestamp": 43.34448160535116,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.64508895926189"
+    },
+    {
+      "timestamp": 43.34448160535116,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.64508895926189"
+    },
+    {
+      "timestamp": 43.54515050167224,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.50773623535628"
+    },
+    {
+      "timestamp": 43.54515050167224,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.50773623535628"
+    },
+    {
+      "timestamp": 43.7458193979933,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.37145491442397"
+    },
+    {
+      "timestamp": 43.7458193979933,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.37145491442397"
+    },
+    {
+      "timestamp": 43.94648829431438,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.23628445951789"
+    },
+    {
+      "timestamp": 43.94648829431438,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.23628445951789"
+    },
+    {
+      "timestamp": 44.14715719063544,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.10226193681837"
+    },
+    {
+      "timestamp": 44.14715719063544,
+      "name": "temperature",
+      "type": 1,
+      "animation": "21.10226193681837"
+    },
+    {
+      "timestamp": 44.347826086956516,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.9694220224411"
+    },
+    {
+      "timestamp": 44.347826086956516,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.9694220224411"
+    },
+    {
+      "timestamp": 44.54849498327758,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.83779701380044"
+    },
+    {
+      "timestamp": 44.54849498327758,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.83779701380044"
+    },
+    {
+      "timestamp": 44.74916387959866,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.70741684537481"
+    },
+    {
+      "timestamp": 44.74916387959866,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.70741684537481"
+    },
+    {
+      "timestamp": 44.949832775919745,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.57830910871412"
+    },
+    {
+      "timestamp": 44.949832775919745,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.57830910871412"
+    },
+    {
+      "timestamp": 45.1505016722408,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.45049907651683"
+    },
+    {
+      "timestamp": 45.1505016722408,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.45049907651683"
+    },
+    {
+      "timestamp": 45.35117056856188,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.32400973060559"
+    },
+    {
+      "timestamp": 45.35117056856188,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.32400973060559"
+    },
+    {
+      "timestamp": 45.551839464882946,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.19886179361755"
+    },
+    {
+      "timestamp": 45.551839464882946,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.19886179361755"
+    },
+    {
+      "timestamp": 45.75250836120402,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.07507376422438"
+    },
+    {
+      "timestamp": 45.75250836120402,
+      "name": "temperature",
+      "type": 1,
+      "animation": "20.07507376422438"
+    },
+    {
+      "timestamp": 45.95317725752508,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.95266195569263"
+    },
+    {
+      "timestamp": 45.95317725752508,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.95266195569263"
+    },
+    {
+      "timestamp": 46.15384615384616,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.83164053758842"
+    },
+    {
+      "timestamp": 46.15384615384616,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.83164053758842"
+    },
+    {
+      "timestamp": 46.35451505016722,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.712021580434"
+    },
+    {
+      "timestamp": 46.35451505016722,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.712021580434"
+    },
+    {
+      "timestamp": 46.5551839464883,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.59381510311363"
+    },
+    {
+      "timestamp": 46.5551839464883,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.59381510311363"
+    },
+    {
+      "timestamp": 46.75585284280936,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.47702912283143"
+    },
+    {
+      "timestamp": 46.75585284280936,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.47702912283143"
+    },
+    {
+      "timestamp": 46.95652173913044,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.3616697074193"
+    },
+    {
+      "timestamp": 46.95652173913044,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.3616697074193"
+    },
+    {
+      "timestamp": 47.1571906354515,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.2477410297961"
+    },
+    {
+      "timestamp": 47.1571906354515,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.2477410297961"
+    },
+    {
+      "timestamp": 47.357859531772576,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.13524542437491"
+    },
+    {
+      "timestamp": 47.357859531772576,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.13524542437491"
+    },
+    {
+      "timestamp": 47.55852842809364,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.02418344522399"
+    },
+    {
+      "timestamp": 47.55852842809364,
+      "name": "temperature",
+      "type": 1,
+      "animation": "19.02418344522399"
+    },
+    {
+      "timestamp": 47.75919732441472,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.91455392578021"
+    },
+    {
+      "timestamp": 47.75919732441472,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.91455392578021"
+    },
+    {
+      "timestamp": 47.959866220735776,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.80635403992236"
+    },
+    {
+      "timestamp": 47.959866220735776,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.80635403992236"
+    },
+    {
+      "timestamp": 48.16053511705686,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.69957936421285"
+    },
+    {
+      "timestamp": 48.16053511705686,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.69957936421285"
+    },
+    {
+      "timestamp": 48.36120401337792,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.59422394111942"
+    },
+    {
+      "timestamp": 48.36120401337792,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.59422394111942"
+    },
+    {
+      "timestamp": 48.561872909699005,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.49028034303062"
+    },
+    {
+      "timestamp": 48.561872909699005,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.49028034303062"
+    },
+    {
+      "timestamp": 48.76254180602006,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.38773973688662"
+    },
+    {
+      "timestamp": 48.76254180602006,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.38773973688662"
+    },
+    {
+      "timestamp": 48.96321070234114,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.28659194925081"
+    },
+    {
+      "timestamp": 48.96321070234114,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.28659194925081"
+    },
+    {
+      "timestamp": 49.1638795986622,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.18682553164892"
+    },
+    {
+      "timestamp": 49.1638795986622,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.18682553164892"
+    },
+    {
+      "timestamp": 49.36454849498328,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.08842782601497"
+    },
+    {
+      "timestamp": 49.36454849498328,
+      "name": "temperature",
+      "type": 1,
+      "animation": "18.08842782601497"
+    },
+    {
+      "timestamp": 49.56521739130434,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.99138503007985"
+    },
+    {
+      "timestamp": 49.56521739130434,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.99138503007985"
+    },
+    {
+      "timestamp": 49.76588628762542,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.89568226255563"
+    },
+    {
+      "timestamp": 49.76588628762542,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.89568226255563"
+    },
+    {
+      "timestamp": 49.966555183946504,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.80130362796315"
+    },
+    {
+      "timestamp": 49.966555183946504,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.80130362796315"
+    },
+    {
+      "timestamp": 50.16722408026756,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.70823228096826"
+    },
+    {
+      "timestamp": 50.16722408026756,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.70823228096826"
+    },
+    {
+      "timestamp": 50.36789297658862,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.61645049008939"
+    },
+    {
+      "timestamp": 50.36789297658862,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.61645049008939"
+    },
+    {
+      "timestamp": 50.5685618729097,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.52593970065188"
+    },
+    {
+      "timestamp": 50.5685618729097,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.52593970065188"
+    },
+    {
+      "timestamp": 50.76923076923076,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.43668059687036"
+    },
+    {
+      "timestamp": 50.76923076923076,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.43668059687036"
+    },
+    {
+      "timestamp": 50.969899665551836,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.34865316294561"
+    },
+    {
+      "timestamp": 50.969899665551836,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.34865316294561"
+    },
+    {
+      "timestamp": 51.1705685618729,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.26183674307092"
+    },
+    {
+      "timestamp": 51.1705685618729,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.26183674307092"
+    },
+    {
+      "timestamp": 51.37123745819398,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.17621010025331"
+    },
+    {
+      "timestamp": 51.37123745819398,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.17621010025331"
+    },
+    {
+      "timestamp": 51.57190635451506,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.09175147385356"
+    },
+    {
+      "timestamp": 51.57190635451506,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.09175147385356"
+    },
+    {
+      "timestamp": 51.77257525083612,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.00843863576852"
+    },
+    {
+      "timestamp": 51.77257525083612,
+      "name": "temperature",
+      "type": 1,
+      "animation": "17.00843863576852"
+    },
+    {
+      "timestamp": 51.973244147157196,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.92624894517331"
+    },
+    {
+      "timestamp": 51.973244147157196,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.92624894517331"
+    },
+    {
+      "timestamp": 52.173913043478265,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.84515940175967"
+    },
+    {
+      "timestamp": 52.173913043478265,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.84515940175967"
+    },
+    {
+      "timestamp": 52.37458193979934,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.76514669740684"
+    },
+    {
+      "timestamp": 52.37458193979934,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.76514669740684"
+    },
+    {
+      "timestamp": 52.575250836120404,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.68618726622785"
+    },
+    {
+      "timestamp": 52.575250836120404,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.68618726622785"
+    },
+    {
+      "timestamp": 52.77591973244148,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.60825733294814"
+    },
+    {
+      "timestamp": 52.77591973244148,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.60825733294814"
+    },
+    {
+      "timestamp": 52.97658862876254,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.53133295957116"
+    },
+    {
+      "timestamp": 52.97658862876254,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.53133295957116"
+    },
+    {
+      "timestamp": 53.17725752508362,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.45539009029687"
+    },
+    {
+      "timestamp": 53.17725752508362,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.45539009029687"
+    },
+    {
+      "timestamp": 53.37792642140467,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.38040459466837"
+    },
+    {
+      "timestamp": 53.37792642140467,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.38040459466837"
+    },
+    {
+      "timestamp": 53.578595317725764,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.30635230891792"
+    },
+    {
+      "timestamp": 53.578595317725764,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.30635230891792"
+    },
+    {
+      "timestamp": 53.77926421404682,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.23320907550305"
+    },
+    {
+      "timestamp": 53.77926421404682,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.23320907550305"
+    },
+    {
+      "timestamp": 53.9799331103679,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.16095078081632"
+    },
+    {
+      "timestamp": 53.9799331103679,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.16095078081632"
+    },
+    {
+      "timestamp": 54.18060200668896,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.08955339106801"
+    },
+    {
+      "timestamp": 54.18060200668896,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.08955339106801"
+    },
+    {
+      "timestamp": 54.38127090301005,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.01899298633941"
+    },
+    {
+      "timestamp": 54.38127090301005,
+      "name": "temperature",
+      "type": 1,
+      "animation": "16.01899298633941"
+    },
+    {
+      "timestamp": 54.581939799331096,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.94924579281282"
+    },
+    {
+      "timestamp": 54.581939799331096,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.94924579281282"
+    },
+    {
+      "timestamp": 54.78260869565217,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.88028821318862"
+    },
+    {
+      "timestamp": 54.78260869565217,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.88028821318862"
+    },
+    {
+      "timestamp": 54.98327759197324,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.81209685530287"
+    },
+    {
+      "timestamp": 54.98327759197324,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.81209685530287"
+    },
+    {
+      "timestamp": 55.18394648829432,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.74464855896519"
+    },
+    {
+      "timestamp": 55.18394648829432,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.74464855896519"
+    },
+    {
+      "timestamp": 55.38461538461538,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.6779204210398"
+    },
+    {
+      "timestamp": 55.38461538461538,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.6779204210398"
+    },
+    {
+      "timestamp": 55.585284280936456,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.61188981879464"
+    },
+    {
+      "timestamp": 55.585284280936456,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.61188981879464"
+    },
+    {
+      "timestamp": 55.785953177257525,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.54653443155098"
+    },
+    {
+      "timestamp": 55.785953177257525,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.54653443155098"
+    },
+    {
+      "timestamp": 55.9866220735786,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.48183226066422"
+    },
+    {
+      "timestamp": 55.9866220735786,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.48183226066422"
+    },
+    {
+      "timestamp": 56.187290969899664,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.41776164787408"
+    },
+    {
+      "timestamp": 56.187290969899664,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.41776164787408"
+    },
+    {
+      "timestamp": 56.38795986622074,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.35430129206066"
+    },
+    {
+      "timestamp": 56.38795986622074,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.35430129206066"
+    },
+    {
+      "timestamp": 56.5886287625418,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.29143026445034"
+    },
+    {
+      "timestamp": 56.5886287625418,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.29143026445034"
+    },
+    {
+      "timestamp": 56.78929765886288,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.22912802231198"
+    },
+    {
+      "timestamp": 56.78929765886288,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.22912802231198"
+    },
+    {
+      "timestamp": 56.98996655518393,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.16737442119138"
+    },
+    {
+      "timestamp": 56.98996655518393,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.16737442119138"
+    },
+    {
+      "timestamp": 57.190635451505024,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.10614972572814"
+    },
+    {
+      "timestamp": 57.190635451505024,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.10614972572814"
+    },
+    {
+      "timestamp": 57.39130434782608,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.04543461910604"
+    },
+    {
+      "timestamp": 57.39130434782608,
+      "name": "temperature",
+      "type": 1,
+      "animation": "15.04543461910604"
+    },
+    {
+      "timestamp": 57.59197324414716,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.98521021118488"
+    },
+    {
+      "timestamp": 57.59197324414716,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.98521021118488"
+    },
+    {
+      "timestamp": 57.79264214046822,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.92545804536466"
+    },
+    {
+      "timestamp": 57.79264214046822,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.92545804536466"
+    },
+    {
+      "timestamp": 57.99331103678931,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.86616010423405"
+    },
+    {
+      "timestamp": 57.99331103678931,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.86616010423405"
+    },
+    {
+      "timestamp": 58.193979933110384,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.80729881405411"
+    },
+    {
+      "timestamp": 58.193979933110384,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.80729881405411"
+    },
+    {
+      "timestamp": 58.39464882943143,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.7488570481313"
+    },
+    {
+      "timestamp": 58.39464882943143,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.7488570481313"
+    },
+    {
+      "timestamp": 58.59531772575252,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.69081812913032"
+    },
+    {
+      "timestamp": 58.59531772575252,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.69081812913032"
+    },
+    {
+      "timestamp": 58.79598662207358,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.63316583038114"
+    },
+    {
+      "timestamp": 58.79598662207358,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.63316583038114"
+    },
+    {
+      "timestamp": 58.99665551839466,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.57588437623168"
+    },
+    {
+      "timestamp": 58.99665551839466,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.57588437623168"
+    },
+    {
+      "timestamp": 59.197324414715716,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.51895844149848"
+    },
+    {
+      "timestamp": 59.197324414715716,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.51895844149848"
+    },
+    {
+      "timestamp": 59.39799331103681,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.46237315006748"
+    },
+    {
+      "timestamp": 59.39799331103681,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.46237315006748"
+    },
+    {
+      "timestamp": 59.59866220735786,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.40611407269621"
+    },
+    {
+      "timestamp": 59.59866220735786,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.40611407269621"
+    },
+    {
+      "timestamp": 59.79933110367894,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.3501672240668"
+    },
+    {
+      "timestamp": 59.79933110367894,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.3501672240668"
+    },
+    {
+      "timestamp": 60.001999999974416,
+      "name": "temperature",
+      "type": 1,
+      "animation": "14.3501672240668"
+    },
+    {
+      "timestamp": 8.014000000000108,
+      "name": "IF Human.home THEN light_0.turn_light_off",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 0.2126688963210702,
+      "name": "IF Human.out THEN light_0.turn_light_off",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 40.213999999992424,
+      "name": "IF Human.out THEN light_0.turn_light_off",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 45.21399999998786,
+      "name": "IF time>=225 THEN light_0.turn_light_on",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 8.014000000000108,
+      "name": "IF Human.home AND temperature<24 THEN ac_0.turn_airconditioner_heat",
+      "type": 2,
+      "animation": ""
+    },
+    {
+      "timestamp": 8.0,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 8.00000000000011,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 8.014000000000108,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "2"
+    },
+    {
+      "timestamp": 8.014000000000108,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "2"
+    },
+    {
+      "timestamp": 26.600000000004798,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "2"
+    },
+    {
+      "timestamp": 26.600000000004798,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "2"
+    },
+    {
+      "timestamp": 26.61400000000478,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 26.61400000000478,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 60.001999999974416,
+      "name": "airconditioner[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 8.0,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 8.00000000000011,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 8.014000000000108,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 8.014000000000108,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 40.19999999999242,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 40.19999999999242,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 40.213999999992424,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 40.213999999992424,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.19999999998788,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.19999999998788,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.19999999998788,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 45.21399999998786,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.3999999999877,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.3999999999877,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.3999999999877,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 45.41399999998768,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.59999999998752,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.59999999998752,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.59999999998752,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 45.6139999999875,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.79999999998732,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.79999999998732,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.79999999998732,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 45.813999999987324,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.99999999998714,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 45.99999999998714,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.01399999998714,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.01399999998714,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.19999999998696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.19999999998696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.21399999998696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.21399999998696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.399999999986775,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.399999999986775,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.413999999986785,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.413999999986785,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.5999999999866,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.5999999999866,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.613999999986575,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.613999999986575,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.79999999998642,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.79999999998642,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 46.8139999999864,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.8139999999864,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.99999999998624,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.99999999998624,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 46.99999999998624,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 47.01399999998622,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.19999999998606,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.19999999998606,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.19999999998606,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 47.21399999998604,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.39999999998588,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.39999999998588,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.39999999998588,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 47.41399999998586,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.5999999999857,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.5999999999857,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.61399999998568,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 47.61399999998568,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 47.79999999998552,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 47.79999999998552,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 47.8139999999855,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.8139999999855,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.99999999998532,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 47.99999999998532,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 48.01399999998532,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.01399999998532,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.19999999998514,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.19999999998514,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.21399999998514,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 48.21399999998514,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 48.399999999984956,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 48.399999999984956,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 48.41399999998496,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.41399999998496,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.599999999984774,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.599999999984774,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.599999999984774,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 48.613999999984784,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.7999999999846,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.7999999999846,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.7999999999846,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 48.81399999998458,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.99999999998442,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.99999999998442,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 48.99999999998442,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 49.0139999999844,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.199999999984236,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.199999999984236,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.199999999984236,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 49.21399999998422,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.39999999998406,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.39999999998406,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.39999999998406,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 49.41399999998404,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.59999999998388,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.59999999998388,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.59999999998388,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 49.61399999998386,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.7999999999837,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.7999999999837,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.7999999999837,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 49.81399999998368,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.9999999999835,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.9999999999835,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 49.9999999999835,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.013999999983504,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.19999999998332,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.19999999998332,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.21399999998332,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.21399999998332,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.39999999998314,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.39999999998314,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.39999999998314,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.41399999998314,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.599999999982956,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.599999999982956,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.599999999982956,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.613999999982966,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.79999999998278,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.79999999998278,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 50.813999999982755,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.813999999982755,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.9999999999826,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.9999999999826,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 50.9999999999826,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.01399999998258,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.19999999998242,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.19999999998242,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.19999999998242,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.21399999998242,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.39999999998224,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.39999999998224,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.41399999998222,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.41399999998222,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.59999999998206,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.59999999998206,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.613999999982035,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.613999999982035,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.79999999998188,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.79999999998188,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 51.81399999998187,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.81399999998187,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.999999999981696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.999999999981696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 51.999999999981696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.013999999981685,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.199999999981515,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.199999999981515,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.2139999999815,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.2139999999815,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.39999999998135,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.39999999998135,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.39999999998135,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.41399999998132,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.599999999981165,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.599999999981165,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.61399999998114,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.61399999998114,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.799999999980955,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.799999999980955,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.799999999980955,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 52.81399999998096,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.99999999998077,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.99999999998077,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 52.99999999998077,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 53.01399999998078,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.199999999980605,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.199999999980605,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.199999999980605,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 53.2139999999806,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.39999999998042,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.39999999998042,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.39999999998042,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 53.41399999998042,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.59999999998024,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.59999999998024,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.59999999998024,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 53.613999999980216,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.79999999998006,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.79999999998006,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.79999999998006,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 53.813999999980034,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.99999999997988,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.99999999997988,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 53.99999999997988,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 54.013999999979866,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.199999999979696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.199999999979696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.199999999979696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 54.213999999979684,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.39999999997953,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.39999999997953,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.39999999997953,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 54.4139999999795,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.599999999979346,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.599999999979346,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.61399999997932,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 54.61399999997932,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 54.799999999979136,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 54.799999999979136,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 54.81399999997914,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.81399999997914,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.999999999978954,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 54.999999999978954,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 55.01399999997896,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.01399999997896,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.19999999997877,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.19999999997877,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.19999999997877,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 55.21399999997878,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.399999999978604,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.399999999978604,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.4139999999786,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 55.4139999999786,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 55.59999999997842,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 55.59999999997842,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 55.6139999999784,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.6139999999784,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.79999999997824,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.79999999997824,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.79999999997824,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 55.813999999978215,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.99999999997806,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.99999999997806,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 55.99999999997806,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 56.01399999997803,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.19999999997788,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.19999999997788,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.213999999977865,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 56.213999999977865,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 56.399999999977695,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 56.399999999977695,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 56.41399999997768,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.41399999997768,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.59999999997753,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.59999999997753,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.59999999997753,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 56.6139999999775,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.799999999977345,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.799999999977345,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.799999999977345,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 56.81399999997732,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.999999999977135,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 56.999999999977135,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.01399999997714,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.01399999997714,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.19999999997695,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.19999999997695,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.21399999997696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.21399999997696,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.399999999976785,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.399999999976785,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.41399999997678,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.41399999997678,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.5999999999766,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.5999999999766,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.6139999999766,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.6139999999766,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.79999999997642,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.79999999997642,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 57.813999999976396,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.813999999976396,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.99999999997624,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 57.99999999997624,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 58.013999999976214,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.013999999976214,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.19999999997606,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.19999999997606,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.19999999997606,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 58.213999999976046,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.399999999975876,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.399999999975876,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.399999999975876,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 58.413999999975864,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.59999999997571,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.59999999997571,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.59999999997571,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 58.61399999997568,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.799999999975526,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.799999999975526,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.799999999975526,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 58.8139999999755,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.999999999975316,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 58.999999999975316,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.01399999997532,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.01399999997532,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.199999999975134,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.199999999975134,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.21399999997514,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.21399999997514,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.39999999997495,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.39999999997495,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.41399999997496,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.41399999997496,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.599999999974784,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.599999999974784,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.61399999997478,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.61399999997478,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.7999999999746,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.7999999999746,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 59.81399999997458,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.81399999997458,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.99999999997442,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.99999999997442,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 59.99999999997442,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "0"
+    },
+    {
+      "timestamp": 60.001999999974416,
+      "name": "light[0]",
+      "type": 0,
+      "animation": "1"
+    },
+    {
+      "timestamp": 2.0,
+      "name": "out",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 3.613377926421406,
+      "name": "doorway",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 6.0,
+      "name": "doorway",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 6.807000000000054,
+      "name": "P1",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 7.614000000000108,
+      "name": "home",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 10.0,
+      "name": "home",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 19.871333333333325,
+      "name": "P1",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 29.74266666666665,
+      "name": "doorway",
+      "type": 3,
+      "animation": ""
+    },
+    {
+      "timestamp": 39.61399999999998,
+      "name": "out",
+      "type": 3,
+      "animation": ""
+    }
+  ]
+}

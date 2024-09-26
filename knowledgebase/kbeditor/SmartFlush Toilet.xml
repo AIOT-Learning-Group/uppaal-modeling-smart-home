@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+
+<nta>
+
+	<declaration>// Place global declarations here.
+clock time;
+int position;
+int rule0=0;
+int rule1=0;const int N = 1;
+
+int toilet[N];
+urgent broadcast chan open_toilet[N];
+urgent broadcast chan close_toilet[N];</declaration>
+
+	<template>
+
+		<name>Toilet</name>
+
+		<parameter>int i</parameter>
+
+		<location id="id0" x="-68" y="-178">
+
+			<name x="-78" y="-212">close</name>
+
+		</location>
+
+		<location id="id1" x="-59" y="8">
+
+			<name x="-69" y="-26">open</name>
+
+		</location>
+
+		<init ref="id0"/>
+
+		<transition>
+
+			<source ref="id1"/>
+
+			<target ref="id0"/>
+
+			<label kind="synchronisation" x="-25" y="-153">close_toilet[i]?</label>
+
+			<label kind="assignment" x="-50" y="-135">toilet[0]=0</label>
+
+			<nail x="0" y="-93"/>
+
+		</transition>
+
+		<transition>
+
+			<source ref="id0"/>
+
+			<target ref="id1"/>
+
+			<label kind="synchronisation" x="-204" y="-153">open_toilet[i]?</label>
+
+			<label kind="assignment" x="-187" y="-110">toilet[0]=1</label>
+
+			<nail x="-119" y="-93"/>
+
+		</transition>
+
+	</template>
+
+	<system>// Place template instantiations here.
+toilet_0=Toilet(0);
+// List one or more processes to be composed into a system.
+system Human,toilet_0,Rule0,Rule1;
+    </system>
+
+	<queries>
+
+		<query>
+
+			<formula>simulate[&lt;=30] {position,toilet[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+		<query>
+
+			<formula>simulate[&lt;=30] {position,toilet[0],rule0,rule1}</formula>
+
+			<comment></comment>
+
+		</query>
+
+	</queries>
+
+</nta>
+

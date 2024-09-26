@@ -1,0 +1,14 @@
+a. IF curtain_1.close THEN curtain_1.open_curtain
+b. IF temperature < 28 THEN fan_0.turn_fan_on
+c. IF Human.bedroom THEN light_0.turn_light_on
+d. IF brightness < 400 AND Human.bedroom THEN curtain_0.open_curtain
+e. IF airconditioner_0.off AND temperature < 30 THEN humidifier_0.turn_humidifier_off
+f. IF pm25 > 10 THEN airpurifier_0.turn_airpurifier_on AND airconditioner_0.turn_airconditioner_cool
+g. IF Human.out AND humidity < 46 THEN door_1.open_door
+h. IF time > 1440 THEN robotvacuum_0.turn_rv_on
+i. IF Human.bedroom AND brightness < 500 THEN curtain_0.open_curtain
+j. IF time < 1152 THEN window_0.close_window
+
+
+
+答案：d 和 i 满足 Shadow Conflict

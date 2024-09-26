@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+
+<nta>
+
+	<declaration>// Place global declarations here.
+const int N = 1;
+clock time;
+int rule0;
+int rule1;
+int coffeemachine[N];
+int onTime=10;
+int offTime=13;
+urgent broadcast chan turn_on_coffeemachine[N];
+urgent broadcast chan turn_off_coffeemachine[N];</declaration>
+
+	<template>
+
+		<name x="5" y="5">CoffeeMachine</name>
+
+		<parameter>int i</parameter>
+
+		<declaration>// Place local declarations here.</declaration>
+
+		<location id="id0" x="425" y="9">
+
+			<name x="415" y="-25">off</name>
+
+		</location>
+
+		<location id="id1" x="425" y="263">
+
+			<name x="416" y="280">on</name>
+
+		</location>
+
+		<init ref="id0"/>
+
+		<transition>
+
+			<source ref="id1"/>
+
+			<target ref="id0"/>
+
+			<label kind="synchronisation" x="443" y="182">turn_off_coffeemachine[i]?</label>
+
+			<label kind="assignment" x="443" y="199">coffeemachine[i]=0</label>
+
+			<nail x="527" y="136"/>
+
+		</transition>
+
+		<transition>
+
+			<source ref="id0"/>
+
+			<target ref="id1"/>
+
+			<label kind="synchronisation" x="229" y="76">turn_on_coffeemachine[i]?</label>
+
+			<label kind="assignment" x="246" y="119">coffeemachine[i]=1</label>
+
+			<nail x="323" y="127"/>
+
+		</transition>
+
+	</template>
+
+	<system>// Place template instantiations here.
+CoffeeMachine_0 = CoffeeMachine(0);
+// List one or more processes to be composed into a system.
+system CoffeeMachine_0,Rule0,Rule1;
+    </system>
+
+	<queries>
+
+		<query>
+
+			<formula>simulate[&lt;=20] {coffee_machine[0]}</formula>
+
+			<comment></comment>
+
+		</query>
+
+	</queries>
+
+</nta>
+

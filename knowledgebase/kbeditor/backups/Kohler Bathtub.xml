@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>const int N = 1;
+
+int bathtub[N];
+int bathtub_full[N];
+urgent broadcast chan turn_on_bathtub[N];
+urgent broadcast chan turn_off_bathtub[N];
+
+</declaration>
+	<template>
+		<name x="5" y="5">Bathtub</name>
+		<parameter>int i,int fullTime</parameter>
+		<declaration>clock t;</declaration>
+		<location id="id0" x="279" y="-118">
+			<name x="269" y="-152">off</name>
+		</location>
+		<location id="id1" x="279" y="-17">
+			<name x="269" y="-51">run</name>
+			<label kind="invariant" x="305" y="-25">t&lt;=fullTime</label>
+		</location>
+		<location id="id2" x="297" y="136">
+			<name x="314" y="153">full</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="119" y="25">t&gt;=fullTime</label>
+			<label kind="assignment" x="76" y="51">bathtub_full[i]=1</label>
+			<nail x="195" y="59"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="238" y="25">turn_on_bathtub[i]?</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="390" y="34">turn_off_bathtub[i]?</label>
+			<label kind="assignment" x="398" y="51">bathtub[i]=0</label>
+			<nail x="425" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="322" y="-110">turn_off_bathtub[i]?</label>
+			<label kind="assignment" x="356" y="-93">bathtub[i]=0</label>
+			<nail x="339" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="101" y="-110">turn_on_bathtub[i]?</label>
+			<label kind="assignment" x="109" y="-85">bathtub[i]=1</label>
+			<nail x="211" y="-68"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+bathtub_0 = Bathtub(0,14);
+
+// List one or more processes to be composed into a system.
+system bathtub_0,operateBathtub,SMS,Rule0;</system>
+	<queries>
+		<query>
+			<formula>simulate[&lt;=35] {bathtub_full[0],received_msgs}</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>simulate[&lt;=35] {bathtub[0],rule0}</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>
