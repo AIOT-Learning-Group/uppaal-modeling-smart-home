@@ -1,0 +1,23 @@
+a1. IF time >= 250 AND time <= 251 THEN curtain_0.close_curtain
+a2. IF time >= 250 AND time <= 251 THEN curtain_1.close_curtain
+b1. IF time >= 100 AND time <= 101 THEN curtain_0.open_curtain
+b2. IF time >= 100 AND time <= 101 THEN curtain_1.open_curtain
+c. IF Human.out THEN robotvacuum_0.turn_robotvacuum_on
+d1. IF Human.living_room THEN robotvacuum_0.turn_robotvacuum_off
+d2. IF Human.kitchen THEN robotvacuum_0.turn_robotvacuum_off
+d3. IF Human.bathroom THEN robotvacuum_0.turn_robotvacuum_off
+d4. IF Human.bedroom THEN robotvacuum_0.turn_robotvacuum_off
+e1. IF temperature < 25 AND Human.living_room THEN airconditioner_0.turn_airconditioner_heat
+e2. IF temperature < 25 AND Human.kitchen THEN airconditioner_0.turn_airconditioner_heat
+e3. IF temperature < 25 AND Human.bathroom THEN airconditioner_0.turn_airconditioner_heat
+e4. IF temperature < 25 AND Human.bedroom THEN airconditioner_0.turn_airconditioner_heat
+f1. IF temperature > 25 AND Human.living_room THEN airconditioner_0.turn_airconditioner_cool
+f2. IF temperature > 25 AND Human.kitchen THEN airconditioner_0.turn_airconditioner_cool
+f3. IF temperature > 25 AND Human.bathroom THEN airconditioner_0.turn_airconditioner_cool
+f4. IF temperature > 25 AND Human.bedroom THEN airconditioner_0.turn_airconditioner_cool
+g. IF time >= 87 AND time <= 88 THEN coffeemachine_0.turn_coffeemachine_on
+h1. IF brightness < 500 THEN light_0.turn_light_on
+h2. IF brightness < 500 THEN light_1.turn_light_on
+h3. IF brightness < 500 THEN light_2.turn_light_on
+i. IF humidity < 40 THEN humidifier_0.turn_humidifier_on
+j. IF humidity > 60 THEN humidifier_0.turn_humidifier_off

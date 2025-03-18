@@ -1,0 +1,24 @@
+a. IF temperature < 15 THEN airconditioner_0.turn_airconditioner_heat
+b. IF temperature > 28 THEN airconditioner_0.turn_airconditioner_cool
+c. IF Human.out THEN light_0.turn_light_on
+d. IF Human.bathroom AND temperature < 15 THEN heater_0.turn_heater_on
+e. IF Human.kitchen THEN light_2.turn_light_on
+f. IF Human.living_room THEN light_0.turn_light_on
+g. IF time > 100 THEN curtain_0.open_curtain
+h. IF time > 275 THEN curtain_0.close_curtain
+i. IF Human.out THEN window_0.open_window
+j. IF Human.kitchen AND time > 75 AND time < 150 THEN coffeemachine_0.turn_coffeemachine_on
+k. IF Human.out THEN robotvacuum_0.turn_robotvacuum_on
+l. IF Human.bedroom AND time > 287 THEN light_1.turn_light_off
+m1. IF Human.out THEN light_2.turn_light_off
+m2. IF Human.living_room THEN light_2.turn_light_off
+m3. IF Human.bathroom THEN light_2.turn_light_off
+m4. IF Human.bedroom THEN light_2.turn_light_off
+n1. IF Human.out THEN light_1.turn_light_off
+n2. IF Human.living_room THEN light_1.turn_light_off
+n3. IF Human.bathroom THEN light_1.turn_light_off
+n4. IF Human.kitchen THEN light_1.turn_light_off
+o1. IF Human.out THEN light_0.turn_light_off
+o2. IF Human.bedroom THEN light_0.turn_light_off
+o3. IF Human.bathroom THEN light_0.turn_light_off
+o4. IF Human.kitchen THEN light_0.turn_light_off

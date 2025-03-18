@@ -1,5 +1,6 @@
+from modeling.device import load_device_table
 from modeling.human import HumanModelForSmartHome
-from modeling.rule import valid_device_names, on_off_devices_names, open_close_devices_names
+from modeling.rule import global_rule_context, init_global_rule_context
 from typing_extensions import TypedDict, NotRequired
 from typing import Dict, List, Optional
 from fastapi import APIRouter
@@ -77,16 +78,23 @@ special_devices_names = [
     "ac", "sms"
 ]
 
+from knowledgebase.system_device_models_pb2 import SystemDeviceModels as PbSystemDeviceModels
+from google.protobuf import text_format
+pb_system_device_models = PbSystemDeviceModels()
+text_format.Parse(open("taps\\rq3a\\system_device_models_rq3a.textproto",
+                'r').read(), pb_system_device_models)
+load_device_table(pb_system_device_models)
+init_global_rule_context()
 
 def get_device_func_spec(include_state: bool = False) -> List[Specification]:
     devices_numbers: Dict[str, int] = {
-        "fan": 1, "airpurifier": 1, "light": 2, "camera": 1, "humidifier": 1,
+        "light": 2, "camera": 1, "humidifier": 1, "fan": 1,  "airpurifier": 1, 
         "door": 2, "curtain": 2, "window": 2,
-        "airconditioner": 1, "sms": 1
+        "airconditioner": 1,
     }
     device_func_spec: List[Specification] = []
     for device, number in devices_numbers.items():
-        assert device in valid_device_names, f"{device} not found in valid device names"
+        assert device in global_rule_context.valid_device_names, f"{device} not found in valid device names"
         if device in on_off_devices_names:
             for i in range(number):
                 device_func_spec.append(

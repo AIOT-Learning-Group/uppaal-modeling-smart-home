@@ -1,0 +1,3209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+<declaration>// Place global declarations here.
+clock time=0.0;int humanposition;clock temperature=8.26591090471628; double dtemperature=0.0;
+clock humidity=20.55398105149225; double dhumidity=0.0;
+clock airquality=48.26591090471628; double dairquality=0.0;
+clock pm25=102.6591090471628; double dpm25=0.0;
+clock brightness=213.29554523581402; double dbrightness=0.0;
+int rule1;int rule2;int rule3;int rule4;int rule5;int rule6;int rule7;int rule8;int rule9;int rule10;int rule11;int rule12;int rule13;int rule14;int rule15;int airconditioner[1];
+urgent broadcast chan turn_airconditioner_off[1];
+urgent broadcast chan turn_airconditioner_cool[1];
+urgent broadcast chan turn_airconditioner_heat[1];
+int curtain[2];
+urgent broadcast chan open_curtain[2];
+urgent broadcast chan close_curtain[2];
+int humidifier[1];
+urgent broadcast chan turn_on_humidifier[1];
+urgent broadcast chan turn_off_humidifier[1];
+int fan[1];
+urgent broadcast chan turn_on_fan[1];
+urgent broadcast chan turn_off_fan[1];
+int door[2];
+urgent broadcast chan open_door[2];
+urgent broadcast chan close_door[2];
+int coffeemachine[1];
+urgent broadcast chan turn_on_coffeemachine[1];
+urgent broadcast chan turn_off_coffeemachine[1];
+int robotvacuum[1];
+urgent broadcast chan turn_on_robotvacuum[1];
+urgent broadcast chan turn_off_robotvacuum[1];
+int window[2];
+urgent broadcast chan open_window[2];
+urgent broadcast chan close_window[2];
+int dehumidifier[1];
+urgent broadcast chan turn_on_dehumidifier[1];
+urgent broadcast chan turn_off_dehumidifier[1];
+int light[4];
+urgent broadcast chan turn_on_light[4];
+urgent broadcast chan turn_off_light[4];
+int heater[1];
+urgent broadcast chan turn_on_heater[1];
+urgent broadcast chan turn_off_heater[1];
+</declaration>
+<template>
+	<name>HumanPosition</name>
+	<parameter>double t0,double t1,double t2,double t3,double t4</parameter>
+	<declaration>//</declaration>
+	<location id="id0" x="150" y="100">
+		<committed/>
+	</location>
+	<location id="id1" x="300" y="100">
+		<name>out_0</name>
+		<label kind="invariant">time&lt;=t0</label>
+	</location>
+	<location id="id2" x="450" y="100">
+		<name>living_room_0</name>
+		<label kind="invariant">time&lt;=t1</label>
+	</location>
+	<location id="id3" x="600" y="100">
+		<name>kitchen_0</name>
+		<label kind="invariant">time&lt;=t2</label>
+	</location>
+	<location id="id4" x="750" y="100">
+		<name>bathroom_0</name>
+		<label kind="invariant">time&lt;=t3</label>
+	</location>
+	<location id="id5" x="900" y="100">
+		<name>bedroom_0</name>
+		<label kind="invariant">time&lt;=t4</label>
+	</location>
+	<location id="id6" x="1050" y="100">
+		<name>out_1</name>
+	</location>
+	<init ref="id0"/>
+	<transition>
+		<source ref="id0"/>
+		<target ref="id1"/>
+		<label kind="assignment">humanposition=0</label>
+	</transition>
+	<transition>
+		<source ref="id1"/>
+		<target ref="id2"/>
+		<label kind="guard">time&gt;=t0</label>
+		<label kind="assignment">humanposition=1</label>
+	</transition>
+	<transition>
+		<source ref="id2"/>
+		<target ref="id3"/>
+		<label kind="guard">time&gt;=t1</label>
+		<label kind="assignment">humanposition=3</label>
+	</transition>
+	<transition>
+		<source ref="id3"/>
+		<target ref="id4"/>
+		<label kind="guard">time&gt;=t2</label>
+		<label kind="assignment">humanposition=4</label>
+	</transition>
+	<transition>
+		<source ref="id4"/>
+		<target ref="id5"/>
+		<label kind="guard">time&gt;=t3</label>
+		<label kind="assignment">humanposition=2</label>
+	</transition>
+	<transition>
+		<source ref="id5"/>
+		<target ref="id6"/>
+		<label kind="guard">time&gt;=t4</label>
+		<label kind="assignment">humanposition=0</label>
+	</transition>
+</template>
+	<template>
+		<name x="5" y="5">EnvironmentTemperature</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id7" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; temperature'==0</label>
+		</location>
+		<location id="id8" x="50" y="0">
+			<label kind="invariant">time &lt;= 6.1224489795918435 &amp;&amp; temperature'==0.018811079431910918+dtemperature</label>
+		</location>
+		<location id="id9" x="100" y="0">
+			<label kind="invariant">time &lt;= 12.244897959183664 &amp;&amp; temperature'==0.025630940888933345+dtemperature</label>
+		</location>
+		<location id="id10" x="150" y="0">
+			<label kind="invariant">time &lt;= 18.36734693877551 &amp;&amp; temperature'==0.03433918751933232+dtemperature</label>
+		</location>
+		<location id="id11" x="200" y="0">
+			<label kind="invariant">time &lt;= 24.489795918367353 &amp;&amp; temperature'==0.04522865144914115+dtemperature</label>
+		</location>
+		<location id="id12" x="250" y="0">
+			<label kind="invariant">time &lt;= 30.612244897959197 &amp;&amp; temperature'==0.05855280991957571+dtemperature</label>
+		</location>
+		<location id="id13" x="300" y="0">
+			<label kind="invariant">time &lt;= 36.73469387755102 &amp;&amp; temperature'==0.07448882851551944+dtemperature</label>
+		</location>
+		<location id="id14" x="350" y="0">
+			<label kind="invariant">time &lt;= 42.85714285714286 &amp;&amp; temperature'==0.09309497615944483+dtemperature</label>
+		</location>
+		<location id="id15" x="400" y="0">
+			<label kind="invariant">time &lt;= 48.979591836734706 &amp;&amp; temperature'==0.11426553587540493+dtemperature</label>
+		</location>
+		<location id="id16" x="450" y="0">
+			<label kind="invariant">time &lt;= 55.10204081632652 &amp;&amp; temperature'==0.13768775765664795+dtemperature</label>
+		</location>
+		<location id="id17" x="500" y="0">
+			<label kind="invariant">time &lt;= 61.224489795918366 &amp;&amp; temperature'==0.16280660409766173+dtemperature</label>
+		</location>
+		<location id="id18" x="550" y="0">
+			<label kind="invariant">time &lt;= 67.34693877551021 &amp;&amp; temperature'==0.18880375176438396+dtemperature</label>
+		</location>
+		<location id="id19" x="600" y="0">
+			<label kind="invariant">time &lt;= 73.46938775510203 &amp;&amp; temperature'==0.21459726204750854+dtemperature</label>
+		</location>
+		<location id="id20" x="650" y="0">
+			<label kind="invariant">time &lt;= 79.59183673469389 &amp;&amp; temperature'==0.23886731465865865+dtemperature</label>
+		</location>
+		<location id="id21" x="700" y="0">
+			<label kind="invariant">time &lt;= 85.71428571428571 &amp;&amp; temperature'==0.2601113135366033+dtemperature</label>
+		</location>
+		<location id="id22" x="750" y="0">
+			<label kind="invariant">time &lt;= 91.83673469387756 &amp;&amp; temperature'==0.27672860519505044+dtemperature</label>
+		</location>
+		<location id="id23" x="800" y="0">
+			<label kind="invariant">time &lt;= 97.95918367346938 &amp;&amp; temperature'==0.28713126455975047+dtemperature</label>
+		</location>
+		<location id="id24" x="850" y="0">
+			<label kind="invariant">time &lt;= 104.08163265306122 &amp;&amp; temperature'==0.28987336101300293+dtemperature</label>
+		</location>
+		<location id="id25" x="900" y="0">
+			<label kind="invariant">time &lt;= 110.20408163265304 &amp;&amp; temperature'==0.28378741388149215+dtemperature</label>
+		</location>
+		<location id="id26" x="950" y="0">
+			<label kind="invariant">time &lt;= 116.3265306122449 &amp;&amp; temperature'==0.26811402948493845+dtemperature</label>
+		</location>
+		<location id="id27" x="1000" y="0">
+			<label kind="invariant">time &lt;= 122.44897959183673 &amp;&amp; temperature'==0.242609566353362+dtemperature</label>
+		</location>
+		<location id="id28" x="1050" y="0">
+			<label kind="invariant">time &lt;= 128.57142857142856 &amp;&amp; temperature'==0.20761750436642518+dtemperature</label>
+		</location>
+		<location id="id29" x="1100" y="0">
+			<label kind="invariant">time &lt;= 134.69387755102042 &amp;&amp; temperature'==0.16409211711771304+dtemperature</label>
+		</location>
+		<location id="id30" x="1150" y="0">
+			<label kind="invariant">time &lt;= 140.81632653061226 &amp;&amp; temperature'==0.11356784350248385+dtemperature</label>
+		</location>
+		<location id="id31" x="1200" y="0">
+			<label kind="invariant">time &lt;= 146.93877551020407 &amp;&amp; temperature'==0.05807386562224576+dtemperature</label>
+		</location>
+		<location id="id32" x="1250" y="0">
+			<label kind="invariant">time &lt;= 153.06122448979593 &amp;&amp; temperature'==1.0046499804308446e-16+dtemperature</label>
+		</location>
+		<location id="id33" x="1300" y="0">
+			<label kind="invariant">time &lt;= 159.18367346938777 &amp;&amp; temperature'==-0.05807386562224583+dtemperature</label>
+		</location>
+		<location id="id34" x="1350" y="0">
+			<label kind="invariant">time &lt;= 165.3061224489796 &amp;&amp; temperature'==-0.1135678435024837+dtemperature</label>
+		</location>
+		<location id="id35" x="1400" y="0">
+			<label kind="invariant">time &lt;= 171.42857142857142 &amp;&amp; temperature'==-0.16409211711771238+dtemperature</label>
+		</location>
+		<location id="id36" x="1450" y="0">
+			<label kind="invariant">time &lt;= 177.55102040816325 &amp;&amp; temperature'==-0.20761750436642354+dtemperature</label>
+		</location>
+		<location id="id37" x="1500" y="0">
+			<label kind="invariant">time &lt;= 183.67346938775512 &amp;&amp; temperature'==-0.2426095663533602+dtemperature</label>
+		</location>
+		<location id="id38" x="1550" y="0">
+			<label kind="invariant">time &lt;= 189.79591836734693 &amp;&amp; temperature'==-0.2681140294849383+dtemperature</label>
+		</location>
+		<location id="id39" x="1600" y="0">
+			<label kind="invariant">time &lt;= 195.91836734693877 &amp;&amp; temperature'==-0.2837874138814891+dtemperature</label>
+		</location>
+		<location id="id40" x="1650" y="0">
+			<label kind="invariant">time &lt;= 202.0408163265306 &amp;&amp; temperature'==-0.28987336101300476+dtemperature</label>
+		</location>
+		<location id="id41" x="1700" y="0">
+			<label kind="invariant">time &lt;= 208.16326530612244 &amp;&amp; temperature'==-0.2871312645597533+dtemperature</label>
+		</location>
+		<location id="id42" x="1750" y="0">
+			<label kind="invariant">time &lt;= 214.28571428571428 &amp;&amp; temperature'==-0.2767286051950472+dtemperature</label>
+		</location>
+		<location id="id43" x="1800" y="0">
+			<label kind="invariant">time &lt;= 220.4081632653061 &amp;&amp; temperature'==-0.2601113135366059+dtemperature</label>
+		</location>
+		<location id="id44" x="1850" y="0">
+			<label kind="invariant">time &lt;= 226.53061224489798 &amp;&amp; temperature'==-0.23886731465865832+dtemperature</label>
+		</location>
+		<location id="id45" x="1900" y="0">
+			<label kind="invariant">time &lt;= 232.6530612244898 &amp;&amp; temperature'==-0.21459726204750734+dtemperature</label>
+		</location>
+		<location id="id46" x="1950" y="0">
+			<label kind="invariant">time &lt;= 238.7755102040816 &amp;&amp; temperature'==-0.1888037517643864+dtemperature</label>
+		</location>
+		<location id="id47" x="2000" y="0">
+			<label kind="invariant">time &lt;= 244.89795918367346 &amp;&amp; temperature'==-0.16280660409766112+dtemperature</label>
+		</location>
+		<location id="id48" x="2050" y="0">
+			<label kind="invariant">time &lt;= 251.02040816326527 &amp;&amp; temperature'==-0.13768775765664693+dtemperature</label>
+		</location>
+		<location id="id49" x="2100" y="0">
+			<label kind="invariant">time &lt;= 257.1428571428571 &amp;&amp; temperature'==-0.11426553587540567+dtemperature</label>
+		</location>
+		<location id="id50" x="2150" y="0">
+			<label kind="invariant">time &lt;= 263.265306122449 &amp;&amp; temperature'==-0.09309497615944415+dtemperature</label>
+		</location>
+		<location id="id51" x="2200" y="0">
+			<label kind="invariant">time &lt;= 269.38775510204084 &amp;&amp; temperature'==-0.07448882851551919+dtemperature</label>
+		</location>
+		<location id="id52" x="2250" y="0">
+			<label kind="invariant">time &lt;= 275.51020408163265 &amp;&amp; temperature'==-0.0585528099195754+dtemperature</label>
+		</location>
+		<location id="id53" x="2300" y="0">
+			<label kind="invariant">time &lt;= 281.6326530612245 &amp;&amp; temperature'==-0.045228651449141795+dtemperature</label>
+		</location>
+		<location id="id54" x="2350" y="0">
+			<label kind="invariant">time &lt;= 287.7551020408163 &amp;&amp; temperature'==-0.03433918751933305+dtemperature</label>
+		</location>
+		<location id="id55" x="2400" y="0">
+			<label kind="invariant">time &lt;= 293.87755102040813 &amp;&amp; temperature'==-0.02563094088893343+dtemperature</label>
+		</location>
+		<location id="id56" x="2450" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; temperature'==-0.018811079431910106+dtemperature</label>
+		</location>
+		<location id="id57" x="2500" y="0">
+			<label kind="invariant">temperature'==dtemperature</label>
+		</location>
+		<init ref="id7"/>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="guard">time &gt;= 6.1224489795918435</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id10"/>
+			<label kind="guard">time &gt;= 12.244897959183664</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="guard">time &gt;= 18.36734693877551</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id12"/>
+			<label kind="guard">time &gt;= 24.489795918367353</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id13"/>
+			<label kind="guard">time &gt;= 30.612244897959197</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="guard">time &gt;= 36.73469387755102</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id15"/>
+			<label kind="guard">time &gt;= 42.85714285714286</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id16"/>
+			<label kind="guard">time &gt;= 48.979591836734706</label>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id17"/>
+			<label kind="guard">time &gt;= 55.10204081632652</label>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id18"/>
+			<label kind="guard">time &gt;= 61.224489795918366</label>
+		</transition>
+		<transition>
+			<source ref="id18"/>
+			<target ref="id19"/>
+			<label kind="guard">time &gt;= 67.34693877551021</label>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id20"/>
+			<label kind="guard">time &gt;= 73.46938775510203</label>
+		</transition>
+		<transition>
+			<source ref="id20"/>
+			<target ref="id21"/>
+			<label kind="guard">time &gt;= 79.59183673469389</label>
+		</transition>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id22"/>
+			<label kind="guard">time &gt;= 85.71428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id23"/>
+			<label kind="guard">time &gt;= 91.83673469387756</label>
+		</transition>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id24"/>
+			<label kind="guard">time &gt;= 97.95918367346938</label>
+		</transition>
+		<transition>
+			<source ref="id24"/>
+			<target ref="id25"/>
+			<label kind="guard">time &gt;= 104.08163265306122</label>
+		</transition>
+		<transition>
+			<source ref="id25"/>
+			<target ref="id26"/>
+			<label kind="guard">time &gt;= 110.20408163265304</label>
+		</transition>
+		<transition>
+			<source ref="id26"/>
+			<target ref="id27"/>
+			<label kind="guard">time &gt;= 116.3265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id28"/>
+			<label kind="guard">time &gt;= 122.44897959183673</label>
+		</transition>
+		<transition>
+			<source ref="id28"/>
+			<target ref="id29"/>
+			<label kind="guard">time &gt;= 128.57142857142856</label>
+		</transition>
+		<transition>
+			<source ref="id29"/>
+			<target ref="id30"/>
+			<label kind="guard">time &gt;= 134.69387755102042</label>
+		</transition>
+		<transition>
+			<source ref="id30"/>
+			<target ref="id31"/>
+			<label kind="guard">time &gt;= 140.81632653061226</label>
+		</transition>
+		<transition>
+			<source ref="id31"/>
+			<target ref="id32"/>
+			<label kind="guard">time &gt;= 146.93877551020407</label>
+		</transition>
+		<transition>
+			<source ref="id32"/>
+			<target ref="id33"/>
+			<label kind="guard">time &gt;= 153.06122448979593</label>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="guard">time &gt;= 159.18367346938777</label>
+		</transition>
+		<transition>
+			<source ref="id34"/>
+			<target ref="id35"/>
+			<label kind="guard">time &gt;= 165.3061224489796</label>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="guard">time &gt;= 171.42857142857142</label>
+		</transition>
+		<transition>
+			<source ref="id36"/>
+			<target ref="id37"/>
+			<label kind="guard">time &gt;= 177.55102040816325</label>
+		</transition>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id38"/>
+			<label kind="guard">time &gt;= 183.67346938775512</label>
+		</transition>
+		<transition>
+			<source ref="id38"/>
+			<target ref="id39"/>
+			<label kind="guard">time &gt;= 189.79591836734693</label>
+		</transition>
+		<transition>
+			<source ref="id39"/>
+			<target ref="id40"/>
+			<label kind="guard">time &gt;= 195.91836734693877</label>
+		</transition>
+		<transition>
+			<source ref="id40"/>
+			<target ref="id41"/>
+			<label kind="guard">time &gt;= 202.0408163265306</label>
+		</transition>
+		<transition>
+			<source ref="id41"/>
+			<target ref="id42"/>
+			<label kind="guard">time &gt;= 208.16326530612244</label>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id43"/>
+			<label kind="guard">time &gt;= 214.28571428571428</label>
+		</transition>
+		<transition>
+			<source ref="id43"/>
+			<target ref="id44"/>
+			<label kind="guard">time &gt;= 220.4081632653061</label>
+		</transition>
+		<transition>
+			<source ref="id44"/>
+			<target ref="id45"/>
+			<label kind="guard">time &gt;= 226.53061224489798</label>
+		</transition>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id46"/>
+			<label kind="guard">time &gt;= 232.6530612244898</label>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id47"/>
+			<label kind="guard">time &gt;= 238.7755102040816</label>
+		</transition>
+		<transition>
+			<source ref="id47"/>
+			<target ref="id48"/>
+			<label kind="guard">time &gt;= 244.89795918367346</label>
+		</transition>
+		<transition>
+			<source ref="id48"/>
+			<target ref="id49"/>
+			<label kind="guard">time &gt;= 251.02040816326527</label>
+		</transition>
+		<transition>
+			<source ref="id49"/>
+			<target ref="id50"/>
+			<label kind="guard">time &gt;= 257.1428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id50"/>
+			<target ref="id51"/>
+			<label kind="guard">time &gt;= 263.265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id51"/>
+			<target ref="id52"/>
+			<label kind="guard">time &gt;= 269.38775510204084</label>
+		</transition>
+		<transition>
+			<source ref="id52"/>
+			<target ref="id53"/>
+			<label kind="guard">time &gt;= 275.51020408163265</label>
+		</transition>
+		<transition>
+			<source ref="id53"/>
+			<target ref="id54"/>
+			<label kind="guard">time &gt;= 281.6326530612245</label>
+		</transition>
+		<transition>
+			<source ref="id54"/>
+			<target ref="id55"/>
+			<label kind="guard">time &gt;= 287.7551020408163</label>
+		</transition>
+		<transition>
+			<source ref="id55"/>
+			<target ref="id56"/>
+			<label kind="guard">time &gt;= 293.87755102040813</label>
+		</transition>
+		<transition>
+			<source ref="id56"/>
+			<target ref="id57"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentHumidity</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id67" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; humidity'==0</label>
+		</location>
+		<location id="id68" x="50" y="0">
+			<label kind="invariant">time &lt;= 6.1224489795918435 &amp;&amp; humidity'==0.0391897488164812+dhumidity</label>
+		</location>
+		<location id="id69" x="100" y="0">
+			<label kind="invariant">time &lt;= 12.244897959183664 &amp;&amp; humidity'==0.05339779351861049+dhumidity</label>
+		</location>
+		<location id="id70" x="150" y="0">
+			<label kind="invariant">time &lt;= 18.36734693877551 &amp;&amp; humidity'==0.07153997399860927+dhumidity</label>
+		</location>
+		<location id="id71" x="200" y="0">
+			<label kind="invariant">time &lt;= 24.489795918367353 &amp;&amp; humidity'==0.09422635718571039+dhumidity</label>
+		</location>
+		<location id="id72" x="250" y="0">
+			<label kind="invariant">time &lt;= 30.612244897959197 &amp;&amp; humidity'==0.12198502066578294+dhumidity</label>
+		</location>
+		<location id="id73" x="300" y="0">
+			<label kind="invariant">time &lt;= 36.73469387755102 &amp;&amp; humidity'==0.1551850594073329+dhumidity</label>
+		</location>
+		<location id="id74" x="350" y="0">
+			<label kind="invariant">time &lt;= 42.85714285714286 &amp;&amp; humidity'==0.1939478669988428+dhumidity</label>
+		</location>
+		<location id="id75" x="400" y="0">
+			<label kind="invariant">time &lt;= 48.979591836734706 &amp;&amp; humidity'==0.23805319974042718+dhumidity</label>
+		</location>
+		<location id="id76" x="450" y="0">
+			<label kind="invariant">time &lt;= 55.10204081632652 &amp;&amp; humidity'==0.2868494951180155+dhumidity</label>
+		</location>
+		<location id="id77" x="500" y="0">
+			<label kind="invariant">time &lt;= 61.224489795918366 &amp;&amp; humidity'==0.3391804252034615+dhumidity</label>
+		</location>
+		<location id="id78" x="550" y="0">
+			<label kind="invariant">time &lt;= 67.34693877551021 &amp;&amp; humidity'==0.39334114950913257+dhumidity</label>
+		</location>
+		<location id="id79" x="600" y="0">
+			<label kind="invariant">time &lt;= 73.46938775510203 &amp;&amp; humidity'==0.44707762926564226+dhumidity</label>
+		</location>
+		<location id="id80" x="650" y="0">
+			<label kind="invariant">time &lt;= 79.59183673469389 &amp;&amp; humidity'==0.4976402388722062+dhumidity</label>
+		</location>
+		<location id="id81" x="700" y="0">
+			<label kind="invariant">time &lt;= 85.71428571428571 &amp;&amp; humidity'==0.541898569867925+dhumidity</label>
+		</location>
+		<location id="id82" x="750" y="0">
+			<label kind="invariant">time &lt;= 91.83673469387756 &amp;&amp; humidity'==0.5765179274896871+dhumidity</label>
+		</location>
+		<location id="id83" x="800" y="0">
+			<label kind="invariant">time &lt;= 97.95918367346938 &amp;&amp; humidity'==0.5981901344994813+dhumidity</label>
+		</location>
+		<location id="id84" x="850" y="0">
+			<label kind="invariant">time &lt;= 104.08163265306122 &amp;&amp; humidity'==0.6039028354437542+dhumidity</label>
+		</location>
+		<location id="id85" x="900" y="0">
+			<label kind="invariant">time &lt;= 110.20408163265304 &amp;&amp; humidity'==0.5912237789197751+dhumidity</label>
+		</location>
+		<location id="id86" x="950" y="0">
+			<label kind="invariant">time &lt;= 116.3265306122449 &amp;&amp; humidity'==0.5585708947602893+dhumidity</label>
+		</location>
+		<location id="id87" x="1000" y="0">
+			<label kind="invariant">time &lt;= 122.44897959183673 &amp;&amp; humidity'==0.505436596569504+dhumidity</label>
+		</location>
+		<location id="id88" x="1050" y="0">
+			<label kind="invariant">time &lt;= 128.57142857142856 &amp;&amp; humidity'==0.4325364674300523+dhumidity</label>
+		</location>
+		<location id="id89" x="1100" y="0">
+			<label kind="invariant">time &lt;= 134.69387755102042 &amp;&amp; humidity'==0.34185857732856684+dhumidity</label>
+		</location>
+		<location id="id90" x="1150" y="0">
+			<label kind="invariant">time &lt;= 140.81632653061226 &amp;&amp; humidity'==0.23659967396351167+dhumidity</label>
+		</location>
+		<location id="id91" x="1200" y="0">
+			<label kind="invariant">time &lt;= 146.93877551020407 &amp;&amp; humidity'==0.12098722004634457+dhumidity</label>
+		</location>
+		<location id="id92" x="1250" y="0">
+			<label kind="invariant">time &lt;= 153.06122448979593 &amp;&amp; humidity'==3.851158258318238e-15+dhumidity</label>
+		</location>
+		<location id="id93" x="1300" y="0">
+			<label kind="invariant">time &lt;= 159.18367346938777 &amp;&amp; humidity'==-0.12098722004634711+dhumidity</label>
+		</location>
+		<location id="id94" x="1350" y="0">
+			<label kind="invariant">time &lt;= 165.3061224489796 &amp;&amp; humidity'==-0.23659967396350656+dhumidity</label>
+		</location>
+		<location id="id95" x="1400" y="0">
+			<label kind="invariant">time &lt;= 171.42857142857142 &amp;&amp; humidity'==-0.3418585773285672+dhumidity</label>
+		</location>
+		<location id="id96" x="1450" y="0">
+			<label kind="invariant">time &lt;= 177.55102040816325 &amp;&amp; humidity'==-0.4325364674300494+dhumidity</label>
+		</location>
+		<location id="id97" x="1500" y="0">
+			<label kind="invariant">time &lt;= 183.67346938775512 &amp;&amp; humidity'==-0.5054365965695012+dhumidity</label>
+		</location>
+		<location id="id98" x="1550" y="0">
+			<label kind="invariant">time &lt;= 189.79591836734693 &amp;&amp; humidity'==-0.5585708947602858+dhumidity</label>
+		</location>
+		<location id="id99" x="1600" y="0">
+			<label kind="invariant">time &lt;= 195.91836734693877 &amp;&amp; humidity'==-0.5912237789197704+dhumidity</label>
+		</location>
+		<location id="id100" x="1650" y="0">
+			<label kind="invariant">time &lt;= 202.0408163265306 &amp;&amp; humidity'==-0.6039028354437583+dhumidity</label>
+		</location>
+		<location id="id101" x="1700" y="0">
+			<label kind="invariant">time &lt;= 208.16326530612244 &amp;&amp; humidity'==-0.598190134499486+dhumidity</label>
+		</location>
+		<location id="id102" x="1750" y="0">
+			<label kind="invariant">time &lt;= 214.28571428571428 &amp;&amp; humidity'==-0.57651792748968+dhumidity</label>
+		</location>
+		<location id="id103" x="1800" y="0">
+			<label kind="invariant">time &lt;= 220.4081632653061 &amp;&amp; humidity'==-0.54189856986793+dhumidity</label>
+		</location>
+		<location id="id104" x="1850" y="0">
+			<label kind="invariant">time &lt;= 226.53061224489798 &amp;&amp; humidity'==-0.4976402388722053+dhumidity</label>
+		</location>
+		<location id="id105" x="1900" y="0">
+			<label kind="invariant">time &lt;= 232.6530612244898 &amp;&amp; humidity'==-0.44707762926563915+dhumidity</label>
+		</location>
+		<location id="id106" x="1950" y="0">
+			<label kind="invariant">time &lt;= 238.7755102040816 &amp;&amp; humidity'==-0.3933411495091366+dhumidity</label>
+		</location>
+		<location id="id107" x="2000" y="0">
+			<label kind="invariant">time &lt;= 244.89795918367346 &amp;&amp; humidity'==-0.3391804252034613+dhumidity</label>
+		</location>
+		<location id="id108" x="2050" y="0">
+			<label kind="invariant">time &lt;= 251.02040816326527 &amp;&amp; humidity'==-0.28684949511801516+dhumidity</label>
+		</location>
+		<location id="id109" x="2100" y="0">
+			<label kind="invariant">time &lt;= 257.1428571428571 &amp;&amp; humidity'==-0.23805319974042852+dhumidity</label>
+		</location>
+		<location id="id110" x="2150" y="0">
+			<label kind="invariant">time &lt;= 263.265306122449 &amp;&amp; humidity'==-0.19394786699884145+dhumidity</label>
+		</location>
+		<location id="id111" x="2200" y="0">
+			<label kind="invariant">time &lt;= 269.38775510204084 &amp;&amp; humidity'==-0.15518505940733127+dhumidity</label>
+		</location>
+		<location id="id112" x="2250" y="0">
+			<label kind="invariant">time &lt;= 275.51020408163265 &amp;&amp; humidity'==-0.1219850206657814+dhumidity</label>
+		</location>
+		<location id="id113" x="2300" y="0">
+			<label kind="invariant">time &lt;= 281.6326530612245 &amp;&amp; humidity'==-0.09422635718571228+dhumidity</label>
+		</location>
+		<location id="id114" x="2350" y="0">
+			<label kind="invariant">time &lt;= 287.7551020408163 &amp;&amp; humidity'==-0.07153997399861091+dhumidity</label>
+		</location>
+		<location id="id115" x="2400" y="0">
+			<label kind="invariant">time &lt;= 293.87755102040813 &amp;&amp; humidity'==-0.05339779351861029+dhumidity</label>
+		</location>
+		<location id="id116" x="2450" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; humidity'==-0.03918974881647954+dhumidity</label>
+		</location>
+		<location id="id117" x="2500" y="0">
+			<label kind="invariant">humidity'==dhumidity</label>
+		</location>
+		<init ref="id67"/>
+		<transition>
+			<source ref="id67"/>
+			<target ref="id68"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id68"/>
+			<target ref="id69"/>
+			<label kind="guard">time &gt;= 6.1224489795918435</label>
+		</transition>
+		<transition>
+			<source ref="id69"/>
+			<target ref="id70"/>
+			<label kind="guard">time &gt;= 12.244897959183664</label>
+		</transition>
+		<transition>
+			<source ref="id70"/>
+			<target ref="id71"/>
+			<label kind="guard">time &gt;= 18.36734693877551</label>
+		</transition>
+		<transition>
+			<source ref="id71"/>
+			<target ref="id72"/>
+			<label kind="guard">time &gt;= 24.489795918367353</label>
+		</transition>
+		<transition>
+			<source ref="id72"/>
+			<target ref="id73"/>
+			<label kind="guard">time &gt;= 30.612244897959197</label>
+		</transition>
+		<transition>
+			<source ref="id73"/>
+			<target ref="id74"/>
+			<label kind="guard">time &gt;= 36.73469387755102</label>
+		</transition>
+		<transition>
+			<source ref="id74"/>
+			<target ref="id75"/>
+			<label kind="guard">time &gt;= 42.85714285714286</label>
+		</transition>
+		<transition>
+			<source ref="id75"/>
+			<target ref="id76"/>
+			<label kind="guard">time &gt;= 48.979591836734706</label>
+		</transition>
+		<transition>
+			<source ref="id76"/>
+			<target ref="id77"/>
+			<label kind="guard">time &gt;= 55.10204081632652</label>
+		</transition>
+		<transition>
+			<source ref="id77"/>
+			<target ref="id78"/>
+			<label kind="guard">time &gt;= 61.224489795918366</label>
+		</transition>
+		<transition>
+			<source ref="id78"/>
+			<target ref="id79"/>
+			<label kind="guard">time &gt;= 67.34693877551021</label>
+		</transition>
+		<transition>
+			<source ref="id79"/>
+			<target ref="id80"/>
+			<label kind="guard">time &gt;= 73.46938775510203</label>
+		</transition>
+		<transition>
+			<source ref="id80"/>
+			<target ref="id81"/>
+			<label kind="guard">time &gt;= 79.59183673469389</label>
+		</transition>
+		<transition>
+			<source ref="id81"/>
+			<target ref="id82"/>
+			<label kind="guard">time &gt;= 85.71428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id82"/>
+			<target ref="id83"/>
+			<label kind="guard">time &gt;= 91.83673469387756</label>
+		</transition>
+		<transition>
+			<source ref="id83"/>
+			<target ref="id84"/>
+			<label kind="guard">time &gt;= 97.95918367346938</label>
+		</transition>
+		<transition>
+			<source ref="id84"/>
+			<target ref="id85"/>
+			<label kind="guard">time &gt;= 104.08163265306122</label>
+		</transition>
+		<transition>
+			<source ref="id85"/>
+			<target ref="id86"/>
+			<label kind="guard">time &gt;= 110.20408163265304</label>
+		</transition>
+		<transition>
+			<source ref="id86"/>
+			<target ref="id87"/>
+			<label kind="guard">time &gt;= 116.3265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id87"/>
+			<target ref="id88"/>
+			<label kind="guard">time &gt;= 122.44897959183673</label>
+		</transition>
+		<transition>
+			<source ref="id88"/>
+			<target ref="id89"/>
+			<label kind="guard">time &gt;= 128.57142857142856</label>
+		</transition>
+		<transition>
+			<source ref="id89"/>
+			<target ref="id90"/>
+			<label kind="guard">time &gt;= 134.69387755102042</label>
+		</transition>
+		<transition>
+			<source ref="id90"/>
+			<target ref="id91"/>
+			<label kind="guard">time &gt;= 140.81632653061226</label>
+		</transition>
+		<transition>
+			<source ref="id91"/>
+			<target ref="id92"/>
+			<label kind="guard">time &gt;= 146.93877551020407</label>
+		</transition>
+		<transition>
+			<source ref="id92"/>
+			<target ref="id93"/>
+			<label kind="guard">time &gt;= 153.06122448979593</label>
+		</transition>
+		<transition>
+			<source ref="id93"/>
+			<target ref="id94"/>
+			<label kind="guard">time &gt;= 159.18367346938777</label>
+		</transition>
+		<transition>
+			<source ref="id94"/>
+			<target ref="id95"/>
+			<label kind="guard">time &gt;= 165.3061224489796</label>
+		</transition>
+		<transition>
+			<source ref="id95"/>
+			<target ref="id96"/>
+			<label kind="guard">time &gt;= 171.42857142857142</label>
+		</transition>
+		<transition>
+			<source ref="id96"/>
+			<target ref="id97"/>
+			<label kind="guard">time &gt;= 177.55102040816325</label>
+		</transition>
+		<transition>
+			<source ref="id97"/>
+			<target ref="id98"/>
+			<label kind="guard">time &gt;= 183.67346938775512</label>
+		</transition>
+		<transition>
+			<source ref="id98"/>
+			<target ref="id99"/>
+			<label kind="guard">time &gt;= 189.79591836734693</label>
+		</transition>
+		<transition>
+			<source ref="id99"/>
+			<target ref="id100"/>
+			<label kind="guard">time &gt;= 195.91836734693877</label>
+		</transition>
+		<transition>
+			<source ref="id100"/>
+			<target ref="id101"/>
+			<label kind="guard">time &gt;= 202.0408163265306</label>
+		</transition>
+		<transition>
+			<source ref="id101"/>
+			<target ref="id102"/>
+			<label kind="guard">time &gt;= 208.16326530612244</label>
+		</transition>
+		<transition>
+			<source ref="id102"/>
+			<target ref="id103"/>
+			<label kind="guard">time &gt;= 214.28571428571428</label>
+		</transition>
+		<transition>
+			<source ref="id103"/>
+			<target ref="id104"/>
+			<label kind="guard">time &gt;= 220.4081632653061</label>
+		</transition>
+		<transition>
+			<source ref="id104"/>
+			<target ref="id105"/>
+			<label kind="guard">time &gt;= 226.53061224489798</label>
+		</transition>
+		<transition>
+			<source ref="id105"/>
+			<target ref="id106"/>
+			<label kind="guard">time &gt;= 232.6530612244898</label>
+		</transition>
+		<transition>
+			<source ref="id106"/>
+			<target ref="id107"/>
+			<label kind="guard">time &gt;= 238.7755102040816</label>
+		</transition>
+		<transition>
+			<source ref="id107"/>
+			<target ref="id108"/>
+			<label kind="guard">time &gt;= 244.89795918367346</label>
+		</transition>
+		<transition>
+			<source ref="id108"/>
+			<target ref="id109"/>
+			<label kind="guard">time &gt;= 251.02040816326527</label>
+		</transition>
+		<transition>
+			<source ref="id109"/>
+			<target ref="id110"/>
+			<label kind="guard">time &gt;= 257.1428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id110"/>
+			<target ref="id111"/>
+			<label kind="guard">time &gt;= 263.265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id111"/>
+			<target ref="id112"/>
+			<label kind="guard">time &gt;= 269.38775510204084</label>
+		</transition>
+		<transition>
+			<source ref="id112"/>
+			<target ref="id113"/>
+			<label kind="guard">time &gt;= 275.51020408163265</label>
+		</transition>
+		<transition>
+			<source ref="id113"/>
+			<target ref="id114"/>
+			<label kind="guard">time &gt;= 281.6326530612245</label>
+		</transition>
+		<transition>
+			<source ref="id114"/>
+			<target ref="id115"/>
+			<label kind="guard">time &gt;= 287.7551020408163</label>
+		</transition>
+		<transition>
+			<source ref="id115"/>
+			<target ref="id116"/>
+			<label kind="guard">time &gt;= 293.87755102040813</label>
+		</transition>
+		<transition>
+			<source ref="id116"/>
+			<target ref="id117"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentAirquality</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id127" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; airquality'==0</label>
+		</location>
+		<location id="id128" x="50" y="0">
+			<label kind="invariant">time &lt;= 6.1224489795918435 &amp;&amp; airquality'==0.018811079431910047+dairquality</label>
+		</location>
+		<location id="id129" x="100" y="0">
+			<label kind="invariant">time &lt;= 12.244897959183664 &amp;&amp; airquality'==0.02563094088893127+dairquality</label>
+		</location>
+		<location id="id130" x="150" y="0">
+			<label kind="invariant">time &lt;= 18.36734693877551 &amp;&amp; airquality'==0.034339187519330426+dairquality</label>
+		</location>
+		<location id="id131" x="200" y="0">
+			<label kind="invariant">time &lt;= 24.489795918367353 &amp;&amp; airquality'==0.04522865144914129+dairquality</label>
+		</location>
+		<location id="id132" x="250" y="0">
+			<label kind="invariant">time &lt;= 30.612244897959197 &amp;&amp; airquality'==0.05855280991957811+dairquality</label>
+		</location>
+		<location id="id133" x="300" y="0">
+			<label kind="invariant">time &lt;= 36.73469387755102 &amp;&amp; airquality'==0.07448882851551958+dairquality</label>
+		</location>
+		<location id="id134" x="350" y="0">
+			<label kind="invariant">time &lt;= 42.85714285714286 &amp;&amp; airquality'==0.09309497615944483+dairquality</label>
+		</location>
+		<location id="id135" x="400" y="0">
+			<label kind="invariant">time &lt;= 48.979591836734706 &amp;&amp; airquality'==0.11426553587540465+dairquality</label>
+		</location>
+		<location id="id136" x="450" y="0">
+			<label kind="invariant">time &lt;= 55.10204081632652 &amp;&amp; airquality'==0.13768775765664795+dairquality</label>
+		</location>
+		<location id="id137" x="500" y="0">
+			<label kind="invariant">time &lt;= 61.224489795918366 &amp;&amp; airquality'==0.1628066040976623+dairquality</label>
+		</location>
+		<location id="id138" x="550" y="0">
+			<label kind="invariant">time &lt;= 67.34693877551021 &amp;&amp; airquality'==0.18880375176438424+dairquality</label>
+		</location>
+		<location id="id139" x="600" y="0">
+			<label kind="invariant">time &lt;= 73.46938775510203 &amp;&amp; airquality'==0.2145972620475063+dairquality</label>
+		</location>
+		<location id="id140" x="650" y="0">
+			<label kind="invariant">time &lt;= 79.59183673469389 &amp;&amp; airquality'==0.23886731465865788+dairquality</label>
+		</location>
+		<location id="id141" x="700" y="0">
+			<label kind="invariant">time &lt;= 85.71428571428571 &amp;&amp; airquality'==0.2601113135366025+dairquality</label>
+		</location>
+		<location id="id142" x="750" y="0">
+			<label kind="invariant">time &lt;= 91.83673469387756 &amp;&amp; airquality'==0.2767286051950531+dairquality</label>
+		</location>
+		<location id="id143" x="800" y="0">
+			<label kind="invariant">time &lt;= 97.95918367346938 &amp;&amp; airquality'==0.28713126455975213+dairquality</label>
+		</location>
+		<location id="id144" x="850" y="0">
+			<label kind="invariant">time &lt;= 104.08163265306122 &amp;&amp; airquality'==0.28987336101300354+dairquality</label>
+		</location>
+		<location id="id145" x="900" y="0">
+			<label kind="invariant">time &lt;= 110.20408163265304 &amp;&amp; airquality'==0.28378741388149104+dairquality</label>
+		</location>
+		<location id="id146" x="950" y="0">
+			<label kind="invariant">time &lt;= 116.3265306122449 &amp;&amp; airquality'==0.2681140294849357+dairquality</label>
+		</location>
+		<location id="id147" x="1000" y="0">
+			<label kind="invariant">time &lt;= 122.44897959183673 &amp;&amp; airquality'==0.24260956635336375+dairquality</label>
+		</location>
+		<location id="id148" x="1050" y="0">
+			<label kind="invariant">time &lt;= 128.57142857142856 &amp;&amp; airquality'==0.20761750436642412+dairquality</label>
+		</location>
+		<location id="id149" x="1100" y="0">
+			<label kind="invariant">time &lt;= 134.69387755102042 &amp;&amp; airquality'==0.1640921171177123+dairquality</label>
+		</location>
+		<location id="id150" x="1150" y="0">
+			<label kind="invariant">time &lt;= 140.81632653061226 &amp;&amp; airquality'==0.11356784350248716+dairquality</label>
+		</location>
+		<location id="id151" x="1200" y="0">
+			<label kind="invariant">time &lt;= 146.93877551020407 &amp;&amp; airquality'==0.05807386562224698+dairquality</label>
+		</location>
+		<location id="id152" x="1250" y="0">
+			<label kind="invariant">time &lt;= 153.06122448979593 &amp;&amp; airquality'==3.047438273973562e-15+dairquality</label>
+		</location>
+		<location id="id153" x="1300" y="0">
+			<label kind="invariant">time &lt;= 159.18367346938777 &amp;&amp; airquality'==-0.05807386562224629+dairquality</label>
+		</location>
+		<location id="id154" x="1350" y="0">
+			<label kind="invariant">time &lt;= 165.3061224489796 &amp;&amp; airquality'==-0.11356784350248587+dairquality</label>
+		</location>
+		<location id="id155" x="1400" y="0">
+			<label kind="invariant">time &lt;= 171.42857142857142 &amp;&amp; airquality'==-0.16409211711770835+dairquality</label>
+		</location>
+		<location id="id156" x="1450" y="0">
+			<label kind="invariant">time &lt;= 177.55102040816325 &amp;&amp; airquality'==-0.20761750436642637+dairquality</label>
+		</location>
+		<location id="id157" x="1500" y="0">
+			<label kind="invariant">time &lt;= 183.67346938775512 &amp;&amp; airquality'==-0.24260956635336015+dairquality</label>
+		</location>
+		<location id="id158" x="1550" y="0">
+			<label kind="invariant">time &lt;= 189.79591836734693 &amp;&amp; airquality'==-0.2681140294849331+dairquality</label>
+		</location>
+		<location id="id159" x="1600" y="0">
+			<label kind="invariant">time &lt;= 195.91836734693877 &amp;&amp; airquality'==-0.28378741388149326+dairquality</label>
+		</location>
+		<location id="id160" x="1650" y="0">
+			<label kind="invariant">time &lt;= 202.0408163265306 &amp;&amp; airquality'==-0.2898733610130044+dairquality</label>
+		</location>
+		<location id="id161" x="1700" y="0">
+			<label kind="invariant">time &lt;= 208.16326530612244 &amp;&amp; airquality'==-0.2871312645597553+dairquality</label>
+		</location>
+		<location id="id162" x="1750" y="0">
+			<label kind="invariant">time &lt;= 214.28571428571428 &amp;&amp; airquality'==-0.27672860519504683+dairquality</label>
+		</location>
+		<location id="id163" x="1800" y="0">
+			<label kind="invariant">time &lt;= 220.4081632653061 &amp;&amp; airquality'==-0.2601113135366063+dairquality</label>
+		</location>
+		<location id="id164" x="1850" y="0">
+			<label kind="invariant">time &lt;= 226.53061224489798 &amp;&amp; airquality'==-0.23886731465865638+dairquality</label>
+		</location>
+		<location id="id165" x="1900" y="0">
+			<label kind="invariant">time &lt;= 232.6530612244898 &amp;&amp; airquality'==-0.21459726204750568+dairquality</label>
+		</location>
+		<location id="id166" x="1950" y="0">
+			<label kind="invariant">time &lt;= 238.7755102040816 &amp;&amp; airquality'==-0.1888037517643854+dairquality</label>
+		</location>
+		<location id="id167" x="2000" y="0">
+			<label kind="invariant">time &lt;= 244.89795918367346 &amp;&amp; airquality'==-0.16280660409766132+dairquality</label>
+		</location>
+		<location id="id168" x="2050" y="0">
+			<label kind="invariant">time &lt;= 251.02040816326527 &amp;&amp; airquality'==-0.13768775765664595+dairquality</label>
+		</location>
+		<location id="id169" x="2100" y="0">
+			<label kind="invariant">time &lt;= 257.1428571428571 &amp;&amp; airquality'==-0.11426553587540715+dairquality</label>
+		</location>
+		<location id="id170" x="2150" y="0">
+			<label kind="invariant">time &lt;= 263.265306122449 &amp;&amp; airquality'==-0.09309497615944227+dairquality</label>
+		</location>
+		<location id="id171" x="2200" y="0">
+			<label kind="invariant">time &lt;= 269.38775510204084 &amp;&amp; airquality'==-0.0744888285155179+dairquality</label>
+		</location>
+		<location id="id172" x="2250" y="0">
+			<label kind="invariant">time &lt;= 275.51020408163265 &amp;&amp; airquality'==-0.05855280991957523+dairquality</label>
+		</location>
+		<location id="id173" x="2300" y="0">
+			<label kind="invariant">time &lt;= 281.6326530612245 &amp;&amp; airquality'==-0.04522865144914381+dairquality</label>
+		</location>
+		<location id="id174" x="2350" y="0">
+			<label kind="invariant">time &lt;= 287.7551020408163 &amp;&amp; airquality'==-0.03433918751933409+dairquality</label>
+		</location>
+		<location id="id175" x="2400" y="0">
+			<label kind="invariant">time &lt;= 293.87755102040813 &amp;&amp; airquality'==-0.02563094088893425+dairquality</label>
+		</location>
+		<location id="id176" x="2450" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; airquality'==-0.018811079431910096+dairquality</label>
+		</location>
+		<location id="id177" x="2500" y="0">
+			<label kind="invariant">airquality'==dairquality</label>
+		</location>
+		<init ref="id127"/>
+		<transition>
+			<source ref="id127"/>
+			<target ref="id128"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id128"/>
+			<target ref="id129"/>
+			<label kind="guard">time &gt;= 6.1224489795918435</label>
+		</transition>
+		<transition>
+			<source ref="id129"/>
+			<target ref="id130"/>
+			<label kind="guard">time &gt;= 12.244897959183664</label>
+		</transition>
+		<transition>
+			<source ref="id130"/>
+			<target ref="id131"/>
+			<label kind="guard">time &gt;= 18.36734693877551</label>
+		</transition>
+		<transition>
+			<source ref="id131"/>
+			<target ref="id132"/>
+			<label kind="guard">time &gt;= 24.489795918367353</label>
+		</transition>
+		<transition>
+			<source ref="id132"/>
+			<target ref="id133"/>
+			<label kind="guard">time &gt;= 30.612244897959197</label>
+		</transition>
+		<transition>
+			<source ref="id133"/>
+			<target ref="id134"/>
+			<label kind="guard">time &gt;= 36.73469387755102</label>
+		</transition>
+		<transition>
+			<source ref="id134"/>
+			<target ref="id135"/>
+			<label kind="guard">time &gt;= 42.85714285714286</label>
+		</transition>
+		<transition>
+			<source ref="id135"/>
+			<target ref="id136"/>
+			<label kind="guard">time &gt;= 48.979591836734706</label>
+		</transition>
+		<transition>
+			<source ref="id136"/>
+			<target ref="id137"/>
+			<label kind="guard">time &gt;= 55.10204081632652</label>
+		</transition>
+		<transition>
+			<source ref="id137"/>
+			<target ref="id138"/>
+			<label kind="guard">time &gt;= 61.224489795918366</label>
+		</transition>
+		<transition>
+			<source ref="id138"/>
+			<target ref="id139"/>
+			<label kind="guard">time &gt;= 67.34693877551021</label>
+		</transition>
+		<transition>
+			<source ref="id139"/>
+			<target ref="id140"/>
+			<label kind="guard">time &gt;= 73.46938775510203</label>
+		</transition>
+		<transition>
+			<source ref="id140"/>
+			<target ref="id141"/>
+			<label kind="guard">time &gt;= 79.59183673469389</label>
+		</transition>
+		<transition>
+			<source ref="id141"/>
+			<target ref="id142"/>
+			<label kind="guard">time &gt;= 85.71428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id142"/>
+			<target ref="id143"/>
+			<label kind="guard">time &gt;= 91.83673469387756</label>
+		</transition>
+		<transition>
+			<source ref="id143"/>
+			<target ref="id144"/>
+			<label kind="guard">time &gt;= 97.95918367346938</label>
+		</transition>
+		<transition>
+			<source ref="id144"/>
+			<target ref="id145"/>
+			<label kind="guard">time &gt;= 104.08163265306122</label>
+		</transition>
+		<transition>
+			<source ref="id145"/>
+			<target ref="id146"/>
+			<label kind="guard">time &gt;= 110.20408163265304</label>
+		</transition>
+		<transition>
+			<source ref="id146"/>
+			<target ref="id147"/>
+			<label kind="guard">time &gt;= 116.3265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id147"/>
+			<target ref="id148"/>
+			<label kind="guard">time &gt;= 122.44897959183673</label>
+		</transition>
+		<transition>
+			<source ref="id148"/>
+			<target ref="id149"/>
+			<label kind="guard">time &gt;= 128.57142857142856</label>
+		</transition>
+		<transition>
+			<source ref="id149"/>
+			<target ref="id150"/>
+			<label kind="guard">time &gt;= 134.69387755102042</label>
+		</transition>
+		<transition>
+			<source ref="id150"/>
+			<target ref="id151"/>
+			<label kind="guard">time &gt;= 140.81632653061226</label>
+		</transition>
+		<transition>
+			<source ref="id151"/>
+			<target ref="id152"/>
+			<label kind="guard">time &gt;= 146.93877551020407</label>
+		</transition>
+		<transition>
+			<source ref="id152"/>
+			<target ref="id153"/>
+			<label kind="guard">time &gt;= 153.06122448979593</label>
+		</transition>
+		<transition>
+			<source ref="id153"/>
+			<target ref="id154"/>
+			<label kind="guard">time &gt;= 159.18367346938777</label>
+		</transition>
+		<transition>
+			<source ref="id154"/>
+			<target ref="id155"/>
+			<label kind="guard">time &gt;= 165.3061224489796</label>
+		</transition>
+		<transition>
+			<source ref="id155"/>
+			<target ref="id156"/>
+			<label kind="guard">time &gt;= 171.42857142857142</label>
+		</transition>
+		<transition>
+			<source ref="id156"/>
+			<target ref="id157"/>
+			<label kind="guard">time &gt;= 177.55102040816325</label>
+		</transition>
+		<transition>
+			<source ref="id157"/>
+			<target ref="id158"/>
+			<label kind="guard">time &gt;= 183.67346938775512</label>
+		</transition>
+		<transition>
+			<source ref="id158"/>
+			<target ref="id159"/>
+			<label kind="guard">time &gt;= 189.79591836734693</label>
+		</transition>
+		<transition>
+			<source ref="id159"/>
+			<target ref="id160"/>
+			<label kind="guard">time &gt;= 195.91836734693877</label>
+		</transition>
+		<transition>
+			<source ref="id160"/>
+			<target ref="id161"/>
+			<label kind="guard">time &gt;= 202.0408163265306</label>
+		</transition>
+		<transition>
+			<source ref="id161"/>
+			<target ref="id162"/>
+			<label kind="guard">time &gt;= 208.16326530612244</label>
+		</transition>
+		<transition>
+			<source ref="id162"/>
+			<target ref="id163"/>
+			<label kind="guard">time &gt;= 214.28571428571428</label>
+		</transition>
+		<transition>
+			<source ref="id163"/>
+			<target ref="id164"/>
+			<label kind="guard">time &gt;= 220.4081632653061</label>
+		</transition>
+		<transition>
+			<source ref="id164"/>
+			<target ref="id165"/>
+			<label kind="guard">time &gt;= 226.53061224489798</label>
+		</transition>
+		<transition>
+			<source ref="id165"/>
+			<target ref="id166"/>
+			<label kind="guard">time &gt;= 232.6530612244898</label>
+		</transition>
+		<transition>
+			<source ref="id166"/>
+			<target ref="id167"/>
+			<label kind="guard">time &gt;= 238.7755102040816</label>
+		</transition>
+		<transition>
+			<source ref="id167"/>
+			<target ref="id168"/>
+			<label kind="guard">time &gt;= 244.89795918367346</label>
+		</transition>
+		<transition>
+			<source ref="id168"/>
+			<target ref="id169"/>
+			<label kind="guard">time &gt;= 251.02040816326527</label>
+		</transition>
+		<transition>
+			<source ref="id169"/>
+			<target ref="id170"/>
+			<label kind="guard">time &gt;= 257.1428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id170"/>
+			<target ref="id171"/>
+			<label kind="guard">time &gt;= 263.265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id171"/>
+			<target ref="id172"/>
+			<label kind="guard">time &gt;= 269.38775510204084</label>
+		</transition>
+		<transition>
+			<source ref="id172"/>
+			<target ref="id173"/>
+			<label kind="guard">time &gt;= 275.51020408163265</label>
+		</transition>
+		<transition>
+			<source ref="id173"/>
+			<target ref="id174"/>
+			<label kind="guard">time &gt;= 281.6326530612245</label>
+		</transition>
+		<transition>
+			<source ref="id174"/>
+			<target ref="id175"/>
+			<label kind="guard">time &gt;= 287.7551020408163</label>
+		</transition>
+		<transition>
+			<source ref="id175"/>
+			<target ref="id176"/>
+			<label kind="guard">time &gt;= 293.87755102040813</label>
+		</transition>
+		<transition>
+			<source ref="id176"/>
+			<target ref="id177"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentPM25</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id187" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; pm25'==0</label>
+		</location>
+		<location id="id188" x="50" y="0">
+			<label kind="invariant">time &lt;= 6.1224489795918435 &amp;&amp; pm25'==0.18811079431910513+dpm25</label>
+		</location>
+		<location id="id189" x="100" y="0">
+			<label kind="invariant">time &lt;= 12.244897959183664 &amp;&amp; pm25'==0.25630940888933246+dpm25</label>
+		</location>
+		<location id="id190" x="150" y="0">
+			<label kind="invariant">time &lt;= 18.36734693877551 &amp;&amp; pm25'==0.3433918751933268+dpm25</label>
+		</location>
+		<location id="id191" x="200" y="0">
+			<label kind="invariant">time &lt;= 24.489795918367353 &amp;&amp; pm25'==0.4522865144914069+dpm25</label>
+		</location>
+		<location id="id192" x="250" y="0">
+			<label kind="invariant">time &lt;= 30.612244897959197 &amp;&amp; pm25'==0.5855280991957529+dpm25</label>
+		</location>
+		<location id="id193" x="300" y="0">
+			<label kind="invariant">time &lt;= 36.73469387755102 &amp;&amp; pm25'==0.744888285155192+dpm25</label>
+		</location>
+		<location id="id194" x="350" y="0">
+			<label kind="invariant">time &lt;= 42.85714285714286 &amp;&amp; pm25'==0.9309497615944472+dpm25</label>
+		</location>
+		<location id="id195" x="400" y="0">
+			<label kind="invariant">time &lt;= 48.979591836734706 &amp;&amp; pm25'==1.1426553587540467+dpm25</label>
+		</location>
+		<location id="id196" x="450" y="0">
+			<label kind="invariant">time &lt;= 55.10204081632652 &amp;&amp; pm25'==1.3768775765664734+dpm25</label>
+		</location>
+		<location id="id197" x="500" y="0">
+			<label kind="invariant">time &lt;= 61.224489795918366 &amp;&amp; pm25'==1.6280660409766188+dpm25</label>
+		</location>
+		<location id="id198" x="550" y="0">
+			<label kind="invariant">time &lt;= 67.34693877551021 &amp;&amp; pm25'==1.8880375176438446+dpm25</label>
+		</location>
+		<location id="id199" x="600" y="0">
+			<label kind="invariant">time &lt;= 73.46938775510203 &amp;&amp; pm25'==2.1459726204750775+dpm25</label>
+		</location>
+		<location id="id200" x="650" y="0">
+			<label kind="invariant">time &lt;= 79.59183673469389 &amp;&amp; pm25'==2.3886731465865862+dpm25</label>
+		</location>
+		<location id="id201" x="700" y="0">
+			<label kind="invariant">time &lt;= 85.71428571428571 &amp;&amp; pm25'==2.6011131353660395+dpm25</label>
+		</location>
+		<location id="id202" x="750" y="0">
+			<label kind="invariant">time &lt;= 91.83673469387756 &amp;&amp; pm25'==2.767286051950512+dpm25</label>
+		</location>
+		<location id="id203" x="800" y="0">
+			<label kind="invariant">time &lt;= 97.95918367346938 &amp;&amp; pm25'==2.8713126455975075+dpm25</label>
+		</location>
+		<location id="id204" x="850" y="0">
+			<label kind="invariant">time &lt;= 104.08163265306122 &amp;&amp; pm25'==2.8987336101300216+dpm25</label>
+		</location>
+		<location id="id205" x="900" y="0">
+			<label kind="invariant">time &lt;= 110.20408163265304 &amp;&amp; pm25'==2.837874138814931+dpm25</label>
+		</location>
+		<location id="id206" x="950" y="0">
+			<label kind="invariant">time &lt;= 116.3265306122449 &amp;&amp; pm25'==2.6811402948493734+dpm25</label>
+		</location>
+		<location id="id207" x="1000" y="0">
+			<label kind="invariant">time &lt;= 122.44897959183673 &amp;&amp; pm25'==2.426095663533618+dpm25</label>
+		</location>
+		<location id="id208" x="1050" y="0">
+			<label kind="invariant">time &lt;= 128.57142857142856 &amp;&amp; pm25'==2.076175043664247+dpm25</label>
+		</location>
+		<location id="id209" x="1100" y="0">
+			<label kind="invariant">time &lt;= 134.69387755102042 &amp;&amp; pm25'==1.6409211711771183+dpm25</label>
+		</location>
+		<location id="id210" x="1150" y="0">
+			<label kind="invariant">time &lt;= 140.81632653061226 &amp;&amp; pm25'==1.1356784350248355+dpm25</label>
+		</location>
+		<location id="id211" x="1200" y="0">
+			<label kind="invariant">time &lt;= 146.93877551020407 &amp;&amp; pm25'==0.5807386562224646+dpm25</label>
+		</location>
+		<location id="id212" x="1250" y="0">
+			<label kind="invariant">time &lt;= 153.06122448979593 &amp;&amp; pm25'==1.178789310372191e-14+dpm25</label>
+		</location>
+		<location id="id213" x="1300" y="0">
+			<label kind="invariant">time &lt;= 159.18367346938777 &amp;&amp; pm25'==-0.5807386562224608+dpm25</label>
+		</location>
+		<location id="id214" x="1350" y="0">
+			<label kind="invariant">time &lt;= 165.3061224489796 &amp;&amp; pm25'==-1.1356784350248361+dpm25</label>
+		</location>
+		<location id="id215" x="1400" y="0">
+			<label kind="invariant">time &lt;= 171.42857142857142 &amp;&amp; pm25'==-1.6409211711771137+dpm25</label>
+		</location>
+		<location id="id216" x="1450" y="0">
+			<label kind="invariant">time &lt;= 177.55102040816325 &amp;&amp; pm25'==-2.0761750436642346+dpm25</label>
+		</location>
+		<location id="id217" x="1500" y="0">
+			<label kind="invariant">time &lt;= 183.67346938775512 &amp;&amp; pm25'==-2.4260956635336+dpm25</label>
+		</location>
+		<location id="id218" x="1550" y="0">
+			<label kind="invariant">time &lt;= 189.79591836734693 &amp;&amp; pm25'==-2.6811402948493743+dpm25</label>
+		</location>
+		<location id="id219" x="1600" y="0">
+			<label kind="invariant">time &lt;= 195.91836734693877 &amp;&amp; pm25'==-2.837874138814906+dpm25</label>
+		</location>
+		<location id="id220" x="1650" y="0">
+			<label kind="invariant">time &lt;= 202.0408163265306 &amp;&amp; pm25'==-2.8987336101300474+dpm25</label>
+		</location>
+		<location id="id221" x="1700" y="0">
+			<label kind="invariant">time &lt;= 208.16326530612244 &amp;&amp; pm25'==-2.8713126455975355+dpm25</label>
+		</location>
+		<location id="id222" x="1750" y="0">
+			<label kind="invariant">time &lt;= 214.28571428571428 &amp;&amp; pm25'==-2.767286051950468+dpm25</label>
+		</location>
+		<location id="id223" x="1800" y="0">
+			<label kind="invariant">time &lt;= 220.4081632653061 &amp;&amp; pm25'==-2.6011131353660546+dpm25</label>
+		</location>
+		<location id="id224" x="1850" y="0">
+			<label kind="invariant">time &lt;= 226.53061224489798 &amp;&amp; pm25'==-2.388673146586584+dpm25</label>
+		</location>
+		<location id="id225" x="1900" y="0">
+			<label kind="invariant">time &lt;= 232.6530612244898 &amp;&amp; pm25'==-2.1459726204750713+dpm25</label>
+		</location>
+		<location id="id226" x="1950" y="0">
+			<label kind="invariant">time &lt;= 238.7755102040816 &amp;&amp; pm25'==-1.8880375176438573+dpm25</label>
+		</location>
+		<location id="id227" x="2000" y="0">
+			<label kind="invariant">time &lt;= 244.89795918367346 &amp;&amp; pm25'==-1.6280660409766166+dpm25</label>
+		</location>
+		<location id="id228" x="2050" y="0">
+			<label kind="invariant">time &lt;= 251.02040816326527 &amp;&amp; pm25'==-1.376877576566468+dpm25</label>
+		</location>
+		<location id="id229" x="2100" y="0">
+			<label kind="invariant">time &lt;= 257.1428571428571 &amp;&amp; pm25'==-1.1426553587540584+dpm25</label>
+		</location>
+		<location id="id230" x="2150" y="0">
+			<label kind="invariant">time &lt;= 263.265306122449 &amp;&amp; pm25'==-0.9309497615944416+dpm25</label>
+		</location>
+		<location id="id231" x="2200" y="0">
+			<label kind="invariant">time &lt;= 269.38775510204084 &amp;&amp; pm25'==-0.7448882851551907+dpm25</label>
+		</location>
+		<location id="id232" x="2250" y="0">
+			<label kind="invariant">time &lt;= 275.51020408163265 &amp;&amp; pm25'==-0.5855280991957551+dpm25</label>
+		</location>
+		<location id="id233" x="2300" y="0">
+			<label kind="invariant">time &lt;= 281.6326530612245 &amp;&amp; pm25'==-0.4522865144914239+dpm25</label>
+		</location>
+		<location id="id234" x="2350" y="0">
+			<label kind="invariant">time &lt;= 287.7551020408163 &amp;&amp; pm25'==-0.34339187519333003+dpm25</label>
+		</location>
+		<location id="id235" x="2400" y="0">
+			<label kind="invariant">time &lt;= 293.87755102040813 &amp;&amp; pm25'==-0.2563094088893311+dpm25</label>
+		</location>
+		<location id="id236" x="2450" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; pm25'==-0.1881107943191013+dpm25</label>
+		</location>
+		<location id="id237" x="2500" y="0">
+			<label kind="invariant">pm25'==dpm25</label>
+		</location>
+		<init ref="id187"/>
+		<transition>
+			<source ref="id187"/>
+			<target ref="id188"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id188"/>
+			<target ref="id189"/>
+			<label kind="guard">time &gt;= 6.1224489795918435</label>
+		</transition>
+		<transition>
+			<source ref="id189"/>
+			<target ref="id190"/>
+			<label kind="guard">time &gt;= 12.244897959183664</label>
+		</transition>
+		<transition>
+			<source ref="id190"/>
+			<target ref="id191"/>
+			<label kind="guard">time &gt;= 18.36734693877551</label>
+		</transition>
+		<transition>
+			<source ref="id191"/>
+			<target ref="id192"/>
+			<label kind="guard">time &gt;= 24.489795918367353</label>
+		</transition>
+		<transition>
+			<source ref="id192"/>
+			<target ref="id193"/>
+			<label kind="guard">time &gt;= 30.612244897959197</label>
+		</transition>
+		<transition>
+			<source ref="id193"/>
+			<target ref="id194"/>
+			<label kind="guard">time &gt;= 36.73469387755102</label>
+		</transition>
+		<transition>
+			<source ref="id194"/>
+			<target ref="id195"/>
+			<label kind="guard">time &gt;= 42.85714285714286</label>
+		</transition>
+		<transition>
+			<source ref="id195"/>
+			<target ref="id196"/>
+			<label kind="guard">time &gt;= 48.979591836734706</label>
+		</transition>
+		<transition>
+			<source ref="id196"/>
+			<target ref="id197"/>
+			<label kind="guard">time &gt;= 55.10204081632652</label>
+		</transition>
+		<transition>
+			<source ref="id197"/>
+			<target ref="id198"/>
+			<label kind="guard">time &gt;= 61.224489795918366</label>
+		</transition>
+		<transition>
+			<source ref="id198"/>
+			<target ref="id199"/>
+			<label kind="guard">time &gt;= 67.34693877551021</label>
+		</transition>
+		<transition>
+			<source ref="id199"/>
+			<target ref="id200"/>
+			<label kind="guard">time &gt;= 73.46938775510203</label>
+		</transition>
+		<transition>
+			<source ref="id200"/>
+			<target ref="id201"/>
+			<label kind="guard">time &gt;= 79.59183673469389</label>
+		</transition>
+		<transition>
+			<source ref="id201"/>
+			<target ref="id202"/>
+			<label kind="guard">time &gt;= 85.71428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id202"/>
+			<target ref="id203"/>
+			<label kind="guard">time &gt;= 91.83673469387756</label>
+		</transition>
+		<transition>
+			<source ref="id203"/>
+			<target ref="id204"/>
+			<label kind="guard">time &gt;= 97.95918367346938</label>
+		</transition>
+		<transition>
+			<source ref="id204"/>
+			<target ref="id205"/>
+			<label kind="guard">time &gt;= 104.08163265306122</label>
+		</transition>
+		<transition>
+			<source ref="id205"/>
+			<target ref="id206"/>
+			<label kind="guard">time &gt;= 110.20408163265304</label>
+		</transition>
+		<transition>
+			<source ref="id206"/>
+			<target ref="id207"/>
+			<label kind="guard">time &gt;= 116.3265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id207"/>
+			<target ref="id208"/>
+			<label kind="guard">time &gt;= 122.44897959183673</label>
+		</transition>
+		<transition>
+			<source ref="id208"/>
+			<target ref="id209"/>
+			<label kind="guard">time &gt;= 128.57142857142856</label>
+		</transition>
+		<transition>
+			<source ref="id209"/>
+			<target ref="id210"/>
+			<label kind="guard">time &gt;= 134.69387755102042</label>
+		</transition>
+		<transition>
+			<source ref="id210"/>
+			<target ref="id211"/>
+			<label kind="guard">time &gt;= 140.81632653061226</label>
+		</transition>
+		<transition>
+			<source ref="id211"/>
+			<target ref="id212"/>
+			<label kind="guard">time &gt;= 146.93877551020407</label>
+		</transition>
+		<transition>
+			<source ref="id212"/>
+			<target ref="id213"/>
+			<label kind="guard">time &gt;= 153.06122448979593</label>
+		</transition>
+		<transition>
+			<source ref="id213"/>
+			<target ref="id214"/>
+			<label kind="guard">time &gt;= 159.18367346938777</label>
+		</transition>
+		<transition>
+			<source ref="id214"/>
+			<target ref="id215"/>
+			<label kind="guard">time &gt;= 165.3061224489796</label>
+		</transition>
+		<transition>
+			<source ref="id215"/>
+			<target ref="id216"/>
+			<label kind="guard">time &gt;= 171.42857142857142</label>
+		</transition>
+		<transition>
+			<source ref="id216"/>
+			<target ref="id217"/>
+			<label kind="guard">time &gt;= 177.55102040816325</label>
+		</transition>
+		<transition>
+			<source ref="id217"/>
+			<target ref="id218"/>
+			<label kind="guard">time &gt;= 183.67346938775512</label>
+		</transition>
+		<transition>
+			<source ref="id218"/>
+			<target ref="id219"/>
+			<label kind="guard">time &gt;= 189.79591836734693</label>
+		</transition>
+		<transition>
+			<source ref="id219"/>
+			<target ref="id220"/>
+			<label kind="guard">time &gt;= 195.91836734693877</label>
+		</transition>
+		<transition>
+			<source ref="id220"/>
+			<target ref="id221"/>
+			<label kind="guard">time &gt;= 202.0408163265306</label>
+		</transition>
+		<transition>
+			<source ref="id221"/>
+			<target ref="id222"/>
+			<label kind="guard">time &gt;= 208.16326530612244</label>
+		</transition>
+		<transition>
+			<source ref="id222"/>
+			<target ref="id223"/>
+			<label kind="guard">time &gt;= 214.28571428571428</label>
+		</transition>
+		<transition>
+			<source ref="id223"/>
+			<target ref="id224"/>
+			<label kind="guard">time &gt;= 220.4081632653061</label>
+		</transition>
+		<transition>
+			<source ref="id224"/>
+			<target ref="id225"/>
+			<label kind="guard">time &gt;= 226.53061224489798</label>
+		</transition>
+		<transition>
+			<source ref="id225"/>
+			<target ref="id226"/>
+			<label kind="guard">time &gt;= 232.6530612244898</label>
+		</transition>
+		<transition>
+			<source ref="id226"/>
+			<target ref="id227"/>
+			<label kind="guard">time &gt;= 238.7755102040816</label>
+		</transition>
+		<transition>
+			<source ref="id227"/>
+			<target ref="id228"/>
+			<label kind="guard">time &gt;= 244.89795918367346</label>
+		</transition>
+		<transition>
+			<source ref="id228"/>
+			<target ref="id229"/>
+			<label kind="guard">time &gt;= 251.02040816326527</label>
+		</transition>
+		<transition>
+			<source ref="id229"/>
+			<target ref="id230"/>
+			<label kind="guard">time &gt;= 257.1428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id230"/>
+			<target ref="id231"/>
+			<label kind="guard">time &gt;= 263.265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id231"/>
+			<target ref="id232"/>
+			<label kind="guard">time &gt;= 269.38775510204084</label>
+		</transition>
+		<transition>
+			<source ref="id232"/>
+			<target ref="id233"/>
+			<label kind="guard">time &gt;= 275.51020408163265</label>
+		</transition>
+		<transition>
+			<source ref="id233"/>
+			<target ref="id234"/>
+			<label kind="guard">time &gt;= 281.6326530612245</label>
+		</transition>
+		<transition>
+			<source ref="id234"/>
+			<target ref="id235"/>
+			<label kind="guard">time &gt;= 287.7551020408163</label>
+		</transition>
+		<transition>
+			<source ref="id235"/>
+			<target ref="id236"/>
+			<label kind="guard">time &gt;= 293.87755102040813</label>
+		</transition>
+		<transition>
+			<source ref="id236"/>
+			<target ref="id237"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">EnvironmentBrightness</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id247" x="0" y="0">
+			<label kind="invariant" x="0" y="0">time &lt;= 0 &amp;&amp; brightness'==0</label>
+		</location>
+		<location id="id248" x="50" y="0">
+			<label kind="invariant">time &lt;= 6.1224489795918435 &amp;&amp; brightness'==0.9405539715955442+dbrightness</label>
+		</location>
+		<location id="id249" x="100" y="0">
+			<label kind="invariant">time &lt;= 12.244897959183664 &amp;&amp; brightness'==1.2815470444466601+dbrightness</label>
+		</location>
+		<location id="id250" x="150" y="0">
+			<label kind="invariant">time &lt;= 18.36734693877551 &amp;&amp; brightness'==1.7169593759666282+dbrightness</label>
+		</location>
+		<location id="id251" x="200" y="0">
+			<label kind="invariant">time &lt;= 24.489795918367353 &amp;&amp; brightness'==2.261432572457046+dbrightness</label>
+		</location>
+		<location id="id252" x="250" y="0">
+			<label kind="invariant">time &lt;= 30.612244897959197 &amp;&amp; brightness'==2.9276404959787925+dbrightness</label>
+		</location>
+		<location id="id253" x="300" y="0">
+			<label kind="invariant">time &lt;= 36.73469387755102 &amp;&amp; brightness'==3.7244414257759826+dbrightness</label>
+		</location>
+		<location id="id254" x="350" y="0">
+			<label kind="invariant">time &lt;= 42.85714285714286 &amp;&amp; brightness'==4.654748807972252+dbrightness</label>
+		</location>
+		<location id="id255" x="400" y="0">
+			<label kind="invariant">time &lt;= 48.979591836734706 &amp;&amp; brightness'==5.713276793770233+dbrightness</label>
+		</location>
+		<location id="id256" x="450" y="0">
+			<label kind="invariant">time &lt;= 55.10204081632652 &amp;&amp; brightness'==6.884387882832362+dbrightness</label>
+		</location>
+		<location id="id257" x="500" y="0">
+			<label kind="invariant">time &lt;= 61.224489795918366 &amp;&amp; brightness'==8.140330204883085+dbrightness</label>
+		</location>
+		<location id="id258" x="550" y="0">
+			<label kind="invariant">time &lt;= 67.34693877551021 &amp;&amp; brightness'==9.440187588219183+dbrightness</label>
+		</location>
+		<location id="id259" x="600" y="0">
+			<label kind="invariant">time &lt;= 73.46938775510203 &amp;&amp; brightness'==10.729863102375434+dbrightness</label>
+		</location>
+		<location id="id260" x="650" y="0">
+			<label kind="invariant">time &lt;= 79.59183673469389 &amp;&amp; brightness'==11.943365732932923+dbrightness</label>
+		</location>
+		<location id="id261" x="700" y="0">
+			<label kind="invariant">time &lt;= 85.71428571428571 &amp;&amp; brightness'==13.005565676830203+dbrightness</label>
+		</location>
+		<location id="id262" x="750" y="0">
+			<label kind="invariant">time &lt;= 91.83673469387756 &amp;&amp; brightness'==13.836430259752502+dbrightness</label>
+		</location>
+		<location id="id263" x="800" y="0">
+			<label kind="invariant">time &lt;= 97.95918367346938 &amp;&amp; brightness'==14.35656322798753+dbrightness</label>
+		</location>
+		<location id="id264" x="850" y="0">
+			<label kind="invariant">time &lt;= 104.08163265306122 &amp;&amp; brightness'==14.493668050650122+dbrightness</label>
+		</location>
+		<location id="id265" x="900" y="0">
+			<label kind="invariant">time &lt;= 110.20408163265304 &amp;&amp; brightness'==14.189370694074597+dbrightness</label>
+		</location>
+		<location id="id266" x="950" y="0">
+			<label kind="invariant">time &lt;= 116.3265306122449 &amp;&amp; brightness'==13.40570147424692+dbrightness</label>
+		</location>
+		<location id="id267" x="1000" y="0">
+			<label kind="invariant">time &lt;= 122.44897959183673 &amp;&amp; brightness'==12.13047831766808+dbrightness</label>
+		</location>
+		<location id="id268" x="1050" y="0">
+			<label kind="invariant">time &lt;= 128.57142857142856 &amp;&amp; brightness'==10.38087521832119+dbrightness</label>
+		</location>
+		<location id="id269" x="1100" y="0">
+			<label kind="invariant">time &lt;= 134.69387755102042 &amp;&amp; brightness'==8.20460585588567+dbrightness</label>
+		</location>
+		<location id="id270" x="1150" y="0">
+			<label kind="invariant">time &lt;= 140.81632653061226 &amp;&amp; brightness'==5.678392175124223+dbrightness</label>
+		</location>
+		<location id="id271" x="1200" y="0">
+			<label kind="invariant">time &lt;= 146.93877551020407 &amp;&amp; brightness'==2.903693281112289+dbrightness</label>
+		</location>
+		<location id="id272" x="1250" y="0">
+			<label kind="invariant">time &lt;= 153.06122448979593 &amp;&amp; brightness'==6.751247868495276e-14+dbrightness</label>
+		</location>
+		<location id="id273" x="1300" y="0">
+			<label kind="invariant">time &lt;= 159.18367346938777 &amp;&amp; brightness'==-2.9036932811123397+dbrightness</label>
+		</location>
+		<location id="id274" x="1350" y="0">
+			<label kind="invariant">time &lt;= 165.3061224489796 &amp;&amp; brightness'==-5.6783921751241895+dbrightness</label>
+		</location>
+		<location id="id275" x="1400" y="0">
+			<label kind="invariant">time &lt;= 171.42857142857142 &amp;&amp; brightness'==-8.20460585588567+dbrightness</label>
+		</location>
+		<location id="id276" x="1450" y="0">
+			<label kind="invariant">time &lt;= 177.55102040816325 &amp;&amp; brightness'==-10.380875218321158+dbrightness</label>
+		</location>
+		<location id="id277" x="1500" y="0">
+			<label kind="invariant">time &lt;= 183.67346938775512 &amp;&amp; brightness'==-12.130478317667997+dbrightness</label>
+		</location>
+		<location id="id278" x="1550" y="0">
+			<label kind="invariant">time &lt;= 189.79591836734693 &amp;&amp; brightness'==-13.405701474246897+dbrightness</label>
+		</location>
+		<location id="id279" x="1600" y="0">
+			<label kind="invariant">time &lt;= 195.91836734693877 &amp;&amp; brightness'==-14.189370694074492+dbrightness</label>
+		</location>
+		<location id="id280" x="1650" y="0">
+			<label kind="invariant">time &lt;= 202.0408163265306 &amp;&amp; brightness'==-14.493668050650207+dbrightness</label>
+		</location>
+		<location id="id281" x="1700" y="0">
+			<label kind="invariant">time &lt;= 208.16326530612244 &amp;&amp; brightness'==-14.356563227987664+dbrightness</label>
+		</location>
+		<location id="id282" x="1750" y="0">
+			<label kind="invariant">time &lt;= 214.28571428571428 &amp;&amp; brightness'==-13.836430259752339+dbrightness</label>
+		</location>
+		<location id="id283" x="1800" y="0">
+			<label kind="invariant">time &lt;= 220.4081632653061 &amp;&amp; brightness'==-13.005565676830308+dbrightness</label>
+		</location>
+		<location id="id284" x="1850" y="0">
+			<label kind="invariant">time &lt;= 226.53061224489798 &amp;&amp; brightness'==-11.943365732932897+dbrightness</label>
+		</location>
+		<location id="id285" x="1900" y="0">
+			<label kind="invariant">time &lt;= 232.6530612244898 &amp;&amp; brightness'==-10.729863102375388+dbrightness</label>
+		</location>
+		<location id="id286" x="1950" y="0">
+			<label kind="invariant">time &lt;= 238.7755102040816 &amp;&amp; brightness'==-9.440187588219285+dbrightness</label>
+		</location>
+		<location id="id287" x="2000" y="0">
+			<label kind="invariant">time &lt;= 244.89795918367346 &amp;&amp; brightness'==-8.140330204883073+dbrightness</label>
+		</location>
+		<location id="id288" x="2050" y="0">
+			<label kind="invariant">time &lt;= 251.02040816326527 &amp;&amp; brightness'==-6.884387882832358+dbrightness</label>
+		</location>
+		<location id="id289" x="2100" y="0">
+			<label kind="invariant">time &lt;= 257.1428571428571 &amp;&amp; brightness'==-5.713276793770299+dbrightness</label>
+		</location>
+		<location id="id290" x="2150" y="0">
+			<label kind="invariant">time &lt;= 263.265306122449 &amp;&amp; brightness'==-4.654748807972195+dbrightness</label>
+		</location>
+		<location id="id291" x="2200" y="0">
+			<label kind="invariant">time &lt;= 269.38775510204084 &amp;&amp; brightness'==-3.7244414257759693+dbrightness</label>
+		</location>
+		<location id="id292" x="2250" y="0">
+			<label kind="invariant">time &lt;= 275.51020408163265 &amp;&amp; brightness'==-2.9276404959787734+dbrightness</label>
+		</location>
+		<location id="id293" x="2300" y="0">
+			<label kind="invariant">time &lt;= 281.6326530612245 &amp;&amp; brightness'==-2.2614325724570707+dbrightness</label>
+		</location>
+		<location id="id294" x="2350" y="0">
+			<label kind="invariant">time &lt;= 287.7551020408163 &amp;&amp; brightness'==-1.7169593759666548+dbrightness</label>
+		</location>
+		<location id="id295" x="2400" y="0">
+			<label kind="invariant">time &lt;= 293.87755102040813 &amp;&amp; brightness'==-1.2815470444466566+dbrightness</label>
+		</location>
+		<location id="id296" x="2450" y="0">
+			<label kind="invariant">time &lt;= 300.0 &amp;&amp; brightness'==-0.9405539715955212+dbrightness</label>
+		</location>
+		<location id="id297" x="2500" y="0">
+			<label kind="invariant">brightness'==dbrightness</label>
+		</location>
+		<init ref="id247"/>
+		<transition>
+			<source ref="id247"/>
+			<target ref="id248"/>
+			<label kind="guard">time &gt;= 0.0</label>
+		</transition>
+		<transition>
+			<source ref="id248"/>
+			<target ref="id249"/>
+			<label kind="guard">time &gt;= 6.1224489795918435</label>
+		</transition>
+		<transition>
+			<source ref="id249"/>
+			<target ref="id250"/>
+			<label kind="guard">time &gt;= 12.244897959183664</label>
+		</transition>
+		<transition>
+			<source ref="id250"/>
+			<target ref="id251"/>
+			<label kind="guard">time &gt;= 18.36734693877551</label>
+		</transition>
+		<transition>
+			<source ref="id251"/>
+			<target ref="id252"/>
+			<label kind="guard">time &gt;= 24.489795918367353</label>
+		</transition>
+		<transition>
+			<source ref="id252"/>
+			<target ref="id253"/>
+			<label kind="guard">time &gt;= 30.612244897959197</label>
+		</transition>
+		<transition>
+			<source ref="id253"/>
+			<target ref="id254"/>
+			<label kind="guard">time &gt;= 36.73469387755102</label>
+		</transition>
+		<transition>
+			<source ref="id254"/>
+			<target ref="id255"/>
+			<label kind="guard">time &gt;= 42.85714285714286</label>
+		</transition>
+		<transition>
+			<source ref="id255"/>
+			<target ref="id256"/>
+			<label kind="guard">time &gt;= 48.979591836734706</label>
+		</transition>
+		<transition>
+			<source ref="id256"/>
+			<target ref="id257"/>
+			<label kind="guard">time &gt;= 55.10204081632652</label>
+		</transition>
+		<transition>
+			<source ref="id257"/>
+			<target ref="id258"/>
+			<label kind="guard">time &gt;= 61.224489795918366</label>
+		</transition>
+		<transition>
+			<source ref="id258"/>
+			<target ref="id259"/>
+			<label kind="guard">time &gt;= 67.34693877551021</label>
+		</transition>
+		<transition>
+			<source ref="id259"/>
+			<target ref="id260"/>
+			<label kind="guard">time &gt;= 73.46938775510203</label>
+		</transition>
+		<transition>
+			<source ref="id260"/>
+			<target ref="id261"/>
+			<label kind="guard">time &gt;= 79.59183673469389</label>
+		</transition>
+		<transition>
+			<source ref="id261"/>
+			<target ref="id262"/>
+			<label kind="guard">time &gt;= 85.71428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id262"/>
+			<target ref="id263"/>
+			<label kind="guard">time &gt;= 91.83673469387756</label>
+		</transition>
+		<transition>
+			<source ref="id263"/>
+			<target ref="id264"/>
+			<label kind="guard">time &gt;= 97.95918367346938</label>
+		</transition>
+		<transition>
+			<source ref="id264"/>
+			<target ref="id265"/>
+			<label kind="guard">time &gt;= 104.08163265306122</label>
+		</transition>
+		<transition>
+			<source ref="id265"/>
+			<target ref="id266"/>
+			<label kind="guard">time &gt;= 110.20408163265304</label>
+		</transition>
+		<transition>
+			<source ref="id266"/>
+			<target ref="id267"/>
+			<label kind="guard">time &gt;= 116.3265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id267"/>
+			<target ref="id268"/>
+			<label kind="guard">time &gt;= 122.44897959183673</label>
+		</transition>
+		<transition>
+			<source ref="id268"/>
+			<target ref="id269"/>
+			<label kind="guard">time &gt;= 128.57142857142856</label>
+		</transition>
+		<transition>
+			<source ref="id269"/>
+			<target ref="id270"/>
+			<label kind="guard">time &gt;= 134.69387755102042</label>
+		</transition>
+		<transition>
+			<source ref="id270"/>
+			<target ref="id271"/>
+			<label kind="guard">time &gt;= 140.81632653061226</label>
+		</transition>
+		<transition>
+			<source ref="id271"/>
+			<target ref="id272"/>
+			<label kind="guard">time &gt;= 146.93877551020407</label>
+		</transition>
+		<transition>
+			<source ref="id272"/>
+			<target ref="id273"/>
+			<label kind="guard">time &gt;= 153.06122448979593</label>
+		</transition>
+		<transition>
+			<source ref="id273"/>
+			<target ref="id274"/>
+			<label kind="guard">time &gt;= 159.18367346938777</label>
+		</transition>
+		<transition>
+			<source ref="id274"/>
+			<target ref="id275"/>
+			<label kind="guard">time &gt;= 165.3061224489796</label>
+		</transition>
+		<transition>
+			<source ref="id275"/>
+			<target ref="id276"/>
+			<label kind="guard">time &gt;= 171.42857142857142</label>
+		</transition>
+		<transition>
+			<source ref="id276"/>
+			<target ref="id277"/>
+			<label kind="guard">time &gt;= 177.55102040816325</label>
+		</transition>
+		<transition>
+			<source ref="id277"/>
+			<target ref="id278"/>
+			<label kind="guard">time &gt;= 183.67346938775512</label>
+		</transition>
+		<transition>
+			<source ref="id278"/>
+			<target ref="id279"/>
+			<label kind="guard">time &gt;= 189.79591836734693</label>
+		</transition>
+		<transition>
+			<source ref="id279"/>
+			<target ref="id280"/>
+			<label kind="guard">time &gt;= 195.91836734693877</label>
+		</transition>
+		<transition>
+			<source ref="id280"/>
+			<target ref="id281"/>
+			<label kind="guard">time &gt;= 202.0408163265306</label>
+		</transition>
+		<transition>
+			<source ref="id281"/>
+			<target ref="id282"/>
+			<label kind="guard">time &gt;= 208.16326530612244</label>
+		</transition>
+		<transition>
+			<source ref="id282"/>
+			<target ref="id283"/>
+			<label kind="guard">time &gt;= 214.28571428571428</label>
+		</transition>
+		<transition>
+			<source ref="id283"/>
+			<target ref="id284"/>
+			<label kind="guard">time &gt;= 220.4081632653061</label>
+		</transition>
+		<transition>
+			<source ref="id284"/>
+			<target ref="id285"/>
+			<label kind="guard">time &gt;= 226.53061224489798</label>
+		</transition>
+		<transition>
+			<source ref="id285"/>
+			<target ref="id286"/>
+			<label kind="guard">time &gt;= 232.6530612244898</label>
+		</transition>
+		<transition>
+			<source ref="id286"/>
+			<target ref="id287"/>
+			<label kind="guard">time &gt;= 238.7755102040816</label>
+		</transition>
+		<transition>
+			<source ref="id287"/>
+			<target ref="id288"/>
+			<label kind="guard">time &gt;= 244.89795918367346</label>
+		</transition>
+		<transition>
+			<source ref="id288"/>
+			<target ref="id289"/>
+			<label kind="guard">time &gt;= 251.02040816326527</label>
+		</transition>
+		<transition>
+			<source ref="id289"/>
+			<target ref="id290"/>
+			<label kind="guard">time &gt;= 257.1428571428571</label>
+		</transition>
+		<transition>
+			<source ref="id290"/>
+			<target ref="id291"/>
+			<label kind="guard">time &gt;= 263.265306122449</label>
+		</transition>
+		<transition>
+			<source ref="id291"/>
+			<target ref="id292"/>
+			<label kind="guard">time &gt;= 269.38775510204084</label>
+		</transition>
+		<transition>
+			<source ref="id292"/>
+			<target ref="id293"/>
+			<label kind="guard">time &gt;= 275.51020408163265</label>
+		</transition>
+		<transition>
+			<source ref="id293"/>
+			<target ref="id294"/>
+			<label kind="guard">time &gt;= 281.6326530612245</label>
+		</transition>
+		<transition>
+			<source ref="id294"/>
+			<target ref="id295"/>
+			<label kind="guard">time &gt;= 287.7551020408163</label>
+		</transition>
+		<transition>
+			<source ref="id295"/>
+			<target ref="id296"/>
+			<label kind="guard">time &gt;= 293.87755102040813</label>
+		</transition>
+		<transition>
+			<source ref="id296"/>
+			<target ref="id297"/>
+			<label kind="guard">time &gt;= 300.0</label>
+		</transition>
+	</template>
+<template>
+	<name>Rule1</name>
+	<declaration>clock t;</declaration>
+	<location id="id307" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id308" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id309" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id307"/>
+	<transition>
+		<source ref="id307"/>
+		<target ref="id308"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id308"/>
+		<target ref="id309"/>
+		<label kind="guard">humanposition==1 &amp;&amp; temperature &gt; 25 &amp;&amp; temperature &lt; 30</label>
+		<label kind="assignment">rule1=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id308"/>
+		<target ref="id307"/>
+		<label kind="guard">humanposition!=1</label>
+		<label kind="assignment">rule1=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id308"/>
+		<target ref="id307"/>
+		<label kind="guard">temperature&lt;=25</label>
+		<label kind="assignment">rule1=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id308"/>
+		<target ref="id307"/>
+		<label kind="guard">temperature&gt;=30</label>
+		<label kind="assignment">rule1=0,t=0</label>
+		<nail x="150" y="150"/>
+		<nail x="0" y="150"/>
+	</transition>
+	<transition>
+		<source ref="id309"/>
+		<target ref="id307"/>
+		<label kind="synchronisation">turn_on_fan[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule2</name>
+	<declaration>clock t;</declaration>
+	<location id="id317" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id318" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id319" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id317"/>
+	<transition>
+		<source ref="id317"/>
+		<target ref="id318"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id318"/>
+		<target ref="id319"/>
+		<label kind="guard">temperature &gt; 30 &amp;&amp; humanposition==1</label>
+		<label kind="assignment">rule2=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id318"/>
+		<target ref="id317"/>
+		<label kind="guard">temperature&lt;=30</label>
+		<label kind="assignment">rule2=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id318"/>
+		<target ref="id317"/>
+		<label kind="guard">humanposition!=1</label>
+		<label kind="assignment">rule2=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id319"/>
+		<target ref="id317"/>
+		<label kind="synchronisation">turn_airconditioner_cool[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule3</name>
+	<declaration>clock t;</declaration>
+	<location id="id327" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id328" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id329" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id327"/>
+	<transition>
+		<source ref="id327"/>
+		<target ref="id328"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id328"/>
+		<target ref="id329"/>
+		<label kind="guard">temperature &lt; 10 &amp;&amp; humanposition==1</label>
+		<label kind="assignment">rule3=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id328"/>
+		<target ref="id327"/>
+		<label kind="guard">temperature&gt;=10</label>
+		<label kind="assignment">rule3=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id328"/>
+		<target ref="id327"/>
+		<label kind="guard">humanposition!=1</label>
+		<label kind="assignment">rule3=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id329"/>
+		<target ref="id327"/>
+		<label kind="synchronisation">turn_airconditioner_heat[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule4</name>
+	<declaration>clock t;</declaration>
+	<location id="id337" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id338" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id339" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id337"/>
+	<transition>
+		<source ref="id337"/>
+		<target ref="id338"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id338"/>
+		<target ref="id339"/>
+		<label kind="guard">humidity &gt; 80</label>
+		<label kind="assignment">rule4=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id338"/>
+		<target ref="id337"/>
+		<label kind="guard">humidity&lt;=80</label>
+		<label kind="assignment">rule4=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id339"/>
+		<target ref="id337"/>
+		<label kind="synchronisation">turn_on_dehumidifier[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule5</name>
+	<declaration>clock t;</declaration>
+	<location id="id347" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id348" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id349" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id347"/>
+	<transition>
+		<source ref="id347"/>
+		<target ref="id348"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id348"/>
+		<target ref="id349"/>
+		<label kind="guard">humidity &lt; 40</label>
+		<label kind="assignment">rule5=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id348"/>
+		<target ref="id347"/>
+		<label kind="guard">humidity&gt;=40</label>
+		<label kind="assignment">rule5=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id349"/>
+		<target ref="id347"/>
+		<label kind="synchronisation">turn_on_humidifier[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule6</name>
+	<declaration>clock t;</declaration>
+	<location id="id357" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id358" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id359" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id357"/>
+	<transition>
+		<source ref="id357"/>
+		<target ref="id358"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id358"/>
+		<target ref="id359"/>
+		<label kind="guard">humidity &lt; 60</label>
+		<label kind="assignment">rule6=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id358"/>
+		<target ref="id357"/>
+		<label kind="guard">humidity&gt;=60</label>
+		<label kind="assignment">rule6=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id359"/>
+		<target ref="id357"/>
+		<label kind="synchronisation">turn_off_dehumidifier[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule7</name>
+	<declaration>clock t;</declaration>
+	<location id="id367" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id368" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id369" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id367"/>
+	<transition>
+		<source ref="id367"/>
+		<target ref="id368"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id368"/>
+		<target ref="id369"/>
+		<label kind="guard">humidity &gt; 50</label>
+		<label kind="assignment">rule7=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id368"/>
+		<target ref="id367"/>
+		<label kind="guard">humidity&lt;=50</label>
+		<label kind="assignment">rule7=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id369"/>
+		<target ref="id367"/>
+		<label kind="synchronisation">turn_off_humidifier[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule8</name>
+	<declaration>clock t;</declaration>
+	<location id="id377" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id378" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id379" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id377"/>
+	<transition>
+		<source ref="id377"/>
+		<target ref="id378"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id378"/>
+		<target ref="id379"/>
+		<label kind="guard">light[0]==1</label>
+		<label kind="assignment">rule8=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id378"/>
+		<target ref="id377"/>
+		<label kind="guard">light[0]!=1</label>
+		<label kind="assignment">rule8=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id379"/>
+		<target ref="id377"/>
+		<label kind="synchronisation">close_curtain[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule9</name>
+	<declaration>clock t;</declaration>
+	<location id="id387" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id388" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id389" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id387"/>
+	<transition>
+		<source ref="id387"/>
+		<target ref="id388"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id388"/>
+		<target ref="id389"/>
+		<label kind="guard">time &gt;= 275 &amp;&amp; time &lt;= 276 &amp;&amp; light[0]==0 &amp;&amp; light[1]==0 &amp;&amp; light[2]==0 &amp;&amp; light[3]==0</label>
+		<label kind="assignment">rule9=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id388"/>
+		<target ref="id387"/>
+		<label kind="guard">time&lt;275</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id388"/>
+		<target ref="id387"/>
+		<label kind="guard">time&gt;276</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id388"/>
+		<target ref="id387"/>
+		<label kind="guard">light[0]!=0</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="150"/>
+		<nail x="0" y="150"/>
+	</transition>
+	<transition>
+		<source ref="id388"/>
+		<target ref="id387"/>
+		<label kind="guard">light[1]!=0</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="200"/>
+		<nail x="0" y="200"/>
+	</transition>
+	<transition>
+		<source ref="id388"/>
+		<target ref="id387"/>
+		<label kind="guard">light[2]!=0</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="250"/>
+		<nail x="0" y="250"/>
+	</transition>
+	<transition>
+		<source ref="id388"/>
+		<target ref="id387"/>
+		<label kind="guard">light[3]!=0</label>
+		<label kind="assignment">rule9=0,t=0</label>
+		<nail x="150" y="300"/>
+		<nail x="0" y="300"/>
+	</transition>
+	<transition>
+		<source ref="id389"/>
+		<target ref="id387"/>
+		<label kind="synchronisation">close_door[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule10</name>
+	<declaration>clock t;</declaration>
+	<location id="id397" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id398" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id399" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id397"/>
+	<transition>
+		<source ref="id397"/>
+		<target ref="id398"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id398"/>
+		<target ref="id399"/>
+		<label kind="guard">light[1]==0</label>
+		<label kind="assignment">rule10=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id398"/>
+		<target ref="id397"/>
+		<label kind="guard">light[1]!=0</label>
+		<label kind="assignment">rule10=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id399"/>
+		<target ref="id397"/>
+		<label kind="synchronisation">close_curtain[1]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule11</name>
+	<declaration>clock t;</declaration>
+	<location id="id407" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id408" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id409" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id407"/>
+	<transition>
+		<source ref="id407"/>
+		<target ref="id408"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id408"/>
+		<target ref="id409"/>
+		<label kind="guard">humanposition==4</label>
+		<label kind="assignment">rule11=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id408"/>
+		<target ref="id407"/>
+		<label kind="guard">humanposition!=4</label>
+		<label kind="assignment">rule11=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id409"/>
+		<target ref="id407"/>
+		<label kind="synchronisation">turn_on_light[3]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule12</name>
+	<declaration>clock t;</declaration>
+	<location id="id417" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id418" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id419" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id417"/>
+	<transition>
+		<source ref="id417"/>
+		<target ref="id418"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id418"/>
+		<target ref="id419"/>
+		<label kind="guard">humanposition==3 &amp;&amp; time &gt;= 125 &amp;&amp; time &lt;= 126</label>
+		<label kind="assignment">rule12=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id418"/>
+		<target ref="id417"/>
+		<label kind="guard">humanposition!=3</label>
+		<label kind="assignment">rule12=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id418"/>
+		<target ref="id417"/>
+		<label kind="guard">time&lt;125</label>
+		<label kind="assignment">rule12=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id418"/>
+		<target ref="id417"/>
+		<label kind="guard">time&gt;126</label>
+		<label kind="assignment">rule12=0,t=0</label>
+		<nail x="150" y="150"/>
+		<nail x="0" y="150"/>
+	</transition>
+	<transition>
+		<source ref="id419"/>
+		<target ref="id417"/>
+		<label kind="synchronisation">turn_on_coffeemachine[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule13</name>
+	<declaration>clock t;</declaration>
+	<location id="id427" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id428" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id429" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id427"/>
+	<transition>
+		<source ref="id427"/>
+		<target ref="id428"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id428"/>
+		<target ref="id429"/>
+		<label kind="guard">light[3]==1 &amp;&amp; temperature &lt; 10</label>
+		<label kind="assignment">rule13=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id428"/>
+		<target ref="id427"/>
+		<label kind="guard">light[3]!=1</label>
+		<label kind="assignment">rule13=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id428"/>
+		<target ref="id427"/>
+		<label kind="guard">temperature&gt;=10</label>
+		<label kind="assignment">rule13=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id429"/>
+		<target ref="id427"/>
+		<label kind="synchronisation">turn_on_heater[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule14</name>
+	<declaration>clock t;</declaration>
+	<location id="id437" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id438" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id439" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id437"/>
+	<transition>
+		<source ref="id437"/>
+		<target ref="id438"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id438"/>
+		<target ref="id439"/>
+		<label kind="guard">temperature &lt; 25 &amp;&amp; temperature &gt; 10</label>
+		<label kind="assignment">rule14=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id438"/>
+		<target ref="id437"/>
+		<label kind="guard">temperature&gt;=25</label>
+		<label kind="assignment">rule14=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id438"/>
+		<target ref="id437"/>
+		<label kind="guard">temperature&lt;=10</label>
+		<label kind="assignment">rule14=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id439"/>
+		<target ref="id437"/>
+		<label kind="synchronisation">open_window[1]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>Rule15</name>
+	<declaration>clock t;</declaration>
+	<location id="id447" x="0" y="0">
+		<label kind="invariant">t&lt;=1</label>
+	</location>
+	<location id="id448" x="150" y="0">
+		<committed/>
+	</location>
+	<location id="id449" x="300" y="0">
+		<committed/>
+	</location>
+	<init ref="id447"/>
+	<transition>
+		<source ref="id447"/>
+		<target ref="id448"/>
+		<label kind="guard">t&gt;=1</label>
+		<label kind="assignment">t=0</label>
+	</transition>
+	<transition>
+		<source ref="id448"/>
+		<target ref="id449"/>
+		<label kind="guard">time &gt;= 100 &amp;&amp; time &lt;= 225 &amp;&amp; door[1]==0</label>
+		<label kind="assignment">rule15=1,t=0</label>
+	</transition>
+	<transition>
+		<source ref="id448"/>
+		<target ref="id447"/>
+		<label kind="guard">time&lt;100</label>
+		<label kind="assignment">rule15=0,t=0</label>
+		<nail x="150" y="50"/>
+		<nail x="0" y="50"/>
+	</transition>
+	<transition>
+		<source ref="id448"/>
+		<target ref="id447"/>
+		<label kind="guard">time&gt;225</label>
+		<label kind="assignment">rule15=0,t=0</label>
+		<nail x="150" y="100"/>
+		<nail x="0" y="100"/>
+	</transition>
+	<transition>
+		<source ref="id448"/>
+		<target ref="id447"/>
+		<label kind="guard">door[1]!=0</label>
+		<label kind="assignment">rule15=0,t=0</label>
+		<nail x="150" y="150"/>
+		<nail x="0" y="150"/>
+	</transition>
+	<transition>
+		<source ref="id449"/>
+		<target ref="id447"/>
+		<label kind="synchronisation">turn_on_robotvacuum[0]!</label>
+		<nail x="300" y="-50"/>
+		<nail x="0" y="-50"/>
+	</transition>
+</template>
+<template>
+	<name>AirConditioner</name>
+	<parameter>int i</parameter>
+	<location id="id457" x="-17" y="25">
+		<name x="-17" y="-25">acoff</name>
+	</location>
+	<location id="id458" x="-212" y="136">
+		<name x="-221" y="144">cool</name>
+	</location>
+	<location id="id459" x="195" y="136">
+		<name x="178" y="144">heat</name>
+	</location>
+	<init ref="id457"/>
+	<transition>
+		<source ref="id457"/>
+		<target ref="id459"/>
+		<label kind="synchronisation" x="85" y="-17">turn_airconditioner_heat[i]?</label>
+		<label kind="assignment" x="0" y="25">airconditioner[i]=2,dtemperature=dtemperature+0.05000000074505806</label>
+		<nail x="195" y="25"/>
+	</transition>
+	<transition>
+		<source ref="id459"/>
+		<target ref="id458"/>
+		<label kind="synchronisation" x="-59" y="170">turn_airconditioner_cool[i]?</label>
+		<label kind="assignment" x="-102" y="187">airconditioner[i]=1,dtemperature=dtemperature-0.10000000149011612</label>
+		<nail x="-17" y="204"/>
+	</transition>
+	<transition>
+		<source ref="id458"/>
+		<target ref="id457"/>
+		<label kind="synchronisation" x="-187" y="8">turn_airconditioner_off[i]?</label>
+		<label kind="assignment" x="-221" y="25">airconditioner[i]=0,dtemperature=dtemperature+0.05000000074505806</label>
+		<nail x="-212" y="25"/>
+	</transition>
+	<transition>
+		<source ref="id459"/>
+		<target ref="id457"/>
+		<label kind="synchronisation" x="42" y="68">turn_airconditioner_off[i]?</label>
+		<label kind="assignment" x="0" y="85">airconditioner[i]=0,dtemperature=dtemperature-0.05000000074505806</label>
+	</transition>
+	<transition>
+		<source ref="id458"/>
+		<target ref="id459"/>
+		<label kind="synchronisation" x="-68" y="119">turn_airconditioner_heat[i]?</label>
+		<label kind="assignment" x="-102" y="136">airconditioner[i]=2,dtemperature=dtemperature+0.10000000149011612</label>
+	</transition>
+	<transition>
+		<source ref="id457"/>
+		<target ref="id458"/>
+		<label kind="synchronisation" x="-170" y="68">turn_airconditioner_cool[i]?</label>
+		<label kind="assignment" x="-212" y="85">airconditioner[i]=1,dtemperature=dtemperature-0.05000000074505806</label>
+	</transition>
+</template><template>
+	<name>Curtain</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id460" x="0" y="25">
+		<name x="17" y="16">curtainopen</name>
+	</location>
+	<location id="id461" x="0" y="119">
+		<name x="-68" y="110">curtainclosed</name>
+	</location>
+	<init ref="id461"/>
+	<transition>
+		<source ref="id461"/>
+		<target ref="id460"/>
+		<label kind="synchronisation" x="-9" y="42">open_curtain[i]?</label>
+		<label kind="assignment" x="17" y="59">curtain[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id460"/>
+		<target ref="id461"/>
+		<label kind="synchronisation" x="-85" y="76">close_curtain[i]?</label>
+		<label kind="assignment" x="-85" y="59">curtain[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Humidifier</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id462" x="0" y="25">
+		<name x="17" y="16">humidifieron</name>
+	</location>
+	<location id="id463" x="0" y="119">
+		<name x="-68" y="110">humidifieroff</name>
+	</location>
+	<init ref="id463"/>
+	<transition>
+		<source ref="id463"/>
+		<target ref="id462"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_humidifier[i]?</label>
+		<label kind="assignment" x="17" y="59">humidifier[i]=1,dhumidity=dhumidity+0.10000000149011612,dpm25=dpm25+0.6000000238418579</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id462"/>
+		<target ref="id463"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_humidifier[i]?</label>
+		<label kind="assignment" x="-85" y="59">humidifier[i]=0,dhumidity=dhumidity-0.10000000149011612,dpm25=dpm25-0.6000000238418579</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Fan</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id464" x="0" y="25">
+		<name x="17" y="16">fanon</name>
+	</location>
+	<location id="id465" x="0" y="119">
+		<name x="-68" y="110">fanoff</name>
+	</location>
+	<init ref="id465"/>
+	<transition>
+		<source ref="id465"/>
+		<target ref="id464"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_fan[i]?</label>
+		<label kind="assignment" x="17" y="59">fan[i]=1,dtemperature=dtemperature-0.019999999552965164</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id464"/>
+		<target ref="id465"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_fan[i]?</label>
+		<label kind="assignment" x="-85" y="59">fan[i]=0,dtemperature=dtemperature+0.019999999552965164</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Door</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id466" x="0" y="25">
+		<name x="17" y="16">dooropen</name>
+	</location>
+	<location id="id467" x="0" y="119">
+		<name x="-68" y="110">doorclosed</name>
+	</location>
+	<init ref="id467"/>
+	<transition>
+		<source ref="id467"/>
+		<target ref="id466"/>
+		<label kind="synchronisation" x="-9" y="42">open_door[i]?</label>
+		<label kind="assignment" x="17" y="59">door[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id466"/>
+		<target ref="id467"/>
+		<label kind="synchronisation" x="-85" y="76">close_door[i]?</label>
+		<label kind="assignment" x="-85" y="59">door[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>CoffeeMachine</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id468" x="0" y="25">
+		<name x="17" y="16">coffeemachineon</name>
+	</location>
+	<location id="id469" x="0" y="119">
+		<name x="-68" y="110">coffeemachineoff</name>
+	</location>
+	<init ref="id469"/>
+	<transition>
+		<source ref="id469"/>
+		<target ref="id468"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_coffeemachine[i]?</label>
+		<label kind="assignment" x="17" y="59">coffeemachine[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id468"/>
+		<target ref="id469"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_coffeemachine[i]?</label>
+		<label kind="assignment" x="-85" y="59">coffeemachine[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>RobotVacuum</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id470" x="0" y="25">
+		<name x="17" y="16">robotvacuumon</name>
+	</location>
+	<location id="id471" x="0" y="119">
+		<name x="-68" y="110">robotvacuumoff</name>
+	</location>
+	<init ref="id471"/>
+	<transition>
+		<source ref="id471"/>
+		<target ref="id470"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_robotvacuum[i]?</label>
+		<label kind="assignment" x="17" y="59">robotvacuum[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id470"/>
+		<target ref="id471"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_robotvacuum[i]?</label>
+		<label kind="assignment" x="-85" y="59">robotvacuum[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Window</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id472" x="0" y="25">
+		<name x="17" y="16">windowopen</name>
+	</location>
+	<location id="id473" x="0" y="119">
+		<name x="-68" y="110">windowclosed</name>
+	</location>
+	<init ref="id473"/>
+	<transition>
+		<source ref="id473"/>
+		<target ref="id472"/>
+		<label kind="synchronisation" x="-9" y="42">open_window[i]?</label>
+		<label kind="assignment" x="17" y="59">window[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id472"/>
+		<target ref="id473"/>
+		<label kind="synchronisation" x="-85" y="76">close_window[i]?</label>
+		<label kind="assignment" x="-85" y="59">window[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Dehumidifier</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id474" x="0" y="25">
+		<name x="17" y="16">dehumidifieron</name>
+	</location>
+	<location id="id475" x="0" y="119">
+		<name x="-68" y="110">dehumidifieroff</name>
+	</location>
+	<init ref="id475"/>
+	<transition>
+		<source ref="id475"/>
+		<target ref="id474"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_dehumidifier[i]?</label>
+		<label kind="assignment" x="17" y="59">dehumidifier[i]=1,dhumidity=dhumidity-0.10000000149011612,dpm25=dpm25-0.6000000238418579</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id474"/>
+		<target ref="id475"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_dehumidifier[i]?</label>
+		<label kind="assignment" x="-85" y="59">dehumidifier[i]=0,dhumidity=dhumidity+0.10000000149011612,dpm25=dpm25+0.6000000238418579</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Light</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id476" x="0" y="25">
+		<name x="17" y="16">lighton</name>
+	</location>
+	<location id="id477" x="0" y="119">
+		<name x="-68" y="110">lightoff</name>
+	</location>
+	<init ref="id477"/>
+	<transition>
+		<source ref="id477"/>
+		<target ref="id476"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_light[i]?</label>
+		<label kind="assignment" x="17" y="59">light[i]=1</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id476"/>
+		<target ref="id477"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_light[i]?</label>
+		<label kind="assignment" x="-85" y="59">light[i]=0</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+<template>
+	<name>Heater</name>
+	<parameter>int i</parameter>
+	<declaration>//controlled_device</declaration>
+	<location id="id478" x="0" y="25">
+		<name x="17" y="16">heateron</name>
+	</location>
+	<location id="id479" x="0" y="119">
+		<name x="-68" y="110">heateroff</name>
+	</location>
+	<init ref="id479"/>
+	<transition>
+		<source ref="id479"/>
+		<target ref="id478"/>
+		<label kind="synchronisation" x="-9" y="42">turn_on_heater[i]?</label>
+		<label kind="assignment" x="17" y="59">heater[i]=1,dtemperature=dtemperature+0.009999999776482582</label>
+		<nail x="51" y="76"/>
+	</transition>
+	<transition>
+		<source ref="id478"/>
+		<target ref="id479"/>
+		<label kind="synchronisation" x="-85" y="76">turn_off_heater[i]?</label>
+		<label kind="assignment" x="-85" y="59">heater[i]=0,dtemperature=dtemperature-0.009999999776482582</label>
+		<nail x="-51" y="68"/>
+	</transition>
+</template>
+	<system>
+HumanPositionModel=HumanPosition(20.0,100.0,150.0,200.0,250.0);
+AirConditioner0=AirConditioner(0);Curtain0=Curtain(0);Curtain1=Curtain(1);Humidifier0=Humidifier(0);Fan0=Fan(0);Door0=Door(0);Door1=Door(1);CoffeeMachine0=CoffeeMachine(0);RobotVacuum0=RobotVacuum(0);Window0=Window(0);Window1=Window(1);Dehumidifier0=Dehumidifier(0);Light0=Light(0);Light1=Light(1);Light2=Light(2);Light3=Light(3);Heater0=Heater(0);system HumanPositionModel,EnvironmentTemperature,EnvironmentHumidity,EnvironmentAirquality,EnvironmentPM25,EnvironmentBrightness,Rule1,Rule2,Rule3,Rule4,Rule5,Rule6,Rule7,Rule8,Rule9,Rule10,Rule11,Rule12,Rule13,Rule14,Rule15,AirConditioner0,Curtain0,Curtain1,Humidifier0,Fan0,Door0,Door1,CoffeeMachine0,RobotVacuum0,Window0,Window1,Dehumidifier0,Light0,Light1,Light2,Light3,Heater0;
+</system>
+<queries>
+	<query>
+		<formula>simulate[&lt;=300] {humanposition,temperature,humidity,airquality,pm25,brightness,rule1,rule2,rule3,rule4,rule5,rule6,rule7,rule8,rule9,rule10,rule11,rule12,rule13,rule14,rule15,airconditioner[0],curtain[0],curtain[1],humidifier[0],fan[0],door[0],door[1],coffeemachine[0],robotvacuum[0],window[0],window[1],dehumidifier[0],light[0],light[1],light[2],light[3],heater[0]}</formula>
+		<comment></comment>
+	</query>
+</queries>
+</nta>

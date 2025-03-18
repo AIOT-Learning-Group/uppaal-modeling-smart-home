@@ -6,9 +6,14 @@ device_table : {
     ctor_ts {impacts {impact_env : "dtemperature" impact_rate : -0.02}}
   }
   devices {
+    name : "Heater"
+    used_nodes : 2
+    ctor_ts {impacts {impact_env : "dtemperature" impact_rate : 0.01}}
+  }
+  devices {
     name : "AirPurifier"
     used_nodes : 2
-    ctor_ts {impacts {impact_env : "dpm25" impact_rate : -0.8}}
+    ctor_ts {impacts {impact_env : "dpm25" impact_rate : -0.008}}
   }
   devices {
     name : "AirConditioner"
@@ -43,6 +48,20 @@ device_table : {
       impacts {impact_env : "dpm25" impact_rate : +0.6}
     }
   }
+  devices {
+    name : "CoffeeMachine"
+    used_nodes : 2
+    ctor_ts {}
+  }
+  devices {
+    name : "Dehumidifier"
+    used_nodes : 2
+    ctor_ts {
+      impacts {impact_env : "dhumidity" impact_rate : -0.1}
+      impacts {impact_env : "dpm25" impact_rate : -0.6}
+    }
+  }
+
   devices {
     name : "Window"
     used_nodes : 2

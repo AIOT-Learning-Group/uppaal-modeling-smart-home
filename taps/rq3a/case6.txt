@@ -1,0 +1,15 @@
+IF humidity > 60 THEN dehumidifier_0.turn_dehumidifier_on
+IF humidity > 40 THEN humidifier_0.turn_humidifier_on
+IF Human.out THEN light_0.turn_light_off
+IF Human.out THEN light_1.turn_light_off
+IF Human.out THEN light_2.turn_light_off
+IF Human.out THEN light_3.turn_light_off
+IF Human.bathroom AND temperature < 18 THEN heater_0.turn_heater_on
+IF Human.living_room THEN light_0.turn_light_on
+IF Human.bedroom THEN light_1.turn_light_on
+IF Human.bathroom THEN light_3.turn_light_on
+IF Human.kitchen THEN light_2.turn_light_on
+IF temperature > 25 THEN airconditioner_0.turn_airconditioner_cool
+IF temperature < 18 THEN airconditioner_0.turn_airconditioner_heat
+IF window_0.open THEN airconditioner_0.turn_airconditioner_off
+IF Human.out THEN robotvacuum_0.turn_robotvacuum_on

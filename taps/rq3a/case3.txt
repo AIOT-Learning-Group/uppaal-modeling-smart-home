@@ -1,0 +1,11 @@
+a. IF Human.living_room THEN light_0.turn_light_on
+b. IF Human.out THEN fan_0.turn_fan_off
+c. IF humidity < 40 THEN humidifier_0.turn_humidifier_on
+d. IF light_0.on AND curtain_0.open THEN curtain_1.close_curtain
+e. IF temperature < 10 THEN airconditioner_0.turn_airconditioner_heat
+f. IF temperature > 30 THEN airconditioner_0.turn_airconditioner_cool
+g. IF airpurifier_0.off THEN airpurifier_0.turn_airpurifier_on
+h. IF curtain_1.close THEN light_0.turn_light_on
+i. IF temperature < 25 THEN airconditioner_0.turn_airconditioner_heat
+j. IF temperature > 25 THEN airconditioner_0.turn_airconditioner_cool
+k. IF time > 250 AND time < 255 THEN light_0.turn_light_on

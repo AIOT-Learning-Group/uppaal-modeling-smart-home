@@ -1,0 +1,21 @@
+a. IF brightness < 300 AND Human.living_room THEN light_0.turn_light_on
+b1. IF brightness > 1000 THEN light_0.turn_light_off
+b2. IF brightness > 1000 THEN light_1.turn_light_off
+b3. IF brightness > 1000 THEN light_2.turn_light_off
+b4. IF brightness > 1000 THEN light_3.turn_light_off
+c1. IF Human.out THEN light_0.turn_light_off
+c2. IF Human.bedroom THEN light_0.turn_light_off
+c3. IF Human.kitchen THEN light_0.turn_light_off
+c4. IF Human.bathroom THEN light_0.turn_light_off
+d. IF temperature < 15 THEN airconditioner_0.turn_airconditioner_heat
+e. IF temperature > 25 THEN airconditioner_0.turn_airconditioner_cool
+f. IF Human.out THEN airconditioner_0.turn_airconditioner_off
+g. IF humidity < 40 THEN humidifier_0.turn_humidifier_on
+h. IF humidity > 80 THEN humidifier_0.turn_humidifier_off
+i. IF pm25 > 300 THEN airpurifier_0.turn_airpurifier_on
+j. IF pm25 < 50 THEN airpurifier_0.turn_airpurifier_off
+k. IF Human.bathroom THEN heater_0.turn_heater_on
+l1. IF Human.out THEN heater_0.turn_heater_off
+l2. IF Human.living_room THEN heater_0.turn_heater_off
+l3. IF Human.bedroom THEN heater_0.turn_heater_off
+l4. IF Human.kitchen THEN heater_0.turn_heater_off

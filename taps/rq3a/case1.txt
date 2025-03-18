@@ -1,0 +1,17 @@
+a. IF Human.living_room AND airquality > 50 THEN airpurifier_0.turn_airpurifier_on
+b. IF temperature < 18 THEN airconditioner_0.turn_airconditioner_heat
+c1. IF airquality > 50 THEN airpurifier_0.turn_airpurifier_on AND humidifier_0.turn_humidifier_on
+c2. IF humidity < 40 THEN airpurifier_0.turn_airpurifier_on AND humidifier_0.turn_humidifier_on
+c3. IF humidity > 60 THEN airpurifier_0.turn_airpurifier_on AND humidifier_0.turn_humidifier_on
+d. IF Human.living_room AND time > 250 THEN curtain_0.close_curtain
+e1. IF Human.out AND time > 250 THEN robotvacuum_0.turn_robotvacuum_on
+e2. IF Human.out AND time < 50 THEN robotvacuum_0.turn_robotvacuum_on
+f1. IF temperature > 30 AND Human.living_room THEN airconditioner_0.turn_airconditioner_cool
+f2. IF temperature > 30 AND Human.living_room THEN fan_0.turn_fan_on
+g. IF curtain_0.open THEN airpurifier_0.turn_airpurifier_off
+h. IF airpurifier_0.on THEN curtain_0.close_curtain
+i. IF light_0.on AND Human.out THEN light_0.turn_light_off
+j. IF airpurifier_0.on THEN humidifier_0.turn_humidifier_off
+k. IF humidifier_0.on THEN airpurifier_0.turn_airpurifier_off
+
+

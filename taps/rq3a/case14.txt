@@ -1,0 +1,21 @@
+a. IF Human.out THEN airconditioner_0.turn_airconditioner_off
+b. IF window_0.open THEN airconditioner_0.turn_airconditioner_cool
+c1. IF Human.living_room THEN robotvacuum_0.turn_robotvacuum_on
+c2. IF Human.out THEN robotvacuum_0.turn_robotvacuum_on
+c3. IF Human.kitchen THEN robotvacuum_0.turn_robotvacuum_on
+c4. IF Human.bathroom THEN robotvacuum_0.turn_robotvacuum_on
+d. IF temperature < 16 THEN airconditioner_0.turn_airconditioner_heat
+e. IF airconditioner_0.heat THEN humidifier_0.turn_humidifier_on
+f. IF Human.bathroom AND temperature < 18 THEN heater_0.turn_heater_on
+g. IF Human.kitchen THEN light_2.turn_light_on
+h. IF Human.bedroom AND brightness < 300 THEN light_1.turn_light_on
+i. IF light_1.on THEN curtain_1.close_curtain
+j. IF humidity > 60 AND Human.living_room THEN dehumidifier_0.turn_dehumidifier_on
+k. IF Human.living_room AND brightness < 300 THEN light_0.turn_light_on
+l1. IF airconditioner_0.cool THEN fan_0.turn_fan_off
+l2. IF airconditioner_0.heat THEN fan_0.turn_fan_off
+m. IF Human.bathroom THEN light_3.turn_light_on
+n1. IF Human.bedroom THEN light_3.turn_light_off
+n1. IF Human.kitchen THEN light_3.turn_light_off
+n1. IF Human.living_room THEN light_3.turn_light_off
+n1. IF Human.out THEN light_3.turn_light_off

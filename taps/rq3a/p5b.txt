@@ -1,4 +1,4 @@
-a. IF airpurifier.on THEN window_0.close_window
+a. IF airpurifier_0.on THEN window_0.close_window
 b. IF Human.out AND humidity < 54 THEN humidifier_0.turn_humidifier_on
 c. IF time < 1152 THEN airpurifier_0.turn_airpurifier_off
 d. IF curtain_0.close_curtain AND time > 0 THEN airpurifier_0.turn_airpurifier_on

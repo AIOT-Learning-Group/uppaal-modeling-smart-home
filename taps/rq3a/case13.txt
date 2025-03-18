@@ -1,0 +1,20 @@
+IF humidity < 40 THEN humidifier_0.turn_humidifier_on
+IF humidity > 60 THEN dehumidifier_0.turn_dehumidifier_on
+IF PM25 > 300 THEN airpurifier_0.turn_airpurifier_on
+IF PM25 < 300 THEN airpurifier_0.turn_airpurifier_off
+IF humidity >= 40 AND humidity <= 60 THEN humidifier_0.turn_humidifier_off
+IF humidity >= 40 AND humidity <= 60 THEN dehumidifier_0.turn_dehumidifier_off
+IF Human.out THEN robotvacuum_0.turn_robotvacuum_off
+IF Human.living_room THEN robotvacuum_0.turn_robotvacuum_off
+IF Human.bathroom THEN robotvacuum_0.turn_robotvacuum_off
+IF Human.kitchen THEN robotvacuum_0.turn_robotvacuum_off
+IF Human.out THEN curtain_1.open_curtain
+IF Human.living_room THEN curtain_1.open_curtain
+IF Human.bathroom THEN curtain_1.open_curtain
+IF Human.kitchen THEN curtain_1.open_curtain
+IF Human.bedroom THEN curtain_1.close_curtain
+IF Human.bedroom THEN window_0.open_window
+IF Human.out THEN window_0.close_window
+IF Human.living_room THEN window_0.close_window
+IF Human.bathroom THEN window_0.close_window
+IF Human.kitchen THEN window_0.close_window

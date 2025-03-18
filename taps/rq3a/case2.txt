@@ -1,0 +1,11 @@
+a. IF time > 250 THEN curtain_0.open_curtain
+b. IF humidity < 50 THEN humidifier_0.turn_humidifier_on
+c. IF humidity > 50 THEN dehumidifier_0.turn_dehumidifier_on
+d. IF airquality > 50 THEN airpurifier_0.turn_airpurifier_on
+e. IF Human.living_room THEN light_0.turn_light_on
+f. IF temperature < 18 THEN airconditioner_0.turn_airconditioner_heat
+g. IF temperature > 25 THEN airconditioner_0.turn_airconditioner_cool
+h. IF Human.out THEN robotvacuum_0.turn_robotvacuum_on
+i. IF humidity > 60 THEN dehumidifier_0.turn_dehumidifier_on
+j. IF brightness > 1000 AND light_0.on THEN light_0.turn_light_off
+k. IF brightness > 1000 AND light_0.off AND curtain_0.open THEN curtain_0.close_curtain

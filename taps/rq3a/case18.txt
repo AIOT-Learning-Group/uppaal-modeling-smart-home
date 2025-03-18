@@ -1,0 +1,15 @@
+a. IF Human.out THEN fan_0.turn_fan_on
+b. IF humidity > 60 THEN airpurifier_0.turn_airpurifier_on
+c. IF pm25 > 300 THEN airpurifier_0.turn_airpurifier_on
+d. IF co > 50 THEN airpurifier_0.turn_airpurifier_on
+e. IF time > 100 AND time < 225 AND brightness < 300 THEN curtain_0.open_curtain
+f. IF time > 100 AND time < 225 AND brightness < 300 THEN curtain_1.open_curtain
+g. IF curtain_1.open THEN window_0.open_window
+h. IF co > 50 THEN curtain_0.open_curtain
+i. IF co > 50 THEN curtain_1.open_curtain
+j. IF pm25 > 300 THEN curtain_1.open_curtain
+k. IF time > 87 AND time < 88 THEN coffeemachine_0.turn_coffeemachine_on
+l. IF time > 187 AND time < 188 THEN coffeemachine_0.turn_coffeemachine_on
+m. IF robotvacuum_0.off THEN robotvacuum_0.turn_robotvacuum_on
+n. IF humidity < 40 THEN humidifier_0.turn_humidifier_on
+o. IF humidity > 60 THEN dehumidifier_0.turn_dehumidifier_on

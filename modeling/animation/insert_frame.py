@@ -69,7 +69,7 @@ def insert_frames(keyframes: List[KeyFrame], base: AnimationAssetBase):
 
 
 if __name__ == "__main__":
-    trace_input = "models/rq3_case_10.xml.result"
+    trace_input = "archives/results/2024-09-27-18-28-32-tmp0fd_7945.xml.result"
     tap_input = "taps/RQ3Case10.txt"
     base = AnimationAssetBase()
     text_format.Parse(open("knowledgebase/animation_asset_base.textproto",

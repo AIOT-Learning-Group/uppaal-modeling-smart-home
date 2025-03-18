@@ -1,0 +1,23 @@
+a. IF time >= 93 AND time <= 94 THEN curtain_1.open_curtain
+b. IF time >= 93 AND time <= 94 THEN coffeemachine_0.turn_coffeemachine_on
+c1. IF Human.living_room THEN robotvacuum_0.turn_robotvacuum_on
+c2. IF Human.bedroom THEN robotvacuum_0.turn_robotvacuum_on
+c3. IF Human.kitchen THEN robotvacuum_0.turn_robotvacuum_on
+c4. IF Human.out THEN robotvacuum_0.turn_robotvacuum_on
+d. IF temperature < 15 THEN airconditioner_0.turn_airconditioner_heat
+e. IF temperature > 25 THEN airconditioner_0.turn_airconditioner_cool
+f. IF Human.out THEN airconditioner_0.turn_airconditioner_off
+g. IF Human.out THEN light_0.turn_light_off
+h. IF Human.out THEN light_1.turn_light_off
+i. IF Human.out THEN light_2.turn_light_off
+j. IF Human.out THEN light_3.turn_light_off
+k. IF humidity < 40 THEN humidifier_0.turn_humidifier_on
+l. IF humidity > 60 THEN dehumidifier_0.turn_dehumidifier_on
+m. IF co > 50 THEN window_0.open_window
+n. IF Human.out THEN door_0.close_door
+
+
+
+
+
+

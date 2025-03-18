@@ -4,7 +4,7 @@ from functools import partial
 
 from typing import Dict, List, Tuple
 from modeling.common import Composition, PartialComposition, ComposableTemplate
-from modeling.human import HumanModel, HumanModelWithThreeLocationsRQ3A
+from modeling.human import HumanModel
 from modeling.device import device_tables
 
 
@@ -121,6 +121,8 @@ trigger_mappings = {
     '{name}_{i}.turn_{name}_off': 'turn_off_{name}[{i}]?',
     '{name}_{i}.open_{name}': 'open_{name}[{i}]?',
     '{name}_{i}.close_{name}': 'close_{name}[{i}]?',
+    'airconditioner_{i}.cool': 'turn_airconditioner_cool[{i}]?',
+    'airconditioner_{i}.heat': 'turn_airconditioner_heat[{i}]?',
     'rain.start_rain': 'startRain?',
     'rain.stop_rain': 'stopRain?',
     'rain.is_rain': 'rain==1',
@@ -128,10 +130,12 @@ trigger_mappings = {
 }
 
 comparisons = ["==", "!=", "<", ">", "<=", ">="]
-variables = ["time", "temperature", "pm25", "co", "humidity", "brightness"]
+variables = ["time", "temperature", "pm25", "co", "humidity", "brightness", "airquality"]
 for var in variables:
     for cmp in comparisons:
         trigger_mappings[f"{var} {cmp} "+"{val}"] = f"{var} {cmp} "+"{val}"
+
+import collections
 
 action_mappings = {
     'airconditioner_{i}.turn_airconditioner_on': 'turn_airconditioner_auto[{i}]!',
@@ -144,7 +148,6 @@ action_mappings = {
     '{name}_{i}.close_{name}': 'close_{name}[{i}]!',
     'robotvacuum_{i}.turn_rv_on': 'turn_on_robotvacuum[{i}]!',
     'robotvacuum_{i}.turn_rv_off': 'turn_off_robotvacuum[{i}]!',
-    'sms.send_msg': 'send_msg!'
 }
 
 class RuleContext:
@@ -157,37 +160,41 @@ class RuleContext:
 
 global_rule_context = RuleContext()
 
+inited = False
 def init_global_rule_context():
-    global_rule_context.on_off_devices_names = [
-        "fan", "airpurifier", "light",  "humidifier", "robotvacuum"
-    ]
+    global inited
+    if not inited:
+        inited = True
+        global_rule_context.on_off_devices_names = [
+            "fan", "airpurifier", "light",  "humidifier", "robotvacuum", "camera"
+        ]
 
-    global_rule_context.open_close_devices_names = [
-        "door", "curtain", "window",
-    ]
+        global_rule_context.open_close_devices_names = [
+            "door", "curtain", "window",
+        ]
 
-    global_rule_context.special_devices_names = [
-        "airconditioner"
-    ]
+        global_rule_context.special_devices_names = [
+            "airconditioner"
+        ]
 
-    global_rule_context.valid_device_names = global_rule_context.on_off_devices_names + \
-        global_rule_context.open_close_devices_names + global_rule_context.special_devices_names
+        global_rule_context.valid_device_names = global_rule_context.on_off_devices_names + \
+            global_rule_context.open_close_devices_names + global_rule_context.special_devices_names
 
 
-    global_rule_context.device_to_name = {
-        # TODO: use selected device table
-        v: k for k, v in device_tables[list(device_tables.keys())[0]].items()
-    }
+        global_rule_context.device_to_name = {
+            # TODO: use selected device table
+            v: k for k, v in device_tables[list(device_tables.keys())[0]].items()
+        }
 
-    # for device_name in global_rule_context.valid_device_names:
-    #     # TODO: use selected device table
-    #     assert device_name in device_tables[list(device_tables.keys())[0]].keys(
-    #     ), "no corresponding device:" + device_name + " in " + str(list(device_tables[list(device_tables.keys())[0]].keys(
-    #     )))
+        # for device_name in global_rule_context.valid_device_names:
+        #     # TODO: use selected device table
+        #     assert device_name in device_tables[list(device_tables.keys())[0]].keys(
+        #     ), "no corresponding device:" + device_name + " in " + str(list(device_tables[list(device_tables.keys())[0]].keys(
+        #     )))
 
-    # # TODO: use selected device table
-    # for device_name in device_tables[list(device_tables.keys())[0]].keys():
-    #     assert device_name in valid_device_names, "device name not valid:" + device_name
+        # # TODO: use selected device table
+        # for device_name in device_tables[list(device_tables.keys())[0]].keys():
+        #     assert device_name in valid_device_names, "device name not valid:" + device_name
 
 
 def parse_trigger(location_to_idx: Dict[str, int], raw_trigger: str) -> str:
@@ -217,6 +224,7 @@ def parse_rule(location_to_idx: Dict[str, int], trigger: str, action: str) -> Tu
         values = parse.parse(a_format, action)
         if values != None:
             inner_a = inner_format.format(**values.named)
+            break
     assert inner_t != "" and inner_a != "", f"bad rule: {trigger}, {action}: {inner_t}, {inner_a}"
     return inner_t, inner_a
 

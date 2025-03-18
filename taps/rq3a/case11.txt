@@ -1,0 +1,15 @@
+IF Human.living_room THEN light_0.turn_light_on
+IF temperature < 18 THEN airconditioner_0.turn_airconditioner_heat
+IF temperature > 25 THEN airconditioner_0.turn_airconditioner_cool
+IF time >= 125 AND time <= 126 THEN robotvacuum_0.turn_robotvacuum_on
+IF time >= 250 AND time <= 251 THEN robotvacuum_0.turn_robotvacuum_on
+IF humidity < 40 THEN humidifier_0.turn_humidifier_on
+IF humidity > 60 THEN dehumidifier_0.turn_dehumidifier_on
+IF CO > 50 THEN window_0.open_window
+IF PM25 > 300 THEN window_0.open_window
+IF Human.bedroom THEN light_1.turn_light_on
+IF Human.kitchen THEN light_2.turn_light_on
+IF Human.bathroom THEN light_3.turn_light_on
+IF Human.bathroom AND temperature < 24 THEN heater_0.turn_heater_on
+IF time >= 250 AND light_0.off THEN curtain_0.close_curtain
+IF time >= 250 AND light_1.off THEN curtain_1.close_curtain

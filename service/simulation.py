@@ -1,4 +1,6 @@
 import os
+
+from scipy import stats
 from config import POINTS_NUMBER
 from config import UPPAAL_PATH
 from loguru import logger
@@ -17,10 +19,14 @@ from service.utils import handle_assertion, save_to_archives
 router = APIRouter()
 
 
+class Example(TypedDict):
+  pointX: list[float]
+  pointY: list[float]
+
 class ModelInstanceSpecification(TypedDict):
     name: str
     parameters: List[str]
-
+    example: Optional[Example]
 
 class ContextModelSpecification(TypedDict):
     name: str
@@ -59,7 +65,7 @@ def get_human_model_specification() -> List[ModelInstanceSpecification]:
     params = [[f"t{i+1}" for i in range(len(pat) - 1)] for pat in patterns]
     specs: List[ModelInstanceSpecification] = []
     for i in range(len(patterns)):
-        specs.append({"name": "->".join(patterns[i]), "parameters": params[i]})
+        specs.append({"name": "->".join(patterns[i]), "parameters": params[i], "example": None })
     return specs
 
 
@@ -90,9 +96,18 @@ def norm_gen(num: int, params: Dict[str, str]) -> DataPoints:
     return curve_normal_dist(num, float(params[norm_params[0]]), float(params[norm_params[1]]))
 
 
-Curve = Tuple[str, List[str], DataPointsGenerator]
-ConstantCurve: Curve = ("Constant", const_params, const_gen)
-NormalDistributionCurve: Curve = ("Gaussian Curve", norm_params, norm_gen) # TODO: Revert
+Curve = Tuple[str, List[str], DataPointsGenerator, Optional[Example]]
+ConstantCurve: Curve = ("Constant", const_params, const_gen, {
+    'pointX': [0, 12, 24],
+    'pointY': [26, 26, 26]
+})
+
+import numpy as np
+
+NormalDistributionCurve: Curve = ("Gaussian Curve", norm_params, norm_gen, {
+    'pointX': np.arange(-12, 13, 2) + 12,
+    'pointY': stats.norm.pdf(np.arange(-12, 13, 2), 0, 20) * 200 + 20
+})
 
 temperature_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
 humidity_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
@@ -103,7 +118,7 @@ pm25_models: List[Curve] = [ConstantCurve, NormalDistributionCurve]
 # brightness_models: List[Curve] = [("Indoor Brightness In Shanghai", const_params, const_gen)]
 
 def get_temperature_model_specification() -> List[ModelInstanceSpecification]:
-    return [{"name": c[0], "parameters": c[1]} for c in temperature_models]
+    return [{"name": c[0], "parameters": c[1], "example": c[3]} for c in temperature_models]#,  if len(c) > 1 else None
 
 
 def parse_temperature_model_specification(input: ParserInput) -> ParserOutput:
@@ -119,7 +134,7 @@ def parse_temperature_model_specification(input: ParserInput) -> ParserOutput:
 
 
 def get_humidity_model_specification() -> List[ModelInstanceSpecification]:
-    return [{"name": c[0], "parameters": c[1]} for c in humidity_models]
+    return [{"name": c[0], "parameters": c[1], "example": c[3]} for c in humidity_models]
 
 
 def parse_humidity_model_specification(input: ParserInput) -> ParserOutput:
@@ -136,7 +151,7 @@ def parse_humidity_model_specification(input: ParserInput) -> ParserOutput:
 
 
 def get_pm25_model_specification() -> List[ModelInstanceSpecification]:
-    return [{"name": c[0], "parameters": c[1]} for c in pm25_models]
+    return [{"name": c[0], "parameters": c[1], "example": c[3]} for c in pm25_models]
 
 
 def parse_pm25_model_specification(input: ParserInput) -> ParserOutput:
@@ -178,7 +193,13 @@ context_models["PM25"] = (
 
 @router.get("/api/fetch-context-model")
 async def fetch_context_model() -> List[ContextModelSpecification]:
-    return [{"name": name, "models": gen()} for name, (gen, _) in context_models.items()]
+    results = []
+    for name, (gen, _) in context_models.items():
+        #logger.info(f"add {name}")
+        model = {"name": name, "models": gen()}
+        results.append(model)
+        #logger.info(model)
+    return results
 
 
 @router.post("/api/submit-simulation-params", response_class=PlainTextResponse)
